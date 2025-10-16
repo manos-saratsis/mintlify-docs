@@ -2,11 +2,11 @@
 
 ## Overview
 
-This document provides a comprehensive Software Bill of Materials (SBOM) in CycloneDX format for the **Mintlify Documentation Starter Kit** project. A Software Bill of Materials is a formal, machine-readable inventory of all components, dependencies, libraries, and metadata that comprise a software application. The CycloneDX format is an OWASP-led industry standard specifically designed for application security contexts and software supply chain component analysis.
+This document provides a comprehensive Software Bill of Materials (SBOM) in CycloneDX format for the **Mintlify Documentation Starter Kit** project. A Software Bill of Materials is a formal, machine-readable inventory of all software components, dependencies, libraries, and metadata that comprise a software application.
 
 **What is CycloneDX?**
 
-CycloneDX is a lightweight SBOM standard designed for use in application security contexts and supply chain component analysis. Unlike SPDX (which originated from license compliance needs), CycloneDX was purpose-built for security use cases including:
+CycloneDX is a lightweight SBOM standard designed specifically for application security contexts and supply chain component analysis. It is an OWASP-led industry standard purpose-built for:
 
 - Vulnerability identification and management
 - License compliance and risk assessment
@@ -16,15 +16,15 @@ CycloneDX is a lightweight SBOM standard designed for use in application securit
 
 **Project Context: Mintlify Documentation Starter Kit**
 
-The Mintlify Documentation Starter Kit is a configuration-driven documentation framework that differs significantly from traditional web applications. Based on comprehensive analysis of the provided source code, this project consists primarily of:
+Based on comprehensive analysis of the provided source code, this project is a **configuration-driven documentation framework** that operates fundamentally differently from traditional web applications. The project consists of:
 
-- **Configuration file** (`docs.json`) defining site structure, theme, navigation, and behavior
-- **Markdown content files** (`.md` extension) providing documentation text
-- **OpenAPI specification** (`api-reference/openapi.json`) demonstrating API documentation capabilities
-- **Static assets** (SVG files: logos and favicon) for branding
-- **Single runtime dependency**: Mintlify CLI tool (`mint`) installed globally via npm
+- **Configuration file** (`docs.json`) - 111 lines defining complete site structure, theme, navigation, and behavior
+- **Markdown content files** - 18+ documentation pages in `.md` format
+- **OpenAPI specification** (`api-reference/openapi.json`) - 194 lines demonstrating API documentation capabilities
+- **Static assets** - Logo files (`/logo/light.svg`, `/logo/dark.svg`) and favicon (`/favicon.svg`)
+- **Single runtime dependency** - Mintlify CLI tool (`mint`) installed globally via npm
 
-**Key Architectural Characteristic**: This project does **not** contain a traditional `package.json` or dependency manifest file within the project directory. The only external dependency is the Mintlify CLI (`mint`), installed globally via `npm i -g mint` (as documented in `README.md` line 18).
+**Critical Architectural Finding**: This project does **NOT** contain traditional dependency manifest files (`package.json`, `package-lock.json`, `requirements.txt`, etc.). The architecture is configuration-first, with the only external dependency being the globally-installed Mintlify CLI tool.
 
 **SBOM Purpose and Applications**:
 
@@ -40,79 +40,60 @@ This CycloneDX SBOM serves multiple critical functions:
 
 ### Project Structure Analysis
 
-The Mintlify Documentation Starter Kit has a unique architecture optimized for documentation generation. Analysis of the provided source code reveals the following structure:
+The Mintlify Documentation Starter Kit follows this directory structure:
 
 ```
-mintlify-documentation-starter-kit/
-├── docs.json                      # Central configuration file (111 lines)
-├── README.md                      # Setup and usage instructions
+mintlify-starter-kit/
+├── docs.json                      # Primary configuration (111 lines)
+├── README.md                      # Setup instructions
 ├── favicon.svg                    # Site favicon
 ├── logo/
-│   ├── light.svg                  # Light theme logo
-│   └── dark.svg                   # Dark theme logo
+│   ├── light.svg                 # Light theme logo
+│   └── dark.svg                  # Dark theme logo
 ├── api-reference/
-│   ├── introduction.md            # API documentation introduction
-│   ├── openapi.json               # OpenAPI 3.1.0 specification (194 lines)
+│   ├── openapi.json              # OpenAPI 3.1.0 spec (194 lines)
+│   ├── introduction.md           # API docs introduction
 │   └── endpoint/
-│       ├── get.md                 # GET endpoint documentation
-│       ├── create.md              # POST endpoint documentation
-│       ├── delete.md              # DELETE endpoint documentation
-│       └── webhook.md             # Webhook documentation
+│       ├── get.md
+│       ├── create.md
+│       ├── delete.md
+│       └── webhook.md
 ├── essentials/
-│   ├── settings.md                # Settings documentation
-│   ├── navigation.md              # Navigation configuration guide
-│   ├── markdown.md                # Markdown usage guide
-│   ├── code.md                    # Code block documentation
-│   ├── images.md                  # Image usage guide
-│   └── reusable-snippets.md      # Snippet documentation
+│   ├── settings.md
+│   ├── navigation.md
+│   ├── markdown.md
+│   ├── code.md
+│   ├── images.md
+│   └── reusable-snippets.md
 ├── ai-tools/
-│   ├── cursor.md                  # Cursor editor integration
-│   ├── claude-code.md             # Claude AI integration
-│   └── windsurf.md                # Windsurf integration
-├── api-docs.md                    # Comprehensive API documentation
-├── architecture.md                # Architecture documentation
-├── component-docs.md              # Component documentation
-├── concepts.md                    # Concepts documentation
-├── feature-guides.md              # Feature guides
-├── getting-started.md             # Getting started guide
-├── how_to.md                      # How-to guides
-├── intro.md                       # Quick start introduction
-├── reference.md                   # API reference
-├── sbom-cyclonedx.md             # CycloneDX SBOM documentation
-├── sbom-spdx.md                  # SPDX SBOM documentation
-├── sbom_cyclonedx.md             # Alternative CycloneDX documentation
-├── sbom_spdx.md                  # Alternative SPDX documentation
-└── tutorials.md                   # Tutorial documentation
+│   ├── cursor.md
+│   ├── claude-code.md
+│   └── windsurf.md
+├── api-docs.md
+├── architecture.md
+├── component-docs.md
+├── concepts.md
+├── feature-guides.md
+├── getting-started.md
+├── how_to.md
+├── intro.md
+├── reference.md
+├── sbom-cyclonedx.md
+├── sbom-spdx.md
+├── sbom_cyclonedx.md
+├── sbom_spdx.md
+└── tutorials.md
 ```
 
 **File Type Distribution**:
-
-- **Configuration**: 1 JSON file (`docs.json`)
-- **Documentation**: 18 Markdown files (`.md` extension)
-- **API Specification**: 1 JSON file (`api-reference/openapi.json`)
-- **Assets**: 3 SVG files (logo variants and favicon)
-- **Total Files**: 23 files
-
-**Dependency Discovery Process**:
-
-For traditional web applications, SBOM generation typically examines:
-- `package.json` and `package-lock.json` (Node.js/JavaScript)
-- `requirements.txt` or `Pipfile` (Python)
-- `Gemfile` and `Gemfile.lock` (Ruby)
-- `pom.xml` or `build.gradle` (Java)
-- `go.mod` (Go)
-- `Cargo.toml` (Rust)
-
-**Critical Finding**: This project contains **none** of these standard dependency manifest files. The architecture is fundamentally different from typical applications, relying instead on:
-
-1. **Global CLI Tool**: Mintlify CLI (`mint`) installed globally via npm
-2. **Cloud Platform**: Mintlify hosting infrastructure for builds and deployment
-3. **External Services**: GitHub for version control and deployment triggers
-4. **Configuration**: `docs.json` defining all site behavior without code dependencies
+- Configuration: 1 JSON file (`docs.json`)
+- API Specification: 1 JSON file (`openapi.json`)
+- Documentation: 18 Markdown files
+- Assets: 3 SVG files (logos and favicon)
 
 ### CycloneDX Document Structure (Version 1.5)
 
-CycloneDX 1.5 (the current specification version as of 2024) defines a hierarchical JSON structure with the following key sections:
+CycloneDX 1.5 (the current specification version) defines a hierarchical JSON structure with the following key sections:
 
 #### 1. BOM Metadata Section
 
@@ -130,7 +111,13 @@ The metadata section provides essential information about the SBOM document itse
       {
         "vendor": "OWASP",
         "name": "CycloneDX Documentation Generator",
-        "version": "1.5.0"
+        "version": "1.5.0",
+        "externalReferences": [
+          {
+            "type": "website",
+            "url": "https://cyclonedx.org"
+          }
+        ]
       }
     ],
     "component": {
@@ -138,11 +125,33 @@ The metadata section provides essential information about the SBOM document itse
       "bom-ref": "pkg:generic/mintlify-docs@1.0.0",
       "name": "Mintlify Documentation Starter Kit",
       "version": "1.0.0",
-      "description": "A documentation starter kit using Mintlify for creating beautiful, searchable documentation sites with guide pages, navigation, customizations, and API reference capabilities"
+      "description": "A documentation starter kit using Mintlify for creating beautiful, searchable documentation sites with guide pages, navigation, customizations, API reference capabilities, and OpenAPI integration",
+      "licenses": [
+        {
+          "license": {
+            "id": "NOASSERTION"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://mintlify.com"
+        },
+        {
+          "type": "documentation",
+          "url": "https://mintlify.com/docs"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mintlify/starter"
+        }
+      ]
     },
     "authors": [
       {
-        "name": "Mintlify Team"
+        "name": "Mintlify Team",
+        "email": "hi@mintlify.com"
       }
     ]
   }
@@ -186,7 +195,7 @@ The components array catalogs all software dependencies, libraries, frameworks, 
       "purl": "pkg:npm/mint",
       "name": "mint",
       "version": "latest",
-      "description": "Mintlify CLI for previewing documentation changes locally and managing documentation deployments",
+      "description": "Mintlify CLI for previewing documentation changes locally and managing documentation deployments. Provides live development server with hot reload capabilities.",
       "scope": "required",
       "licenses": [
         {
@@ -240,6 +249,22 @@ The components array catalogs all software dependencies, libraries, frameworks, 
 }
 ```
 
+**Installation Context** (from `README.md` lines 18-27):
+
+The Mintlify CLI is installed globally outside the project directory:
+
+```bash
+npm i -g mint
+```
+
+Used for local development:
+
+```bash
+mint dev
+```
+
+Accessed at `http://localhost:3000`.
+
 **Component Field Definitions**:
 
 - **type**: Component category (library, framework, application, etc.)
@@ -251,7 +276,6 @@ The components array catalogs all software dependencies, libraries, frameworks, 
 - **scope**: Usage context (required, optional, excluded)
 - **licenses**: SPDX license identifiers or license objects
 - **externalReferences**: URLs to documentation, source, distribution, etc.
-- **properties**: Key-value pairs for additional metadata
 
 **Package URL (PURL) Specification**:
 
@@ -285,7 +309,7 @@ Common package types:
   "bom-ref": "config:docs-json",
   "name": "docs.json",
   "version": "1.0.0",
-  "description": "Primary configuration file defining navigation structure, theme colors, branding, and global settings for the documentation site",
+  "description": "Primary configuration file (111 lines) defining site structure, theme, colors, navigation hierarchy, logo references, navbar configuration, contextual options, and footer social links",
   "scope": "required",
   "properties": [
     {
@@ -295,6 +319,18 @@ Common package types:
     {
       "name": "theme",
       "value": "mint"
+    },
+    {
+      "name": "colors-primary",
+      "value": "#16A34A"
+    },
+    {
+      "name": "colors-light",
+      "value": "#07C983"
+    },
+    {
+      "name": "colors-dark",
+      "value": "#15803D"
     },
     {
       "name": "navigation-tabs",
@@ -309,16 +345,29 @@ Common package types:
       "value": "17"
     },
     {
-      "name": "file-size-bytes",
-      "value": "2847"
+      "name": "global-anchors",
+      "value": "2"
     },
     {
-      "name": "file-lines",
-      "value": "111"
+      "name": "contextual-options",
+      "value": "8"
+    },
+    {
+      "name": "social-links",
+      "value": "3"
     }
   ]
 }
 ```
+
+**Configuration Details** (from `docs.json`):
+
+Lines 2-10: Schema, theme, name, colors, favicon
+Lines 11-77: Navigation structure with 2 tabs (Guides with 4 groups/12 pages, API reference with 2 groups/5 pages)
+Lines 78-81: Logo configuration (light and dark variants)
+Lines 82-92: Navbar links and primary button
+Lines 93-104: Contextual options (copy, view, chatgpt, claude, perplexity, mcp, cursor, vscode)
+Lines 105-111: Footer social links (x, github, linkedin)
 
 **OpenAPI Specification Component**:
 
@@ -328,7 +377,7 @@ Common package types:
   "bom-ref": "spec:openapi",
   "name": "OpenAPI Plant Store Specification",
   "version": "3.1.0",
-  "description": "Sample OpenAPI 3.1.0 specification demonstrating API documentation features with plant store endpoints",
+  "description": "Sample OpenAPI 3.1.0 specification (194 lines) demonstrating API documentation features. Defines plant store API with GET /plants, POST /plants, DELETE /plants/{id} endpoints, webhook integration, bearer authentication, and three schemas (Plant, NewPlant, Error)",
   "scope": "optional",
   "licenses": [
     {
@@ -355,6 +404,10 @@ Common package types:
       "value": "http://sandbox.mintlify.com"
     },
     {
+      "name": "security-scheme",
+      "value": "bearerAuth"
+    },
+    {
       "name": "endpoints-count",
       "value": "3"
     },
@@ -365,33 +418,38 @@ Common package types:
     {
       "name": "schemas-count",
       "value": "3"
-    },
-    {
-      "name": "file-size-bytes",
-      "value": "5247"
-    },
-    {
-      "name": "file-lines",
-      "value": "194"
     }
   ],
   "externalReferences": [
     {
       "type": "specification",
       "url": "https://spec.openapis.org/oas/v3.1.0"
+    },
+    {
+      "type": "documentation",
+      "url": "https://swagger.io/specification/"
     }
   ]
 }
 ```
 
-**Platform Dependency: Node.js Runtime**:
+**OpenAPI Details** (from `api-reference/openapi.json`):
+
+Lines 1-9: OpenAPI 3.1.0 metadata, Plant Store API title, MIT license, v1.0.0
+Lines 10-13: Server configuration (http://sandbox.mintlify.com)
+Lines 14-18: Bearer authentication security requirement
+Lines 19-127: Three paths (GET /plants with limit parameter, POST /plants with NewPlant schema, DELETE /plants/{id})
+Lines 128-151: Webhook (POST /plant/webhook with NewPlant schema)
+Lines 152-194: Components section with schemas (Plant, NewPlant, Error) and securitySchemes (bearerAuth)
+
+**Platform Dependency: Node.js**:
 
 ```json
 {
   "type": "platform",
   "bom-ref": "platform:nodejs",
   "name": "Node.js",
-  "description": "JavaScript runtime environment required for executing Mintlify CLI",
+  "description": "JavaScript runtime environment required for executing Mintlify CLI. Provides npm package manager for CLI installation.",
   "scope": "required",
   "licenses": [
     {
@@ -413,6 +471,16 @@ Common package types:
       "type": "vcs",
       "url": "https://github.com/nodejs/node"
     }
+  ],
+  "properties": [
+    {
+      "name": "runtime-type",
+      "value": "javascript"
+    },
+    {
+      "name": "package-manager",
+      "value": "npm"
+    }
   ]
 }
 ```
@@ -433,13 +501,14 @@ External services the software depends on for operation:
         "url": ["https://github.com"]
       },
       "name": "GitHub",
-      "description": "Version control and deployment platform integrated via GitHub app",
+      "description": "Version control platform providing repository hosting, version control, and automatic deployment integration via GitHub app. Deployment triggers automatically on push to default branch.",
       "endpoints": [
         "https://github.com",
         "https://api.github.com"
       ],
       "authenticated": true,
       "x-trust-boundary": true,
+      "trustZone": "external",
       "data": [
         {
           "flow": "bi-directional",
@@ -447,6 +516,10 @@ External services the software depends on for operation:
         }
       ],
       "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com"
+        },
         {
           "type": "documentation",
           "url": "https://docs.github.com"
@@ -460,12 +533,20 @@ External services the software depends on for operation:
         {
           "name": "deployment-trigger",
           "value": "push-to-default-branch"
+        },
+        {
+          "name": "dashboard-url",
+          "value": "https://dashboard.mintlify.com/settings/organization/github-app"
         }
       ]
     }
   ]
 }
 ```
+
+**Integration Details** (from `README.md` lines 29-32):
+
+GitHub app installed from dashboard at `https://dashboard.mintlify.com/settings/organization/github-app` triggers automatic deployment when changes are pushed to the default branch.
 
 **Mintlify Platform Service**:
 
@@ -477,13 +558,14 @@ External services the software depends on for operation:
     "url": ["https://mintlify.com"]
   },
   "name": "Mintlify Platform",
-  "description": "Documentation hosting and deployment service providing automatic builds, CDN delivery, and search indexing",
+  "description": "Documentation hosting and deployment service providing automatic builds from GitHub, CDN delivery, search indexing, and production hosting infrastructure. Handles parsing of docs.json, processing of markdown content, generation of static HTML, and CDN deployment.",
   "endpoints": [
     "https://dashboard.mintlify.com",
     "https://api.mintlify.com"
   ],
   "authenticated": true,
   "x-trust-boundary": true,
+  "trustZone": "external",
   "data": [
     {
       "flow": "bi-directional",
@@ -498,16 +580,28 @@ External services the software depends on for operation:
     {
       "type": "documentation",
       "url": "https://mintlify.com/docs"
+    },
+    {
+      "type": "other",
+      "url": "https://mintlify.com/blog"
     }
   ],
   "properties": [
     {
-      "name": "build-process",
-      "value": "automatic"
+      "name": "deployment-method",
+      "value": "automatic-github-integration"
+    },
+    {
+      "name": "build-trigger",
+      "value": "git-push"
     },
     {
       "name": "hosting-type",
       "value": "cdn"
+    },
+    {
+      "name": "search-provider",
+      "value": "mintlify-search"
     }
   ]
 }
@@ -521,7 +615,7 @@ External services the software depends on for operation:
 - **description**: Purpose and functionality
 - **endpoints**: API endpoints and URLs
 - **authenticated**: Whether authentication is required
-- **x-trust-boundary**: Indicates crossing security trust boundaries
+- **trustZone**: Security trust zone (internal, external, public, etc.)
 - **data**: Information about data flows and classification
 
 #### 4. Dependencies Section
@@ -617,7 +711,7 @@ The compositions section describes how components are aggregated:
 
 ### Complete CycloneDX SBOM
 
-Based on comprehensive analysis of the project structure, configuration files, and documentation, here is the complete CycloneDX 1.5 SBOM:
+Based on comprehensive analysis of the project structure, configuration files, and documentation, here is the complete CycloneDX 1.5 SBOM in JSON format:
 
 ```json
 {
@@ -783,14 +877,6 @@ Based on comprehensive analysis of the project structure, configuration files, a
         {
           "name": "social-links",
           "value": "3"
-        },
-        {
-          "name": "file-size-bytes",
-          "value": "2847"
-        },
-        {
-          "name": "file-lines",
-          "value": "111"
         }
       ]
     },
@@ -840,14 +926,6 @@ Based on comprehensive analysis of the project structure, configuration files, a
         {
           "name": "schemas-count",
           "value": "3"
-        },
-        {
-          "name": "file-size-bytes",
-          "value": "5247"
-        },
-        {
-          "name": "file-lines",
-          "value": "194"
         }
       ],
       "externalReferences": [
@@ -915,6 +993,7 @@ Based on comprehensive analysis of the project structure, configuration files, a
       ],
       "authenticated": true,
       "x-trust-boundary": true,
+      "trustZone": "external",
       "data": [
         {
           "flow": "bi-directional",
@@ -923,71 +1002,4 @@ Based on comprehensive analysis of the project structure, configuration files, a
       ],
       "externalReferences": [
         {
-          "type": "website",
-          "url": "https://github.com"
-        },
-        {
-          "type": "documentation",
-          "url": "https://docs.github.com"
-        }
-      ],
-      "properties": [
-        {
-          "name": "integration-type",
-          "value": "github-app"
-        },
-        {
-          "name": "deployment-trigger",
-          "value": "push-to-default-branch"
-        },
-        {
-          "name": "dashboard-url",
-          "value": "https://dashboard.mintlify.com/settings/organization/github-app"
-        }
-      ]
-    },
-    {
-      "bom-ref": "service:mintlify-platform",
-      "provider": {
-        "name": "Mintlify",
-        "url": ["https://mintlify.com"]
-      },
-      "name": "Mintlify Platform",
-      "description": "Documentation hosting and deployment service providing automatic builds from GitHub, CDN delivery, search indexing, and production hosting infrastructure. Handles parsing of docs.json, processing of markdown content, generation of static HTML, and CDN deployment.",
-      "endpoints": [
-        "https://dashboard.mintlify.com",
-        "https://api.mintlify.com"
-      ],
-      "authenticated": true,
-      "x-trust-boundary": true,
-      "data": [
-        {
-          "flow": "bi-directional",
-          "classification": "public"
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://dashboard.mintlify.com"
-        },
-        {
-          "type": "documentation",
-          "url": "https://mintlify.com/docs"
-        },
-        {
-          "type": "other",
-          "url": "https://mintlify.com/blog"
-        }
-      ],
-      "properties": [
-        {
-          "name": "deployment-method",
-          "value": "automatic-github-integration"
-        },
-        {
-          "name": "build-trigger",
-          "value": "git-push"
-        },
-        {
-          "name": "hosting
+          "type": "website
