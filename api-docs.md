@@ -2,457 +2,311 @@
 
 ## Overview
 
-This documentation covers the **Plant Store API**, a RESTful API included as a demonstration in the Mintlify documentation starter kit. The API provides endpoints for managing a plant inventory system, including operations to retrieve, create, and delete plant records. The API specification follows the OpenAPI 3.1.0 standard and is defined in `api-reference/openapi.json`.
+This documentation provides a comprehensive reference for the **Plant Store API**, a RESTful API included as a demonstration in the Mintlify Documentation Starter Kit. The Plant Store API is a sample implementation designed to showcase how to document APIs using Mintlify's OpenAPI integration capabilities.
 
-**Base URL**: `http://sandbox.mintlify.com`
+**Purpose**: The Plant Store API serves as a working example of OpenAPI 3.1.0 specification implementation, demonstrating best practices for API documentation including endpoints, authentication, webhooks, and data schemas. While functional as a sandbox API, its primary purpose is educational - showing documentation authors how to integrate their own API specifications into Mintlify documentation sites.
 
-**API Version**: 1.0.0
+**API Characteristics**:
+- **Base URL**: `http://sandbox.mintlify.com`
+- **API Version**: 1.0.0
+- **Specification Format**: OpenAPI 3.1.0
+- **License**: MIT
+- **Authentication**: Bearer token (HTTP Bearer authentication scheme)
+- **Content Type**: application/json
 
-**License**: MIT
+**Source Files**:
+- OpenAPI Specification: `api-reference/openapi.json` (194 lines)
+- API Documentation: `api-docs.md`
+- Endpoint Examples: `api-reference/endpoint/get.md`, `create.md`, `delete.md`, `webhook.md`
 
-The API is designed as a sample implementation to demonstrate how to document APIs using Mintlify's OpenAPI integration. All endpoints require bearer token authentication for secure access.
+## Implementation
 
-## Authentication
+### OpenAPI Specification Structure
 
-### Bearer Token Authentication
+The Plant Store API is defined in `api-reference/openapi.json` following the OpenAPI 3.1.0 standard. The specification follows a hierarchical structure:
 
-All API requests require authentication using the HTTP Bearer authentication scheme.
-
-**Implementation**:
-
-The security configuration is defined in `api-reference/openapi.json` (lines 14-17):
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
-
-The bearer authentication scheme is defined in the security schemes section (lines 175-179):
-
-```json
-"securitySchemes": {
-  "bearerAuth": {
-    "type": "http",
-    "scheme": "bearer"
-  }
-}
-```
-
-**Usage**:
-
-Include your bearer token in the `Authorization` header of every API request:
-
-```
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-Example using curl:
-
-```bash
-curl -X GET "http://sandbox.mintlify.com/plants" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
-```
-
-**Security Notes**:
-- Keep your bearer token secure and never expose it in client-side code
-- Tokens should be transmitted only over HTTPS in production environments
-- The API applies bearer authentication globally to all endpoints
-
-## Endpoints
-
-### GET /plants
-
-Retrieves all plants from the system that the authenticated user has access to.
-
-**Endpoint**: `GET /plants`
-
-**Implementation**: Defined in `api-reference/openapi.json` (lines 20-56)
-
-**Query Parameters**:
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| limit | integer (int32) | No | The maximum number of results to return |
-
-**Request Example**:
-
-```bash
-GET http://sandbox.mintlify.com/plants?limit=10
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-**Response - 200 Success**:
-
-Returns an array of Plant objects.
-
-Response schema (lines 41-48):
+**Root Configuration** (lines 1-18):
 ```json
 {
-  "type": "array",
-  "items": {
-    "$ref": "#/components/schemas/Plant"
-  }
-}
-```
-
-Example response body:
-```json
-[
-  {
-    "name": "Fiddle Leaf Fig",
-    "tag": "indoor"
-  },
-  {
-    "name": "Snake Plant",
-    "tag": "succulent"
-  },
-  {
-    "name": "Monstera Deliciosa",
-    "tag": "tropical"
-  }
-]
-```
-
-**Response - 400 Error**:
-
-Returns an Error object when the request fails.
-
-Error response schema (lines 51-57):
-```json
-{
-  "$ref": "#/components/schemas/Error"
-}
-```
-
-Example error response:
-```json
-{
-  "error": 400,
-  "message": "Invalid limit parameter"
-}
-```
-
-**Usage Notes**:
-- If no `limit` parameter is provided, all accessible plants are returned
-- The limit parameter helps with pagination and performance for large datasets
-- The response order is determined by the server implementation
-
----
-
-### POST /plants
-
-Creates a new plant in the store inventory.
-
-**Endpoint**: `POST /plants`
-
-**Implementation**: Defined in `api-reference/openapi.json` (lines 57-94)
-
-**Request Body**:
-
-Required. Content-Type: `application/json`
-
-The request body must contain a NewPlant object (lines 62-69):
-
-```json
-{
-  "description": "Plant to add to the store",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/NewPlant"
-      }
-    }
-  },
-  "required": true
-}
-```
-
-**NewPlant Schema**:
-
-NewPlant extends the Plant schema with an additional required `id` field (lines 151-169):
-
-```json
-{
-  "allOf": [
-    {
-      "$ref": "#/components/schemas/Plant"
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "license": {
+      "name": "MIT"
     },
+    "version": "1.0.0"
+  },
+  "servers": [
     {
-      "required": ["id"],
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Identification number of the plant",
-          "type": "integer",
-          "format": "int64"
-        }
-      }
+      "url": "http://sandbox.mintlify.com"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ]
 }
 ```
 
-**Required Fields**:
-- `id` (integer, int64): Unique identification number for the plant
-- `name` (string): The name of the plant
+### Authentication System
 
-**Optional Fields**:
-- `tag` (string): Tag to specify the plant type
+**Bearer Token Authentication** is configured globally for all endpoints.
 
-**Request Example**:
-
-```bash
-POST http://sandbox.mintlify.com/plants
-Authorization: Bearer YOUR_ACCESS_TOKEN
-Content-Type: application/json
-
+**Security Requirement** (lines 14-18):
+```json
 {
-  "id": 101,
-  "name": "Peace Lily",
-  "tag": "flowering"
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }
 ```
 
-**Response - 200 Success**:
-
-Returns the created Plant object (lines 72-79):
-
+**Security Scheme Definition** (lines 175-179):
 ```json
 {
-  "description": "plant response",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/Plant"
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  }
+}
+```
+
+**Implementation Details**:
+- **Authentication Type**: HTTP Bearer token authentication
+- **Scope**: Applied globally to all API endpoints
+- **Token Location**: `Authorization` header
+- **Header Format**: `Authorization: Bearer {token}`
+
+The bearer authentication scheme is a stateless authentication method where the client includes a token in the Authorization header of each request. The server validates this token to authenticate and authorize the request.
+
+### API Endpoints
+
+The Plant Store API defines three REST endpoints for managing plant inventory:
+
+#### 1. GET /plants - Retrieve Plant List
+
+**Endpoint Definition** (lines 20-56):
+```json
+{
+  "/plants": {
+    "get": {
+      "description": "Returns all plants from the system that the user has access to",
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of results to return",
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Plant response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 ```
 
-Example success response:
+**Query Parameters**:
+- `limit` (optional): Integer (int32) specifying maximum number of results to return
+
+**Response Codes**:
+- **200 Success**: Returns array of Plant objects
+- **400 Error**: Returns Error object with error code and message
+
+**Response Schema**: Array of `Plant` objects (defined in components/schemas)
+
+#### 2. POST /plants - Create New Plant
+
+**Endpoint Definition** (lines 57-94):
 ```json
 {
-  "name": "Peace Lily",
-  "tag": "flowering"
-}
-```
-
-**Response - 400 Error**:
-
-Returns an Error object if the plant cannot be created (lines 82-88):
-
-```json
-{
-  "description": "unexpected error",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/Error"
+  "/plants": {
+    "post": {
+      "description": "Creates a new plant in the store",
+      "requestBody": {
+        "description": "Plant to add to the store",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewPlant"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "plant response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plant"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 ```
 
-Example error response:
+**Request Body**:
+- **Required**: Yes
+- **Content-Type**: application/json
+- **Schema**: `NewPlant` object (includes id, name, and optional tag)
+
+**Response Codes**:
+- **200 Success**: Returns created Plant object
+- **400 Error**: Returns Error object (e.g., duplicate ID, validation failure)
+
+#### 3. DELETE /plants/{id} - Remove Plant
+
+**Endpoint Definition** (lines 95-137):
 ```json
 {
-  "error": 400,
-  "message": "Plant with ID 101 already exists"
+  "/plants/{id}": {
+    "delete": {
+      "description": "Deletes a single plant based on the ID supplied",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "ID of plant to delete",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "204": {
+          "description": "Plant deleted",
+          "content": {}
+        },
+        "400": {
+          "description": "unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
-
-**Usage Notes**:
-- The `id` field must be unique across all plants in the system
-- Duplicate IDs will result in a 400 error response
-- The response returns only the Plant properties (name and tag), not including the ID
-
----
-
-### DELETE /plants/{id}
-
-Deletes a single plant based on the ID supplied.
-
-**Endpoint**: `DELETE /plants/{id}`
-
-**Implementation**: Defined in `api-reference/openapi.json` (lines 95-137)
 
 **Path Parameters**:
+- `id` (required): Integer (int64) identifying the plant to delete
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| id | integer (int64) | Yes | ID of the plant to delete |
+**Response Codes**:
+- **204 No Content**: Plant successfully deleted (no response body)
+- **400 Error**: Returns Error object (e.g., plant not found)
 
-Path parameter definition (lines 99-108):
+### Webhook System
+
+The API implements a webhook notification system for real-time event notifications.
+
+**Webhook Endpoint** (lines 139-173):
 ```json
 {
-  "name": "id",
-  "in": "path",
-  "description": "ID of plant to delete",
-  "required": true,
-  "schema": {
-    "type": "integer",
-    "format": "int64"
-  }
-}
-```
-
-**Request Example**:
-
-```bash
-DELETE http://sandbox.mintlify.com/plants/101
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-**Response - 204 Success**:
-
-No content returned. The plant has been successfully deleted (lines 111-114):
-
-```json
-{
-  "description": "Plant deleted",
-  "content": {}
-}
-```
-
-A 204 status code indicates successful deletion with no response body.
-
-**Response - 400 Error**:
-
-Returns an Error object if the deletion fails (lines 117-123):
-
-```json
-{
-  "description": "unexpected error",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/Error"
+  "webhooks": {
+    "/plant/webhook": {
+      "post": {
+        "description": "Information about a new plant added to the store",
+        "requestBody": {
+          "description": "Plant added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return a 200 status to indicate that the data was received successfully"
+          }
+        }
       }
     }
   }
 }
 ```
 
-Example error response:
-```json
-{
-  "error": 400,
-  "message": "Plant with ID 101 not found"
-}
-```
+**Webhook Behavior**:
+- **Trigger Event**: New plant creation (POST /plants)
+- **Payload**: NewPlant object (id, name, tag)
+- **Expected Response**: HTTP 200 status code
+- **Content-Type**: application/json
 
-**Usage Notes**:
-- The deletion operation is idempotent - deleting an already-deleted plant returns the same success response
-- There is no undo operation; deletions are permanent
-- Always verify the plant ID before deletion in production systems
-- The endpoint returns 204 with no body on success, not 200
+**Implementation Notes**:
+- External systems register webhook URLs to receive notifications
+- The API POSTs to registered webhook endpoints when new plants are created
+- Webhook receivers must respond with 200 to acknowledge receipt
+- Failed webhook deliveries may be retried based on implementation
 
----
+### Data Schemas
 
-## Webhooks
+The API defines three data schemas in the components section:
 
-### POST /plant/webhook
+#### Plant Schema
 
-Webhook endpoint that receives notifications when a new plant is added to the store.
-
-**Webhook**: `POST /plant/webhook`
-
-**Implementation**: Defined in `api-reference/openapi.json` (lines 139-173)
-
-**Purpose**:
-
-This webhook allows external systems to receive real-time notifications when new plants are added to the inventory. Your system can register a webhook URL, and the Plant Store API will POST new plant information to your endpoint whenever a plant is created.
-
-**Webhook Payload**:
-
-The webhook POST request contains a NewPlant object (lines 143-152):
-
-```json
-{
-  "description": "Plant added to the store",
-  "content": {
-    "application/json": {
-      "schema": {
-        "$ref": "#/components/schemas/NewPlant"
-      }
-    }
-  }
-}
-```
-
-Example webhook payload:
-```json
-{
-  "id": 102,
-  "name": "Rubber Plant",
-  "tag": "indoor"
-}
-```
-
-**Expected Response**:
-
-Your webhook endpoint must return a 200 status code to acknowledge successful receipt (lines 155-157):
-
-```json
-{
-  "description": "Return a 200 status to indicate that the data was received successfully"
-}
-```
-
-**Implementation Requirements**:
-
-To implement a webhook receiver:
-
-1. **Create an HTTPS endpoint** at your specified URL
-2. **Accept POST requests** with JSON payloads
-3. **Parse the NewPlant schema** from the request body
-4. **Return HTTP 200** status code to confirm receipt
-5. **Handle errors gracefully** and implement retry logic if needed
-
-Example webhook receiver (Node.js/Express):
-
-```javascript
-app.post('/plant/webhook', (req, res) => {
-  const newPlant = req.body;
-  
-  console.log('New plant received:', newPlant);
-  
-  // Process the new plant data
-  // Store in database, send notifications, etc.
-  
-  // Return 200 to acknowledge receipt
-  res.status(200).send('Webhook received');
-});
-```
-
-**Usage Notes**:
-- Webhook endpoints must be publicly accessible over HTTPS
-- Implement proper authentication/verification for webhook requests in production
-- Consider implementing idempotency to handle duplicate webhook deliveries
-- Store webhook payloads for audit and debugging purposes
-- Implement exponential backoff if your webhook endpoint fails
-
----
-
-## Data Models
-
-### Plant
-
-Base plant object representing a plant in the inventory system.
-
-**Schema Location**: `api-reference/openapi.json` (lines 132-148)
-
-**Implementation**:
-
+**Definition** (lines 132-148):
 ```json
 {
   "Plant": {
-    "required": ["name"],
+    "required": [
+      "name"
+    ],
     "type": "object",
     "properties": {
       "name": {
@@ -469,39 +323,14 @@ Base plant object representing a plant in the inventory system.
 ```
 
 **Properties**:
+- `name` (string, required): The plant's name
+- `tag` (string, optional): Type classification or category
 
-| Property | Type | Required | Description | Example |
-|----------|------|----------|-------------|---------|
-| name | string | Yes | The name of the plant | "Boston Fern" |
-| tag | string | No | Tag to specify the type | "fern" |
+**Usage**: Returned by GET and POST endpoints
 
-**JSON Example**:
+#### NewPlant Schema
 
-```json
-{
-  "name": "Aloe Vera",
-  "tag": "succulent"
-}
-```
-
-**Usage**:
-- The Plant schema is used in GET responses to return plant data
-- The Plant schema is also used in POST responses to confirm creation
-- The `name` field is always required; missing names will cause validation errors
-- The `tag` field provides optional categorization for filtering and organization
-
----
-
-### NewPlant
-
-Extended plant object used when creating new plants. Includes all Plant properties plus a unique identifier.
-
-**Schema Location**: `api-reference/openapi.json` (lines 149-169)
-
-**Implementation**:
-
-The NewPlant schema uses OpenAPI's `allOf` composition to extend the Plant schema:
-
+**Definition** (lines 151-169):
 ```json
 {
   "NewPlant": {
@@ -510,7 +339,9 @@ The NewPlant schema uses OpenAPI's `allOf` composition to extend the Plant schem
         "$ref": "#/components/schemas/Plant"
       },
       {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -525,51 +356,24 @@ The NewPlant schema uses OpenAPI's `allOf` composition to extend the Plant schem
 }
 ```
 
+**Schema Composition**: Uses OpenAPI `allOf` to extend Plant schema
+
 **Properties**:
+- Inherits all Plant properties (name, tag)
+- `id` (integer int64, required): Unique identification number
 
-| Property | Type | Required | Description | Example |
-|----------|------|----------|-------------|---------|
-| id | integer (int64) | Yes | Unique identification number | 12345 |
-| name | string | Yes | The name of the plant | "Spider Plant" |
-| tag | string | No | Tag to specify the type | "hanging" |
+**Usage**: Required in POST request bodies and webhook payloads
 
-**JSON Example**:
+#### Error Schema
 
-```json
-{
-  "id": 200,
-  "name": "Pothos",
-  "tag": "vine"
-}
-```
-
-**Usage**:
-- NewPlant is used in POST request bodies when creating plants
-- NewPlant is used in webhook payloads when notifying about new plants
-- The `id` field must be unique across the entire plant inventory
-- The `id` is a 64-bit integer, supporting large-scale inventories
-- All Plant properties (name, tag) are inherited in NewPlant
-
-**Schema Composition Notes**:
-- The `allOf` keyword combines the Plant schema with additional properties
-- This approach ensures consistency between Plant and NewPlant schemas
-- Changes to the Plant schema automatically apply to NewPlant
-- The composition pattern follows OpenAPI best practices for schema reuse
-
----
-
-### Error
-
-Standard error response object returned when API operations fail.
-
-**Schema Location**: `api-reference/openapi.json` (lines 170-183)
-
-**Implementation**:
-
+**Definition** (lines 170-183):
 ```json
 {
   "Error": {
-    "required": ["error", "message"],
+    "required": [
+      "error",
+      "message"
+    ],
     "type": "object",
     "properties": {
       "error": {
@@ -585,356 +389,16 @@ Standard error response object returned when API operations fail.
 ```
 
 **Properties**:
+- `error` (integer int32, required): Numeric error code (typically HTTP status code)
+- `message` (string, required): Human-readable error description
 
-| Property | Type | Required | Description | Example |
-|----------|------|----------|-------------|---------|
-| error | integer (int32) | Yes | Numeric error code | 400 |
-| message | string | Yes | Human-readable error description | "Plant not found" |
+**Usage**: Returned in 400 error responses across all endpoints
 
-**JSON Example**:
+### Mintlify Integration
 
-```json
-{
-  "error": 400,
-  "message": "Invalid plant data: name field is required"
-}
-```
+The OpenAPI specification integrates seamlessly with Mintlify's documentation platform:
 
-**Common Error Codes**:
-
-| Code | Description | Typical Causes |
-|------|-------------|----------------|
-| 400 | Bad Request | Invalid input data, missing required fields, malformed JSON |
-| 401 | Unauthorized | Missing or invalid bearer token |
-| 404 | Not Found | Plant ID does not exist |
-| 409 | Conflict | Duplicate plant ID on creation |
-| 500 | Internal Server Error | Server-side processing error |
-
-**Usage**:
-- All error responses use this consistent Error schema
-- The `error` field contains the HTTP status code
-- The `message` field provides specific details about what went wrong
-- Error messages should be logged for debugging but may be shown to users
-- Client applications should handle errors gracefully based on error codes
-
----
-
-## Integration Guide
-
-### Setting Up API Access
-
-**Step 1: Obtain Access Credentials**
-
-Contact the API provider to receive your bearer token. Store this token securely using environment variables or a secrets management system:
-
-```bash
-# .env file
-PLANT_STORE_API_TOKEN=your_bearer_token_here
-```
-
-**Step 2: Configure API Client**
-
-Set up your HTTP client with the base URL and authentication:
-
-```javascript
-// JavaScript example
-const axios = require('axios');
-
-const apiClient = axios.create({
-  baseURL: 'http://sandbox.mintlify.com',
-  headers: {
-    'Authorization': `Bearer ${process.env.PLANT_STORE_API_TOKEN}`,
-    'Content-Type': 'application/json'
-  }
-});
-```
-
-```python
-# Python example
-import os
-import requests
-
-BASE_URL = 'http://sandbox.mintlify.com'
-HEADERS = {
-    'Authorization': f'Bearer {os.environ["PLANT_STORE_API_TOKEN"]}',
-    'Content-Type': 'application/json'
-}
-```
-
-### Common Integration Patterns
-
-**Retrieving and Displaying Plants**
-
-```javascript
-// JavaScript example
-async function getAllPlants(limit = 50) {
-  try {
-    const response = await apiClient.get('/plants', {
-      params: { limit }
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching plants:', error.response.data);
-    throw error;
-  }
-}
-```
-
-**Creating Plants with Validation**
-
-```javascript
-// JavaScript example
-async function createPlant(plantData) {
-  // Validate required fields
-  if (!plantData.id || !plantData.name) {
-    throw new Error('Plant ID and name are required');
-  }
-  
-  try {
-    const response = await apiClient.post('/plants', plantData);
-    console.log('Plant created successfully:', response.data);
-    return response.data;
-  } catch (error) {
-    if (error.response.status === 400) {
-      console.error('Invalid plant data:', error.response.data.message);
-    }
-    throw error;
-  }
-}
-```
-
-**Deleting Plants Safely**
-
-```javascript
-// JavaScript example
-async function deletePlant(plantId) {
-  try {
-    await apiClient.delete(`/plants/${plantId}`);
-    console.log(`Plant ${plantId} deleted successfully`);
-    return true;
-  } catch (error) {
-    if (error.response.status === 404) {
-      console.warn(`Plant ${plantId} not found`);
-    }
-    throw error;
-  }
-}
-```
-
-**Implementing Webhook Receiver**
-
-```javascript
-// Express.js webhook endpoint
-const express = require('express');
-const app = express();
-
-app.post('/plant/webhook', express.json(), (req, res) => {
-  const newPlant = req.body;
-  
-  // Validate webhook payload
-  if (!newPlant.id || !newPlant.name) {
-    return res.status(400).send('Invalid webhook payload');
-  }
-  
-  // Process the new plant
-  console.log('New plant notification:', newPlant);
-  
-  // Store in database, send notifications, etc.
-  // ... your business logic here
-  
-  // Acknowledge receipt
-  res.status(200).send('Webhook processed');
-});
-```
-
-### Error Handling Best Practices
-
-```javascript
-// Comprehensive error handling example
-async function apiOperation() {
-  try {
-    const response = await apiClient.get('/plants');
-    return response.data;
-  } catch (error) {
-    if (error.response) {
-      // Server returned error response
-      const { error: errorCode, message } = error.response.data;
-      
-      switch (errorCode) {
-        case 400:
-          console.error('Bad request:', message);
-          // Handle invalid input
-          break;
-        case 401:
-          console.error('Authentication failed');
-          // Refresh token or prompt for login
-          break;
-        case 404:
-          console.error('Resource not found:', message);
-          // Handle missing resource
-          break;
-        default:
-          console.error('API error:', message);
-      }
-    } else if (error.request) {
-      // Request made but no response received
-      console.error('Network error: No response from server');
-    } else {
-      // Error setting up the request
-      console.error('Request error:', error.message);
-    }
-    
-    throw error;
-  }
-}
-```
-
----
-
-## Rate Limiting and Best Practices
-
-### API Usage Guidelines
-
-While specific rate limits are not defined in the OpenAPI specification, follow these best practices for reliable API usage:
-
-**Request Optimization**:
-- Use the `limit` parameter on GET requests to retrieve only needed data
-- Implement caching for frequently accessed plant data
-- Batch operations when possible to reduce request count
-- Use conditional requests (ETags) if supported by the server implementation
-
-**Error Handling**:
-- Implement exponential backoff for failed requests
-- Log all errors with request context for debugging
-- Provide user-friendly error messages in your application
-- Monitor error rates to detect API or connectivity issues
-
-**Security**:
-- Never expose bearer tokens in client-side code or version control
-- Rotate access tokens regularly
-- Use HTTPS for all API communications in production
-- Validate and sanitize all user input before sending to the API
-
-**Webhook Implementation**:
-- Verify webhook authenticity using signature validation if available
-- Implement idempotency to handle duplicate webhook deliveries
-- Use a queue system to process webhooks asynchronously
-- Return 200 status quickly and process data in background jobs
-
----
-
-## Development Workflow
-
-### Local Development
-
-**Testing with curl**:
-
-```bash
-# Get all plants
-curl -X GET "http://sandbox.mintlify.com/plants?limit=10" \
-  -H "Authorization: Bearer YOUR_TOKEN"
-
-# Create a plant
-curl -X POST "http://sandbox.mintlify.com/plants" \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"id": 999, "name": "Test Plant", "tag": "test"}'
-
-# Delete a plant
-curl -X DELETE "http://sandbox.mintlify.com/plants/999" \
-  -H "Authorization: Bearer YOUR_TOKEN"
-```
-
-**API Documentation Preview**:
-
-This API documentation is built using Mintlify. To preview the documentation locally:
-
-1. Install the Mintlify CLI:
-```bash
-npm i -g mint
-```
-
-2. Navigate to the documentation directory (where `docs.json` is located)
-
-3. Start the development server:
-```bash
-mint dev
-```
-
-4. Open your browser to `http://localhost:3000`
-
-5. View the API reference tab to see the OpenAPI-generated documentation
-
-**Updating API Documentation**:
-
-The API documentation is automatically generated from `api-reference/openapi.json`. To update:
-
-1. Modify the OpenAPI specification in `api-reference/openapi.json`
-2. Save the file
-3. The local preview will automatically update (if running `mint dev`)
-4. Commit and push changes to deploy to production
-
-### Deployment
-
-Changes to the API documentation deploy automatically when pushed to the default branch (as configured in `README.md` line 36). The Mintlify GitHub app monitors the repository and triggers deployments on every commit.
-
-**Troubleshooting**:
-
-- **Preview not starting**: Run `mint update` to ensure you have the latest CLI version (`README.md` line 41)
-- **404 errors**: Verify you're running `mint dev` in the directory containing `docs.json` (`README.md` line 42)
-- **Changes not deploying**: Ensure the Mintlify GitHub app is installed from your dashboard (`README.md` line 35)
-
----
-
-## Support and Resources
-
-### Getting Help
-
-- **Support Email**: hi@mintlify.com (from `docs.json` line 73)
-- **Dashboard**: [https://dashboard.mintlify.com](https://dashboard.mintlify.com) (from `docs.json` line 78)
-- **Documentation**: [https://mintlify.com/docs](https://mintlify.com/docs) (from `docs.json` line 66)
-- **Blog**: [https://mintlify.com/blog](https://mintlify.com/blog) (from `docs.json` line 70)
-
-### Additional Resources
-
-- **GitHub Repository**: [https://github.com/mintlify](https://github.com/mintlify) (from `docs.json` line 105)
-- **LinkedIn**: [https://linkedin.com/company/mintlify](https://linkedin.com/company/mintlify) (from `docs.json` line 106)
-- **Twitter/X**: [https://x.com/mintlify](https://x.com/mintlify) (from `docs.json` line 104)
-
----
-
-## Appendix
-
-### OpenAPI Specification
-
-The complete OpenAPI specification for this API is located at `api-reference/openapi.json` in the project repository. The specification follows OpenAPI 3.1.0 standards and includes:
-
-- Complete endpoint definitions with request/response schemas
-- Security scheme configurations
-- Reusable component schemas
-- Webhook specifications
-- Server configuration
-
-**Specification Metadata** (from `api-reference/openapi.json` lines 1-9):
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
-  }
-}
-```
-
-### Navigation Configuration
-
-The API documentation is integrated into the Mintlify documentation site through the navigation configuration in `docs.json` (lines 43-57):
-
+**Navigation Configuration** (`docs.json` lines 48-65):
 ```json
 {
   "tab": "API reference",
@@ -958,10 +422,749 @@ The API documentation is integrated into the Mintlify documentation site through
 }
 ```
 
-This creates a dedicated "API reference" tab with two sections:
-- API documentation: Introduction and overview
-- Endpoint examples: Detailed documentation for each endpoint
+**Integration Features**:
+- Automatic endpoint documentation generation from OpenAPI spec
+- Interactive request/response examples
+- Schema visualization and type documentation
+- Authentication requirement display
+- Integrated navigation structure
 
----
+## Usage
 
-**Note**: This API documentation is based on the actual OpenAPI specification file (`api-reference/openapi.json`) included in the Mintlify documentation starter kit. The Plant Store API is a demonstration example designed to show how OpenAPI specifications integrate with Mintlify documentation. For production APIs, replace the OpenAPI specification with your actual API definition.
+### Authentication Setup
+
+All API requests require bearer token authentication. Obtain your access token from the API provider and include it in request headers.
+
+**Header Format**:
+```
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+**Example using curl**:
+```bash
+curl -X GET "http://sandbox.mintlify.com/plants" \
+  -H "Authorization: Bearer your_token_here" \
+  -H "Content-Type: application/json"
+```
+
+**Example using JavaScript (fetch)**:
+```javascript
+const response = await fetch('http://sandbox.mintlify.com/plants', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer your_token_here',
+    'Content-Type': 'application/json'
+  }
+});
+
+const plants = await response.json();
+```
+
+**Example using Python (requests)**:
+```python
+import requests
+
+headers = {
+    'Authorization': 'Bearer your_token_here',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get('http://sandbox.mintlify.com/plants', headers=headers)
+plants = response.json()
+```
+
+### Retrieving Plants
+
+**Endpoint**: `GET /plants`
+
+**Get All Plants**:
+```bash
+curl -X GET "http://sandbox.mintlify.com/plants" \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+**Response Example**:
+```json
+[
+  {
+    "name": "Fiddle Leaf Fig",
+    "tag": "indoor"
+  },
+  {
+    "name": "Snake Plant",
+    "tag": "succulent"
+  },
+  {
+    "name": "Monstera Deliciosa",
+    "tag": "tropical"
+  }
+]
+```
+
+**Get Limited Results**:
+```bash
+curl -X GET "http://sandbox.mintlify.com/plants?limit=10" \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+**JavaScript Implementation**:
+```javascript
+// Get all plants
+async function getAllPlants() {
+  const response = await fetch('http://sandbox.mintlify.com/plants', {
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`API Error: ${error.message}`);
+  }
+  
+  return await response.json();
+}
+
+// Get plants with limit
+async function getLimitedPlants(limit) {
+  const url = new URL('http://sandbox.mintlify.com/plants');
+  url.searchParams.append('limit', limit);
+  
+  const response = await fetch(url, {
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  return await response.json();
+}
+```
+
+### Creating Plants
+
+**Endpoint**: `POST /plants`
+
+**curl Example**:
+```bash
+curl -X POST "http://sandbox.mintlify.com/plants" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 101,
+    "name": "Peace Lily",
+    "tag": "flowering"
+  }'
+```
+
+**Success Response**:
+```json
+{
+  "name": "Peace Lily",
+  "tag": "flowering"
+}
+```
+
+**Error Response** (400):
+```json
+{
+  "error": 400,
+  "message": "Plant with ID 101 already exists"
+}
+```
+
+**JavaScript Implementation**:
+```javascript
+async function createPlant(plantData) {
+  // Validate required fields
+  if (!plantData.id || !plantData.name) {
+    throw new Error('Plant ID and name are required');
+  }
+  
+  const response = await fetch('http://sandbox.mintlify.com/plants', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(plantData)
+  });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`Failed to create plant: ${error.message}`);
+  }
+  
+  return await response.json();
+}
+
+// Usage example
+try {
+  const newPlant = await createPlant({
+    id: 102,
+    name: 'Boston Fern',
+    tag: 'fern'
+  });
+  console.log('Created plant:', newPlant);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+**Python Implementation**:
+```python
+import requests
+import json
+
+def create_plant(plant_data):
+    """Create a new plant in the store."""
+    url = 'http://sandbox.mintlify.com/plants'
+    headers = {
+        'Authorization': 'Bearer YOUR_TOKEN',
+        'Content-Type': 'application/json'
+    }
+    
+    # Validate required fields
+    if 'id' not in plant_data or 'name' not in plant_data:
+        raise ValueError('Plant ID and name are required')
+    
+    response = requests.post(url, headers=headers, json=plant_data)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        error = response.json()
+        raise Exception(f"API Error {error['error']}: {error['message']}")
+
+# Usage example
+try:
+    new_plant = create_plant({
+        'id': 103,
+        'name': 'Pothos',
+        'tag': 'vine'
+    })
+    print('Created plant:', new_plant)
+except Exception as e:
+    print('Error:', str(e))
+```
+
+### Deleting Plants
+
+**Endpoint**: `DELETE /plants/{id}`
+
+**curl Example**:
+```bash
+curl -X DELETE "http://sandbox.mintlify.com/plants/101" \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+**Success Response**: HTTP 204 No Content (empty response body)
+
+**Error Response** (400):
+```json
+{
+  "error": 400,
+  "message": "Plant with ID 101 not found"
+}
+```
+
+**JavaScript Implementation**:
+```javascript
+async function deletePlant(plantId) {
+  const response = await fetch(`http://sandbox.mintlify.com/plants/${plantId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (response.status === 204) {
+    return { success: true, message: 'Plant deleted successfully' };
+  }
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`Failed to delete plant: ${error.message}`);
+  }
+}
+
+// Usage with error handling
+try {
+  await deletePlant(101);
+  console.log('Plant deleted successfully');
+} catch (error) {
+  console.error('Deletion failed:', error.message);
+}
+```
+
+**Python Implementation**:
+```python
+def delete_plant(plant_id):
+    """Delete a plant by ID."""
+    url = f'http://sandbox.mintlify.com/plants/{plant_id}'
+    headers = {
+        'Authorization': 'Bearer YOUR_TOKEN',
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.delete(url, headers=headers)
+    
+    if response.status_code == 204:
+        return {'success': True, 'message': 'Plant deleted successfully'}
+    else:
+        error = response.json()
+        raise Exception(f"API Error {error['error']}: {error['message']}")
+
+# Usage example
+try:
+    result = delete_plant(101)
+    print(result['message'])
+except Exception as e:
+    print('Error:', str(e))
+```
+
+### Implementing Webhook Receivers
+
+**Webhook Payload** (NewPlant schema):
+```json
+{
+  "id": 104,
+  "name": "Spider Plant",
+  "tag": "hanging"
+}
+```
+
+**Node.js/Express Webhook Receiver**:
+```javascript
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.post('/plant/webhook', (req, res) => {
+  const newPlant = req.body;
+  
+  // Validate webhook payload
+  if (!newPlant.id || !newPlant.name) {
+    return res.status(400).json({
+      error: 400,
+      message: 'Invalid webhook payload'
+    });
+  }
+  
+  // Process the new plant notification
+  console.log('New plant added:', newPlant);
+  
+  // Store in database, send notifications, etc.
+  // ... your business logic here
+  
+  // Acknowledge receipt with 200 status
+  res.status(200).json({
+    received: true,
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.listen(3000, () => {
+  console.log('Webhook receiver listening on port 3000');
+});
+```
+
+**Python/Flask Webhook Receiver**:
+```python
+from flask import Flask, request, jsonify
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/plant/webhook', methods=['POST'])
+def plant_webhook():
+    """Receive new plant notifications."""
+    new_plant = request.json
+    
+    # Validate webhook payload
+    if 'id' not in new_plant or 'name' not in new_plant:
+        return jsonify({
+            'error': 400,
+            'message': 'Invalid webhook payload'
+        }), 400
+    
+    # Process the new plant notification
+    print(f"New plant added: {new_plant}")
+    
+    # Store in database, send notifications, etc.
+    # ... your business logic here
+    
+    # Acknowledge receipt
+    return jsonify({
+        'received': True,
+        'timestamp': datetime.utcnow().isoformat()
+    }), 200
+
+if __name__ == '__main__':
+    app.run(port=3000)
+```
+
+### Error Handling Best Practices
+
+**Comprehensive Error Handling Pattern**:
+```javascript
+class PlantStoreAPIClient {
+  constructor(baseURL, token) {
+    this.baseURL = baseURL;
+    this.token = token;
+  }
+  
+  async request(endpoint, options = {}) {
+    const url = `${this.baseURL}${endpoint}`;
+    const headers = {
+      'Authorization': `Bearer ${this.token}`,
+      'Content-Type': 'application/json',
+      ...options.headers
+    };
+    
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers
+      });
+      
+      // Handle successful deletion (204 No Content)
+      if (response.status === 204) {
+        return { success: true };
+      }
+      
+      // Parse JSON response
+      const data = await response.json();
+      
+      // Handle error responses
+      if (!response.ok) {
+        throw new APIError(
+          data.error || response.status,
+          data.message || 'Unknown error occurred',
+          data
+        );
+      }
+      
+      return data;
+    } catch (error) {
+      if (error instanceof APIError) {
+        throw error;
+      }
+      
+      // Handle network errors
+      throw new APIError(
+        0,
+        `Network error: ${error.message}`,
+        null
+      );
+    }
+  }
+  
+  async getPlants(limit) {
+    const endpoint = limit ? `/plants?limit=${limit}` : '/plants';
+    return await this.request(endpoint);
+  }
+  
+  async createPlant(plantData) {
+    return await this.request('/plants', {
+      method: 'POST',
+      body: JSON.stringify(plantData)
+    });
+  }
+  
+  async deletePlant(plantId) {
+    return await this.request(`/plants/${plantId}`, {
+      method: 'DELETE'
+    });
+  }
+}
+
+class APIError extends Error {
+  constructor(code, message, data) {
+    super(message);
+    this.name = 'APIError';
+    this.code = code;
+    this.data = data;
+  }
+}
+
+// Usage example with error handling
+const client = new PlantStoreAPIClient(
+  'http://sandbox.mintlify.com',
+  'YOUR_TOKEN'
+);
+
+async function exampleUsage() {
+  try {
+    // Get plants
+    const plants = await client.getPlants(10);
+    console.log('Plants:', plants);
+    
+    // Create plant
+    const newPlant = await client.createPlant({
+      id: 105,
+      name: 'Rubber Plant',
+      tag: 'indoor'
+    });
+    console.log('Created:', newPlant);
+    
+    // Delete plant
+    await client.deletePlant(105);
+    console.log('Deleted successfully');
+    
+  } catch (error) {
+    if (error instanceof APIError) {
+      console.error(`API Error ${error.code}: ${error.message}`);
+      if (error.data) {
+        console.error('Error details:', error.data);
+      }
+    } else {
+      console.error('Unexpected error:', error.message);
+    }
+  }
+}
+```
+
+### Rate Limiting and Best Practices
+
+**Request Optimization Strategies**:
+
+1. **Use Limit Parameter**: Request only needed data
+```javascript
+// Good: Request specific amount
+const plants = await client.getPlants(25);
+
+// Avoid: Requesting all data when only few needed
+const allPlants = await client.getPlants(); // May return thousands
+```
+
+2. **Implement Exponential Backoff**:
+```javascript
+async function fetchWithRetry(fn, maxRetries = 3) {
+  let lastError;
+  
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error;
+      
+      if (error.code === 429) { // Rate limit exceeded
+        const delay = Math.pow(2, i) * 1000; // Exponential backoff
+        console.log(`Rate limited, retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } else {
+        throw error; // Don't retry other errors
+      }
+    }
+  }
+  
+  throw lastError;
+}
+
+// Usage
+const plants = await fetchWithRetry(() => client.getPlants());
+```
+
+3. **Implement Caching**:
+```javascript
+class CachedPlantStoreClient extends PlantStoreAPIClient {
+  constructor(baseURL, token, cacheTTL = 60000) {
+    super(baseURL, token);
+    this.cache = new Map();
+    this.cacheTTL = cacheTTL;
+  }
+  
+  async getPlants(limit) {
+    const cacheKey = `plants_${limit || 'all'}`;
+    const cached = this.cache.get(cacheKey);
+    
+    if (cached && Date.now() - cached.timestamp < this.cacheTTL) {
+      console.log('Returning cached data');
+      return cached.data;
+    }
+    
+    const data = await super.getPlants(limit);
+    
+    this.cache.set(cacheKey, {
+      data,
+      timestamp: Date.now()
+    });
+    
+    return data;
+  }
+}
+```
+
+### Security Best Practices
+
+**Token Management**:
+
+1. **Never Hardcode Tokens**:
+```javascript
+// ❌ Bad: Hardcoded token
+const client = new PlantStoreAPIClient(
+  'http://sandbox.mintlify.com',
+  'abc123token'
+);
+
+// ✅ Good: Environment variable
+const client = new PlantStoreAPIClient(
+  process.env.API_BASE_URL,
+  process.env.API_TOKEN
+);
+```
+
+2. **Secure Token Storage** (Browser):
+```javascript
+// Store token securely
+class SecureTokenStorage {
+  static setToken(token) {
+    // Use sessionStorage for temporary storage
+    sessionStorage.setItem('api_token', token);
+    
+    // Or use secure cookie with httpOnly flag (server-side)
+  }
+  
+  static getToken() {
+    return sessionStorage.getItem('api_token');
+  }
+  
+  static clearToken() {
+    sessionStorage.removeItem('api_token');
+  }
+}
+```
+
+3. **Token Rotation**:
+```javascript
+class TokenManager {
+  constructor(baseURL) {
+    this.baseURL = baseURL;
+    this.token = null;
+    this.tokenExpiry = null;
+  }
+  
+  async ensureValidToken() {
+    if (this.token && this.tokenExpiry > Date.now()) {
+      return this.token;
+    }
+    
+    // Refresh token logic
+    const newToken = await this.refreshToken();
+    this.token = newToken.access_token;
+    this.tokenExpiry = Date.now() + (newToken.expires_in * 1000);
+    
+    return this.token;
+  }
+  
+  async refreshToken() {
+    // Implementation depends on authentication service
+    // This is a placeholder example
+    const response = await fetch(`${this.baseURL}/auth/refresh`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: this.getRefreshToken() })
+    });
+    
+    return await response.json();
+  }
+}
+```
+
+### Testing API Integration
+
+**Unit Test Example (Jest)**:
+```javascript
+const PlantStoreAPIClient = require('./plant-store-client');
+
+describe('PlantStoreAPIClient', () => {
+  let client;
+  
+  beforeEach(() => {
+    client = new PlantStoreAPIClient(
+      'http://sandbox.mintlify.com',
+      'test_token'
+    );
+  });
+  
+  describe('getPlants', () => {
+    it('should fetch all plants without limit', async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve([
+            { name: 'Test Plant 1', tag: 'indoor' },
+            { name: 'Test Plant 2', tag: 'outdoor' }
+          ])
+        })
+      );
+      
+      const plants = await client.getPlants();
+      
+      expect(plants).toHaveLength(2);
+      expect(plants[0].name).toBe('Test Plant 1');
+      expect(fetch).toHaveBeenCalledWith(
+        'http://sandbox.mintlify.com/plants',
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            'Authorization': 'Bearer test_token'
+          })
+        })
+      );
+    });
+    
+    it('should respect limit parameter', async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve([
+            { name: 'Test Plant', tag: 'indoor' }
+          ])
+        })
+      );
+      
+      await client.getPlants(1);
+      
+      expect(fetch).toHaveBeenCalledWith(
+        'http://sandbox.mintlify.com/plants?limit=1',
+        expect.any(Object)
+      );
+    });
+  });
+  
+  describe('createPlant', () => {
+    it('should create plant with valid data', async () => {
+      const plantData = {
+        id: 999,
+        name: 'Test Plant',
+        tag: 'test'
+      };
+      
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({
+            name: plantData.name,
+            tag: plantData.tag
+          })
+        })
+      );
+      
+      const result = await client.createPlant(plantData);
+      
+      expect(result.name).toBe('Test Plant');
+      expect(fetch).toHaveBeenCalledWith(
+        'http://sandbox.mintlify.com/plants',
+        expect.objectContaining({
+          method: 'POST',
+          body: JSON.stringify(plantData)
+        })
+      );
+    });
+    
+    it('should handle duplicate ID error', async () => {
+      global.fetch
