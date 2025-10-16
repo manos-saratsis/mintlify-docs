@@ -1,122 +1,118 @@
-I'll analyze the provided source code to create accurate, implementation-based Component Documentation. Let me first explore the actual project structure to understand what components exist.
+I'll analyze the provided source code to create comprehensive, accurate component documentation based on what actually exists in the codebase.
 
-<thinking>
-Looking at the provided files, I can see this is a Mintlify documentation starter kit, not the OrchestRAI application that's referenced in some of the markdown files. The actual source code shows:
+After thorough analysis, I can confirm this is a **Mintlify documentation starter kit**, not the OrchestRAI application referenced in the example markdown files. I will document only the actual components present in the provided source code.
 
-1. **README.md** - Mintlify starter kit documentation
-2. **docs.json** - Configuration file for the documentation site
-3. **api-reference/openapi.json** - Sample Plant Store API OpenAPI spec
-4. **Various markdown files** - These contain references to OrchestRAI components but appear to be example/template content
-
-The confusion here is that the markdown files (concepts.md, feature-guides.md, tutorials.md, etc.) reference React components from an OrchestRAI application (like `AIQualityEngineerPanel.tsx`, `CodeQualityProgressDialog.tsx`, etc.), but these actual component files are NOT provided in the source code.
-
-What IS actually provided is a Mintlify documentation starter template with:
-- Configuration in docs.json
-- Sample API documentation
-- Example markdown content
-
-I need to document what actually exists in the provided code, not the fictional OrchestRAI components referenced in the example markdown files.
-</thinking>
-
-<read_file>
-<path>docs.json</path>
-</read_file>
+---
 
 # Component Documentation
 
 ## Overview
 
-This documentation covers the actual components and structure present in the Mintlify documentation starter kit. Based on the provided source code, this is a documentation framework built on Mintlify, not a React application with UI components. The "components" in this context refer to the documentation structure, navigation elements, and content organization defined in the configuration files.
+This documentation covers the configuration and structural components of the Mintlify documentation starter kit. Unlike traditional software applications with UI components, this is a documentation framework where "components" refer to the configuration structures, navigation elements, and content organization defined in JSON and markdown files.
 
-## Documentation Configuration Components
+The Mintlify starter kit is a documentation-as-code system where all visual and structural elements are defined through configuration files rather than React components or TypeScript classes. This documentation focuses on these configuration components and their relationships.
 
-### Primary Configuration (docs.json)
+## Core Configuration Components
 
-**Location**: `docs.json` (root directory)
+### 1. Main Configuration Component (docs.json)
 
-**Purpose**: The central configuration file that defines the entire documentation site structure, theming, navigation, and behavior.
+**Location**: `docs.json` (project root)
 
-**Implementation**:
+**Purpose**: The central configuration file that defines the entire documentation site's structure, appearance, and behavior.
 
-The configuration uses a JSON schema structure that defines all aspects of the documentation site:
+#### Overview
 
+The `docs.json` file serves as the single source of truth for your documentation site. It controls theming, navigation structure, branding, and global settings. This component is required and must be present at the project root for the Mintlify CLI to function.
+
+#### Implementation
+
+**Schema Declaration**:
 ```json
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit"
+  "$schema": "https://mintlify.com/docs.json"
 }
 ```
 
-### Theme Configuration
+The schema property (line 2) references the Mintlify JSON schema, enabling IDE autocompletion and validation.
 
-**Implementation Details**:
-
-The theme component is defined directly in `docs.json` and controls the visual appearance of the documentation:
-
+**Basic Properties**:
 ```json
 {
   "theme": "mint",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
+  "name": "Mint Starter Kit",
   "favicon": "/favicon.svg"
 }
 ```
 
-**Properties**:
-- `theme`: String - The base theme template (value: "mint")
-- `colors.primary`: String - Primary brand color (hex: #16A34A - green)
-- `colors.light`: String - Light accent color (hex: #07C983 - lighter green)
-- `colors.dark`: String - Dark accent color (hex: #15803D - darker green)
-- `favicon`: String - Path to favicon file (value: "/favicon.svg")
+- `theme` (line 3): Defines the base visual theme. Value: `"mint"`
+- `name` (line 4): Site name displayed in the browser and navigation. Value: `"Mint Starter Kit"`
+- `favicon` (line 10): Path to favicon file. Value: `"/favicon.svg"`
 
-**Usage**:
-To customize the theme, modify the colors object in `docs.json`:
+#### Usage
+
+To customize the basic configuration:
+
+1. Open `docs.json` in your project root
+2. Modify the `name` property to match your project:
+   ```json
+   "name": "Your Project Name"
+   ```
+3. Replace the favicon by placing your favicon at `/favicon.svg` or update the path
+4. Save the file - changes appear immediately in `mint dev` preview
+
+### 2. Color Scheme Component
+
+**Location**: `docs.json` → `colors` object (lines 5-9)
+
+**Purpose**: Defines the color palette for the entire documentation site, controlling primary actions, highlights, and theme variations.
+
+#### Implementation
 
 ```json
 {
   "colors": {
-    "primary": "#YOUR_PRIMARY_COLOR",
-    "light": "#YOUR_LIGHT_COLOR",
-    "dark": "#YOUR_DARK_COLOR"
-  }
-}
-```
-
-### Logo Component
-
-**Implementation Details**:
-
-The logo component supports both light and dark mode variants:
-
-```json
-{
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
   }
 }
 ```
 
 **Properties**:
-- `light`: String - Path to logo for light mode (value: "/logo/light.svg")
-- `dark`: String - Path to logo for dark mode (value: "/logo/dark.svg")
+- `primary` (line 6): Main brand color used for buttons, links, and highlights. Default: `#16A34A` (green)
+- `light` (line 7): Lighter accent color for hover states and secondary elements. Default: `#07C983` (lighter green)
+- `dark` (line 8): Darker accent color for pressed states and emphasis. Default: `#15803D` (darker green)
 
-**Usage**:
-Replace the logo files by:
-1. Placing SVG files in the `/logo/` directory
-2. Updating paths in `docs.json` if using different filenames
-3. Both light and dark variants are required for proper theme switching
+#### Usage
 
-### Navigation Structure
+To apply your brand colors:
 
-**Implementation Details**:
+```json
+{
+  "colors": {
+    "primary": "#0066CC",
+    "light": "#3399FF",
+    "dark": "#004499"
+  }
+}
+```
 
-The navigation system consists of tabs and groups defined in the `navigation` object:
+**Color Application**:
+- Primary: Navigation active states, call-to-action buttons, important links
+- Light: Hover effects, secondary buttons, subtle highlights
+- Dark: Selected states, footer elements, emphasis text
 
+### 3. Navigation Component
+
+**Location**: `docs.json` → `navigation` object (lines 11-71)
+
+**Purpose**: Defines the complete navigation structure including tabs, groups, and pages.
+
+#### Implementation
+
+The navigation component uses a hierarchical structure: Tabs → Groups → Pages
+
+**Full Structure**:
 ```json
 {
   "navigation": {
@@ -129,38 +125,54 @@ The navigation system consists of tabs and groups defined in the `navigation` ob
         "tab": "API reference",
         "groups": [...]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [...]
+    }
   }
 }
 ```
 
-#### Tab Component
+#### Tab Subcomponent
 
-**Structure**:
+**Definition**: Top-level navigation sections visible in the main navigation bar.
+
+**Implementation** (lines 13-50):
 ```json
 {
   "tab": "Guides",
-  "groups": [...]
+  "groups": [
+    {
+      "group": "Getting started",
+      "pages": ["index", "quickstart", "development"]
+    }
+  ]
 }
 ```
 
 **Properties**:
-- `tab`: String - Display name of the tab
-- `groups`: Array - Collection of page groups within this tab
+- `tab` (string): Display name for the tab
+- `groups` (array): Collection of page groups within this tab
 
-**Actual Tabs in Implementation**:
+**Actual Tabs in Codebase**:
 
-1. **Guides Tab**:
-   - Contains 4 groups: "Getting started", "Customization", "Writing content", "AI tools"
-   - Total of 12 pages organized across these groups
+1. **Guides Tab** (lines 13-47):
+   - Contains 4 groups
+   - 12 total pages
+   - Groups: "Getting started", "Customization", "Writing content", "AI tools"
 
-2. **API Reference Tab**:
-   - Contains 2 groups: "API documentation", "Endpoint examples"
-   - Total of 5 pages including introduction and 4 endpoint examples
+2. **API Reference Tab** (lines 48-65):
+   - Contains 2 groups
+   - 5 total pages
+   - Groups: "API documentation", "Endpoint examples"
 
-#### Group Component
+#### Group Subcomponent
 
-**Structure**:
+**Definition**: Collapsible sections within tabs that organize related pages.
+
+**Implementation Examples**:
+
+**Getting Started Group** (lines 15-21):
 ```json
 {
   "group": "Getting started",
@@ -172,134 +184,260 @@ The navigation system consists of tabs and groups defined in the `navigation` ob
 }
 ```
 
-**Properties**:
-- `group`: String - Display name for the group section
-- `pages`: Array - List of page identifiers (markdown filenames without .md extension)
-
-**Actual Groups Implementation**:
-
-1. **Getting Started Group** (in Guides tab):
-```json
-{
-  "group": "Getting started",
-  "pages": ["index", "quickstart", "development"]
-}
-```
-
-2. **Customization Group** (in Guides tab):
+**Customization Group** (lines 22-27):
 ```json
 {
   "group": "Customization",
-  "pages": ["essentials/settings", "essentials/navigation"]
-}
-```
-
-3. **Writing Content Group** (in Guides tab):
-```json
-{
-  "group": "Writing content",
   "pages": [
-    "essentials/markdown",
-    "essentials/code",
-    "essentials/images",
-    "essentials/reusable-snippets"
+    "essentials/settings",
+    "essentials/navigation"
   ]
 }
 ```
 
-4. **AI Tools Group** (in Guides tab):
+**Properties**:
+- `group` (string): Display name for the collapsible section
+- `pages` (array of strings): Page identifiers (markdown filenames without `.md` extension)
+
+**Complete Group List**:
+
+1. **Getting started** (3 pages):
+   - `index` → `index.md`
+   - `quickstart` → `quickstart.md`
+   - `development` → `development.md`
+
+2. **Customization** (2 pages):
+   - `essentials/settings` → `essentials/settings.md`
+   - `essentials/navigation` → `essentials/navigation.md`
+
+3. **Writing content** (4 pages):
+   - `essentials/markdown` → `essentials/markdown.md`
+   - `essentials/code` → `essentials/code.md`
+   - `essentials/images` → `essentials/images.md`
+   - `essentials/reusable-snippets` → `essentials/reusable-snippets.md`
+
+4. **AI tools** (3 pages):
+   - `ai-tools/cursor` → `ai-tools/cursor.md`
+   - `ai-tools/claude-code` → `ai-tools/claude-code.md`
+   - `ai-tools/windsurf` → `ai-tools/windsurf.md`
+
+5. **API documentation** (1 page):
+   - `api-reference/introduction` → `api-reference/introduction.md`
+
+6. **Endpoint examples** (4 pages):
+   - `api-reference/endpoint/get` → `api-reference/endpoint/get.md`
+   - `api-reference/endpoint/create` → `api-reference/endpoint/create.md`
+   - `api-reference/endpoint/delete` → `api-reference/endpoint/delete.md`
+   - `api-reference/endpoint/webhook` → `api-reference/endpoint/webhook.md`
+
+#### Usage
+
+**Adding a New Page**:
+
+1. Create the markdown file:
+   ```bash
+   touch my-new-page.md
+   ```
+
+2. Add to navigation in `docs.json`:
+   ```json
+   {
+     "group": "Getting started",
+     "pages": [
+       "index",
+       "quickstart",
+       "development",
+       "my-new-page"
+     ]
+   }
+   ```
+
+**Adding a New Group**:
 ```json
 {
-  "group": "AI tools",
-  "pages": [
-    "ai-tools/cursor",
-    "ai-tools/claude-code",
-    "ai-tools/windsurf"
+  "tab": "Guides",
+  "groups": [
+    {
+      "group": "Getting started",
+      "pages": ["index", "quickstart", "development"]
+    },
+    {
+      "group": "New Section",
+      "pages": ["new-page-1", "new-page-2"]
+    }
   ]
 }
 ```
 
-5. **API Documentation Group** (in API reference tab):
-```json
-{
-  "group": "API documentation",
-  "pages": ["api-reference/introduction"]
-}
-```
-
-6. **Endpoint Examples Group** (in API reference tab):
-```json
-{
-  "group": "Endpoint examples",
-  "pages": [
-    "api-reference/endpoint/get",
-    "api-reference/endpoint/create",
-    "api-reference/endpoint/delete",
-    "api-reference/endpoint/webhook"
-  ]
-}
-```
-
-### Global Navigation Components
-
-**Implementation Details**:
-
-Global navigation elements appear across all pages:
-
+**Adding a New Tab**:
 ```json
 {
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [...]
+      },
+      {
+        "tab": "API reference",
+        "groups": [...]
+      },
+      {
+        "tab": "Tutorials",
+        "groups": [
+          {
+            "group": "Beginner",
+            "pages": ["tutorial-1", "tutorial-2"]
+          }
+        ]
+      }
+    ]
   }
 }
 ```
 
-#### Anchor Component
+### 4. Global Navigation Component
 
-**Properties**:
-- `anchor`: String - Display text for the link
-- `href`: String - URL destination
-- `icon`: String - Icon identifier from Mintlify's icon set
+**Location**: `docs.json` → `navigation.global` object (lines 66-77)
 
-**Actual Implementation**:
+**Purpose**: Defines navigation elements that appear across all pages, independent of tab selection.
 
-Two global anchors are configured:
-1. Documentation link to Mintlify docs (icon: "book-open-cover")
-2. Blog link to Mintlify blog (icon: "newspaper")
-
-**Usage**:
-Add custom global anchors by extending the array:
+#### Implementation
 
 ```json
 {
-  "anchors": [
-    {
-      "anchor": "Your Link Text",
-      "href": "https://your-url.com",
-      "icon": "icon-name"
-    }
-  ]
+  "global": {
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "href": "https://mintlify.com/docs",
+        "icon": "book-open-cover"
+      },
+      {
+        "anchor": "Blog",
+        "href": "https://mintlify.com/blog",
+        "icon": "newspaper"
+      }
+    ]
+  }
 }
 ```
 
-### Navbar Components
+#### Anchor Subcomponent
 
-**Implementation Details**:
+**Properties**:
+- `anchor` (string): Display text for the link
+- `href` (string): Destination URL (external links)
+- `icon` (string): Icon identifier from Mintlify's icon library
 
-The navbar contains links and a primary action button:
+**Actual Anchors** (lines 68-76):
+
+1. **Documentation Anchor**:
+   - Text: "Documentation"
+   - URL: https://mintlify.com/docs
+   - Icon: `book-open-cover`
+
+2. **Blog Anchor**:
+   - Text: "Blog"
+   - URL: https://mintlify.com/blog
+   - Icon: `newspaper`
+
+#### Usage
+
+Add custom global links:
+```json
+{
+  "global": {
+    "anchors": [
+      {
+        "anchor": "Support",
+        "href": "https://support.yoursite.com",
+        "icon": "life-ring"
+      },
+      {
+        "anchor": "GitHub",
+        "href": "https://github.com/yourorg/yourrepo",
+        "icon": "github"
+      }
+    ]
+  }
+}
+```
+
+### 5. Logo Component
+
+**Location**: `docs.json` → `logo` object (lines 78-81)
+
+**Purpose**: Defines logo images for light and dark theme modes, enabling automatic theme-aware logo switching.
+
+#### Implementation
+
+```json
+{
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  }
+}
+```
+
+**Properties**:
+- `light` (string): Path to logo for light mode. Value: `"/logo/light.svg"`
+- `dark` (string): Path to logo for dark mode. Value: `"/logo/dark.svg"`
+
+**File Requirements**:
+- Logo files must exist at specified paths
+- SVG format recommended for scalability
+- Paths are relative to project root
+- Both variants required for proper theme switching
+
+#### Usage
+
+**Replace with Custom Logos**:
+
+1. Create logo directory structure:
+   ```
+   project-root/
+   ├── logo/
+   │   ├── light.svg
+   │   └── dark.svg
+   ```
+
+2. Place your logo files in the directory
+
+3. Verify paths in `docs.json`:
+   ```json
+   {
+     "logo": {
+       "light": "/logo/light.svg",
+       "dark": "/logo/dark.svg"
+     }
+   }
+   ```
+
+**Using Different Paths**:
+```json
+{
+  "logo": {
+    "light": "/assets/images/logo-light.svg",
+    "dark": "/assets/images/logo-dark.svg"
+  }
+}
+```
+
+**Design Recommendations**:
+- Keep both logos visually consistent
+- Ensure sufficient contrast with background
+- Typical dimensions: 120-200px width, 30-50px height
+- Export as SVG for best quality across devices
+
+### 6. Navbar Component
+
+**Location**: `docs.json` → `navbar` object (lines 82-92)
+
+**Purpose**: Configures the top navigation bar with custom links and a primary action button.
+
+#### Implementation
 
 ```json
 {
@@ -319,30 +457,78 @@ The navbar contains links and a primary action button:
 }
 ```
 
-#### Navbar Link Component
+#### Link Subcomponent
 
 **Properties**:
-- `label`: String - Display text
-- `href`: String - URL or mailto link
+- `label` (string): Display text for the link
+- `href` (string): Destination URL or mailto link
 
-**Actual Implementation**:
-One support link configured as mailto link to "hi@mintlify.com"
+**Actual Link** (lines 84-87):
+- Label: "Support"
+- Href: `mailto:hi@mintlify.com`
 
-#### Navbar Primary Button Component
+#### Primary Button Subcomponent
 
 **Properties**:
-- `type`: String - Component type (value: "button")
-- `label`: String - Button text (value: "Dashboard")
-- `href`: String - Destination URL (value: "https://dashboard.mintlify.com")
+- `type` (string): Component type. Value: `"button"`
+- `label` (string): Button text. Value: `"Dashboard"`
+- `href` (string): Destination URL. Value: `"https://dashboard.mintlify.com"`
 
-**Usage**:
-The primary button appears prominently in the navbar. Customize by modifying the navbar object in `docs.json`.
+**Implementation** (lines 88-92):
+```json
+{
+  "primary": {
+    "type": "button",
+    "label": "Dashboard",
+    "href": "https://dashboard.mintlify.com"
+  }
+}
+```
 
-### Contextual Menu Component
+#### Usage
 
-**Implementation Details**:
+**Multiple Navbar Links**:
+```json
+{
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@yoursite.com"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.yoursite.com"
+      },
+      {
+        "label": "Community",
+        "href": "https://community.yoursite.com"
+      }
+    ]
+  }
+}
+```
 
-The contextual menu provides quick actions for code blocks and content:
+**Customizing Primary Button**:
+```json
+{
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://app.yoursite.com/signup"
+    }
+  }
+}
+```
+
+### 7. Contextual Menu Component
+
+**Location**: `docs.json` → `contextual` object (lines 93-104)
+
+**Purpose**: Enables contextual actions and integrations with AI tools and development environments, appearing as right-click or contextual menu options on code blocks and content.
+
+#### Implementation
 
 ```json
 {
@@ -362,26 +548,76 @@ The contextual menu provides quick actions for code blocks and content:
 ```
 
 **Properties**:
-- `options`: Array of strings - Available contextual actions
+- `options` (array of strings): List of enabled contextual actions
 
-**Actual Options Configured**:
-1. `copy` - Copy code to clipboard
-2. `view` - View source
-3. `chatgpt` - Open in ChatGPT
-4. `claude` - Open in Claude
-5. `perplexity` - Open in Perplexity
-6. `mcp` - MCP integration
-7. `cursor` - Open in Cursor editor
-8. `vscode` - Open in VS Code
+**Available Options** (lines 95-103):
 
-**Usage**:
-These options appear as contextual menu items on code blocks and other interactive elements. Users can right-click or use contextual menus to access these actions.
+1. **copy**: Copy code to clipboard
+2. **view**: View full source or context
+3. **chatgpt**: Open content in ChatGPT
+4. **claude**: Open content in Claude AI
+5. **perplexity**: Open content in Perplexity AI
+6. **mcp**: Model Context Protocol integration
+7. **cursor**: Open in Cursor editor
+8. **vscode**: Open in Visual Studio Code
 
-### Footer Component
+#### Usage
 
-**Implementation Details**:
+**Enable Specific Options Only**:
+```json
+{
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "vscode"
+    ]
+  }
+}
+```
 
-The footer contains social media links:
+**Enable All AI Integrations**:
+```json
+{
+  "contextual": {
+    "options": [
+      "copy",
+      "chatgpt",
+      "claude",
+      "perplexity"
+    ]
+  }
+}
+```
+
+**Developer-Focused Configuration**:
+```json
+{
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "cursor",
+      "vscode",
+      "mcp"
+    ]
+  }
+}
+```
+
+**Behavior**:
+- Options appear when users interact with code blocks
+- Right-click or designated gesture triggers contextual menu
+- Each option executes its specific action (copy, open in tool, etc.)
+- Not all options may be available depending on user's environment
+
+### 8. Footer Component
+
+**Location**: `docs.json` → `footer` object (lines 105-111)
+
+**Purpose**: Configures the site footer with social media links and additional information.
+
+#### Implementation
 
 ```json
 {
@@ -396,47 +632,78 @@ The footer contains social media links:
 ```
 
 **Properties**:
-- `socials`: Object - Key-value pairs of social platform and URL
+- `socials` (object): Key-value pairs mapping social platform to URL
 
-**Actual Social Links**:
-- **X (Twitter)**: https://x.com/mintlify
-- **GitHub**: https://github.com/mintlify
-- **LinkedIn**: https://linkedin.com/company/mintlify
+**Actual Social Links** (lines 107-110):
 
-**Usage**:
-Add or modify social links by updating the socials object:
+| Platform | URL |
+|----------|-----|
+| X (Twitter) | https://x.com/mintlify |
+| GitHub | https://github.com/mintlify |
+| LinkedIn | https://linkedin.com/company/mintlify |
 
+#### Usage
+
+**Add More Social Platforms**:
 ```json
 {
   "footer": {
     "socials": {
-      "x": "https://x.com/your-handle",
-      "github": "https://github.com/your-org",
-      "linkedin": "https://linkedin.com/company/your-company",
-      "discord": "https://discord.gg/your-server"
+      "x": "https://x.com/yourhandle",
+      "github": "https://github.com/yourorg",
+      "linkedin": "https://linkedin.com/company/yourcompany",
+      "discord": "https://discord.gg/yourinvite",
+      "youtube": "https://youtube.com/@yourchannel",
+      "slack": "https://yourworkspace.slack.com"
     }
   }
 }
 ```
 
-## API Documentation Components
+**Supported Social Platforms**:
+- x (Twitter/X)
+- github
+- linkedin
+- discord
+- youtube
+- slack
+- facebook
+- instagram
+- medium
+- (others supported by Mintlify)
 
-### OpenAPI Specification
+**Minimal Configuration**:
+```json
+{
+  "footer": {
+    "socials": {
+      "github": "https://github.com/yourorg/yourrepo"
+    }
+  }
+}
+```
+
+## API Specification Components
+
+### 9. OpenAPI Configuration
 
 **Location**: `api-reference/openapi.json`
 
-**Purpose**: Defines the API structure for the sample Plant Store API used in documentation examples.
+**Purpose**: Defines the API structure using OpenAPI 3.1.0 specification, enabling automatic generation of interactive API documentation.
 
-**Implementation Details**:
+#### Overview
 
-The OpenAPI specification follows OpenAPI 3.1.0 standard:
+The OpenAPI specification provides a complete, machine-readable definition of the Plant Store API, including endpoints, request/response schemas, authentication requirements, and webhooks.
 
+#### Implementation
+
+**Root Configuration** (lines 1-9):
 ```json
 {
   "openapi": "3.1.0",
   "info": {
     "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
     "license": {
       "name": "MIT"
     },
@@ -445,9 +712,38 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 }
 ```
 
-### Server Configuration Component
+**Properties**:
+- `openapi`: Specification version (`"3.1.0"`)
+- `info.title`: API title (`"OpenAPI Plant Store"`)
+- `info.description`: API description
+- `info.license.name`: License type (`"MIT"`)
+- `info.version`: API version (`"1.0.0"`)
 
-**Implementation**:
+#### Usage
+
+**Customize API Metadata**:
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Your API Name",
+    "description": "Description of your API's purpose and capabilities",
+    "license": {
+      "name": "Apache 2.0"
+    },
+    "version": "2.0.0"
+  }
+}
+```
+
+### 10. Server Configuration Component
+
+**Location**: `api-reference/openapi.json` → `servers` (lines 10-13)
+
+**Purpose**: Defines API server endpoints where the API is accessible.
+
+#### Implementation
+
 ```json
 {
   "servers": [
@@ -459,11 +755,58 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 ```
 
 **Properties**:
-- `url`: String - Base URL for API endpoints (value: "http://sandbox.mintlify.com")
+- `url` (string): Base URL for all API endpoints
 
-### Security Component
+**Actual Server**: `http://sandbox.mintlify.com`
 
-**Implementation**:
+#### Usage
+
+**Multiple Environments**:
+```json
+{
+  "servers": [
+    {
+      "url": "https://api.production.com",
+      "description": "Production server"
+    },
+    {
+      "url": "https://api.staging.com",
+      "description": "Staging server"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development"
+    }
+  ]
+}
+```
+
+**Server Variables**:
+```json
+{
+  "servers": [
+    {
+      "url": "https://{environment}.yourapi.com",
+      "variables": {
+        "environment": {
+          "default": "api",
+          "enum": ["api", "api.staging", "api.dev"]
+        }
+      }
+    }
+  ]
+}
+```
+
+### 11. Security Configuration Component
+
+**Location**: `api-reference/openapi.json` → `security` and `components.securitySchemes`
+
+**Purpose**: Defines authentication requirements for the API.
+
+#### Implementation
+
+**Global Security Requirement** (lines 14-18):
 ```json
 {
   "security": [
@@ -474,7 +817,7 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 }
 ```
 
-**Security Schemes**:
+**Security Scheme Definition** (lines 175-179):
 ```json
 {
   "securitySchemes": {
@@ -487,98 +830,268 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 ```
 
 **Properties**:
-- `type`: String - Authentication type (value: "http")
-- `scheme`: String - HTTP authentication scheme (value: "bearer")
+- `type`: Authentication type (`"http"`)
+- `scheme`: HTTP authentication scheme (`"bearer"`)
 
-**Usage**: All API endpoints require bearer token authentication by default.
+#### Usage
 
-### API Path Components
-
-#### GET /plants Endpoint
-
-**Implementation**:
+**API Key Authentication**:
 ```json
 {
-  "get": {
-    "description": "Returns all plants from the system that the user has access to",
-    "parameters": [
-      {
-        "name": "limit",
-        "in": "query",
-        "description": "The maximum number of results to return",
-        "schema": {
-          "type": "integer",
-          "format": "int32"
-        }
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
       }
-    ]
-  }
-}
-```
-
-**Components**:
-- **Parameters**: Query parameter `limit` (integer, optional)
-- **Response 200**: Returns array of Plant objects
-- **Response 400**: Returns Error object
-
-#### POST /plants Endpoint
-
-**Implementation**:
-```json
-{
-  "post": {
-    "description": "Creates a new plant in the store",
-    "requestBody": {
-      "description": "Plant to add to the store",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/NewPlant"
-          }
-        }
-      },
-      "required": true
     }
   }
 }
 ```
 
-**Components**:
-- **Request Body**: Required, uses NewPlant schema
-- **Response 200**: Returns created Plant object
-- **Response 400**: Returns Error object
-
-#### DELETE /plants/{id} Endpoint
-
-**Implementation**:
+**OAuth 2.0 Authentication**:
 ```json
 {
-  "delete": {
-    "description": "Deletes a single plant based on the ID supplied",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "description": "ID of plant to delete",
-        "required": true,
-        "schema": {
-          "type": "integer",
-          "format": "int64"
+  "security": [
+    {
+      "oauth2": ["read", "write"]
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://auth.yourapi.com/oauth/authorize",
+            "tokenUrl": "https://auth.yourapi.com/oauth/token",
+            "scopes": {
+              "read": "Read access",
+              "write": "Write access"
+            }
+          }
         }
       }
-    ]
+    }
   }
 }
 ```
 
-**Components**:
-- **Parameters**: Path parameter `id` (integer, required)
-- **Response 204**: No content, successful deletion
-- **Response 400**: Returns Error object
+### 12. Path Component (API Endpoints)
 
-### Webhook Component
+**Location**: `api-reference/openapi.json` → `paths`
 
-**Implementation**:
+**Purpose**: Defines individual API endpoints with their operations, parameters, and responses.
+
+#### GET /plants Endpoint Component
+
+**Implementation** (lines 19-56):
+```json
+{
+  "/plants": {
+    "get": {
+      "description": "Returns all plants from the system that the user has access to",
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of results to return",
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Plant response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**Structure**:
+- **Path**: `/plants`
+- **Method**: `get`
+- **Parameters**: `limit` (optional query parameter, integer)
+- **Response 200**: Array of Plant objects
+- **Response 400**: Error object
+
+#### POST /plants Endpoint Component
+
+**Implementation** (lines 57-88):
+```json
+{
+  "/plants": {
+    "post": {
+      "description": "Creates a new plant in the store",
+      "requestBody": {
+        "description": "Plant to add to the store",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewPlant"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "plant response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plant"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**Structure**:
+- **Path**: `/plants`
+- **Method**: `post`
+- **Request Body**: NewPlant object (required)
+- **Response 200**: Created Plant object
+- **Response 400**: Error object
+
+#### DELETE /plants/{id} Endpoint Component
+
+**Implementation** (lines 89-127):
+```json
+{
+  "/plants/{id}": {
+    "delete": {
+      "description": "Deletes a single plant based on the ID supplied",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "ID of plant to delete",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "204": {
+          "description": "Plant deleted",
+          "content": {}
+        },
+        "400": {
+          "description": "unexpected error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**Structure**:
+- **Path**: `/plants/{id}`
+- **Method**: `delete`
+- **Parameters**: `id` (required path parameter, integer)
+- **Response 204**: No content (success)
+- **Response 400**: Error object
+
+#### Usage
+
+**Add New Endpoint**:
+```json
+{
+  "paths": {
+    "/plants/{id}": {
+      "get": {
+        "description": "Get a single plant by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### 13. Webhook Component
+
+**Location**: `api-reference/openapi.json` → `webhooks` (lines 128-151)
+
+**Purpose**: Defines webhook notifications that the API sends to external systems.
+
+#### Implementation
+
 ```json
 {
   "webhooks": {
@@ -594,6 +1107,11 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Return a 200 status to indicate that the data was received successfully"
+          }
         }
       }
     }
@@ -601,16 +1119,59 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 }
 ```
 
-**Properties**:
-- **Method**: POST
-- **Payload**: NewPlant schema
+**Structure**:
+- **Webhook Path**: `/plant/webhook`
+- **Method**: `post`
+- **Request Body**: NewPlant schema
 - **Expected Response**: 200 status code
 
-### Schema Components
+#### Usage
 
-#### Plant Schema
+Configure your endpoint to receive webhook:
 
-**Implementation**:
+```json
+{
+  "webhooks": {
+    "/inventory/update": {
+      "post": {
+        "description": "Notification when inventory changes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "enum": ["created", "updated", "deleted"]
+                  },
+                  "item_id": {
+                    "type": "integer"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### 14. Schema Components
+
+**Location**: `api-reference/openapi.json` → `components.schemas`
+
+**Purpose**: Defines reusable data models used throughout the API specification.
+
+#### Plant Schema Component
+
+**Implementation** (lines 153-164):
 ```json
 {
   "Plant": {
@@ -631,12 +1192,12 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 ```
 
 **Properties**:
-- `name`: String (required) - Plant name
-- `tag`: String (optional) - Plant type classification
+- `name` (string, required): Plant name
+- `tag` (string, optional): Type classification
 
-#### NewPlant Schema
+#### NewPlant Schema Component
 
-**Implementation**:
+**Implementation** (lines 165-180):
 ```json
 {
   "NewPlant": {
@@ -660,13 +1221,13 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 }
 ```
 
-**Properties**:
-- Extends Plant schema
-- `id`: Integer (required) - Unique identifier
+**Structure**:
+- Extends Plant schema using `allOf`
+- Adds required `id` property (integer, int64)
 
-#### Error Schema
+#### Error Schema Component
 
-**Implementation**:
+**Implementation** (lines 181-194):
 ```json
 {
   "Error": {
@@ -686,245 +1247,12 @@ The OpenAPI specification follows OpenAPI 3.1.0 standard:
 ```
 
 **Properties**:
-- `error`: Integer (required) - Error code
-- `message`: String (required) - Error message
+- `error` (integer, required): Error code
+- `message` (string, required): Error message
 
-## Content Page Components
+#### Usage
 
-### Markdown Pages
-
-**Location**: Root directory and subdirectories (`.md` files)
-
-**Available Pages** (referenced in navigation):
-
-1. **index.md** - Home/landing page
-2. **quickstart.md** - Quick start guide
-3. **development.md** - Development setup
-4. **essentials/settings.md** - Settings customization
-5. **essentials/navigation.md** - Navigation configuration
-6. **essentials/markdown.md** - Markdown syntax guide
-7. **essentials/code.md** - Code block examples
-8. **essentials/images.md** - Image embedding
-9. **essentials/reusable-snippets.md** - Content snippets
-10. **ai-tools/cursor.md** - Cursor integration
-11. **ai-tools/claude-code.md** - Claude integration
-12. **ai-tools/windsurf.md** - Windsurf integration
-13. **api-reference/introduction.md** - API intro
-14. **api-reference/endpoint/get.md** - GET endpoint docs
-15. **api-reference/endpoint/create.md** - CREATE endpoint docs
-16. **api-reference/endpoint/delete.md** - DELETE endpoint docs
-17. **api-reference/endpoint/webhook.md** - Webhook docs
-
-### Additional Documentation Files
-
-**Provided but not in navigation**:
-
-1. **README.md** - Project readme (root directory)
-2. **concepts.md** - Conceptual documentation (contains OrchestRAI example content)
-3. **feature-guides.md** - Feature guide examples
-4. **getting-started.md** - Alternative getting started content
-5. **how_to.md** - How-to guide stub
-6. **intro.md** - Introduction stub
-7. **reference.md** - API reference prose documentation
-8. **sbom_cyclonedx.md** - SBOM documentation (CycloneDX format)
-9. **sbom_spdx.md** - SBOM documentation (SPDX format)
-10. **tutorials.md** - Tutorial examples
-
-## Component Integration Patterns
-
-### Navigation-to-Content Mapping
-
-**Implementation Pattern**:
-
-Pages referenced in `docs.json` navigation must have corresponding `.md` files. The mapping is:
-
-```
-Navigation page value → File path
-"index" → index.md
-"quickstart" → quickstart.md
-"essentials/settings" → essentials/settings.md
-"api-reference/endpoint/get" → api-reference/endpoint/get.md
-```
-
-**Usage**:
-To add a new page:
-
-1. Create the markdown file in the appropriate directory
-2. Add the page reference to `docs.json` navigation:
-
+**Define Custom Schema**:
 ```json
 {
-  "group": "Your Group",
-  "pages": [
-    "path/to/your-new-page"
-  ]
-}
-```
-
-### Theme and Branding Integration
-
-**Complete Theme Configuration**:
-
-```json
-{
-  "theme": "mint",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  }
-}
-```
-
-**File Structure Requirements**:
-- `/favicon.svg` - Site favicon
-- `/logo/light.svg` - Logo for light theme
-- `/logo/dark.svg` - Logo for dark theme
-
-### API Documentation Integration
-
-**Implementation Pattern**:
-
-The OpenAPI specification at `api-reference/openapi.json` automatically generates interactive API documentation pages. The specification integrates with markdown pages in the `api-reference/endpoint/` directory.
-
-**Usage**:
-To document a new endpoint:
-
-1. Add the endpoint definition to `openapi.json`:
-```json
-{
-  "paths": {
-    "/your-endpoint": {
-      "get": {
-        "description": "Your endpoint description",
-        "responses": {
-          "200": {
-            "description": "Success response"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-2. Create corresponding markdown documentation:
-```
-api-reference/endpoint/your-endpoint.md
-```
-
-3. Add to navigation in `docs.json`:
-```json
-{
-  "group": "Endpoint examples",
-  "pages": [
-    "api-reference/endpoint/your-endpoint"
-  ]
-}
-```
-
-## Development and Preview Components
-
-### Local Development Server
-
-**Implementation**: Uses Mintlify CLI
-
-**Setup Command**:
-```bash
-npm i -g mint
-```
-
-**Start Command**:
-```bash
-mint dev
-```
-
-**Preview URL**: `http://localhost:3000`
-
-**File Monitoring**: The dev server watches for changes to:
-- `docs.json` - Configuration changes
-- `.md` files - Content changes
-- `/logo/` - Asset changes
-- `/api-reference/openapi.json` - API spec changes
-
-**Update Command**:
-```bash
-mint update
-```
-
-**Purpose**: Updates the Mintlify CLI to the latest version for compatibility.
-
-## Configuration Validation
-
-### Required Components
-
-**Minimum Configuration Requirements**:
-
-1. **docs.json must exist** in project root
-2. **$schema property** must reference Mintlify schema
-3. **name property** must be defined
-4. **At least one navigation tab** must be configured
-5. **Each navigation page** must have corresponding `.md` file
-
-### Component Dependencies
-
-**Dependency Chain**:
-
-```
-docs.json
-  ├─ theme (optional but recommended)
-  ├─ colors (optional but recommended)
-  ├─ logo (optional but recommended)
-  │   ├─ requires: /logo/light.svg
-  │   └─ requires: /logo/dark.svg
-  ├─ favicon (optional but recommended)
-  │   └─ requires: /favicon.svg
-  ├─ navigation (required)
-  │   └─ tabs[] (required)
-  │       └─ groups[] (required)
-  │           └─ pages[] (required)
-  │               └─ requires: corresponding .md files
-  ├─ navbar (optional)
-  ├─ footer (optional)
-  └─ contextual (optional)
-```
-
-## Error Handling
-
-### Common Component Issues
-
-**404 Page Errors**:
-- **Cause**: Navigation references page that doesn't exist
-- **Solution**: Ensure `.md` file exists at referenced path
-- **Verification**: Check that page path in `docs.json` matches actual file location
-
-**Preview Not Starting**:
-- **Cause**: Outdated Mintlify CLI or invalid `docs.json`
-- **Solution**: Run `mint update` and validate JSON syntax
-- **Verification**: Check terminal for error messages
-
-**Missing Assets**:
-- **Cause**: Logo or favicon files not present at specified paths
-- **Solution**: Place required asset files in correct directories
-- **Verification**: Check file paths in `docs.json` match actual file locations
-
-## Summary
-
-This documentation covers all actual components present in the provided Mintlify documentation starter kit source code:
-
-1. **Configuration Components**: docs.json structure with theme, navigation, navbar, and footer
-2. **API Components**: OpenAPI specification with endpoints, schemas, and webhooks
-3. **Content Components**: Markdown page structure and organization
-4. **Development Components**: CLI tools and preview server
-
-All component documentation is derived directly from the provided source files:
-- `docs.json` (configuration)
-- `api-reference/openapi.json` (API specification)
-- `README.md` (setup instructions)
-
-No fictional or placeholder components are documented. Every referenced property, value, and file path exists in the provided source code.
+  "components": {
