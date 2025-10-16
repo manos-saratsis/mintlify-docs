@@ -1,157 +1,209 @@
-I'll analyze the provided source code to create user-facing Getting Started documentation. Let me first explore the codebase to understand the actual features and user flows.
-
-<source_code_analysis>
-
-Based on my analysis of the provided files, I can see this is a Mintlify documentation starter kit, not the OrchestRAI application referenced in some of the markdown files. The actual source code shows:
-
-1. **README.md**: A Mintlify starter kit for documentation
-2. **docs.json**: Configuration for a Mint-themed documentation site
-3. **api-reference/openapi.json**: A sample Plant Store API
-4. **Existing documentation files**: Contains references to OrchestRAI but these appear to be example/template content
-
-The actual product is a **documentation platform builder** using Mintlify, not the OrchestRAI AI development platform described in the markdown files.
-
-</source_code_analysis>
-
 # Getting Started
 
-Welcome! This guide will help you start building beautiful documentation for your project. In just a few minutes, you'll have a professional documentation site up and running.
+Welcome! This guide will help you create beautiful, professional documentation for your project in just a few minutes. Whether you're documenting an API, writing user guides, or creating developer documentation, you'll have everything you need to get started.
 
-## What You'll Create
+## What You Can Do
 
-You're about to create a modern documentation website where you can share guides, tutorials, API references, and more with your users. The site will be fast, searchable, and easy to customize with your brand.
+With this platform, you can:
+- Create a modern documentation website that's fast and easy to search
+- Share guides and tutorials with your users
+- Document your APIs automatically
+- Customize the look and feel to match your brand
+- Publish your documentation with automatic updates
 
-## Before You Begin
+## What You'll Need
 
-Make sure you have:
-- A GitHub account
-- Your project or API that needs documentation
-- About 10 minutes to get everything set up
+Before you begin, make sure you have:
+- A GitHub account (it's free if you don't have one)
+- About 10 minutes to set everything up
+- Your project or content that needs documentation
 
-## Your First Steps
+## Step 1: Get Your Documentation Started
 
-### 1. Get Your Documentation Template
+### Create Your Documentation Project
 
-Start by getting your own copy of the documentation template:
+First, you'll get your own copy of the documentation template:
 
-1. Visit the Mintlify Starter Kit repository on GitHub
-2. Look for the green **"Use this template"** button at the top of the page
+1. Visit the starter repository on GitHub
+2. Look for the green **"Use this template"** button near the top
 3. Click it to create your own copy
+4. Give your new repository a name
 
-This gives you everything you need: example pages, navigation structure, and sample content you can customize.
+That's it! You now have all the example pages and structure you need to get started.
 
-### 2. Set Up Your Local Environment
+### What's Included
 
-To preview your documentation as you write, you'll need to install a small helper tool:
+Your new documentation comes with helpful examples:
+- **Guide Pages**: Ready-to-use templates for step-by-step instructions
+- **Navigation Structure**: An organized menu you can customize
+- **API Reference**: Templates for documenting your APIs
+- **Customization Options**: Easy ways to add your branding
 
-Open your terminal or command prompt and run:
+## Step 2: Preview Your Documentation Locally
+
+To see your documentation on your own computer as you work on it, you'll install a preview tool.
+
+### Install the Preview Tool
+
+Open your terminal or command prompt and type:
+
 ```
 npm i -g mint
 ```
 
-This installs the Mintlify preview tool on your computer.
+This installs a small helper program that lets you preview your documentation.
 
-### 3. See Your Documentation Live
+### See Your Documentation Live
 
-Now you can see your documentation in action:
+Now you can see what your documentation looks like:
 
 1. Open your terminal
-2. Navigate to the folder where you saved your documentation (where you see a file called `docs.json`)
-3. Run this command:
+2. Go to the folder where you saved your documentation (look for a file called `docs.json`)
+3. Type this command:
    ```
    mint dev
    ```
-4. Open your web browser and go to `http://localhost:3000`
+4. Open your web browser and visit `http://localhost:3000`
 
-You'll see your documentation site running on your computer! Any changes you make to your files will appear instantly in your browser.
+You'll see your documentation running! When you make changes to your files, they'll appear right away in your browser.
 
-## What's Included
+## Step 3: Make It Your Own
 
-Your new documentation comes with helpful examples to get you started:
+### Add Your Branding
 
-**Guide Pages**: Step-by-step instructions showing your users how to accomplish specific tasks
+Open the file called `docs.json` to personalize your documentation:
 
-**Navigation**: A pre-built menu structure you can customize to organize your content
+**Change the Colors**:
+The default colors are green, but you can use your brand colors. Look for the section that says `colors` and replace the color codes with your own:
+- `primary`: Your main brand color
+- `light`: A lighter version for accents
+- `dark`: A darker version for emphasis
 
-**Customizations**: Options to match your brand colors, logo, and style
+**Add Your Logo**:
+1. Create a folder called `logo` in your project
+2. Add two versions of your logo:
+   - One for light mode (save it as `light.svg`)
+   - One for dark mode (save it as `dark.svg`)
+3. The documentation will automatically show the right logo based on what theme someone is using
 
-**API Reference Pages**: Ready-to-use templates for documenting your APIs
-
-**Popular Components**: Useful elements like code blocks, callouts, and cards that make your documentation engaging
-
-## Making It Yours
-
-### Customize Your Branding
-
-Open the `docs.json` file to personalize your documentation:
-
-- **Colors**: Change the primary, light, and dark colors to match your brand
-- **Logo**: Add your own logo images (you'll see where to place them in the logo section)
-- **Name**: Update the site name to reflect your project
+**Update the Site Name**:
+Change the `name` field to match your project's name. This appears in the browser tab and navigation.
 
 ### Organize Your Content
 
-The navigation structure is defined in the `docs.json` file. You'll see sections for:
-- Getting started guides
-- Customization options
-- Content writing tips
-- AI tools integration
-- API reference
+The navigation menu is also in the `docs.json` file. You'll see sections like:
+- Getting Started
+- Customization
+- Writing Content
+- API Reference
 
-Feel free to add, remove, or reorganize these sections to fit your needs.
+You can:
+- Add new sections by copying the pattern you see
+- Remove sections you don't need
+- Rearrange sections in any order
+- Rename sections to match your needs
 
 ### Write Your Content
 
-All your documentation pages are written in Markdown files (files ending in `.md`). You can:
-- Edit the existing example pages to match your content
+All your documentation pages are written in simple text files ending in `.md`. These use Markdown, which is easy to learn:
+- `# Heading` creates a large heading
+- `## Smaller Heading` creates a subheading
+- `**bold text**` makes text bold
+- `[link text](url)` creates a link
+- `` `code` `` shows code
+
+You can:
+- Edit the example pages to match your content
 - Create new pages by adding new `.md` files
-- Add images, code examples, and other rich content
+- Add images, code examples, and more
 
-## Publishing Your Documentation
+## Step 4: Publish Your Documentation
 
-When you're ready to share your documentation with the world:
+When you're ready to share your documentation with the world, you'll set up automatic publishing.
 
-### Connect to Your Dashboard
+### Connect to the Dashboard
 
-1. Go to your Mintlify dashboard at `https://dashboard.mintlify.com/settings/organization/github-app`
-2. Install the GitHub app
-3. Connect it to your documentation repository
+1. Visit `https://dashboard.mintlify.com/settings/organization/github-app`
+2. Click to install the GitHub app
+3. Choose which repository to connect (the one with your documentation)
+4. Authorize the connection
 
-Once connected, your documentation will automatically update every time you make changes. Just save your files and push them to GitHub—your live documentation site will refresh automatically.
+### Automatic Updates
 
-## Get Help When You Need It
+Once connected, your documentation updates automatically! Here's how it works:
 
-### Something Not Working?
+1. You make changes to your documentation files
+2. You save and push your changes to GitHub
+3. Your live documentation updates automatically within minutes
 
-**Preview Not Starting**: Run `mint update` in your terminal to get the latest version of the preview tool
+No need to manually deploy or run commands—it just happens.
 
-**Page Shows as 404**: Make sure you're running the preview from the folder that contains your `docs.json` file
+## Tips for Success
 
-### Learn More
+### Start Small
+Don't try to write everything at once. Start with:
+1. A simple homepage explaining what your project does
+2. A quick start guide to help people get started
+3. One or two detailed guides for common tasks
 
-- **Full Documentation**: Visit [Mintlify documentation](https://mintlify.com/docs) for detailed guides
-- **Support**: Email hi@mintlify.com if you need assistance
+You can always add more pages later.
+
+### Look at the Examples
+The template includes example pages showing you:
+- How to format text and create sections
+- How to add code examples
+- How to include images
+- How to create tables and lists
+
+Use these as inspiration for your own pages.
+
+### Keep It Simple
+Good documentation is clear and simple:
+- Use short sentences
+- Explain one thing at a time
+- Include examples whenever possible
+- Think about what someone new to your project would need to know
+
+## Common Questions
+
+**"The preview isn't starting. What should I do?"**
+
+Type `mint update` in your terminal to get the latest version of the preview tool. This usually fixes the problem.
+
+**"I'm seeing a 404 error when I try to preview."**
+
+Make sure you're in the right folder—the one that has the `docs.json` file. You can check by typing `ls` (Mac/Linux) or `dir` (Windows) to see what's in the current folder.
+
+**"How do I add a new page?"**
+
+1. Create a new `.md` file with your content
+2. Open `docs.json`
+3. Find the navigation section where you want the page to appear
+4. Add the filename (without `.md`) to the list of pages
+5. Save both files
+
+**"Can I include my API documentation?"**
+
+Yes! If you have an OpenAPI specification (also called Swagger), you can include it in your project. The system will automatically create beautiful, interactive API documentation from it.
+
+## Get Help
+
+If you get stuck or have questions:
+
+- **Documentation**: Visit the full documentation at `https://mintlify.com/docs` for detailed guides
+- **Support**: Email `hi@mintlify.com` for help
+- **Examples**: Look at the example pages included in your template
 
 ## What's Next
 
-Now that your documentation is running, here are some great next steps:
+Now that you have the basics set up, here's what to do next:
 
 1. **Explore the Examples**: Look through the sample pages to see what's possible
-2. **Customize Your Settings**: Update colors, logos, and navigation to match your brand
-3. **Write Your First Page**: Replace the example content with information about your project
-4. **Add Your API**: If you have an API, use the included OpenAPI integration to document it automatically
-5. **Go Live**: When you're happy with your documentation, connect it to publish
+2. **Write Your First Page**: Replace one of the example pages with content about your project
+3. **Customize the Design**: Update colors and logos to match your brand
+4. **Add More Pages**: Create additional pages as you need them
+5. **Go Live**: Connect to the dashboard and publish your documentation
 
-Remember: your documentation is a living resource. You can update it anytime, and changes will appear on your live site automatically.
+Remember, your documentation is a living resource. You can update it anytime, and your changes will appear on your live site automatically. Take it one step at a time, and don't hesitate to look at the examples or reach out for help.
 
-## Quick Reference
-
-**Start Preview**: `mint dev`  
-**Update Tool**: `mint update`  
-**Preview URL**: `http://localhost:3000`  
-**Configuration File**: `docs.json`  
-**Content Files**: `.md` files in your project folders
-
----
-
-Welcome to the community! Your documentation journey starts here. Take it one step at a time, and don't hesitate to reach out if you need help along the way.
+Welcome to creating great documentation—you've got this! 🚀
