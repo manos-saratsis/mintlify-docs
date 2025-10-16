@@ -1,439 +1,619 @@
 # Feature Guides
 
-OrchestRAI's AI-powered platform helps you improve your code quality, generate tests, ensure compliance, and create documentation. These guides show you how to use each feature to accomplish specific tasks with clear, step-by-step instructions.
+Welcome to the Mintlify Documentation Starter Kit feature guides. These guides show you how to use each feature with clear, step-by-step instructions. Everything in this guide is based on what actually exists in your documentation project.
 
-## Getting Started with Code Quality Analysis
+## Getting Started with Your Documentation
 
-### Understanding Your Code Quality
+### Creating Your First Documentation Page
 
-Want to know how healthy your code is? The platform can analyze your entire codebase and give you a clear picture of what's working well and what needs attention.
-
-**What You'll Get:**
-- A quality score that shows the overall health of your code
-- Specific areas that need improvement
-- Clear explanations of what each issue means
-- Suggestions for how to fix problems
-
-**How to Analyze Your Code:**
-
-1. After signing in, go to the Code section from the main menu
-2. If this is your first time, you'll need to connect your GitHub account - just click the button and follow the prompts to give the platform access to your repositories
-3. Once connected, you'll see a list of your repositories
-4. Find the repository you want to analyze and click the "Analyze" button next to it
-5. A window will open where you can choose what to focus on - you can look at everything or just focus on security issues, readability, or other specific areas
-6. Click "Start Analysis" and wait while the AI examines your code
-7. You'll see a progress indicator showing what's happening - this usually takes a few minutes depending on how large your codebase is
-
-**Understanding Your Results:**
-
-After the analysis finishes, you'll see scores for different aspects of your code:
-
-- **Readability**: How easy your code is to understand
-- **Maintainability**: How easy it will be to update and modify your code
-- **Reliability**: How dependable your code is
-- **Security**: Whether there are potential security vulnerabilities
-- **Efficiency**: How well your code performs
-- **Testability**: How easy it is to write tests for your code
-
-Each score is on a scale from 0 to 100, with higher numbers being better.
-
-**Viewing Detailed Issues:**
-
-Click "View Details" to see exactly what problems were found. For each issue, you'll see:
-
-- Where in your code the problem exists
-- What the problem is in plain language
-- Why it matters
-- How to fix it
-
-You can filter issues by severity to focus on the most critical problems first, or look at specific files to tackle improvements one piece at a time.
-
-**Taking Action:**
-
-The platform highlights critical issues that need immediate attention. Start with these, then work your way through other suggestions based on your priorities. Each recommendation includes specific guidance on how to make the improvement.
-
-## Generating Tests Automatically
-
-### Creating Tests for Your Code
-
-Writing tests can be time-consuming, but they're essential for ensuring your code works correctly. The platform can automatically generate comprehensive tests for you.
+Want to add content to your documentation? It's simple - just create text files and they'll automatically become pages on your site.
 
 **What You'll Get:**
-- Test code that's ready to use
-- Coverage for different scenarios and edge cases
-- Tests that follow your project's existing testing patterns
-- Estimates of how much of your code will be covered by the new tests
+- A new page that appears in your documentation
+- Automatic formatting and styling
+- Search functionality that includes your new content
+- Navigation that updates to include your page
 
-**How to Generate Tests:**
+**How to Create a Page:**
 
-1. Go to the Code section and find the repository you want to create tests for
-2. Click the "Generate Tests" button for that repository
-3. A window will open where you can configure what kind of tests you want
-4. Choose which parts of your code to test - you can test everything, just recently changed files, or specific parts
-5. Select the types of tests you need:
-   - **Unit tests** check individual functions and features
-   - **Integration tests** verify that different parts work together correctly
-   - **End-to-end tests** simulate real user interactions with your application
-6. If you want to give the AI specific instructions about what to focus on, add them in the additional instructions box
-7. Click "Generate Tests" and the AI will begin creating your test suite
+1. Open your documentation folder on your computer (where you see the `docs.json` file)
+2. Create a new file with a `.md` extension - for example, `my-feature.md`
+3. Write your content using simple text formatting (we'll show you how below)
+4. Add the page to your navigation so people can find it
+5. Save your file and see it appear in your documentation
 
-**Monitoring Test Generation:**
+**Understanding Your Page Structure:**
 
-While tests are being generated, you'll see progress through several stages:
+Each page uses Markdown, which is like writing a regular text document with simple formatting symbols. You don't need to know HTML or programming.
 
-- Analyzing your code structure and patterns
-- Planning the test strategy
-- Writing the actual test code
-- Checking that the generated tests are valid
+**Adding Your Page to Navigation:**
 
-This typically takes several minutes for a full test suite.
+To make your page appear in the menu, open the `docs.json` file and add your page name:
 
-**Reviewing Generated Tests:**
+Find the section that looks like this:
+```
+"pages": [
+  "index",
+  "quickstart"
+]
+```
 
-Once generation is complete, you'll see:
+Add your page name (without the .md extension):
+```
+"pages": [
+  "index",
+  "quickstart",
+  "my-feature"
+]
+```
 
-- How many test files were created
-- The total number of test cases
-- An estimate of code coverage improvement
-- A list of all the files that were generated
+**Viewing Your Changes:**
 
-You can review each test file to see exactly what was created. The tests include:
+If you have the preview running (by running `mint dev` in your terminal), your new page appears immediately. Just refresh your browser to see it.
 
-- Clear descriptions of what each test checks
-- Setup code needed to run the tests
-- Expected results for different scenarios
-- Any mock data or fake services needed for testing
+## Organizing Your Documentation
 
-**Using Your New Tests:**
+### Setting Up Your Navigation Menu
 
-The generated tests are designed to work with your existing testing framework. You can:
-
-1. Copy the test code into your project
-2. Run the tests to verify they work correctly
-3. Adjust any tests that need customization for your specific needs
-4. Add the tests to your continuous integration pipeline so they run automatically
-
-The platform provides instructions for integrating the tests based on what testing tools your project already uses.
-
-## Checking Compliance and Security
-
-### Ensuring Your Code Meets Standards
-
-If your application needs to meet specific regulatory requirements or security standards, the platform can check your code for compliance issues.
+The navigation menu is how people find their way around your documentation. You organize it using tabs, groups, and pages - think of it like folders and files on your computer.
 
 **What You'll Get:**
-- Identification of areas that don't meet compliance requirements
-- Explanations of what regulations require
-- Risk assessments for potential violations
-- Guidance on how to fix compliance issues
+- A clear menu structure that makes sense to your users
+- Related pages grouped together
+- Multiple sections for different types of content
+- Easy navigation between topics
 
-**How to Check Compliance:**
+**How Navigation Works:**
 
-1. Navigate to the Code section and select your repository
-2. Click the option for compliance checking
-3. A configuration window will open where you can specify which standards apply to your project
-4. Choose from common frameworks like:
-   - **GDPR** for European data privacy
-   - **HIPAA** for healthcare data
-   - **PCI DSS** for payment card data
-   - **SOC 2** for service organizations
-   - **ISO 27001** for information security
-5. You can check against multiple standards at once if needed
-6. Optionally, add specific instructions about requirements unique to your organization
-7. Click "Start Analysis" to begin the compliance check
+Your documentation uses a three-level structure:
 
-**Understanding Compliance Results:**
+**Tabs** are the top-level sections. In the example documentation, there are two tabs:
+- "Guides" for learning and setup information
+- "API reference" for technical API details
 
-The analysis will identify:
+**Groups** organize related pages within a tab. For example, the Guides tab has groups like:
+- "Getting started" for new users
+- "Customization" for personalizing your site
+- "Writing content" for content creation help
 
-- **Critical issues** that pose immediate compliance risks
-- **Warnings** about potential problems that should be addressed
-- **Recommendations** for improving overall compliance posture
-- Specific code locations where issues were found
+**Pages** are the actual documentation articles within each group.
 
-Each finding explains:
+**Setting Up Your Navigation:**
 
-- What the compliance requirement is
-- How your code currently fails to meet it
-- What could happen if the issue isn't fixed
-- Concrete steps to resolve the problem
+Open the `docs.json` file and find the navigation section. You'll see it's organized like this:
 
-**Taking Action on Findings:**
+```
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Guides",
+      "groups": [
+        {
+          "group": "Getting started",
+          "pages": [
+            "index",
+            "quickstart",
+            "development"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
-Focus first on critical issues, as these represent the highest risk. The platform prioritizes findings based on:
+**Adding a New Group:**
 
-- Severity of the potential violation
-- Likelihood of causing actual compliance problems
-- Business impact if the issue were exploited
+To add a new section to your menu:
 
-For each issue, you can:
+1. Find the tab where you want the new group
+2. Add a new group with its pages:
+```
+{
+  "group": "My New Section",
+  "pages": [
+    "page-one",
+    "page-two"
+  ]
+}
+```
 
-- View the specific code that needs attention
-- See the recommended fix
-- Track when the issue was identified
-- Mark issues as resolved once fixed
+**Creating a New Tab:**
 
-**Continuous Compliance Monitoring:**
+To add a completely new top-level section:
 
-You can set up the platform to automatically check for compliance issues whenever code changes are made, helping you catch potential problems before they become serious violations.
+1. Add a new tab at the same level as existing tabs:
+```
+{
+  "tab": "Tutorials",
+  "groups": [
+    {
+      "group": "Beginner Tutorials",
+      "pages": ["tutorial-1", "tutorial-2"]
+    }
+  ]
+}
+```
 
-## Creating Documentation
+## Customizing Your Site's Appearance
 
-### Generating Complete Project Documentation
+### Changing Colors and Branding
 
-Good documentation helps your team and users understand your project, but creating it manually is time-consuming. The platform can generate comprehensive documentation automatically.
+Make your documentation match your brand by customizing colors, logos, and visual elements.
 
 **What You'll Get:**
-- Technical documentation explaining your code's architecture
-- User guides for people using your application
-- API documentation for developers integrating with your system
-- Setup and deployment instructions
-- Troubleshooting guides
+- Documentation that matches your company colors
+- Your logo displayed prominently
+- A consistent brand experience
+- Professional-looking pages
 
-**How to Generate Documentation:**
+**How to Change Colors:**
 
-1. Go to your repository in the Code section
-2. Click the documentation generation option
-3. A configuration window will open where you can specify what documentation you need
-4. Choose who the documentation is for:
-   - **Developers** working on the code
-   - **End users** using your application
-   - **System administrators** deploying and maintaining the system
-   - **Business stakeholders** understanding the project
-5. Select what types of documentation to create:
-   - Technical architecture explanations
-   - API references with examples
-   - User guides and tutorials
-   - Setup and installation instructions
-   - Troubleshooting and FAQ sections
-6. Specify the format you need (like Markdown for websites, or other formats for different systems)
-7. If you have specific compliance requirements that the documentation must address, indicate which standards apply
-8. Click "Generate Documentation" to begin
+Open your `docs.json` file and find the colors section. You'll see three color settings:
 
-**Monitoring Documentation Creation:**
+- **Primary color**: Used for buttons, links, and important elements (currently set to green: `#16A34A`)
+- **Light color**: Used for hover effects and lighter accents (currently `#07C983`)
+- **Dark color**: Used for selected items and darker accents (currently `#15803D`)
 
-The generation process goes through several phases:
+To change these to your brand colors:
 
-- Analyzing your code to understand what it does
-- Creating architecture diagrams and technical explanations
-- Writing user-friendly guides and instructions
-- Generating API reference materials
-- Adding compliance-related documentation if required
-- Cross-referencing different sections
+1. Find the colors section in `docs.json`
+2. Replace the color codes with your brand colors
+3. Save the file and refresh your preview
 
-This process typically takes several minutes to an hour depending on project size and documentation scope.
+For example, to use blue instead of green:
+```
+"colors": {
+  "primary": "#0066CC",
+  "light": "#3399FF",
+  "dark": "#004499"
+}
+```
 
-**Reviewing Generated Documentation:**
+**Adding Your Logo:**
 
-Once complete, you'll receive:
+Your documentation can show different logos for light and dark themes:
 
-- All documentation organized into logical sections
-- Diagrams showing system architecture
-- Code examples in documentation where relevant
-- Step-by-step instructions for common tasks
-- Properly formatted content ready to publish
+1. Create a folder called `logo` in your documentation directory
+2. Save your light theme logo as `light.svg` in that folder
+3. Save your dark theme logo as `dark.svg` in the same folder
+4. The system automatically switches between them based on the viewer's theme preference
 
-You can review each section to ensure:
+Your logos should be SVG files for the best quality, typically around 120-200 pixels wide and 30-50 pixels tall.
 
-- Technical accuracy
-- Appropriate level of detail
-- Clear and understandable language
-- Complete coverage of important topics
+**Changing the Site Icon:**
 
-**Publishing Your Documentation:**
+The small icon that appears in browser tabs (called a favicon):
 
-The generated documentation can be:
+1. Save your icon as `favicon.svg` in your main documentation folder
+2. Make sure the file path in `docs.json` matches: `"favicon": "/favicon.svg"`
 
-- Published to your documentation website
-- Saved in your repository alongside your code
-- Exported as PDFs or other formats
-- Integrated with your existing documentation system
+## Adding External Links
 
-The platform provides the documentation in standard formats that work with popular documentation tools and websites.
+### Creating Global Navigation Links
 
-**Keeping Documentation Current:**
+Add links to external resources that appear throughout your documentation.
 
-As your code changes, you can regenerate documentation to keep it up to date. The platform can:
+**What You'll Get:**
+- Persistent links to important external resources
+- Icons that make links easy to identify
+- Links that appear on every page
+- Professional navigation that connects to your broader ecosystem
 
-- Update only the sections that changed
-- Track documentation versions alongside code versions
-- Highlight what changed between documentation updates
-- Alert you when code changes make documentation outdated
+**How to Add External Links:**
 
-## Managing Multiple Repositories
+Your documentation includes a feature called "anchors" - these are links that appear globally across all pages.
 
-### Working with Your Entire Codebase
+The example documentation includes two anchors:
+- A link to the full Mintlify documentation
+- A link to the Mintlify blog
 
-If you have multiple repositories that work together, the platform helps you manage quality, testing, compliance, and documentation across all of them.
+**Adding Your Own Links:**
 
-**Connecting Multiple Repositories:**
+Find the anchors section in `docs.json` and add your links:
 
-1. After connecting your GitHub account, you'll see all available repositories
-2. Click "Enable" next to each repository you want to analyze
-3. The platform will set up connections to all selected repositories
-4. You can add or remove repositories at any time
+```
+"anchors": [
+  {
+    "anchor": "Support",
+    "href": "https://support.yoursite.com",
+    "icon": "life-ring"
+  },
+  {
+    "anchor": "GitHub",
+    "href": "https://github.com/yourorg/yourrepo",
+    "icon": "github"
+  }
+]
+```
 
-**Viewing Cross-Repository Insights:**
+The three parts you need for each link:
+- **anchor**: The text people see
+- **href**: Where the link goes
+- **icon**: A symbol that appears next to the text
 
-The main dashboard shows:
+## Configuring the Top Navigation Bar
 
-- Overall quality scores across all repositories
-- Which repositories need the most attention
-- Trends showing if quality is improving or declining
-- Comparative metrics between different repositories
+### Setting Up Header Links and Buttons
 
-**Coordinating Actions:**
+Customize the bar that appears at the top of every documentation page.
 
-You can:
+**What You'll Get:**
+- Quick access to support and important resources
+- A prominent button for key actions
+- Professional header that matches your needs
+- Consistent navigation across all pages
+
+**How to Add Header Links:**
+
+The navigation bar can include regular links and a special primary button.
+
+**Adding Regular Links:**
+
+These appear in the top bar and can go anywhere. The example includes a support email link:
+
+```
+"links": [
+  {
+    "label": "Support",
+    "href": "mailto:hi@mintlify.com"
+  }
+]
+```
+
+You can add multiple links:
+```
+"links": [
+  {
+    "label": "Support",
+    "href": "mailto:support@yoursite.com"
+  },
+  {
+    "label": "Status",
+    "href": "https://status.yoursite.com"
+  }
+]
+```
+
+**Adding a Primary Button:**
+
+The primary button is a prominent call-to-action in your header. The example links to a dashboard:
+
+```
+"primary": {
+  "type": "button",
+  "label": "Dashboard",
+  "href": "https://dashboard.mintlify.com"
+}
+```
+
+Change it to suit your needs:
+```
+"primary": {
+  "type": "button",
+  "label": "Get Started",
+  "href": "https://app.yoursite.com/signup"
+}
+```
+
+## Enabling AI Tool Integration
+
+### Connecting Documentation with Development Tools
+
+Allow developers to open documentation content directly in their AI assistants and code editors.
+
+**What You'll Get:**
+- Quick access to AI assistants from code examples
+- Ability to open code in editors like VS Code or Cursor
+- Copy functionality for code blocks
+- Modern developer experience
+
+**How to Configure AI Integrations:**
+
+The documentation includes a feature called "contextual options" that appears when people interact with your documentation.
+
+Current options in the example:
+- **copy**: Copy content to clipboard
+- **view**: View in different formats
+- **chatgpt**: Open in ChatGPT
+- **claude**: Open in Claude AI
+- **perplexity**: Open in Perplexity
+- **mcp**: Model Context Protocol integration
+- **cursor**: Open in Cursor editor
+- **vscode**: Open in VS Code
+
+**Choosing Which Options to Enable:**
+
+Find the contextual section in `docs.json` and select the options you want:
+
+For basic functionality:
+```
+"options": [
+  "copy",
+  "view"
+]
+```
+
+For developers who use specific tools:
+```
+"options": [
+  "copy",
+  "view",
+  "vscode",
+  "github"
+]
+```
+
+For comprehensive AI integration:
+```
+"options": [
+  "copy",
+  "chatgpt",
+  "claude",
+  "perplexity"
+]
+```
+
+These options appear when people right-click or interact with code blocks in your documentation.
+
+## Adding Social Media Links
+
+### Creating Footer Social Connections
+
+Add links to your social media profiles in the footer of every page.
+
+**What You'll Get:**
+- Professional footer with social links
+- Icons for each platform
+- Links that appear on every page
+- Easy way for people to connect with you
+
+**How to Add Social Links:**
+
+The footer section lets you add links to various social platforms. The example includes:
+- X (formerly Twitter)
+- GitHub
+- LinkedIn
+
+**Adding Your Links:**
+
+Find the footer section in `docs.json` and add your profile URLs:
+
+```
+"socials": {
+  "x": "https://x.com/yourhandle",
+  "github": "https://github.com/yourorg",
+  "linkedin": "https://linkedin.com/company/yourcompany"
+}
+```
+
+**Supported Platforms:**
+
+You can add links to many platforms:
+- **x**: X/Twitter
+- **github**: GitHub
+- **linkedin**: LinkedIn
+- **discord**: Discord
+- **youtube**: YouTube
+- **slack**: Slack workspace
+
+Just add the ones you want:
+```
+"socials": {
+  "github": "https://github.com/yourorg",
+  "discord": "https://discord.gg/yourinvite",
+  "youtube": "https://youtube.com/@yourchannel"
+}
+```
+
+## Setting Up API Documentation
+
+### Documenting Your API Automatically
+
+If you have an API, you can document it automatically by providing an OpenAPI specification.
+
+**What You'll Get:**
+- Beautiful API documentation
+- Interactive examples
+- Automatic request/response formatting
+- Professional API reference pages
 
-- Analyze multiple repositories at once
-- Generate tests for several projects simultaneously
-- Run compliance checks across your entire codebase
-- Create documentation that spans multiple related projects
+**How It Works:**
 
-**Setting Priorities:**
+The example documentation includes a sample API (the Plant Store API) to show how this feature works. The API documentation is generated from a file called `openapi.json` in the `api-reference` folder.
 
-The platform helps you decide what to work on first by:
+**What the API Documentation Shows:**
+
+For the Plant Store example, the documentation automatically displays:
 
-- Highlighting the most critical issues across all repositories
-- Showing which repositories have the lowest scores
-- Identifying common problems that appear in multiple places
-- Suggesting which improvements would have the biggest impact
+**Available Operations:**
+- Viewing all plants (with options to limit results)
+- Adding new plants
+- Removing plants
+- Webhook notifications when plants are added
 
-## Collaborating with Your Team
+**Authentication Information:**
+- How to authenticate with the API
+- What credentials are needed
+- Where to include authentication tokens
 
-### Sharing Access and Results
+**Data Structures:**
+- What information each API operation accepts
+- What responses you'll receive
+- Error message formats
 
-If you're working with a team, the platform supports collaboration on code quality and testing efforts.
+**Using This for Your Own API:**
 
-**Inviting Team Members:**
+To document your API:
 
-You can grant other people access to view analysis results and work with your repositories. Access can be customized so team members only see what's relevant to their role.
+1. Create your OpenAPI specification file (a JSON file describing your API)
+2. Save it in the `api-reference` folder
+3. Update the navigation in `docs.json` to include your API pages
+4. The documentation generates automatically from your specification
 
-**Sharing Results:**
+The OpenAPI file includes everything about your API:
+- Available endpoints and methods
+- Required and optional parameters
+- Response formats
+- Error conditions
+- Authentication requirements
 
-Analysis results can be:
+## Previewing Your Changes
 
-- Viewed by all team members with access
-- Exported for use in reports or presentations
-- Integrated with your development workflow
-- Shared with stakeholders who need visibility
+### Seeing Your Documentation Live
 
-**Coordinating Improvements:**
+As you make changes, you can see them immediately on your computer before publishing.
 
-Teams can:
+**What You'll Get:**
+- Instant preview of your changes
+- Ability to test before publishing
+- Confidence that everything works correctly
+- Fast feedback on your edits
 
-- See what issues different members are working on
-- Avoid duplicate effort on the same problems
-- Track progress on improvement initiatives
-- Share insights about effective solutions
+**How to Start the Preview:**
+
+1. Open your terminal or command prompt
+2. Navigate to your documentation folder (where `docs.json` is located)
+3. Run this command: `mint dev`
+4. Open your browser and go to `http://localhost:3000`
 
-## Integrating with Your Development Workflow
+Your documentation appears in the browser. Any changes you make to files automatically update in the browser - just refresh the page to see them.
 
-### Automating Quality Checks
+**Troubleshooting the Preview:**
 
-The platform can work alongside your existing development process to provide continuous quality monitoring.
+**If the preview won't start:**
+- Make sure you're in the right folder (where you see `docs.json`)
+- Try updating the preview tool by running `mint update`
+- Check that you have Node.js installed on your computer
 
-**Automatic Analysis Triggers:**
+**If you see 404 errors:**
+- Verify you're running the preview from the folder with `docs.json`
+- Check that page files exist where your navigation says they should be
+- Make sure file names in navigation match actual file names (without .md)
 
-You can configure the platform to automatically:
+**If changes don't appear:**
+- Try refreshing your browser
+- Check that you saved your files
+- Look for error messages in the terminal
 
-- Analyze code whenever changes are pushed
-- Run tests on new pull requests
-- Check compliance before code merges
-- Update documentation when code changes
+## Publishing Your Documentation
 
-**Workflow Integration:**
+### Making Your Documentation Live
 
-The platform works with:
+When you're ready to share your documentation with the world, you can publish it automatically.
 
-- Your continuous integration system
-- Pull request reviews
-- Code deployment pipelines
-- Project management tools
+**What You'll Get:**
+- Automatic updates when you make changes
+- Fast, reliable hosting
+- No manual deployment steps
+- Version control integrated with your documentation
 
-**Getting Notified:**
+**How to Set Up Publishing:**
 
-Set up notifications to alert you when:
+1. Go to the Mintlify dashboard at `dashboard.mintlify.com/settings/organization/github-app`
+2. Install the GitHub app
+3. Connect it to your documentation repository
+4. Choose which branch should trigger automatic updates
 
-- Analysis finds critical issues
-- Code quality drops below acceptable levels
-- Compliance violations are detected
-- Generated tests need review
+**What Happens When You Publish:**
 
-These notifications can go to email, chat systems, or wherever your team communicates.
+After setup, publishing is automatic:
 
-## Understanding Your Progress
+1. Make changes to your documentation files
+2. Save and commit your changes to GitHub
+3. Push the changes to your repository
+4. Your live documentation updates automatically
 
-### Tracking Improvements Over Time
+You don't need to run any commands or manually deploy - just save your files and push to GitHub.
 
-The platform tracks how your code quality, test coverage, and compliance evolve as you make improvements.
+**How Long Publishing Takes:**
 
-**Viewing Trends:**
+Typically, your changes appear on your live site within a few minutes of pushing to GitHub. The system:
+- Detects your changes
+- Rebuilds your documentation
+- Updates your live site
+- Clears caches so changes appear immediately
 
-Trend visualizations show:
+## Maintaining Your Documentation
 
-- How quality scores change with each analysis
-- Whether issues are being resolved faster than new ones appear
-- Progress toward testing and coverage goals
-- Compliance status over time
+### Keeping Everything Current
 
-**Setting Goals:**
+Good documentation stays up to date with your product. Here's how to maintain yours effectively.
 
-You can establish targets for:
+**What You'll Get:**
+- Documentation that stays current with your product
+- Easy process for making updates
+- Confidence that information is accurate
+- Happy users who find what they need
 
-- Minimum acceptable quality scores
-- Required test coverage percentages
-- Compliance standards that must be met
-- Documentation completeness
+**Regular Maintenance Tasks:**
 
-The platform tracks your progress toward these goals and highlights areas that need attention.
+**Reviewing Content Accuracy:**
+- Periodically check that instructions still work correctly
+- Update screenshots and examples when your interface changes
+- Test links to ensure they still go to the right places
+- Verify code examples work with current versions
 
-**Celebrating Wins:**
+**Updating for New Features:**
+- Add documentation when you release new features
+- Update existing pages that new features affect
+- Add examples showing how new features work
+- Update navigation to include new pages
 
-When you make significant improvements, the platform:
+**Responding to Feedback:**
+- Track questions users ask
+- Update documentation to answer common questions
+- Fix errors or unclear sections that users report
+- Add missing information that users request
 
-- Highlights positive trends
-- Shows which efforts had the biggest impact
-- Provides insights about what worked well
-- Suggests applying successful patterns to other areas
+**Organizing Content:**
+- As your documentation grows, reorganize navigation for clarity
+- Group related pages together
+- Create clear section names that make sense to users
+- Remove or archive outdated information
 
-## Getting Help
+## Understanding Your Documentation Structure
 
-### Troubleshooting Common Situations
+### How Everything Fits Together
 
-**If Your Repository Won't Connect:**
+Your documentation is organized as a collection of text files and a configuration file that controls how everything appears.
 
-- Make sure you've granted the platform permission to access the repository in GitHub
-- Check that you have appropriate permissions in the repository itself
-- Try disconnecting and reconnecting your GitHub account
-- If the repository is very large, it might take extra time to initially connect
+**The Key Files:**
 
-**If Analysis Keeps Failing:**
+**docs.json**: The control center
+- Contains all settings for your site
+- Defines navigation structure
+- Controls colors and branding
+- Manages external links and integrations
 
-- Very large repositories might need to be analyzed in smaller pieces
-- Check if your repository has unusual structure or organization
-- Ensure the repository contains code in a supported programming language
-- Try analyzing a smaller subset first to identify the issue
+**Markdown files (.md)**: Your content
+- Each file becomes a page
+- Simple text format with basic formatting
+- Can include code examples, images, and links
+- Organized in folders matching your navigation
 
-**If Results Don't Appear:**
+**Logo and icon files**: Visual branding
+- SVG files for your logo (light and dark versions)
+- Favicon for browser tabs
+- Stored in the logo folder
 
-- Refresh the page to ensure you're seeing the latest data
-- Check that the analysis actually completed successfully
-- Verify you have permission to view results for that repository
-- Look for any error messages that might explain the issue
+**API specification files**: Optional API documentation
+- OpenAPI files that describe your API
+- Generate automatic API documentation
+- Include examples and schemas
 
-**If Generated Tests or Documentation Aren't Quite Right:**
+**How They Work Together:**
 
-- The AI does its best based on your code, but sometimes needs more context
-- Try regenerating with more specific instructions about what you need
-- You can always edit generated content to better match your needs
-- Some highly specialized areas might need human expertise to supplement AI generation
+When someone views your documentation:
 
-**Getting Additional Support:**
+1. The system reads `docs.json` to understand your site structure
+2. It finds the content in your markdown files
+3. It applies your colors and branding
+4. It generates the navigation based on your configuration
+5. It creates a fast, searchable website
 
-If you encounter issues not covered here, the support team can help you resolve problems and get the most value from the platform.
+You just focus on writing content and configuring `docs.json` - the system handles everything else.
 
 ---
 
-These feature guides provide practical, step-by-step instructions for using OrchestRAI's core capabilities. Each guide focuses on what you can accomplish and how to do it, without requiring technical expertise. As you become more familiar with the platform, you'll discover ways to combine these features to create powerful workflows that improve your development process.
+These feature guides cover everything you can do with your Mintlify Documentation Starter Kit. Each guide focuses on practical, actionable steps using the features that actually exist in your documentation project. Start with the basics like creating pages and customizing colors, then explore advanced features like API documentation and AI tool integration as your documentation grows.
