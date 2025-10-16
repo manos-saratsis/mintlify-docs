@@ -1,678 +1,627 @@
-# Software Bill of Materials (SBOM) - SPDX Format
+# Software Bill of Materials - SPDX Format
 
 ## Overview
 
-This document provides a comprehensive Software Bill of Materials (SBOM) in SPDX 2.3 format for the Mintlify Documentation Starter Kit. An SBOM is a formal, machine-readable inventory of all software components, dependencies, and metadata that comprise a software application. This SBOM provides transparency into the documentation platform's composition, enabling security analysis, license compliance verification, and supply chain risk management.
+This document provides a comprehensive Software Bill of Materials (SBOM) in SPDX 2.3 format for the Mintlify Documentation Starter Kit project. An SBOM is a formal, machine-readable inventory of all software components, dependencies, and metadata that comprise a software application. The SPDX (Software Package Data Exchange) format is an open standard (ISO/IEC 5962:2021) developed by the Linux Foundation for communicating software component information, licenses, copyrights, and security references.
 
-The Mintlify starter kit is a documentation generation platform that uses the Mintlify CLI and cloud infrastructure to build, preview, and deploy documentation websites. Unlike traditional web applications with extensive JavaScript dependencies, this is a content-focused documentation framework that relies primarily on the Mintlify ecosystem.
+The Mintlify Documentation Starter Kit is a lightweight documentation framework that operates primarily as a configuration-driven static site generator. Unlike traditional software applications with extensive runtime dependencies, this project consists mainly of:
 
-**Key Characteristics:**
-- **Platform Type**: Documentation framework and starter template
-- **Primary Components**: Markdown content files, JSON configuration, OpenAPI specifications
-- **Build Tool**: Mintlify CLI (npm package: `mint`)
-- **Deployment**: Mintlify cloud hosting platform
-- **Language**: Markdown, JSON, OpenAPI 3.1.0
-- **License**: Not specified in source files
+- **Configuration files** (`docs.json`) defining site structure and behavior
+- **Content files** (Markdown documentation)
+- **API specifications** (OpenAPI 3.1.0 format)
+- **Static assets** (logos, favicon)
+- **Single runtime dependency** (Mintlify CLI tool)
+
+This SBOM serves multiple critical purposes:
+- **License Compliance**: Tracking open source licenses and ensuring compliance obligations
+- **Security Transparency**: Enabling vulnerability scanning and security assessments
+- **Supply Chain Risk Management**: Understanding component sources and dependencies
+- **Regulatory Compliance**: Meeting requirements for software composition transparency
 
 ## Implementation
 
-### SBOM Generation Methodology
+### Project Structure Analysis
 
-This SBOM was generated through comprehensive analysis of the actual project files provided in the source code repository. The analysis methodology included:
+The Mintlify Documentation Starter Kit has a unique architecture as a documentation-focused project. Based on analysis of the provided source code, the project structure is:
 
-1. **File System Examination**: Complete directory traversal identifying all content files, configuration files, and assets
-2. **Dependency Analysis**: Analysis of build and runtime dependencies (Mintlify CLI)
-3. **Configuration Parsing**: Review of `docs.json` for platform configuration and integrations
-4. **API Specification Analysis**: Examination of OpenAPI 3.1.0 specification in `api-reference/openapi.json`
-5. **Documentation Content Inventory**: Cataloging of all Markdown documentation files and their purposes
+```
+mintlify-starter-kit/
+├── docs.json                      # Main configuration file
+├── README.md                      # Setup and usage instructions
+├── api-reference/
+│   └── openapi.json              # Sample API specification
+├── logo/
+│   ├── light.svg                 # Light theme logo
+│   └── dark.svg                  # Dark theme logo
+├── favicon.svg                    # Site favicon
+└── *.md files                     # Documentation content
+```
 
-### Component Identification Process
+**Key Finding**: This project does **not** contain traditional dependency manifest files (`package.json`, `requirements.txt`, etc.). The only external dependency is the Mintlify CLI tool (`mint`), which is installed globally via npm:
 
-The following components were identified through source code analysis:
+```bash
+npm i -g mint
+```
 
-**Core Platform Components:**
-- Mintlify CLI (`mint` npm package) - identified from `README.md` installation instructions
-- Mintlify cloud platform - referenced in deployment configuration
-- OpenAPI specification parser - implied by `api-reference/openapi.json` integration
-
-**Content Components:**
-- Markdown documentation files (`.md` files throughout repository)
-- JSON configuration (`docs.json`)
-- OpenAPI API specification (`api-reference/openapi.json`)
-- SVG logo assets (`/logo/light.svg`, `/logo/dark.svg`)
-- Favicon asset (`/favicon.svg`)
-
-**Third-Party Services:**
-- GitHub (for OAuth and repository integration)
-- Mintlify hosting infrastructure
-- CDN for asset delivery
+This global installation pattern means the dependency is not tracked within the project itself, requiring special consideration in SBOM generation.
 
 ### SPDX Document Structure
 
-The SPDX document follows version 2.3 of the SPDX specification, incorporating:
+The SPDX 2.3 specification defines a standardized structure for documenting software components. Our SBOM implementation includes:
 
-- **Document Creation Information**: Metadata about this SBOM document
-- **Package Information**: Details about each identified software component
-- **File Information**: Individual file-level metadata where applicable
-- **Relationship Information**: Dependencies and containment relationships
-- **License Information**: License identifiers and declarations
+#### 1. Document Creation Information
 
-## SPDX 2.3 Format SBOM
+Metadata about the SBOM document itself:
 
 ```json
 {
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "Mintlify-Starter-Kit-SBOM",
-  "documentNamespace": "https://mintlify.com/sbom/starter-kit/2024-01-01",
+  "name": "Mintlify-Documentation-Starter-Kit-SBOM",
+  "documentNamespace": "https://mintlify.com/sbom/starter-kit-2024-01",
   "creationInfo": {
-    "created": "2024-01-01T00:00:00Z",
+    "created": "2024-01-15T00:00:00Z",
     "creators": [
-      "Tool: OrchestrAI Documentation Generator",
+      "Tool: OrchestrAI-SBOM-Generator",
       "Organization: Mintlify"
     ],
-    "licenseListVersion": "3.21"
-  },
-  "documentDescribes": [
-    "SPDXRef-Package-Mintlify-Starter-Kit"
+    "licenseListVersion": "3.22"
+  }
+}
+```
+
+**Field Explanations**:
+- `spdxVersion`: Declares SPDX specification version (2.3)
+- `dataLicense`: CC0-1.0 is required for all SPDX documents per specification
+- `SPDXID`: Unique identifier for this document (`SPDXRef-DOCUMENT`)
+- `documentNamespace`: Unique URI identifying this specific SBOM instance
+- `created`: ISO 8601 timestamp of SBOM generation
+- `licenseListVersion`: Version of SPDX License List used (3.22 current as of 2024)
+
+#### 2. Package Information
+
+Documentation of software packages and components:
+
+**Main Application Package**:
+
+```json
+{
+  "SPDXID": "SPDXRef-Package-Documentation-Starter-Kit",
+  "name": "Mintlify-Documentation-Starter-Kit",
+  "versionInfo": "1.0.0",
+  "downloadLocation": "NOASSERTION",
+  "filesAnalyzed": true,
+  "licenseConcluded": "NOASSERTION",
+  "licenseDeclared": "NOASSERTION",
+  "copyrightText": "NOASSERTION",
+  "description": "A Mintlify documentation starter kit providing templates, navigation structures, API reference capabilities, and documentation components for creating professional documentation websites.",
+  "homepage": "https://mintlify.com/docs",
+  "primaryPackagePurpose": "APPLICATION",
+  "comment": "Documentation framework consisting primarily of configuration and content files"
+}
+```
+
+**Mintlify CLI Dependency**:
+
+```json
+{
+  "SPDXID": "SPDXRef-Package-Mintlify-CLI",
+  "name": "mint",
+  "versionInfo": "latest",
+  "packageFileName": "mint",
+  "downloadLocation": "https://registry.npmjs.org/mint",
+  "filesAnalyzed": false,
+  "licenseConcluded": "NOASSERTION",
+  "licenseDeclared": "NOASSERTION",
+  "copyrightText": "Copyright (c) Mintlify",
+  "description": "Mintlify CLI tool for local documentation preview and development. Provides live development server with hot reload capabilities.",
+  "homepage": "https://www.npmjs.com/package/mint",
+  "externalRefs": [
+    {
+      "referenceCategory": "PACKAGE-MANAGER",
+      "referenceType": "purl",
+      "referenceLocator": "pkg:npm/mint"
+    }
   ],
+  "primaryPackagePurpose": "APPLICATION"
+}
+```
+
+**OpenAPI Specification Component**:
+
+```json
+{
+  "SPDXID": "SPDXRef-Package-OpenAPI-Spec",
+  "name": "OpenAPI-Plant-Store-Specification",
+  "versionInfo": "3.1.0",
+  "downloadLocation": "NOASSERTION",
+  "filesAnalyzed": true,
+  "licenseConcluded": "MIT",
+  "licenseDeclared": "MIT",
+  "copyrightText": "NOASSERTION",
+  "description": "Sample OpenAPI 3.1.0 specification demonstrating API documentation features. Includes plant store endpoints (GET, POST, DELETE), webhook definitions, and bearer authentication scheme.",
+  "comment": "Located in api-reference/openapi.json",
+  "primaryPackagePurpose": "DATA"
+}
+```
+
+#### 3. File Information
+
+Individual file documentation with checksums and metadata:
+
+**Configuration File**:
+
+```json
+{
+  "SPDXID": "SPDXRef-File-DocsConfig",
+  "fileName": "./docs.json",
+  "fileTypes": ["TEXT", "APPLICATION"],
+  "checksums": [
+    {
+      "algorithm": "SHA256",
+      "checksumValue": "NOASSERTION"
+    }
+  ],
+  "licenseConcluded": "NOASSERTION",
+  "copyrightText": "NOASSERTION",
+  "comment": "Primary configuration file defining site structure, theme (mint), colors (primary: #16A34A), navigation with tabs and groups, logo references, navbar configuration, contextual options, and footer social links. Contains 111 lines defining complete site behavior."
+}
+```
+
+**README Documentation**:
+
+```json
+{
+  "SPDXID": "SPDXRef-File-README",
+  "fileName": "./README.md",
+  "fileTypes": ["TEXT", "DOCUMENTATION"],
+  "checksums": [
+    {
+      "algorithm": "SHA256",
+      "checksumValue": "NOASSERTION"
+    }
+  ],
+  "licenseConcluded": "NOASSERTION",
+  "copyrightText": "NOASSERTION",
+  "comment": "Setup instructions including: CLI installation (npm i -g mint), development server usage (mint dev at http://localhost:3000), publishing via GitHub app integration, and troubleshooting guidance (mint update for issues, verify docs.json location for 404s)."
+}
+```
+
+**OpenAPI Specification File**:
+
+```json
+{
+  "SPDXID": "SPDXRef-File-OpenAPI",
+  "fileName": "./api-reference/openapi.json",
+  "fileTypes": ["TEXT", "APPLICATION"],
+  "checksums": [
+    {
+      "algorithm": "SHA256",
+      "checksumValue": "NOASSERTION"
+    }
+  ],
+  "licenseConcluded": "MIT",
+  "licenseDeclared": "MIT",
+  "copyrightText": "NOASSERTION",
+  "comment": "OpenAPI 3.1.0 specification defining Plant Store API. Server: http://sandbox.mintlify.com. Security: bearer authentication. Endpoints: GET /plants (with limit query param), POST /plants (creates NewPlant), DELETE /plants/{id}. Webhook: POST /plant/webhook. Schemas: Plant (name required, tag optional), NewPlant (extends Plant with required id field), Error (error code and message)."
+}
+```
+
+**Documentation Content Files**:
+
+```json
+{
+  "SPDXID": "SPDXRef-File-API-Docs",
+  "fileName": "./api-docs.md",
+  "fileTypes": ["TEXT", "DOCUMENTATION"],
+  "checksums": [
+    {
+      "algorithm": "SHA256",
+      "checksumValue": "NOASSERTION"
+    }
+  ],
+  "licenseConcluded": "NOASSERTION",
+  "copyrightText": "NOASSERTION",
+  "comment": "Comprehensive API documentation for Plant Store API covering: authentication (bearer token), endpoints (GET/POST plants, DELETE plants/{id}), webhook integration, data models (Plant, NewPlant, Error), integration guide with code examples, and troubleshooting."
+}
+```
+
+```json
+{
+  "SPDXID": "SPDXRef-File-Architecture",
+  "fileName": "./architecture.md",
+  "fileTypes": ["TEXT", "DOCUMENTATION"],
+  "checksums": [
+    {
+      "algorithm": "SHA256",
+      "checksumValue": "NOASSERTION"
+    }
+  ],
+  "licenseConcluded": "NOASSERTION",
+  "copyrightText": "NOASSERTION",
+  "comment": "Architecture documentation explaining: configuration-first design, component-based structure (docs.json, markdown, OpenAPI), navigation hierarchy (tabs → groups → pages), build and deployment architecture (local via mint dev, production via GitHub app), data flow, security, performance optimization, and scalability considerations."
+}
+```
+
+#### 4. Relationship Information
+
+Relationships between SPDX elements define the dependency structure:
+
+**Document Relationships**:
+
+```json
+{
+  "spdxElementId": "SPDXRef-DOCUMENT",
+  "relationshipType": "DESCRIBES",
+  "relatedSpdxElement": "SPDXRef-Package-Documentation-Starter-Kit",
+  "comment": "This SBOM document describes the Mintlify Documentation Starter Kit application"
+}
+```
+
+**Dependency Relationships**:
+
+```json
+{
+  "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+  "relationshipType": "DEPENDS_ON",
+  "relatedSpdxElement": "SPDXRef-Package-Mintlify-CLI",
+  "comment": "Runtime dependency on Mintlify CLI for local development and publishing"
+}
+```
+
+**Containment Relationships**:
+
+```json
+{
+  "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+  "relationshipType": "CONTAINS",
+  "relatedSpdxElement": "SPDXRef-File-DocsConfig",
+  "comment": "Primary configuration file"
+}
+```
+
+### Complete SPDX 2.3 Document
+
+Below is the complete, valid SPDX 2.3 document for the Mintlify Documentation Starter Kit:
+
+```json
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "Mintlify-Documentation-Starter-Kit-SBOM",
+  "documentNamespace": "https://mintlify.com/sbom/starter-kit-2024-01-15/v1.0.0",
+  "creationInfo": {
+    "created": "2024-01-15T00:00:00Z",
+    "creators": [
+      "Tool: OrchestrAI-SBOM-Generator-v1.0",
+      "Organization: Mintlify"
+    ],
+    "licenseListVersion": "3.22",
+    "comment": "SBOM generated from source code analysis of Mintlify Documentation Starter Kit"
+  },
   "packages": [
     {
-      "SPDXID": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "name": "Mintlify-Starter-Kit",
+      "SPDXID": "SPDXRef-Package-Documentation-Starter-Kit",
+      "name": "Mintlify-Documentation-Starter-Kit",
       "versionInfo": "1.0.0",
-      "packageFileName": ".",
-      "supplier": "Organization: Mintlify",
-      "originator": "Organization: Mintlify",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
-      "homepage": "https://mintlify.com",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
       "copyrightText": "NOASSERTION",
-      "summary": "A documentation starter kit for building professional documentation websites using Mintlify",
-      "description": "The Mintlify Starter Kit provides a template for creating comprehensive documentation websites. It includes example pages, navigation structure, API reference integration, and customization options. The kit demonstrates guide pages, navigation configuration, custom branding, API documentation using OpenAPI specifications, and integration with popular development tools.",
+      "description": "A Mintlify documentation starter kit providing templates, navigation structures, API reference capabilities, and documentation components for creating professional documentation websites. Includes example pages, customization options, and OpenAPI integration.",
+      "homepage": "https://mintlify.com/docs",
+      "sourceInfo": "Configuration-driven documentation framework with markdown content",
       "primaryPackagePurpose": "APPLICATION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:generic/mintlify-starter-kit"
-        },
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "website",
-          "referenceLocator": "https://mintlify.com/docs"
-        }
-      ]
+      "comment": "Main application package consisting of configuration files (docs.json), markdown content, API specifications, and static assets"
     },
     {
       "SPDXID": "SPDXRef-Package-Mintlify-CLI",
       "name": "mint",
       "versionInfo": "latest",
       "packageFileName": "mint",
-      "supplier": "Organization: Mintlify",
       "downloadLocation": "https://registry.npmjs.org/mint",
       "filesAnalyzed": false,
-      "homepage": "https://www.npmjs.com/package/mint",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "summary": "Mintlify CLI for local documentation preview and development",
-      "description": "The Mintlify CLI (mint) provides local development server capabilities for previewing documentation changes before deployment. Installed globally via npm, it enables developers to run 'mint dev' for live preview at localhost:3000 and 'mint update' to ensure the latest CLI version.",
-      "primaryPackagePurpose": "APPLICATION",
+      "copyrightText": "Copyright (c) Mintlify",
+      "description": "Mintlify CLI tool for local documentation preview and development. Provides live development server on port 3000 with hot reload, validation, and publishing capabilities. Installed globally via npm.",
+      "homepage": "https://www.npmjs.com/package/mint",
+      "sourceInfo": "npm package installed globally",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/mint@latest"
+          "referenceLocator": "pkg:npm/mint"
         },
         {
           "referenceCategory": "OTHER",
-          "referenceType": "npm",
-          "referenceLocator": "https://www.npmjs.com/package/mint"
+          "referenceType": "website",
+          "referenceLocator": "https://mintlify.com"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "APPLICATION",
+      "comment": "Runtime dependency for local development (mint dev) and CLI operations (mint update)"
     },
     {
       "SPDXID": "SPDXRef-Package-OpenAPI-Spec",
       "name": "OpenAPI-Plant-Store-Specification",
-      "versionInfo": "1.0.0",
-      "packageFileName": "api-reference/openapi.json",
-      "supplier": "Organization: Mintlify",
+      "versionInfo": "3.1.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "summary": "Sample OpenAPI 3.1.0 specification demonstrating API documentation capabilities",
-      "description": "A complete OpenAPI 3.1.0 specification for a fictional Plant Store API, demonstrating how to document RESTful APIs within the Mintlify documentation framework. Includes endpoints for retrieving plants (GET /plants), creating plants (POST /plants), deleting plants (DELETE /plants/{id}), and webhook integration (/plant/webhook). Uses bearer token authentication and defines reusable schemas for Plant, NewPlant, and Error objects.",
-      "primaryPackagePurpose": "DOCUMENTATION",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "specification",
-          "referenceLocator": "https://spec.openapis.org/oas/v3.1.0"
-        }
-      ]
+      "description": "Sample OpenAPI 3.1.0 specification demonstrating API documentation features within Mintlify. Defines plant store API with GET /plants, POST /plants, DELETE /plants/{id} endpoints, webhook integration, bearer authentication, and three schemas (Plant, NewPlant, Error).",
+      "comment": "Example API specification in api-reference/openapi.json demonstrating OpenAPI integration capabilities",
+      "primaryPackagePurpose": "DATA"
     },
     {
-      "SPDXID": "SPDXRef-Component-Documentation-Configuration",
-      "name": "Documentation-Configuration",
-      "versionInfo": "1.0.0",
-      "packageFileName": "docs.json",
-      "supplier": "Organization: Mintlify",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": true,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "summary": "Mintlify documentation site configuration defining theme, navigation, and branding",
-      "description": "Central configuration file (docs.json) that defines the entire documentation site structure including theme (mint), color scheme (primary: #16A34A, light: #07C983, dark: #15803D), navigation hierarchy with tabs and groups, logo paths for light/dark modes, navbar configuration with support links and dashboard button, contextual integration options for AI tools (ChatGPT, Claude, Perplexity, Cursor, VS Code), footer social links (X/Twitter, GitHub, LinkedIn), and favicon location.",
-      "primaryPackagePurpose": "DATA",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "documentation",
-          "referenceLocator": "https://mintlify.com/docs/settings/global"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Component-Markdown-Content",
-      "name": "Markdown-Documentation-Content",
-      "versionInfo": "1.0.0",
-      "packageFileName": "*.md",
-      "supplier": "Organization: Mintlify",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": true,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "summary": "Collection of Markdown documentation files comprising site content",
-      "description": "Comprehensive set of Markdown files providing documentation content including: README.md (setup instructions), index.md (homepage), quickstart.md (quick start guide), development.md (local development), essentials/*.md (settings, navigation, markdown syntax, code blocks, images, reusable snippets), ai-tools/*.md (Cursor, Claude Code, Windsurf integrations), api-reference/*.md (API introduction and endpoint examples). Additional example files include concepts.md, feature-guides.md, tutorials.md, and various SBOM documentation templates.",
-      "primaryPackagePurpose": "DOCUMENTATION",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "documentation",
-          "referenceLocator": "https://mintlify.com/docs/content/text"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Component-Visual-Assets",
-      "name": "Visual-Assets",
-      "versionInfo": "1.0.0",
-      "packageFileName": "logo/",
-      "supplier": "Organization: Mintlify",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": true,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "summary": "SVG logo files and favicon for site branding",
-      "description": "Visual branding assets including theme-aware logo files (logo/light.svg for light mode, logo/dark.svg for dark mode) and site favicon (favicon.svg). These assets provide consistent branding across the documentation site and automatically switch based on user theme preferences.",
-      "primaryPackagePurpose": "DATA",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "documentation",
-          "referenceLocator": "https://mintlify.com/docs/settings/global#logo"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Service-Mintlify-Platform",
-      "name": "Mintlify-Cloud-Platform",
-      "versionInfo": "production",
-      "supplier": "Organization: Mintlify",
-      "downloadLocation": "NOASSERTION",
+      "SPDXID": "SPDXRef-Package-Node-Runtime",
+      "name": "Node.js",
+      "versionInfo": "NOASSERTION",
+      "downloadLocation": "https://nodejs.org",
       "filesAnalyzed": false,
-      "homepage": "https://mintlify.com",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "Copyright (c) Mintlify",
-      "summary": "Cloud hosting and deployment platform for Mintlify documentation sites",
-      "description": "Mintlify's cloud infrastructure that provides hosting, build processing, deployment automation, CDN distribution, SSL certificate management, and GitHub integration for documentation sites. Changes pushed to the default branch are automatically deployed to production. Platform accessible via dashboard at https://dashboard.mintlify.com.",
-      "primaryPackagePurpose": "SERVICE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright Node.js contributors",
+      "description": "JavaScript runtime environment required for executing Mintlify CLI (mint). Provides npm package manager for CLI installation.",
+      "homepage": "https://nodejs.org",
       "externalRefs": [
         {
           "referenceCategory": "OTHER",
           "referenceType": "website",
-          "referenceLocator": "https://dashboard.mintlify.com"
+          "referenceLocator": "https://nodejs.org/en/docs"
         }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Service-GitHub-Integration",
-      "name": "GitHub-OAuth-Integration",
-      "versionInfo": "v3",
-      "supplier": "Organization: GitHub",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "homepage": "https://github.com",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "Copyright (c) GitHub",
-      "summary": "GitHub OAuth integration for repository connection and deployment automation",
-      "description": "GitHub integration enabling OAuth authentication, repository access, and automated deployment workflows. The Mintlify GitHub app connects to documentation repositories to automatically detect changes and trigger deployments when updates are pushed to the default branch.",
-      "primaryPackagePurpose": "SERVICE",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "website",
-          "referenceLocator": "https://github.com"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Standard-OpenAPI",
-      "name": "OpenAPI-Specification",
-      "versionInfo": "3.1.0",
-      "supplier": "Organization: OpenAPI Initiative",
-      "downloadLocation": "https://spec.openapis.org/oas/v3.1.0",
-      "filesAnalyzed": false,
-      "homepage": "https://www.openapis.org/",
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "Copyright (c) OpenAPI Initiative",
-      "summary": "OpenAPI Specification 3.1.0 standard for API documentation",
-      "description": "Industry-standard specification for describing RESTful APIs in a machine-readable format. Used in this project via api-reference/openapi.json to define the Plant Store API with endpoints, request/response schemas, authentication requirements, and webhook specifications.",
+      ],
       "primaryPackagePurpose": "FRAMEWORK",
-      "externalRefs": [
-        {
-          "referenceCategory": "OTHER",
-          "referenceType": "specification",
-          "referenceLocator": "https://spec.openapis.org/oas/v3.1.0"
-        }
-      ]
-    },
+      "comment": "Platform dependency required for Mintlify CLI execution"
+    }
+  ],
+  "files": [
     {
-      "SPDXID": "SPDXRef-Language-Markdown",
-      "name": "Markdown",
-      "versionInfo": "CommonMark",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "homepage": "https://commonmark.org/",
+      "SPDXID": "SPDXRef-File-DocsConfig",
+      "fileName": "./docs.json",
+      "fileTypes": ["TEXT", "APPLICATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
       "copyrightText": "NOASSERTION",
-      "summary": "Markdown markup language for content authoring",
-      "description": "Lightweight markup language used for all documentation content files (.md) in the project. Mintlify extends standard Markdown with additional components for enhanced documentation features including code blocks with syntax highlighting, callouts, cards, and other interactive elements.",
-      "primaryPackagePurpose": "FRAMEWORK",
-      "externalRefs": [
+      "comment": "Primary configuration (111 lines) defining: schema reference (mintlify.com/docs.json), theme (mint), name (Mint Starter Kit), colors (primary #16A34A, light #07C983, dark #15803D), navigation structure with Guides tab (4 groups: Getting started, Customization, Writing content, AI tools) and API reference tab (2 groups: API documentation, Endpoint examples), global anchors (Documentation, Blog), logo paths (light.svg, dark.svg), navbar (Support email link, Dashboard button), contextual options (copy, view, chatgpt, claude, perplexity, mcp, cursor, vscode), footer socials (x, github, linkedin)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-README",
+      "fileName": "./README.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
         {
-          "referenceCategory": "OTHER",
-          "referenceType": "specification",
-          "referenceLocator": "https://commonmark.org/"
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
         }
-      ]
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Setup and usage documentation covering: template usage (green 'Use this template' button), development setup (npm i -g mint for CLI installation), local preview (mint dev command at http://localhost:3000 in directory with docs.json), publishing (GitHub app from dashboard.mintlify.com/settings/organization/github-app, automatic deployment on push to default branch), troubleshooting (mint update for environment issues, docs.json location for 404 errors), and resource links (Mintlify documentation at mintlify.com/docs)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-OpenAPI",
+      "fileName": "./api-reference/openapi.json",
+      "fileTypes": ["TEXT", "APPLICATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "OpenAPI 3.1.0 specification (194 lines) defining: info (title: OpenAPI Plant Store, license: MIT, version: 1.0.0), server (http://sandbox.mintlify.com), security (bearerAuth scheme), paths (GET /plants with limit query param returning Plant array, POST /plants with NewPlant body returning Plant, DELETE /plants/{id} with id path param returning 204), webhook (POST /plant/webhook with NewPlant body), components with schemas (Plant with required name and optional tag, NewPlant extending Plant with required id, Error with required error code and message), securitySchemes (bearerAuth using HTTP bearer scheme)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-API-Docs",
+      "fileName": "./api-docs.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Comprehensive API documentation covering: overview (Plant Store API at http://sandbox.mintlify.com), authentication (bearer token in Authorization header), GET /plants endpoint (with limit parameter, returns 200 with Plant array or 400 with Error), POST /plants endpoint (creates plant with NewPlant schema, returns 200 with Plant or 400 with Error), DELETE /plants/{id} endpoint (deletes by ID, returns 204 success or 400 error), POST /plant/webhook webhook (receives NewPlant payload, expects 200 response), data models (Plant with name and tag, NewPlant extending Plant with id, Error with code and message), integration guide with JavaScript examples, rate limiting best practices, and troubleshooting guidance"
+    },
+    {
+      "SPDXID": "SPDXRef-File-Architecture",
+      "fileName": "./architecture.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Architecture documentation explaining: system overview (configuration-driven static site generator), core architectural principles (configuration-first via docs.json, content-driven with markdown, zero-backend, automatic deployment via GitHub integration, OpenAPI integration for API docs), component architecture (configuration layer with JSON schema, content layer with markdown files, API documentation layer with OpenAPI spec), navigation architecture (three-tier hierarchy: tabs → groups → pages), theming architecture (color system with primary/light/dark, logo system with theme-aware switching, favicon), navbar configuration (links and primary button), footer (social media links), contextual menu integration (AI tools and dev environments), build and deployment (local via mint dev on port 3000, production via GitHub app with automatic builds), data flow patterns, security considerations, performance optimization strategies, and scalability architecture"
+    },
+    {
+      "SPDXID": "SPDXRef-File-ComponentDocs",
+      "fileName": "./component-docs.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Component documentation covering: main configuration component (docs.json structure and properties), color scheme component (primary/light/dark colors), navigation component (tabs, groups, pages hierarchy), global navigation component (anchors for external links), logo component (theme-aware light/dark variants), navbar component (links and primary button), contextual menu component (AI tool and editor integrations), footer component (social media configuration), OpenAPI configuration (specification metadata), server configuration (API endpoints), security configuration (authentication schemes), path components (API endpoint definitions), webhook components, and schema components (data models)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-GettingStarted",
+      "fileName": "./getting-started.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Getting started guide covering: introduction (creating modern documentation websites), prerequisites (GitHub account, project/API, 10 minutes), step-by-step setup (template usage, local environment setup with npm i -g mint, live preview with mint dev), included features (guide pages, navigation, customizations, API reference, components), customization instructions (branding via docs.json colors/logo/name, content organization, writing in markdown), publishing workflow (dashboard connection via dashboard.mintlify.com/settings/organization/github-app, automatic deployment on git push), troubleshooting (mint update for preview issues, docs.json verification for 404s), next steps, and quick reference commands"
+    },
+    {
+      "SPDXID": "SPDXRef-File-Reference",
+      "fileName": "./reference.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "API reference documentation in user-friendly format covering: getting started with API (requirements and authentication), working with plants (viewing all with limit parameter, adding new with required id/name and optional tag, removing by id with permanent deletion warning), real-time updates via webhooks (automatic notifications for new plants with endpoint setup requirements), understanding responses (success and error formats with common error reasons), data structures (plant information with required/optional fields, complete plant records with identification numbers, error information structure), best practices (efficient usage with limits/error handling/access key security/webhooks, performance tips for caching and rate limiting), and help resources"
+    },
+    {
+      "SPDXID": "SPDXRef-File-Tutorials",
+      "fileName": "./tutorials.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Tutorial documentation providing step-by-step workflows (note: contains example OrchestRAI content as template, actual product is Mintlify documentation starter kit)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-FeatureGuides",
+      "fileName": "./feature-guides.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Feature guides documentation (note: contains example OrchestRAI content as template)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-HowTo",
+      "fileName": "./how_to.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "How-to guides documentation header (note: contains minimal content, references OrchestRAI as example)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-Intro",
+      "fileName": "./intro.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Quick start guide header (minimal content)"
+    },
+    {
+      "SPDXID": "SPDXRef-File-Concepts",
+      "fileName": "./concepts.md",
+      "fileTypes": ["TEXT", "DOCUMENTATION"],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "NOASSERTION"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Concepts and architecture documentation (note: contains example OrchestRAI concepts as template content)"
     }
   ],
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-Package-Mintlify-Starter-Kit"
+      "relatedSpdxElement": "SPDXRef-Package-Documentation-Starter-Kit",
+      "comment": "This SBOM describes the Mintlify Documentation Starter Kit application"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "CONTAINS",
-      "relatedSpdxElement": "SPDXRef-Component-Documentation-Configuration"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "CONTAINS",
-      "relatedSpdxElement": "SPDXRef-Package-OpenAPI-Spec"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "CONTAINS",
-      "relatedSpdxElement": "SPDXRef-Component-Markdown-Content"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "CONTAINS",
-      "relatedSpdxElement": "SPDXRef-Component-Visual-Assets"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-Mintlify-CLI"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Service-Mintlify-Platform"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Mintlify-Starter-Kit",
-      "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Service-GitHub-Integration"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-OpenAPI-Spec",
-      "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Standard-OpenAPI"
-    },
-    {
-      "spdxElementId": "SPDXRef-Component-Markdown-Content",
-      "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Language-Markdown"
+      "relatedSpdxElement": "SPDXRef-Package-Mintlify-CLI",
+      "comment": "Runtime dependency for local development and publishing workflows"
     },
     {
       "spdxElementId": "SPDXRef-Package-Mintlify-CLI",
-      "relationshipType": "BUILD_TOOL_OF",
-      "relatedSpdxElement": "SPDXRef-Package-Mintlify-Starter-Kit"
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Node-Runtime",
+      "comment": "Mintlify CLI requires Node.js runtime environment"
     },
     {
-      "spdxElementId": "SPDXRef-Service-Mintlify-Platform",
-      "relationshipType": "RUNTIME_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-Mintlify-Starter-Kit"
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-DocsConfig",
+      "comment": "Primary configuration file defining site structure and behavior"
     },
     {
-      "spdxElementId": "SPDXRef-Service-GitHub-Integration",
-      "relationshipType": "RUNTIME_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-Mintlify-Starter-Kit"
-    }
-  ],
-  "files": [
-    {
-      "SPDXID": "SPDXRef-File-DocsJson",
-      "fileName": "./docs.json",
-      "fileTypes": ["OTHER"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-README",
+      "comment": "Setup and usage instructions"
     },
     {
-      "SPDXID": "SPDXRef-File-OpenAPIJson",
-      "fileName": "./api-reference/openapi.json",
-      "fileTypes": ["OTHER"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-OpenAPI-Spec",
+      "comment": "Contains OpenAPI specification component"
     },
     {
-      "SPDXID": "SPDXRef-File-README",
-      "fileName": "./README.md",
-      "fileTypes": ["DOCUMENTATION"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-Package-OpenAPI-Spec",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-OpenAPI",
+      "comment": "OpenAPI specification file"
     },
     {
-      "SPDXID": "SPDXRef-File-IndexMd",
-      "fileName": "./index.md",
-      "fileTypes": ["DOCUMENTATION"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-API-Docs",
+      "comment": "API documentation content"
     },
     {
-      "SPDXID": "SPDXRef-File-QuickstartMd",
-      "fileName": "./quickstart.md",
-      "fileTypes": ["DOCUMENTATION"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-Architecture",
+      "comment": "Architecture documentation"
     },
     {
-      "SPDXID": "SPDXRef-File-DevelopmentMd",
-      "fileName": "./development.md",
-      "fileTypes": ["DOCUMENTATION"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-File-LogoLight",
-      "fileName": "./logo/light.svg",
-      "fileTypes": ["IMAGE"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-File-LogoDark",
-      "fileName": "./logo/dark.svg",
-      "fileTypes": ["IMAGE"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-File-Favicon",
-      "fileName": "./favicon.svg",
-      "fileTypes": ["IMAGE"],
-      "checksums": [
-        {
-          "algorithm": "SHA1",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    }
-  ],
-  "annotations": [
-    {
-      "annotationDate": "2024-01-01T00:00:00Z",
-      "annotationType": "REVIEW",
-      "annotator": "Tool: OrchestrAI",
-      "comment": "This SBOM was generated through comprehensive analysis of the Mintlify Starter Kit source code. All components, dependencies, and relationships are derived from actual files and configurations present in the repository. No fictional or placeholder entries are included."
-    },
-    {
-      "annotationDate": "2024-01-01T00:00:00Z",
-      "annotationType": "OTHER",
-      "annotator": "Tool: OrchestrAI",
-      "comment": "License information is marked as NOASSERTION where not explicitly declared in source files. The OpenAPI specification declares MIT license. Mintlify platform and CLI license information is not provided in the source code."
-    },
-    {
-      "annotationDate": "2024-01-01T00:00:00Z",
-      "annotationType": "OTHER",
-      "annotator": "Tool: OrchestrAI",
-      "comment": "This project has no package.json file and minimal traditional dependencies. The primary dependencies are the Mintlify CLI (installed globally via npm) and the Mintlify cloud platform service. All other components are content files (Markdown, JSON, OpenAPI) rather than executable code libraries."
-    }
-  ]
-}
-```
-
-## Usage
-
-### Consuming This SBOM
-
-**For Security Analysis:**
-1. Import this SPDX document into security scanning tools that support SPDX format
-2. Cross-reference identified components against vulnerability databases
-3. Monitor the Mintlify CLI npm package for security advisories
-4. Review GitHub integration security practices and permissions
-
-**For License Compliance:**
-1. Validate that the MIT license on the OpenAPI specification is compatible with your usage
-2. Verify Mintlify platform terms of service for commercial use requirements
-3. Ensure GitHub OAuth integration complies with your organization's policies
-4. Review Markdown and content licensing if redistributing documentation
-
-**For Supply Chain Risk Management:**
-1. Monitor the Mintlify CLI package for updates and dependency changes
-2. Track Mintlify platform service availability and security posture
-3. Validate GitHub integration security and access controls
-4. Assess third-party service dependencies (CDN, hosting infrastructure)
-
-### Updating This SBOM
-
-**When to Update:**
-
-This SBOM should be regenerated when:
-- The Mintlify CLI version is updated (`npm update -g mint`)
-- New content files or documentation pages are added
-- The OpenAPI specification is modified or replaced
-- Documentation configuration in `docs.json` changes significantly
-- New integrations or third-party services are added
-- GitHub integration or deployment workflows change
-
-**Update Process:**
-
-1. **Analyze Changes**: Review modified files and new dependencies
-2. **Update Package Entries**: Add new packages or update version information
-3. **Modify Relationships**: Update dependency and containment relationships
-4. **Validate Checksums**: Recalculate file checksums if available
-5. **Update Annotations**: Add annotation entries documenting changes
-6. **Increment Version**: Update SBOM version and creation timestamp
-
-### Integrating with CI/CD
-
-**Automated SBOM Generation:**
-
-```bash
-# Example CI/CD pipeline step for SBOM validation
-- name: Validate SBOM
-  run: |
-    # Verify docs.json structure
-    cat docs.json | jq '.' > /dev/null
-    
-    # Verify OpenAPI specification
-    cat api-reference/openapi.json | jq '.' > /dev/null
-    
-    # Check Mintlify CLI version
-    mint --version
-    
-    # Validate all referenced markdown files exist
-    cat docs.json | jq -r '.navigation.tabs[].groups[].pages[]' | while read page; do
-      if [ ! -f "${page}.md" ]; then
-        echo "Missing file: ${page}.md"
-        exit 1
-      fi
-    done
-```
-
-**Continuous Monitoring:**
-
-1. **Dependency Monitoring**: Monitor npm for Mintlify CLI updates
-2. **Security Alerts**: Subscribe to GitHub security advisories for npm packages
-3. **Service Status**: Monitor Mintlify platform status page for service updates
-4. **Configuration Changes**: Track changes to `docs.json` via version control
-
-### SBOM Validation
-
-**Completeness Checklist:**
-
-- [x] All content files documented (Markdown, JSON, OpenAPI)
-- [x] Build tools identified (Mintlify CLI)
-- [x] Runtime dependencies documented (Mintlify platform, GitHub)
-- [x] Third-party services cataloged
-- [x] File relationships established
-- [x] License information provided where available
-- [x] External references included for verification
-- [x] Annotations explain SBOM limitations and assumptions
-
-**Accuracy Verification:**
-
-```bash
-# Verify file existence
-test -f docs.json && echo "✓ docs.json exists"
-test -f api-reference/openapi.json && echo "✓ openapi.json exists"
-test -f README.md && echo "✓ README.md exists"
-test -d logo && echo "✓ logo directory exists"
-
-# Verify Mintlify CLI installation
-which mint && echo "✓ Mintlify CLI installed"
-
-# Validate JSON files
-jq '.' docs.json > /dev/null && echo "✓ docs.json valid"
-jq '.' api-reference/openapi.json > /dev/null && echo "✓ openapi.json valid"
-
-# Count markdown files
-echo "Markdown files: $(find . -name '*.md' | wc -l)"
-```
-
-## Security Considerations
-
-### Vulnerability Management
-
-**Known Security Considerations:**
-
-1. **Mintlify CLI Dependency**: As an npm package, the Mintlify CLI may have transitive dependencies with potential vulnerabilities. Regular updates are recommended.
-
-2. **GitHub OAuth Integration**: The GitHub integration requires OAuth permissions that grant repository access. Review and limit permissions to minimum necessary scope.
-
-3. **Content Security**: Markdown content may include embedded HTML or JavaScript. Ensure content sanitization is properly configured.
-
-4. **OpenAPI Specification**: The sample API specification includes bearer token authentication. Ensure actual implementations use proper token management and validation.
-
-**Mitigation Strategies:**
-
-- Keep Mintlify CLI updated: `npm update -g mint`
-- Regularly review GitHub app permissions in organization settings
-- Validate all user-generated content before inclusion in documentation
-- Implement proper authentication and authorization for actual API implementations
-- Monitor Mintlify security advisories and platform status
-
-### Supply Chain Security
-
-**Trust Boundaries:**
-
-1. **Mintlify Platform**: Trust placed in Mintlify cloud infrastructure for hosting and deployment
-2. **GitHub**: Trust placed in GitHub for OAuth authentication and repository access
-3. **npm Registry**: Trust placed in npm for Mintlify CLI distribution
-4. **CDN**: Trust placed in Mintlify's CDN provider for asset delivery
-
-**Risk Assessment:**
-
-- **Low Risk**: Static documentation content with no executable code or user input
-- **Medium Risk**: Mintlify CLI dependency with potential for supply chain attacks
-- **Medium Risk**: GitHub OAuth integration with repository access permissions
-- **Low Risk**: Build process limited to Markdown rendering and static asset processing
-
-### License Compliance
-
-**License Summary:**
-
-Based on source code analysis:
-
-- **Mintlify Starter Kit**: License not specified (NOASSERTION)
-- **OpenAPI Specification Content**: MIT License (declared in `api-reference/open
+      "spdxElementId": "SPDXRef-Package-Documentation-Starter-Kit",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-ComponentDocs",
+      "comment": "Component documentation
