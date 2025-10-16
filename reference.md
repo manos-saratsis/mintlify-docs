@@ -1,166 +1,232 @@
 # API Reference Documentation
 
-Welcome to the Plant Store API documentation. This guide helps you understand how to interact with our plant management system to retrieve, create, and manage plant information.
+Welcome to the Plant Store API documentation. This guide will help you understand how to work with our plant management system to view, add, and manage plants in your store.
 
-## Getting Started with the API
+## Getting Started
 
-The Plant Store API allows you to manage a catalog of plants through simple web requests. You can view all available plants, add new plants to the store, or remove plants that are no longer available. All interactions happen through standard web addresses (URLs) that you can access from any application or programming language.
+The Plant Store API lets you manage your plant inventory through simple web requests. Whether you want to see what plants are available, add new ones to your catalog, or remove plants that are out of stock, this API makes it straightforward.
 
-### What You'll Need
+### What You Need
 
-Before you can use the API, you'll need:
+Before you start using the API, make sure you have:
 
-1. **Access Credentials**: You'll receive a special access key (called a bearer token) that proves you're authorized to use the API
-2. **Basic Understanding**: Familiarity with making web requests (don't worry - we'll show you examples)
-3. **API Address**: All requests go to `http://sandbox.mintlify.com`
+1. **Your Access Key**: You'll receive a special access token that proves you're authorized to use the API. Keep this safe and don't share it with anyone.
+2. **Internet Connection**: The API is available online at `http://sandbox.mintlify.com`
+3. **A Way to Make Web Requests**: You can use tools like your web browser, command-line tools, or programming languages
 
-### Authentication - Proving Who You Are
+### Proving Your Identity
 
-Every request you make to the API needs to include your special access key. Think of it like showing your ID card when entering a building - it proves you're allowed to be there.
+Every time you interact with the API, you need to include your access key. Think of it like showing your membership card at a store - it confirms you're allowed to access the system.
 
-When making requests, you'll include your access key in the request headers. The API uses "bearer authentication," which is a secure and widely-used method for verifying your identity.
+You'll include this key in something called a "header" with each request. Don't worry if that sounds technical - the examples below will show you exactly how to do it.
 
-## Working with Plants
+## Viewing Your Plants
 
-### Viewing All Plants
+### See All Plants in Your Store
 
-**What it does**: Retrieves a list of all plants in the store that you have permission to see.
+This lets you get a list of all the plants you have access to in the system.
 
-**How to use it**: Send a request to `/plants` and you'll receive back a list of plants with all their details.
+**How it works**: Send a request to `/plants` and you'll get back information about each plant.
 
-**Controlling Results**: You can limit how many plants you see at once by specifying a maximum number. This is helpful when you have hundreds or thousands of plants and only want to see a manageable amount at a time.
+**Controlling How Many Results You See**:
 
-For example, if you only want to see the first 10 plants, you can specify that limit in your request. This helps keep responses quick and manageable.
+Sometimes you might have hundreds of plants in your system. Instead of getting overwhelmed with information, you can limit how many plants you see at once. For example, if you only want to see 10 plants at a time, you can specify that in your request.
 
-**What you get back**:
-- **Success**: You'll receive a list of plants, each with their name and type classification
-- **Error**: If something goes wrong (like using an invalid access key), you'll receive an error message explaining what happened
+**What You'll Get Back**:
 
-Each plant in the list includes:
-- **Name**: The plant's common or scientific name
-- **Tag**: A classification that describes what type of plant it is
+When everything works correctly, you'll receive a list of plants. Each plant includes:
+- **Name**: What the plant is called (like "Snake Plant" or "Fiddle Leaf Fig")
+- **Tag**: A category that describes the plant type (like "succulent" or "indoor")
 
-### Adding a New Plant
+Here's what the information looks like:
+```
+Fiddle Leaf Fig (indoor)
+Snake Plant (succulent)
+Monstera Deliciosa (tropical)
+```
 
-**What it does**: Adds a brand new plant to the store catalog.
+**If Something Goes Wrong**:
 
-**How to use it**: Send the new plant's information to `/plants` and the system will create it in the database.
+If there's a problem with your request (like using an incorrect access key or asking for an invalid number of plants), you'll get an error message explaining what went wrong. The message will include:
+- An error number that identifies the type of problem
+- A description explaining what happened
+
+For example, if you tried to limit results with an invalid number, you might see: "Invalid limit parameter"
+
+## Adding New Plants
+
+### Add a Plant to Your Store
+
+When you get new plants in stock, you can add them to your system so they appear in your inventory.
+
+**What You Need to Provide**:
+
+For each new plant, you must tell the system:
+- **Identification Number**: A unique number for this plant (no two plants can have the same number)
+- **Name**: What you want to call the plant
+- **Tag** (optional): A category or type for organizing your plants
+
+**How to Add a Plant**:
+
+Send the plant information to `/plants` and the system will create it in your inventory. The identification number must be unique - if you try to add a plant with a number that's already in use, you'll get an error.
+
+Here's an example of adding a new plant called "Peace Lily" with the category "flowering":
+```
+Identification Number: 101
+Name: Peace Lily
+Tag: flowering
+```
+
+**What Happens Next**:
+
+When the plant is successfully added, you'll receive confirmation with all the plant details you provided. This confirms the plant is now in your system and available in searches.
+
+**If Something Goes Wrong**:
+
+If there's a problem (like trying to use an identification number that already exists), you'll get an error message explaining the issue. For example: "Plant with ID 101 already exists"
+
+## Removing Plants
+
+### Delete a Plant from Your Store
+
+When a plant is no longer available or you need to remove it from your inventory, you can delete it from the system.
+
+**What You Need**:
+
+You'll need to know the plant's identification number - the unique number that was assigned when the plant was first added to the system.
+
+**How to Remove a Plant**:
+
+Specify which plant to delete by including its identification number in your request to `/plants/{id}` (where `{id}` is the actual number).
+
+For example, to remove plant number 101, you would reference `/plants/101` in your request.
+
+**What Happens Next**:
+
+When a plant is successfully deleted, you'll receive confirmation that the removal is complete. The plant will no longer appear in your inventory.
+
+**Important Things to Know**:
+
+- **This Action is Permanent**: Once you delete a plant, it's gone from the system completely. There's no "undo" button.
+- **Double-Check Before Deleting**: Make sure you have the right identification number before removing a plant.
+- **Already Deleted Plants**: If you try to delete a plant that's already been removed, you'll still get a success message (the system doesn't treat this as an error).
+
+**If Something Goes Wrong**:
+
+If there's a problem with the deletion (like the plant doesn't exist), you'll get an error message. For example: "Plant with ID 101 not found"
+
+## Getting Automatic Updates
+
+### How the System Can Notify You
+
+Instead of constantly checking if new plants have been added, you can set up automatic notifications. This way, the system will send you a message whenever someone adds a new plant to the store.
+
+**How It Works**:
+
+You provide the system with a web address (URL) where you want to receive notifications. Whenever a new plant is added anywhere in the system, the API will automatically send that plant's information to your address.
+
+**What You'll Receive**:
+
+Each notification includes the complete details of the newly added plant:
+- The identification number
+- The plant name
+- The plant tag (if one was provided)
+
+For example, if someone adds a "Rubber Plant" with ID 102 and tag "indoor", you'll receive all that information automatically.
+
+**Setting This Up**:
+
+Your notification address needs to be accessible over the internet and able to receive information. When it gets a notification, it should respond with a success message to confirm the notification was received. This helps ensure no notifications get lost.
+
+## Understanding the Results You Get
+
+### When Things Work Correctly
+
+When your requests succeed, you'll receive the information you asked for in a consistent, organized format. This makes it easy to use the information in your applications or processes.
+
+The format is designed to be easy to read and work with, whether you're looking at it yourself or having a computer program process it.
+
+### When There Are Problems
+
+Sometimes things don't work as expected. When that happens, you'll receive an error message that helps you understand and fix the problem.
+
+Every error includes:
+- **A Number**: Identifies what type of error occurred
+- **A Description**: Explains in plain language what went wrong
+
+**Common Problems and What They Mean**:
+
+- **Authentication Issues**: Your access key might be missing, incorrect, or expired. Solution: Check that you're including the correct key with your request.
+
+- **Plant Not Found**: You're trying to access or delete a plant that doesn't exist. Solution: Verify the identification number is correct.
+
+- **Invalid Information**: The information you provided doesn't meet the requirements. Solution: Check that all required fields are included and properly formatted.
+
+- **Duplicate Plant**: You're trying to add a plant with an identification number that's already in use. Solution: Use a different identification number.
+
+## Plant Information Structure
+
+### Basic Plant Details
+
+Every plant in the system has certain properties. Some are required (you must provide them), while others are optional (you can include them if you want).
 
 **Required Information**:
-You must provide certain details about the plant:
-- **Identification Number**: A unique number that identifies this specific plant
+- **Name**: Every plant must have a name. You can't create a plant without one.
+
+**Optional Information**:
+- **Tag**: A category or classification for the plant. This helps organize your plants but isn't required.
+
+### Complete Plant Records
+
+When you work with plants in the system (creating them, viewing them, or updating them), you'll see these complete records that include:
+
+- **Identification Number**: The unique number assigned to this plant
 - **Name**: What the plant is called
-- **Tag** (optional): A classification or category for the plant
+- **Tag**: The plant's category (if one was provided)
 
-**What you get back**:
-- **Success**: You'll receive confirmation that the plant was created, along with all the details you provided
-- **Error**: If something goes wrong (like trying to add a duplicate plant or providing invalid information), you'll get an error message explaining the problem
-
-### Removing a Plant
-
-**What it does**: Permanently removes a plant from the store catalog.
-
-**How to use it**: Specify which plant to remove by providing its identification number in the web address.
-
-**Required Information**:
-- **Plant ID**: The unique identification number of the plant you want to remove
-
-**What you get back**:
-- **Success**: The plant is deleted and you'll receive confirmation
-- **Error**: If the plant doesn't exist or something goes wrong, you'll get an error message
-
-**Important**: This action cannot be undone. Once a plant is deleted, it's permanently removed from the system.
-
-## Real-Time Updates with Webhooks
-
-Webhooks are a way for the Plant Store API to notify your application automatically when something important happens. Instead of you constantly checking "has anything changed?", the API will send you a message when a new plant is added.
-
-### New Plant Notifications
-
-**What it does**: Sends you an automatic notification whenever someone adds a new plant to the store.
-
-**How it works**: You provide the API with a web address (URL) where you want to receive notifications. When a new plant is added, the API will send the plant's information to that address.
-
-**What you receive**: The complete details of the newly added plant, including its identification number, name, and tag.
-
-**Important**: Your notification endpoint must respond with a success message to confirm you received the notification. This helps ensure no notifications get lost.
-
-## Understanding Responses
-
-### Success Responses
-
-When everything works correctly, you'll receive the information you requested along with a success indicator. The format is structured and consistent, making it easy to process in your applications.
-
-### Error Responses
-
-When something goes wrong, you'll receive an error response that helps you understand and fix the problem. Every error includes:
-
-- **Error Code**: A number that identifies the type of error
-- **Message**: A human-readable explanation of what went wrong
-
-Common reasons for errors:
-- Using an invalid or expired access key
-- Requesting a plant that doesn't exist
-- Providing incomplete or invalid information when creating a plant
-- Exceeding rate limits or usage quotas
-
-## Data Structures
-
-### Plant Information
-
-Every plant in the system has these properties:
-
-**Required Fields**:
-- **Name** (text): The plant's name - this is always required
-
-**Optional Fields**:
-- **Tag** (text): A classification or category for organizing plants
-
-### Complete Plant Record
-
-When you retrieve or create a plant, you'll work with a complete record that includes:
-
-**All plant properties plus**:
-- **Identification Number** (number): A unique identifier assigned by the system
-
-This identification number is generated automatically and cannot be changed. It's used to reference the plant in future operations like updates or deletions.
+The identification number is automatically assigned when you create a plant and can't be changed afterward. You'll use this number whenever you need to reference the specific plant later (like when deleting it).
 
 ### Error Information
 
-When errors occur, you'll receive a structured error response:
+When errors occur, you'll receive structured information about what went wrong:
 
-**Error Properties**:
-- **Error Code** (number): Identifies the specific type of error
-- **Message** (text): Explains what went wrong in plain language
+- **Error Number**: A code that identifies the specific type of error
+- **Description**: An explanation of what happened
 
-Error codes follow standard conventions, making it easier to handle them programmatically in your applications.
+These error codes follow standard conventions, making it easier to handle them in your applications and systems.
 
-## Best Practices
+## Tips for Using the API Effectively
 
-### Efficient API Usage
+### Making Your Requests Efficient
 
-1. **Limit Results**: When retrieving plant lists, use the limit parameter to request only what you need. This makes responses faster and reduces unnecessary data transfer.
+1. **Limit Your Results**: When getting plant lists, only request the number of plants you actually need. This makes responses faster and easier to work with.
 
-2. **Handle Errors Gracefully**: Always check for and handle error responses. Your application should explain problems clearly to users and provide actionable next steps.
+2. **Handle Errors Appropriately**: Always check for and handle error messages. If something goes wrong, explain the problem clearly and tell users what they can do to fix it.
 
-3. **Secure Your Access Key**: Keep your bearer token private and secure. Never share it publicly or commit it to version control systems.
+3. **Keep Your Access Key Secure**: Treat your access key like a password. Never share it publicly or include it in places where others can see it.
 
-4. **Use Webhooks**: Instead of repeatedly checking for new plants, set up webhook notifications to be informed immediately when changes occur.
+4. **Use Automatic Notifications**: Instead of repeatedly checking for new plants, set up the webhook system to be notified immediately when plants are added.
 
-### Performance Tips
+### Keeping Things Running Smoothly
 
-- Request only the data you need by using appropriate limits
-- Cache plant information that doesn't change frequently
-- Handle rate limits gracefully by spacing out requests
-- Monitor your usage to stay within quota limits
+- **Request Only What You Need**: Don't ask for more information than necessary. This keeps things fast for everyone.
+
+- **Save Information When Appropriate**: If certain plant information doesn't change often, you can save it rather than requesting it repeatedly.
+
+- **Spread Out Your Requests**: If you need to make many requests, space them out rather than sending them all at once.
+
+- **Monitor Your Usage**: Keep track of how much you're using the system to avoid exceeding any limits.
 
 ## Need Help?
 
-If you encounter issues or have questions:
+### Finding Solutions
 
-1. **Check Error Messages**: Error responses often explain exactly what needs to be fixed
-2. **Review Examples**: Look at the example requests and responses in this documentation
-3. **Verify Authentication**: Ensure your access key is valid and properly included in requests
-4. **Contact Support**: Reach out to the support team for assistance with complex issues
+1. **Check Error Messages**: When something goes wrong, the error message often tells you exactly what needs to be fixed.
 
-This API reference provides everything you need to integrate the Plant Store system into your applications, whether you're building a mobile app, website, or automated system for managing plant inventory.
+2. **Review the Examples**: Look at the example requests and responses in this documentation to see how things should work.
+
+3. **Verify Your Access**: Make sure your access key is valid and included correctly in your requests.
+
+4. **Get Support**: If you're stuck on a complex issue, reach out to the support team at hi@mintlify.com for help.
+
+This API documentation provides everything you need to manage your plant inventory effectively. Whether you're building an application, managing a website, or setting up automated systems, these tools will help you keep your plant catalog organized and up-to-date.
