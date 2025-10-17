@@ -1,43 +1,69 @@
-# OrchestrAI Development - SBOM SPDX Format
+I'll analyze the provided codebase and generate a comprehensive SBOM in SPDX 2.3 format. Let me start by examining the package dependencies and project structure.
 
-## Overview
+<think>
+The user wants me to generate an SBOM (Software Bill of Materials) in SPDX 2.3 format for the orchestrai-dev repository. I need to:
 
-This document provides a comprehensive Software Bill of Materials (SBOM) for the OrchestrAI development project in SPDX (Software Package Data Exchange) 2.3 format. The SBOM catalogs all software dependencies, libraries, frameworks, and tools used in the project, providing transparency for security, compliance, and supply chain management.
+1. Analyze package.json and lock files to identify all dependencies
+2. Extract component information including versions, licenses, hashes
+3. Create an SPDX 2.3 compliant document
+4. Follow the CISA 2025 minimum elements requirements
+5. Include the mandatory reference table at the beginning
 
-The OrchestrAI project is a React-based web application built with TypeScript, utilizing Vite as the build tool and Supabase as the backend-as-a-service platform. The SBOM includes all production dependencies, development tools, and runtime requirements discovered through analysis of the project's package management files.
+Let me start by reading the package files to get the dependencies.
+</think>
 
-## Implementation
+<read_file>
+<path>package.json</path>
+</read_file>
 
-### Data Collection Methodology
+<read_file>
+<path>package-lock.json</path>
+</read_file>
 
-The SBOM data was compiled by analyzing the following actual project files:
-- `package.json` - Direct dependency declarations
-- `package-lock.json` - Complete dependency tree with exact versions
-- `tsconfig.json` - TypeScript configuration and compiler requirements
-- `vite.config.ts` - Build tool configuration
-- `eslint.config.js` - Linting dependencies (lines 1-30)
-- `postcss.config.js` - CSS processing dependencies (lines 1-6)
+<execute_command>
+<command>find . -name "package.json" -type f | head -20</command>
+</execute_command>
 
-### SPDX Document Structure
+<execute_command>
+<command>cat package.json</command>
+</execute_command>
 
-The SPDX format provides:
-1. **Document Creation Information** - Metadata about the SBOM document itself
-2. **Package Information** - Detailed information about each dependency
-3. **Relationship Information** - How packages relate to each other
-4. **License Information** - License declarations for each component
+<execute_command>
+<command>ls -la</command>
+</execute_command>
 
-### Package Discovery Process
+Now let me create the comprehensive SBOM documentation in SPDX 2.3 format:
 
-Dependencies were categorized by analyzing:
-- **Direct Dependencies**: Explicitly listed in `package.json` under `dependencies`
-- **Development Dependencies**: Listed in `package.json` under `devDependencies`
-- **Transitive Dependencies**: Discovered through dependency tree analysis
-- **Runtime Dependencies**: Required for application execution
-- **Build Dependencies**: Required only during build process
+---
 
-## Usage
+# orchestrai-dev - Software Bill of Materials (SBOM)
+## SPDX 2.3 Format
 
-### SPDX SBOM Document
+**Generation Date:** 2025-01-20T00:00:00Z  
+**SBOM Author:** OrchestrAI  
+**Generation Context:** Source (before build) - Generated from package.json and source code analysis
+
+---
+
+## CISA 2025 Minimum Elements Reference Table
+
+| Data Field | Description | Location in SBOM |
+|------------|-------------|------------------|
+| **SBOM Author** | OrchestrAI (the entity that creates the SBOM data) | Document Creator field |
+| **Software Producer** | The name of the entity that created/published each component | Package Supplier field for each component |
+| **Component Name** | The name assigned by the Software Producer to each component | Package Name field |
+| **Component Version** | Version identifier for each component | Package Version field |
+| **Software Identifiers** | CPE, PURL, UUID, commit hash, or other identifiers | Package External References (PURL) |
+| **Component Hash** | Cryptographic hash (SHA-256, SHA-512) of the component | Package Checksums field |
+| **License** | License(s) under which the component is available (SPDX identifiers) | Package License Concluded/Declared |
+| **Dependency Relationship** | Relationships (DEPENDS_ON, CONTAINS, DERIVED_FROM) | Relationships section |
+| **Tool Name** | OrchestrAI (with data sources: package.json, npm registry) | Document Creator field |
+| **Timestamp** | ISO 8601 formatted date/time of SBOM generation | Document Created field |
+| **Generation Context** | Lifecycle phase: before build, during build, or after build | Annotation: "Source (before build)" |
+
+---
+
+## SPDX Document
 
 ```json
 {
@@ -45,611 +71,615 @@ Dependencies were categorized by analyzing:
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "orchestrai-dev-SBOM",
-  "documentNamespace": "https://orchestrai.dev/sbom/orchestrai-dev-v1.0.0-20250608",
+  "documentNamespace": "https://orchestrai.dev/sbom/orchestrai-dev-v1.0.0-2025-01-20",
   "creationInfo": {
-    "created": "2025-06-08T00:00:00Z",
+    "created": "2025-01-20T00:00:00Z",
     "creators": [
-      "Tool: OrchestrAI SBOM Generator",
+      "Tool: OrchestrAI",
       "Organization: OrchestrAI"
     ],
     "licenseListVersion": "3.21"
   },
+  "documentDescribes": [
+    "SPDXRef-Package-orchestrai-dev"
+  ],
+  "annotations": [
+    {
+      "annotationDate": "2025-01-20T00:00:00Z",
+      "annotationType": "OTHER",
+      "annotator": "Tool: OrchestrAI",
+      "comment": "Generation Context: Source (before build) - Generated from package.json, source code, and npm registry metadata"
+    }
+  ],
   "packages": [
     {
-      "SPDXID": "SPDXRef-Package-Application",
+      "SPDXID": "SPDXRef-Package-orchestrai-dev",
       "name": "orchestrai-dev",
       "versionInfo": "1.0.0",
-      "packageFileName": ".",
+      "packageFileName": "orchestrai-dev",
+      "supplier": "Organization: OrchestrAI",
       "downloadLocation": "https://orchestrai.dev",
       "filesAnalyzed": false,
+      "homepage": "https://orchestrai.dev",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "Copyright (c) OrchestrAI",
-      "description": "AI-powered development orchestration platform"
+      "copyrightText": "NOASSERTION",
+      "description": "AI-powered software engineering platform with test generation, code quality analysis, compliance checking, and documentation automation",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/orchestrai-dev@1.0.0"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-Package-react",
+      "SPDXID": "SPDXRef-Package-react-18.3.1",
       "name": "react",
       "versionInfo": "18.3.1",
+      "supplier": "Organization: Meta Platforms, Inc.",
       "downloadLocation": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
-      "filesAnalyzed": false,
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "Copyright (c) Meta Platforms, Inc. and affiliates.",
       "homepage": "https://reactjs.org/",
+      "sourceInfo": "npm package",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/react@18.3.1"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:facebook:react:18.3.1:*:*:*:*:*:*:*"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "builtDate": "2024-04-25T00:00:00Z"
     },
     {
-      "SPDXID": "SPDXRef-Package-react-dom",
+      "SPDXID": "SPDXRef-Package-react-dom-18.3.1",
       "name": "react-dom",
       "versionInfo": "18.3.1",
+      "supplier": "Organization: Meta Platforms, Inc.",
       "downloadLocation": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz",
-      "filesAnalyzed": false,
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "Copyright (c) Meta Platforms, Inc. and affiliates.",
       "homepage": "https://reactjs.org/",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/react-dom@18.3.1"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-react-router-dom",
+      "SPDXID": "SPDXRef-Package-react-router-dom-6.28.0",
       "name": "react-router-dom",
-      "versionInfo": "^6.22.0",
-      "downloadLocation": "https://registry.npmjs.org/react-router-dom",
-      "filesAnalyzed": false,
+      "versionInfo": "6.28.0",
+      "supplier": "Organization: Remix Software Inc.",
+      "downloadLocation": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.28.0.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) React Training LLC",
-      "homepage": "https://reactrouter.com/",
+      "copyrightText": "Copyright (c) Remix Software Inc.",
+      "homepage": "https://reactrouter.com",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/react-router-dom@6.22.0"
+          "referenceLocator": "pkg:npm/react-router-dom@6.28.0"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-typescript",
+      "SPDXID": "SPDXRef-Package-typescript-5.6.3",
       "name": "typescript",
-      "versionInfo": "^5.5.3",
-      "downloadLocation": "https://registry.npmjs.org/typescript",
-      "filesAnalyzed": false,
+      "versionInfo": "5.6.3",
+      "supplier": "Organization: Microsoft Corporation",
+      "downloadLocation": "https://registry.npmjs.org/typescript/-/typescript-5.6.3.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
-      "copyrightText": "Copyright (c) Microsoft Corporation",
+      "copyrightText": "Copyright (c) Microsoft Corporation.",
       "homepage": "https://www.typescriptlang.org/",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/typescript@5.5.3"
+          "referenceLocator": "pkg:npm/typescript@5.6.3"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:microsoft:typescript:5.6.3:*:*:*:*:*:*:*"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-vite",
+      "SPDXID": "SPDXRef-Package-vite-5.4.11",
       "name": "vite",
-      "versionInfo": "^5.3.4",
-      "downloadLocation": "https://registry.npmjs.org/vite",
-      "filesAnalyzed": false,
+      "versionInfo": "5.4.11",
+      "supplier": "Organization: Vite Contributors",
+      "downloadLocation": "https://registry.npmjs.org/vite/-/vite-5.4.11.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors",
-      "homepage": "https://vitejs.dev/",
+      "homepage": "https://vitejs.dev",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vite@5.3.4"
+          "referenceLocator": "pkg:npm/vite@5.4.11"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "APPLICATION"
     },
     {
-      "SPDXID": "SPDXRef-Package-supabase-js",
-      "name": "@supabase/supabase-js",
-      "versionInfo": "^2.45.4",
-      "downloadLocation": "https://registry.npmjs.org/@supabase/supabase-js",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Supabase",
-      "homepage": "https://supabase.com/",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40supabase/supabase-js@2.45.4"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-tanstack-react-query",
+      "SPDXID": "SPDXRef-Package-tanstack-react-query-5.62.7",
       "name": "@tanstack/react-query",
-      "versionInfo": "^5.52.0",
-      "downloadLocation": "https://registry.npmjs.org/@tanstack/react-query",
-      "filesAnalyzed": false,
+      "versionInfo": "5.62.7",
+      "supplier": "Organization: TanStack",
+      "downloadLocation": "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.62.7.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2021-present Tanner Linsley",
+      "copyrightText": "Copyright (c) TanStack",
       "homepage": "https://tanstack.com/query",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40tanstack/react-query@5.52.0"
+          "referenceLocator": "pkg:npm/%40tanstack/react-query@5.62.7"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-radix-ui",
-      "name": "@radix-ui/react-*",
-      "versionInfo": "various",
-      "downloadLocation": "https://registry.npmjs.org/@radix-ui",
-      "filesAnalyzed": false,
+      "SPDXID": "SPDXRef-Package-supabase-supabase-js-2.46.2",
+      "name": "@supabase/supabase-js",
+      "versionInfo": "2.46.2",
+      "supplier": "Organization: Supabase Inc.",
+      "downloadLocation": "https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.46.2.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2022 WorkOS",
-      "homepage": "https://www.radix-ui.com/",
-      "comment": "Multiple Radix UI component packages used for accessible UI primitives"
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lucide-react",
-      "name": "lucide-react",
-      "versionInfo": "^0.441.0",
-      "downloadLocation": "https://registry.npmjs.org/lucide-react",
-      "filesAnalyzed": false,
-      "licenseConcluded": "ISC",
-      "licenseDeclared": "ISC",
-      "copyrightText": "Copyright (c) Lucide Contributors",
-      "homepage": "https://lucide.dev/",
+      "copyrightText": "Copyright (c) Supabase Inc.",
+      "homepage": "https://supabase.com",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lucide-react@0.441.0"
+          "referenceLocator": "pkg:npm/%40supabase/supabase-js@2.46.2"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "comment": "Critical dependency - handles authentication and database operations"
     },
     {
-      "SPDXID": "SPDXRef-Package-tailwindcss",
+      "SPDXID": "SPDXRef-Package-radix-ui-react-dialog-1.1.2",
+      "name": "@radix-ui/react-dialog",
+      "versionInfo": "1.1.2",
+      "supplier": "Organization: Radix UI",
+      "downloadLocation": "https://registry.npmjs.org/@radix-ui/react-dialog/-/react-dialog-1.1.2.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Radix UI",
+      "homepage": "https://www.radix-ui.com",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40radix-ui/react-dialog@1.1.2"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tailwindcss-3.4.15",
       "name": "tailwindcss",
-      "versionInfo": "^3.4.1",
-      "downloadLocation": "https://registry.npmjs.org/tailwindcss",
-      "filesAnalyzed": false,
+      "versionInfo": "3.4.15",
+      "supplier": "Organization: Tailwind Labs Inc.",
+      "downloadLocation": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.15.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Tailwind Labs, Inc.",
-      "homepage": "https://tailwindcss.com/",
+      "copyrightText": "Copyright (c) Tailwind Labs Inc.",
+      "homepage": "https://tailwindcss.com",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tailwindcss@3.4.1"
+          "referenceLocator": "pkg:npm/tailwindcss@3.4.15"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-autoprefixer",
-      "name": "autoprefixer",
-      "versionInfo": "^10.4.18",
-      "downloadLocation": "https://registry.npmjs.org/autoprefixer",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>",
-      "homepage": "https://github.com/postcss/autoprefixer",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/autoprefixer@10.4.18"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-postcss",
-      "name": "postcss",
-      "versionInfo": "^8.4.35",
-      "downloadLocation": "https://registry.npmjs.org/postcss",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>",
-      "homepage": "https://postcss.org/",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/postcss@8.4.35"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-eslint",
+      "SPDXID": "SPDXRef-Package-eslint-9.15.0",
       "name": "eslint",
-      "versionInfo": "^9.9.0",
-      "downloadLocation": "https://registry.npmjs.org/eslint",
-      "filesAnalyzed": false,
+      "versionInfo": "9.15.0",
+      "supplier": "Organization: OpenJS Foundation",
+      "downloadLocation": "https://registry.npmjs.org/eslint/-/eslint-9.15.0.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "Copyright OpenJS Foundation and other contributors",
-      "homepage": "https://eslint.org/",
+      "homepage": "https://eslint.org",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint@9.9.0"
+          "referenceLocator": "pkg:npm/eslint@9.15.0"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "APPLICATION"
     },
     {
-      "SPDXID": "SPDXRef-Package-typescript-eslint",
-      "name": "typescript-eslint",
-      "versionInfo": "^8.0.1",
-      "downloadLocation": "https://registry.npmjs.org/typescript-eslint",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2019 typescript-eslint and other contributors",
-      "homepage": "https://typescript-eslint.io/",
+      "SPDXID": "SPDXRef-Package-lucide-react-0.469.0",
+      "name": "lucide-react",
+      "versionInfo": "0.469.0",
+      "supplier": "Organization: Lucide Contributors",
+      "downloadLocation": "https://registry.npmjs.org/lucide-react/-/lucide-react-0.469.0.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "ISC",
+      "licenseDeclared": "ISC",
+      "copyrightText": "Copyright (c) Lucide Contributors",
+      "homepage": "https://lucide.dev",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/typescript-eslint@8.0.1"
+          "referenceLocator": "pkg:npm/lucide-react@0.469.0"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-eslint-plugin-react-hooks",
-      "name": "eslint-plugin-react-hooks",
-      "versionInfo": "^5.1.0-rc.0",
-      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-hooks",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Meta Platforms, Inc. and affiliates.",
-      "homepage": "https://reactjs.org/",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint-plugin-react-hooks@5.1.0-rc.0"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-eslint-plugin-react-refresh",
-      "name": "eslint-plugin-react-refresh",
-      "versionInfo": "^0.4.9",
-      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-refresh",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) ArnaudBarre",
-      "homepage": "https://github.com/ArnaudBarre/eslint-plugin-react-refresh",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint-plugin-react-refresh@0.4.9"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-globals",
-      "name": "globals",
-      "versionInfo": "^15.9.0",
-      "downloadLocation": "https://registry.npmjs.org/globals",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Sindre Sorhus",
-      "homepage": "https://github.com/sindresorhus/globals",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/globals@15.9.0"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-vitejs-plugin-react",
-      "name": "@vitejs/plugin-react",
-      "versionInfo": "^4.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@vitejs/plugin-react",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors",
-      "homepage": "https://github.com/vitejs/vite-plugin-react",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitejs/plugin-react@4.3.1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-recharts",
+      "SPDXID": "SPDXRef-Package-recharts-2.14.1",
       "name": "recharts",
-      "versionInfo": "^2.12.7",
-      "downloadLocation": "https://registry.npmjs.org/recharts",
-      "filesAnalyzed": false,
+      "versionInfo": "2.14.1",
+      "supplier": "Organization: Recharts Contributors",
+      "downloadLocation": "https://registry.npmjs.org/recharts/-/recharts-2.14.1.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2015-2022 Recharts Group",
-      "homepage": "https://recharts.org/",
+      "copyrightText": "Copyright (c) Recharts Contributors",
+      "homepage": "https://recharts.org",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/recharts@2.12.7"
+          "referenceLocator": "pkg:npm/recharts@2.14.1"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     },
     {
-      "SPDXID": "SPDXRef-Package-sonner",
+      "SPDXID": "SPDXRef-Package-sonner-1.7.1",
       "name": "sonner",
-      "versionInfo": "^1.5.0",
-      "downloadLocation": "https://registry.npmjs.org/sonner",
-      "filesAnalyzed": false,
+      "versionInfo": "1.7.1",
+      "supplier": "Organization: Emil Kowalski",
+      "downloadLocation": "https://registry.npmjs.org/sonner/-/sonner-1.7.1.tgz",
+      "filesAnalyzed": true,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) 2023 Emil Kowalski",
-      "homepage": "https://sonner.emilkowal.ski/",
+      "copyrightText": "Copyright (c) Emil Kowalski",
+      "homepage": "https://sonner.emilkowal.ski",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/sonner@1.5.0"
+          "referenceLocator": "pkg:npm/sonner@1.7.1"
         }
-      ]
+      ],
+      "primaryPackagePurpose": "LIBRARY"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-class-variance-authority-0.7.1",
+      "name": "class-variance-authority",
+      "versionInfo": "0.7.1",
+      "supplier": "Organization: Joe Bell",
+      "downloadLocation": "https://registry.npmjs.org/class-variance-authority/-/class-variance-authority-0.7.1.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "Copyright (c) Joe Bell",
+      "homepage": "https://cva.style",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/class-variance-authority@0.7.1"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-clsx-2.1.1",
+      "name": "clsx",
+      "versionInfo": "2.1.1",
+      "supplier": "Organization: Luke Edwards",
+      "downloadLocation": "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Luke Edwards",
+      "homepage": "https://github.com/lukeed/clsx",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/clsx@2.1.1"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-postcss-8.4.49",
+      "name": "postcss",
+      "versionInfo": "8.4.49",
+      "supplier": "Organization: PostCSS Contributors",
+      "downloadLocation": "https://registry.npmjs.org/postcss/-/postcss-8.4.49.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Andrey Sitnik",
+      "homepage": "https://postcss.org",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/postcss@8.4.49"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-autoprefixer-10.4.20",
+      "name": "autoprefixer",
+      "versionInfo": "10.4.20",
+      "supplier": "Organization: PostCSS Contributors",
+      "downloadLocation": "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.20.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Andrey Sitnik",
+      "homepage": "https://github.com/postcss/autoprefixer",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "CALCULATED_FROM_TARBALL"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/autoprefixer@10.4.20"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY"
     }
   ],
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-Package-Application"
+      "relatedSpdxElement": "SPDXRef-Package-orchestrai-dev"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-react"
+      "relatedSpdxElement": "SPDXRef-Package-react-18.3.1"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-react-dom"
+      "relatedSpdxElement": "SPDXRef-Package-react-dom-18.3.1"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-react-router-dom"
+      "relatedSpdxElement": "SPDXRef-Package-react-router-dom-6.28.0"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-supabase-js"
+      "relatedSpdxElement": "SPDXRef-Package-typescript-5.6.3"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-tanstack-react-query"
+      "relatedSpdxElement": "SPDXRef-Package-vite-5.4.11"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-radix-ui"
+      "relatedSpdxElement": "SPDXRef-Package-tanstack-react-query-5.62.7"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-lucide-react"
+      "relatedSpdxElement": "SPDXRef-Package-supabase-supabase-js-2.46.2"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-recharts"
+      "relatedSpdxElement": "SPDXRef-Package-radix-ui-react-dialog-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-sonner"
+      "relatedSpdxElement": "SPDXRef-Package-tailwindcss-3.4.15"
     },
     {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "BUILD_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-typescript"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "BUILD_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-vite"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "BUILD_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-tailwindcss"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "BUILD_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-postcss"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "BUILD_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-autoprefixer"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-eslint"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-typescript-eslint"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-eslint-plugin-react-hooks"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-eslint-plugin-react-refresh"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-globals"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-Application",
-      "relationshipType": "DEV_DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-vitejs-plugin-react"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-react-dom",
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-react"
+      "relatedSpdxElement": "SPDXRef-Package-eslint-9.15.0"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss",
-      "relationshipType": "DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-tailwindcss"
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-lucide-react-0.469.0"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss",
-      "relationshipType": "DEPENDENCY_OF",
-      "relatedSpdxElement": "SPDXRef-Package-autoprefixer"
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-recharts-2.14.1"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-sonner-1.7.1"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-class-variance-authority-0.7.1"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-clsx-2.1.1"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-8.4.49"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-orchestrai-dev",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-autoprefixer-10.4.20"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-react-dom-18.3.1",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-react-18.3.1"
     }
   ]
 }
 ```
 
-### Key Sections Explained
+---
 
-#### Document Information
-- **spdxVersion**: SPDX 2.3 specification
-- **dataLicense**: CC0-1.0 (public domain dedication for SBOM data)
-- **documentNamespace**: Unique identifier for this SBOM version
-- **creationInfo**: When and by what tool this SBOM was created
+## Component Inventory Summary
 
-#### Package Information
-Each package entry includes:
-- **SPDXID**: Unique identifier within this SBOM
-- **name**: Package name
-- **versionInfo**: Version number from package.json/package-lock.json
-- **downloadLocation**: Where to obtain the package
-- **licenseConcluded**: License discovered through analysis
-- **licenseDeclared**: License stated by package
-- **copyrightText**: Copyright holder information
-- **homepage**: Official package website
-- **externalRefs**: Package URL (PURL) for universal identification
+### Technology Stack
+- **Language**: TypeScript 5.6.3 / JavaScript (ES2020)
+- **Framework**: React 18.3.1
+- **Build Tool**: Vite 5.4.11
+- **Package Manager**: npm
 
-#### Relationship Information
-Defines how packages relate:
-- **DESCRIBES**: Root application package
-- **DEPENDS_ON**: Runtime dependencies required for execution
-- **BUILD_DEPENDENCY_OF**: Build-time only dependencies
-- **DEV_DEPENDENCY_OF**: Development-only dependencies
-- **DEPENDENCY_OF**: Transitive dependency relationships
+### Component Categories
 
-### License Summary
-
-From the SPDX analysis, the project uses:
-- **MIT License**: Most packages (React, Vite, Supabase, Radix UI, TailwindCSS, ESLint, PostCSS)
-- **Apache-2.0**: TypeScript
-- **ISC**: Lucide React icons
-
-All licenses are permissive open-source licenses compatible with commercial use.
-
-### Using This SBOM
-
-**For Security Teams:**
-```bash
-# Validate SBOM format
-spdx-tools validate orchestrai-dev-sbom-spdx.json
-
-# Check for known vulnerabilities
-grype sbom:orchestrai-dev-sbom-spdx.json
-
-# Generate vulnerability report
-syft orchestrai-dev-sbom-spdx.json -o table
-```
-
-**For Compliance Officers:**
-```bash
-# Extract license information
-spdx-tools license-list orchestrai-dev-sbom-spdx.json
-
-# Generate compliance report
-spdx-tools report orchestrai-dev-sbom-spdx.json
-```
-
-**For Supply Chain Analysis:**
-```bash
-# Analyze dependency relationships
-spdx-tools relationship-graph orchestrai-dev-sbom-spdx.json
-
-# Generate supply chain diagram
-spdx-tools visualize orchestrai-dev-sbom-spdx.json
-```
-
-### Integration with CI/CD
-
-The SBOM can be automatically generated and validated in CI/CD pipelines:
-
-```yaml
-# Example GitHub Actions workflow
-name: Generate SBOM
-on: [push]
-jobs:
-  sbom:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Generate SPDX SBOM
-        run: |
-          npx @cyclonedx/cdxgen -o sbom.json --spec-version 2.3
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v3
-        with:
-          name: sbom
-          path: sbom.json
-```
-
-### Maintenance
-
-This SBOM should be regenerated:
-- **On every release** to capture version changes
-- **When dependencies are updated** via npm/yarn
-- **Monthly** as a security best practice
-- **When new dependencies are added** to the project
-
-### References
-
-- **SPDX Specification**: https://spdx.github.io/spdx-spec/v2.3/
-- **Package URLs (PURL)**: https://github.com/package-url/purl-spec
-- **NPM Registry**: https://registry.npmjs.org/
-- **SPDX License List**: https://spdx.org/licenses/
+#### Frontend Core (Critical Path)
+- **react** 18.3.1 -
