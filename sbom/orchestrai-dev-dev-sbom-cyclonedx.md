@@ -1,53 +1,9 @@
-I'll analyze the provided source code and generate a comprehensive SBOM in CycloneDX 1.5 format for the orchestrai-dev project.
+# orchestrai-dev - SBOM CycloneDX
 
-<thinking>
-Let me first examine the package.json and related files to identify all dependencies, then generate the SBOM according to the CISA 2025 requirements.
-
-I need to:
-1. Read the package.json to get dependencies
-2. Read package-lock.json if available for exact versions and hashes
-3. Identify all dependencies (direct and transitive)
-4. Generate CycloneDX 1.5 format SBOM
-5. Include all CISA 2025 minimum elements
-6. Ensure proper metadata and structure
-</thinking>
-
-<read_file>
-<path>package.json</path>
-</read_file>
-
-<read_file>
-<path>package-lock.json</path>
-</read_file>
-
-<read_file>
-<path>vite.config.ts</path>
-</read_file>
-
-<read_file>
-<path>tsconfig.json</path>
-</read_file>
-
-<read_file>
-<path>tsconfig.app.json</path>
-</read_file>
-
-<read_file>
-<path>tsconfig.node.json</path>
-</read_file>
-
-Based on my analysis of the source code, I'll now generate the comprehensive SBOM documentation for orchestrai-dev in CycloneDX 1.5 format.
-
-```markdown
-# Software Bill of Materials (SBOM) - CycloneDX Format
-
-## Project: orchestrai-dev
-
-**Document Version:** 1.0  
-**Generation Date:** 2025-01-20T00:00:00Z  
-**Generation Context:** Before Build / Source Analysis  
+**Generation Date:** 2025-01-21T10:30:00Z  
 **SBOM Author:** OrchestrAI  
-**Tool Name:** OrchestrAI Documentation Worker v1.0
+**Generation Context:** After Build / Source Code Analysis  
+**Tool:** OrchestrAI Documentation Worker v1.0
 
 ---
 
@@ -63,9 +19,23 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
 | Component Hash | Cryptographic hash (SHA-256, SHA-512) of the component |
 | License | License(s) under which the component is available (use SPDX identifiers) |
 | Dependency Relationship | Relationships (DEPENDS_ON, CONTAINS, DERIVED_FROM) |
-| Tool Name | OrchestrAI (with data sources: package.json, package-lock.json) |
-| Timestamp | 2025-01-20T00:00:00Z |
-| Generation Context | Before build - generated from source code analysis |
+| Tool Name | OrchestrAI (with data sources: package.json, lock files, etc.) |
+| Timestamp | ISO 8601 formatted date/time of SBOM generation or last update |
+| Generation Context | Lifecycle phase: after build (source code and dependency analysis) |
+
+---
+
+## Overview
+
+This Software Bill of Materials (SBOM) documents all dependencies and components used in the **orchestrai-dev** project. The project is a React-based web application built with TypeScript and Vite, focusing on AI-powered code quality, testing, and compliance analysis.
+
+### Project Metadata
+- **Project Name:** orchestrai-dev
+- **Primary Language:** TypeScript/JavaScript
+- **Framework:** React 18.3.1
+- **Build Tool:** Vite 6.0.7
+- **Package Manager:** npm
+- **Main Application:** AI-powered software development platform
 
 ---
 
@@ -75,75 +45,65 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:orchestrai-dev-sbom-2025-01-20",
+  "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-01-20T00:00:00Z",
+    "timestamp": "2025-01-21T10:30:00Z",
     "tools": [
       {
         "vendor": "OrchestrAI",
         "name": "Documentation Worker",
-        "version": "1.0",
-        "externalReferences": [
-          {
-            "type": "website",
-            "url": "https://orchestrai.dev/"
-          }
-        ]
-      }
-    ],
-    "authors": [
-      {
-        "name": "OrchestrAI",
-        "email": "sbom@orchestrai.dev"
+        "version": "1.0"
       }
     ],
     "component": {
       "type": "application",
-      "bom-ref": "pkg:npm/orchestrai-dev@0.0.0",
+      "bom-ref": "pkg:npm/orchestrai-dev@1.0.0",
       "name": "orchestrai-dev",
-      "version": "0.0.0",
-      "description": "OrchestrAI Development Platform - AI-powered code quality, testing, compliance, and documentation automation",
-      "purl": "pkg:npm/orchestrai-dev@0.0.0",
-      "properties": [
+      "version": "1.0.0",
+      "description": "AI-powered software development platform with code quality analysis, testing, and compliance features",
+      "licenses": [
         {
-          "name": "generation_context",
-          "value": "before_build"
-        },
-        {
-          "name": "language",
-          "value": "typescript"
-        },
-        {
-          "name": "framework",
-          "value": "react"
-        },
-        {
-          "name": "build_tool",
-          "value": "vite"
+          "license": {
+            "id": "NOASSERTION"
+          }
         }
       ]
     },
-    "licenses": [
+    "authors": [
       {
-        "license": {
-          "id": "NOASSERTION"
-        }
+        "name": "OrchestrAI"
+      }
+    ],
+    "properties": [
+      {
+        "name": "generation_context",
+        "value": "after_build"
+      },
+      {
+        "name": "sbom_author",
+        "value": "OrchestrAI"
+      },
+      {
+        "name": "data_source",
+        "value": "source_code_analysis"
       }
     ]
   },
   "components": [
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/js@9.17.0",
-      "name": "@eslint/js",
-      "version": "9.17.0",
+      "bom-ref": "pkg:npm/react@18.3.1",
+      "purl": "pkg:npm/react@18.3.1",
+      "name": "react",
+      "version": "18.3.1",
+      "description": "React is a JavaScript library for building user interfaces",
       "supplier": {
-        "name": "OpenJS Foundation",
-        "url": "https://eslint.org"
+        "name": "Meta Platforms, Inc.",
+        "url": [
+          "https://reactjs.org/"
+        ]
       },
-      "purl": "pkg:npm/%40eslint/js@9.17.0",
-      "description": "ESLint JavaScript rules",
       "licenses": [
         {
           "license": {
@@ -151,71 +111,30 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
+      "hashes": [
         {
-          "type": "website",
-          "url": "https://eslint.org"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@eslint/js/-/js-9.17.0.tgz"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/eslint/eslint"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Code quality and linting for JavaScript/TypeScript"
-        },
-        {
-          "name": "criticality",
-          "value": "development"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40hookform/resolvers@3.9.1",
-      "name": "@hookform/resolvers",
-      "version": "3.9.1",
-      "supplier": {
-        "name": "react-hook-form",
-        "url": "https://react-hook-form.com"
-      },
-      "purl": "pkg:npm/%40hookform/resolvers@3.9.1",
-      "description": "Validation resolvers for React Hook Form",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
         }
       ],
       "externalReferences": [
         {
           "type": "website",
-          "url": "https://react-hook-form.com/get-started#SchemaValidation"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-3.9.1.tgz"
+          "url": "https://reactjs.org/"
         },
         {
           "type": "vcs",
-          "url": "https://github.com/react-hook-form/resolvers"
+          "url": "https://github.com/facebook/react"
+        },
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
         }
       ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Form validation integration for React applications"
+          "value": "Core UI library for building component-based interface"
         },
         {
           "name": "criticality",
@@ -229,15 +148,17 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-accordion@1.2.2",
-      "name": "@radix-ui/react-accordion",
-      "version": "1.2.2",
+      "bom-ref": "pkg:npm/react-dom@18.3.1",
+      "purl": "pkg:npm/react-dom@18.3.1",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "description": "React package for working with the DOM",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Meta Platforms, Inc.",
+        "url": [
+          "https://reactjs.org/"
+        ]
       },
-      "purl": "pkg:npm/%40radix-ui/react-accordion@1.2.2",
-      "description": "Radix UI Accordion component",
       "licenses": [
         {
           "license": {
@@ -245,14 +166,279 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
       "externalReferences": [
         {
           "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/accordion"
+          "url": "https://reactjs.org/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
         },
         {
           "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-accordion/-/react-accordion-1.2.2.tgz"
+          "url": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "DOM rendering for React components"
+        },
+        {
+          "name": "criticality",
+          "value": "critical"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/react-router-dom@6.28.0",
+      "purl": "pkg:npm/react-router-dom@6.28.0",
+      "name": "react-router-dom",
+      "version": "6.28.0",
+      "description": "DOM bindings for React Router",
+      "supplier": {
+        "name": "Remix Software Inc.",
+        "url": [
+          "https://reactrouter.com"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://reactrouter.com"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/remix-run/react-router"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Client-side routing for navigation between Enterprise, Mission, Product pages"
+        },
+        {
+          "name": "criticality",
+          "value": "critical"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/@tanstack/react-query@5.64.2",
+      "purl": "pkg:npm/%40tanstack/react-query@5.64.2",
+      "name": "@tanstack/react-query",
+      "version": "5.64.2",
+      "description": "Powerful asynchronous state management for React",
+      "supplier": {
+        "name": "Tanner Linsley",
+        "url": [
+          "https://tanstack.com/query"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://tanstack.com/query"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/TanStack/query"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Data fetching and caching for API calls"
+        },
+        {
+          "name": "criticality",
+          "value": "high"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/@supabase/supabase-js@2.48.1",
+      "purl": "pkg:npm/%40supabase/supabase-js@2.48.1",
+      "name": "@supabase/supabase-js",
+      "version": "2.48.1",
+      "description": "Isomorphic Javascript client for Supabase",
+      "supplier": {
+        "name": "Supabase",
+        "url": [
+          "https://supabase.com"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://supabase.com"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/supabase/supabase-js"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Backend-as-a-Service integration for authentication, database, and edge functions"
+        },
+        {
+          "name": "criticality",
+          "value": "critical"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        },
+        {
+          "name": "security_sensitive",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lucide-react@0.468.0",
+      "purl": "pkg:npm/lucide-react@0.468.0",
+      "name": "lucide-react",
+      "version": "0.468.0",
+      "description": "React implementation of the lucide icon library",
+      "supplier": {
+        "name": "Lucide Contributors",
+        "url": [
+          "https://lucide.dev"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://lucide.dev"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/lucide-icons/lucide"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Icon library used extensively in UI components (X, Bot, FileText, AlertCircle, Shield, etc.)"
+        },
+        {
+          "name": "criticality",
+          "value": "high"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/@radix-ui/react-dialog@1.1.2",
+      "purl": "pkg:npm/%40radix-ui/react-dialog@1.1.2",
+      "name": "@radix-ui/react-dialog",
+      "version": "1.1.2",
+      "description": "A modal dialog component",
+      "supplier": {
+        "name": "Radix UI",
+        "url": [
+          "https://radix-ui.com"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://radix-ui.com"
         },
         {
           "type": "vcs",
@@ -262,11 +448,11 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
       "properties": [
         {
           "name": "purpose",
-          "value": "UI component for collapsible content sections"
+          "value": "Modal dialogs (ComplianceProgressDialog, DocumentationProgressDialog, WelcomeModal)"
         },
         {
           "name": "criticality",
-          "value": "critical"
+          "value": "medium"
         },
         {
           "name": "dependency_type",
@@ -276,144 +462,17 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-alert-dialog@1.1.3",
-      "name": "@radix-ui/react-alert-dialog",
-      "version": "1.1.3",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-alert-dialog@1.1.3",
-      "description": "Radix UI Alert Dialog component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/alert-dialog"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-alert-dialog/-/react-alert-dialog-1.1.3.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Modal dialog component for user confirmations"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-aspect-ratio@1.1.1",
-      "name": "@radix-ui/react-aspect-ratio",
-      "version": "1.1.1",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-aspect-ratio@1.1.1",
-      "description": "Radix UI Aspect Ratio component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/aspect-ratio"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-aspect-ratio/-/react-aspect-ratio-1.1.1.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Maintains aspect ratio for responsive layouts"
-        },
-        {
-          "name": "criticality",
-          "value": "optional"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-avatar@1.1.2",
-      "name": "@radix-ui/react-avatar",
-      "version": "1.1.2",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-avatar@1.1.2",
-      "description": "Radix UI Avatar component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/avatar"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-avatar/-/react-avatar-1.1.2.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "User profile image display component"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-checkbox@1.1.3",
+      "bom-ref": "pkg:npm/@radix-ui/react-checkbox@1.1.2",
+      "purl": "pkg:npm/%40radix-ui/react-checkbox@1.1.2",
       "name": "@radix-ui/react-checkbox",
-      "version": "1.1.3",
+      "version": "1.1.2",
+      "description": "A checkbox component",
       "supplier": {
         "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "url": [
+          "https://radix-ui.com"
+        ]
       },
-      "purl": "pkg:npm/%40radix-ui/react-checkbox@1.1.3",
-      "description": "Radix UI Checkbox component",
       "licenses": [
         {
           "license": {
@@ -421,24 +480,20 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
+      "hashes": [
         {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/checkbox"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-checkbox/-/react-checkbox-1.1.3.tgz"
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
         }
       ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Checkbox input component for forms"
+          "value": "Checkbox inputs for scope and content structure selection in AIDocumentationSpecialistPanel"
         },
         {
           "name": "criticality",
-          "value": "critical"
+          "value": "medium"
         },
         {
           "name": "dependency_type",
@@ -448,15 +503,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-collapsible@1.1.2",
+      "bom-ref": "pkg:npm/@radix-ui/react-collapsible@1.1.1",
+      "purl": "pkg:npm/%40radix-ui/react-collapsible@1.1.1",
       "name": "@radix-ui/react-collapsible",
-      "version": "1.1.2",
+      "version": "1.1.1",
+      "description": "A collapsible component",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Radix UI"
       },
-      "purl": "pkg:npm/%40radix-ui/react-collapsible@1.1.2",
-      "description": "Radix UI Collapsible component",
       "licenses": [
         {
           "license": {
@@ -464,24 +518,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/collapsible"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-collapsible/-/react-collapsible-1.1.2.tgz"
-        }
-      ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Collapsible content sections"
+          "value": "Expandable sections for advanced options in panels"
         },
         {
           "name": "criticality",
-          "value": "critical"
+          "value": "medium"
         },
         {
           "name": "dependency_type",
@@ -491,187 +535,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-dialog@1.1.3",
-      "name": "@radix-ui/react-dialog",
-      "version": "1.1.3",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-dialog@1.1.3",
-      "description": "Radix UI Dialog component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/dialog"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-dialog/-/react-dialog-1.1.3.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Modal dialog component for overlays"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-dropdown-menu@2.1.3",
-      "name": "@radix-ui/react-dropdown-menu",
-      "version": "2.1.3",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-dropdown-menu@2.1.3",
-      "description": "Radix UI Dropdown Menu component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/dropdown-menu"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.1.3.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Dropdown menu component for navigation"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-label@2.1.1",
-      "name": "@radix-ui/react-label",
-      "version": "2.1.1",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-label@2.1.1",
-      "description": "Radix UI Label component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/label"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-label/-/react-label-2.1.1.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Accessible label component for form inputs"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-popover@1.1.3",
-      "name": "@radix-ui/react-popover",
-      "version": "1.1.3",
-      "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
-      },
-      "purl": "pkg:npm/%40radix-ui/react-popover@1.1.3",
-      "description": "Radix UI Popover component",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/popover"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-popover/-/react-popover-1.1.3.tgz"
-        }
-      ],
-      "properties": [
-        {
-          "name": "purpose",
-          "value": "Popover component for contextual information"
-        },
-        {
-          "name": "criticality",
-          "value": "critical"
-        },
-        {
-          "name": "dependency_type",
-          "value": "direct"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-progress@1.1.1",
+      "bom-ref": "pkg:npm/@radix-ui/react-progress@1.1.0",
+      "purl": "pkg:npm/%40radix-ui/react-progress@1.1.0",
       "name": "@radix-ui/react-progress",
-      "version": "1.1.1",
+      "version": "1.1.0",
+      "description": "A progress bar component",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Radix UI"
       },
-      "purl": "pkg:npm/%40radix-ui/react-progress@1.1.1",
-      "description": "Radix UI Progress component",
       "licenses": [
         {
           "license": {
@@ -679,24 +550,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/progress"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-progress/-/react-progress-1.1.1.tgz"
-        }
-      ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Progress bar component for loading states"
+          "value": "Progress indicators for compliance and documentation analysis"
         },
         {
           "name": "criticality",
-          "value": "critical"
+          "value": "low"
         },
         {
           "name": "dependency_type",
@@ -706,15 +567,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-radio-group@1.2.2",
-      "name": "@radix-ui/react-radio-group",
+      "bom-ref": "pkg:npm/@radix-ui/react-toast@1.2.2",
+      "purl": "pkg:npm/%40radix-ui/react-toast@1.2.2",
+      "name": "@radix-ui/react-toast",
       "version": "1.2.2",
+      "description": "A toast notification component",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Radix UI"
       },
-      "purl": "pkg:npm/%40radix-ui/react-radio-group@1.2.2",
-      "description": "Radix UI Radio Group component",
       "licenses": [
         {
           "license": {
@@ -722,20 +582,214 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
+      "properties": [
         {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/radio-group"
+          "name": "purpose",
+          "value": "Toast notifications for user feedback"
         },
         {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-radio-group/-/react-radio-group-1.2.2.tgz"
+          "name": "criticality",
+          "value": "medium"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/@radix-ui/react-label@2.1.0",
+      "purl": "pkg:npm/%40radix-ui/react-label@2.1.0",
+      "name": "@radix-ui/react-label",
+      "version": "2.1.0",
+      "description": "A label component",
+      "supplier": {
+        "name": "Radix UI"
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Radio button group for mutually exclusive selections"
+          "value": "Form labels for input fields"
+        },
+        {
+          "name": "criticality",
+          "value": "low"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/tailwindcss@3.4.17",
+      "purl": "pkg:npm/tailwindcss@3.4.17",
+      "name": "tailwindcss",
+      "version": "3.4.17",
+      "description": "A utility-first CSS framework",
+      "supplier": {
+        "name": "Tailwind Labs",
+        "url": [
+          "https://tailwindcss.com"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://tailwindcss.com"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/tailwindlabs/tailwindcss"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "CSS framework for styling throughout the application"
+        },
+        {
+          "name": "criticality",
+          "value": "high"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/autoprefixer@10.4.20",
+      "purl": "pkg:npm/autoprefixer@10.4.20",
+      "name": "autoprefixer",
+      "version": "10.4.20",
+      "description": "PostCSS plugin to parse CSS and add vendor prefixes",
+      "supplier": {
+        "name": "Andrey Sitnik",
+        "url": [
+          "https://github.com/postcss/autoprefixer"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "CSS vendor prefix automation for cross-browser compatibility"
+        },
+        {
+          "name": "criticality",
+          "value": "medium"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/postcss@8.4.49",
+      "purl": "pkg:npm/postcss@8.4.49",
+      "name": "postcss",
+      "version": "8.4.49",
+      "description": "Tool for transforming styles with JS plugins",
+      "supplier": {
+        "name": "Andrey Sitnik",
+        "url": [
+          "https://postcss.org"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "CSS processing pipeline for Tailwind and autoprefixer"
+        },
+        {
+          "name": "criticality",
+          "value": "medium"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/typescript@5.6.3",
+      "purl": "pkg:npm/typescript@5.6.3",
+      "name": "typescript",
+      "version": "5.6.3",
+      "description": "TypeScript is a language for application scale JavaScript development",
+      "supplier": {
+        "name": "Microsoft Corporation",
+        "url": [
+          "https://www.typescriptlang.org"
+        ]
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://www.typescriptlang.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/microsoft/TypeScript"
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Type checking and compilation for TypeScript source code"
         },
         {
           "name": "criticality",
@@ -749,15 +803,17 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-select@2.1.3",
-      "name": "@radix-ui/react-select",
-      "version": "2.1.3",
+      "bom-ref": "pkg:npm/vite@6.0.7",
+      "purl": "pkg:npm/vite@6.0.7",
+      "name": "vite",
+      "version": "6.0.7",
+      "description": "Native-ESM powered web dev build tool",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Evan You",
+        "url": [
+          "https://vitejs.dev"
+        ]
       },
-      "purl": "pkg:npm/%40radix-ui/react-select@2.1.3",
-      "description": "Radix UI Select component",
       "licenses": [
         {
           "license": {
@@ -765,20 +821,26 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "NOASSERTION"
+        }
+      ],
       "externalReferences": [
         {
           "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/select"
+          "url": "https://vitejs.dev"
         },
         {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-select/-/react-select-2.1.3.tgz"
+          "type": "vcs",
+          "url": "https://github.com/vitejs/vite"
         }
       ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Select dropdown component for form inputs"
+          "value": "Build tool and development server"
         },
         {
           "name": "criticality",
@@ -792,15 +854,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-separator@1.1.1",
-      "name": "@radix-ui/react-separator",
-      "version": "1.1.1",
+      "bom-ref": "pkg:npm/@vitejs/plugin-react@4.3.4",
+      "purl": "pkg:npm/%40vitejs/plugin-react@4.3.4",
+      "name": "@vitejs/plugin-react",
+      "version": "4.3.4",
+      "description": "The all-in-one Vite plugin for React projects",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Vite Team"
       },
-      "purl": "pkg:npm/%40radix-ui/react-separator@1.1.1",
-      "description": "Radix UI Separator component",
       "licenses": [
         {
           "license": {
@@ -808,24 +869,14 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/separator"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-separator/-/react-separator-1.1.1.tgz"
-        }
-      ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Visual separator for UI sections"
+          "value": "React Fast Refresh and JSX transformation for Vite"
         },
         {
           "name": "criticality",
-          "value": "optional"
+          "value": "high"
         },
         {
           "name": "dependency_type",
@@ -835,15 +886,17 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-slider@1.2.2",
-      "name": "@radix-ui/react-slider",
-      "version": "1.2.2",
+      "bom-ref": "pkg:npm/eslint@9.17.0",
+      "purl": "pkg:npm/eslint@9.17.0",
+      "name": "eslint",
+      "version": "9.17.0",
+      "description": "An AST-based pattern checker for JavaScript",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "OpenJS Foundation",
+        "url": [
+          "https://eslint.org"
+        ]
       },
-      "purl": "pkg:npm/%40radix-ui/react-slider@1.2.2",
-      "description": "Radix UI Slider component",
       "licenses": [
         {
           "license": {
@@ -851,42 +904,35 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/components/slider"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-slider/-/react-slider-1.2.2.tgz"
-        }
-      ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Slider input component for range values"
+          "value": "JavaScript/TypeScript linting"
         },
         {
           "name": "criticality",
-          "value": "optional"
+          "value": "low"
         },
         {
           "name": "dependency_type",
           "value": "direct"
+        },
+        {
+          "name": "scope",
+          "value": "development"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-slot@1.1.1",
-      "name": "@radix-ui/react-slot",
-      "version": "1.1.1",
+      "bom-ref": "pkg:npm/typescript-eslint@8.18.1",
+      "purl": "pkg:npm/typescript-eslint@8.18.1",
+      "name": "typescript-eslint",
+      "version": "8.18.1",
+      "description": "Monorepo for all the tooling which enables ESLint to support TypeScript",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "TypeScript ESLint"
       },
-      "purl": "pkg:npm/%40radix-ui/react-slot@1.1.1",
-      "description": "Radix UI Slot component",
       "licenses": [
         {
           "license": {
@@ -894,38 +940,107 @@ Based on my analysis of the source code, I'll now generate the comprehensive SBO
           }
         }
       ],
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://radix-ui.com/primitives/docs/utilities/slot"
-        },
-        {
-          "type": "distribution",
-          "url": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.1.1.tgz"
-        }
-      ],
       "properties": [
         {
           "name": "purpose",
-          "value": "Utility for merging props with component children"
+          "value": "TypeScript-specific linting rules and parser"
         },
         {
           "name": "criticality",
-          "value": "critical"
+          "value": "low"
         },
         {
           "name": "dependency_type",
           "value": "direct"
+        },
+        {
+          "name": "scope",
+          "value": "development"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40radix-ui/react-switch@1.1.2",
-      "name": "@radix-ui/react-switch",
-      "version": "1.1.2",
+      "bom-ref": "pkg:npm/eslint-plugin-react-hooks@5.1.0",
+      "purl": "pkg:npm/eslint-plugin-react-hooks@5.1.0",
+      "name": "eslint-plugin-react-hooks",
+      "version": "5.1.0",
+      "description": "ESLint rules for React Hooks",
       "supplier": {
-        "name": "Radix UI",
-        "url": "https://radix-ui.com"
+        "name": "Meta Platforms, Inc."
       },
-      "purl
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Enforces React Hooks rules"
+        },
+        {
+          "name": "criticality",
+          "value": "low"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        },
+        {
+          "name": "scope",
+          "value": "development"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/eslint-plugin-react-refresh@0.4.16",
+      "purl": "pkg:npm/eslint-plugin-react-refresh@0.4.16",
+      "name": "eslint-plugin-react-refresh",
+      "version": "0.4.16",
+      "description": "Validate that your components can safely be updated with Fast Refresh",
+      "supplier": {
+        "name": "Vite Team"
+      },
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "purpose",
+          "value": "Ensures React components are compatible with Fast Refresh"
+        },
+        {
+          "name": "criticality",
+          "value": "low"
+        },
+        {
+          "name": "dependency_type",
+          "value": "direct"
+        },
+        {
+          "name": "scope",
+          "value": "development"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/globals@15.13.0",
+      "purl": "pkg:npm/globals@15.13.0",
+      "name": "globals",
+      "version": "15.13.0",
+      "description": "Global identifiers from different JavaScript environments",
+      "supplier": {
+        "name": "Sindre Sorhus"
+      },
+      "licenses": [
+        {
+          "license
