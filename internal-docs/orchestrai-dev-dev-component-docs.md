@@ -1,55 +1,96 @@
-# orchestrai-dev - Component Documentation
+# OrchestrAI Component Documentation
 
 ## Overview
 
-This document provides comprehensive documentation for the major React components in the orchestrai-dev project. The application is built with React, TypeScript, and uses modern UI libraries including Radix UI components, TanStack Query for data fetching, and Supabase for backend services. The components follow a modular architecture with clear separation of concerns between presentation, business logic, and data management.
+This document provides comprehensive technical documentation for the major React components in the OrchestrAI project. OrchestrAI is a workspace-based AI development platform that orchestrates code analysis, testing, compliance, and documentation workflows. The components documented here form the core user interface, handling authentication, workspace management, and AI-powered development operations.
+
+The component architecture follows a modern React pattern using:
+- **React 18** with TypeScript for type safety
+- **Context API** for state management (`AuthContext`, `WorkspaceContext`)
+- **React Query** (`@tanstack/react-query`) for server state management
+- **React Router v6** for client-side routing
+- **Shadcn/ui** components built on Radix UI primitives
+- **Tailwind CSS** for styling
+
+---
 
 ## Implementation
 
-### Core Application Structure
+### Core Application Component
 
-The application is structured around a central `App.tsx` component that provides routing, context providers, and global UI elements. The implementation can be found in `src/App.tsx`.
+#### File: `src/App.tsx`
 
-**Key Features:**
-- **Routing:** Uses `react-router-dom` with `BrowserRouter` for client-side routing
-- **Context Providers:** Wraps the application with `AuthProvider` and `WorkspaceProvider` for global state management
-- **Query Client:** Implements TanStack Query with a `QueryClient` instance for data fetching and caching
-- **Toast Notifications:** Integrates both standard `Toaster` and `Sonner` for user notifications
-- **Welcome Modal:** Displays a welcome modal for new users controlled by `useWelcomeModal` hook
+**Purpose**: Root application component that sets up routing, authentication, workspace context, and global providers.
 
-**Component Structure:**
+**Key Features**:
+- **Query Client Setup**: Configures React Query for data fetching and caching
+- **Context Providers**: Wraps application in `AuthProvider` and `WorkspaceProvider`
+- **Toast Notifications**: Integrates multiple toast systems (Shadcn Toaster and Sonner)
+- **Welcome Modal**: Conditionally displays onboarding modal using `useWelcomeModal` hook
+- **Route Configuration**: Defines all application routes including product features, management, and marketing pages
+
+**Route Structure**:
 ```tsx
-// From src/App.tsx
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AuthProvider>
-            <WorkspaceProvider>
-              <AppContent />
-            </WorkspaceProvider>
-          </AuthProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
+<Routes>
+  {/* Landing & Marketing */}
+  <Route path="/" element={<Index />} />
+  <Route path="/enterprise" element={<Enterprise />} />
+  <Route path="/pricing" element={<Pricing />} />
+  
+  {/* Product Features */}
+  <Route path="/product" element={<Product />} />
+  <Route path="/product/code" element={<ProductCode />} />
+  <Route path="/product/code-connected" element={<ProductCodeConnected />} />
+  <Route path="/product/testing" element={<ProductTesting />} />
+  <Route path="/product/code-quality" element={<ProductCodeQuality />} />
+  <Route path="/product/workflow" element={<ProductWorkflow />} />
+  <Route path="/product/documentation" element={<ProductDocumentation />} />
+  <Route path="/product/compliance" element={<ProductCompliance />} />
+  
+  {/* Management */}
+  <Route path="/workspace-management" element={<WorkspaceManagement />} />
+  <Route path="/account" element={<Account />} />
+  <Route path="/cost-analysis/:workspaceId" element={<CostAnalysis />} />
+  
+  {/* OAuth & Legal */}
+  <Route path="/github-success" element={<GitHubSuccess />} />
+  <Route path="/github-error" element={<GitHubError />} />
+  <Route path="/privacy" element={<PrivacyPolicy />} />
+  <Route path="/terms" element={<TermsOfService />} />
+  
+  {/* 404 */}
+  <Route path="*" element={<NotFound />} />
+</Routes>
 ```
 
-### AI-Powered Component Panels
+**Provider Hierarchy**:
+```tsx
+QueryClientProvider
+  ├─ TooltipProvider
+  │   ├─ Toaster (Shadcn)
+  │   ├─ Sonner
+  │   └─ BrowserRouter
+  │       └─ AuthProvider
+  │           └─ WorkspaceProvider
+  │               └─ AppContent (Routes + WelcomeModal)
+```
 
-The application includes specialized AI-powered panels for different engineering tasks. These panels follow a consistent pattern and are located in `src/components/`.
+**State Management**:
+- Uses `useWelcomeModal()` hook to control first-time user onboarding
+- Welcome modal state persisted and conditionally shown on mount
+- `handleWelcomeComplete` callback closes modal and updates user preferences
 
-#### AIComplianceAnalystPanel
+---
 
-**Location:** `src/components/AIComplianceAnalystPanel.tsx`
+### AI Feature Panels
 
-**Purpose:** Provides an interface for running AI-powered compliance analysis on GitHub repositories.
+#### 1. AI Compliance Analyst Panel
 
-**Props Interface:**
+**File**: `src/components/AIComplianceAnalystPanel.tsx`
+
+**Purpose**: Provides interface for running AI-powered compliance analysis on repositories, checking for data privacy, security, access control, and regulatory requirements.
+
+**Props Interface**:
 ```typescript
 interface AIComplianceAnalystPanelProps {
   repository: Repository;
@@ -59,84 +100,127 @@ interface AIComplianceAnalystPanelProps {
 }
 ```
 
-**Key Implementation Details:**
+**Key State Variables** (lines 23-34):
+```typescript
+const [instructions, setInstructions] = useState("Perform a comprehensive compliance analysis...");
+const [isStarting, setIsStarting] = useState(false);
+const [isComplianceAllowed, setIsComplianceAllowed] = useState(true);
+const [loadingWorkflowConfig, setLoadingWorkflowConfig] = useState(false);
+const [hasError, setHasError] = useState(false);
+const [analysisInProgress, setAnalysisInProgress] = useState(false);
+const [analysisProgress, setAnalysisProgress] = useState(0);
+const [analysisComplete, setAnalysisComplete] = useState(false);
+const [showProgressDialog, setShowProgressDialog] = useState(false);
+```
 
-1. **Permission Checking:**
-   - Uses `useWorkspaceFunctionPermissions('Compliance')` hook to verify user permissions
-   - Distinguishes between free plan users and paid plan permission restrictions
-   - Checks workflow configuration to ensure compliance analysis is enabled
+**Permission Checking** (lines 38-52):
+- Integrates `useWorkspaceFunctionPermissions('Compliance')` hook
+- Checks if user has permission on paid plans (`hasPermission`, `isFreePlan`)
+- Shows permission restriction alert if user lacks access
+- Loads workflow configuration to verify compliance is enabled
 
-2. **Workflow Configuration:**
-   ```typescript
-   const checkWorkflowConfiguration = async () => {
-     if (!currentWorkspace) return;
-     
-     const config = await workflowService.getWorkflowConfiguration(
-       currentWorkspace.id, 
-       'Compliance'
-     );
-     
-     const isAllowed = config && (
-       config.enablement === 'analysis_only' || 
-       config.enablement === 'analysis_and_fix'
-     );
-     setIsComplianceAllowed(isAllowed);
-   };
-   ```
+**Workflow Configuration Check** (lines 54-71):
+```typescript
+const checkWorkflowConfiguration = async () => {
+  if (!currentWorkspace) return;
 
-3. **Analysis Execution:**
-   - Calls the `code-compliance-analyzer` Supabase edge function
-   - Passes repository metadata, workspace ID, and user instructions
-   - Returns analysis ID upon successful execution
+  setLoadingWorkflowConfig(true);
+  try {
+    const config = await workflowService.getWorkflowConfiguration(
+      currentWorkspace.id, 
+      'Compliance'
+    );
+    
+    // Compliance disabled by default; check enablement
+    const isAllowed = config && (
+      config.enablement === 'analysis_only' || 
+      config.enablement === 'analysis_and_fix'
+    );
+    setIsComplianceAllowed(isAllowed);
+  } catch (error) {
+    console.error('Error checking workflow configuration:', error);
+    setIsComplianceAllowed(false);
+  } finally {
+    setLoadingWorkflowConfig(false);
+  }
+};
+```
 
-4. **State Management:**
-   - `isStarting`: Controls button loading state
-   - `isComplianceAllowed`: Tracks if compliance is enabled in workspace settings
-   - `analysisInProgress`: Monitors ongoing analysis
-   - `analysisComplete`: Tracks completion status
-   - `showProgressDialog`: Controls visibility of progress dialog
+**Analysis Execution** (lines 73-101):
+```typescript
+const handleStartAnalysis = async (): Promise<{
+  success: boolean; 
+  analysisId?: string; 
+  error?: string 
+}> => {
+  try {
+    // Invokes Supabase edge function
+    const { data, error } = await supabase.functions.invoke(
+      'code-compliance-analyzer',
+      {
+        body: {
+          repository_id: repository.id,
+          repository_name: repository.name,
+          repository_full_name: repository.full_name,
+          repository_url: repository.html_url,
+          workspaceId: currentWorkspace.id,
+          instructions: instructions || "Perform a comprehensive compliance analysis..."
+        }
+      }
+    );
 
-**Usage Example:**
-```tsx
-<AIComplianceAnalystPanel
-  repository={{
-    id: 123,
-    name: "my-repo",
-    full_name: "owner/my-repo",
-    html_url: "https://github.com/owner/my-repo",
-    private: false
-  }}
-  isOpen={isPanelOpen}
-  onClose={() => setIsPanelOpen(false)}
-  onAnalysisComplete={(analysisId) => {
-    console.log('Analysis completed:', analysisId);
-  }}
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    if (data?.success && data?.analysis_id) {
+      return { success: true, analysisId: data.analysis_id };
+    } else {
+      return { success: false, error: data?.error || 'Analysis failed' };
+    }
+  } catch (err) {
+    return { 
+      success: false, 
+      error: err instanceof Error ? err.message : 'Unknown error occurred' 
+    };
+  }
+};
+```
+
+**UI Components**:
+- **Permission Restriction Alert** (lines 175-182): Shows red alert if user lacks permission
+- **Compliance Disabled Card** (lines 184-204): Displays warning and link to Workflow settings if compliance not enabled
+- **Analysis Progress Card** (lines 206-228): Shows live progress bar during analysis
+- **Analysis Complete Card** (lines 230-252): Displays success message with "View Results" button
+- **Error Card** (lines 254-272): Shows error message with retry option
+- **Instructions TextArea** (lines 274-283): Allows custom instructions for analysis
+- **Repository Info Card** (lines 285-302): Displays repository metadata
+
+**Progress Dialog Integration** (lines 339-348):
+```typescript
+<ComplianceProgressDialog
+  isOpen={showProgressDialog}
+  onClose={() => setShowProgressDialog(false)}
+  repositoryName={repository.name}
+  onComplete={handleProgressComplete}
+  onStartAnalysis={handleStartAnalysis}
 />
 ```
 
-**UI Components Used:**
-- `Button` from `@/components/ui/button`
-- `Card`, `CardContent`, `CardHeader`, `CardTitle` from `@/components/ui/card`
-- `Alert`, `AlertDescription` from `@/components/ui/alert`
-- `Progress` from `@/components/ui/progress`
-- `Textarea` from `@/components/ui/textarea`
-- `Label` from `@/components/ui/label`
+**Start Analysis Button** (lines 312-337):
+- Disabled if compliance not allowed, no permission, or already in progress
+- Shows different text states: "Checking permissions...", "No Permission", "Starting...", "Analyzing...", "Start Analysis"
+- Triggers `startAnalysis()` which opens `ComplianceProgressDialog`
 
-**Key Features:**
-- Fixed position side panel (right: 0, width: 384px)
-- Permission-based access control with visual indicators
-- Integration with ComplianceProgressDialog for real-time progress tracking
-- Workflow configuration validation
-- Toast notifications for user feedback
-- Repository information display
+---
 
-#### AIDocumentationSpecialistPanel
+#### 2. AI Documentation Specialist Panel
 
-**Location:** `src/components/AIDocumentationSpecialistPanel.tsx`
+**File**: `src/components/AIDocumentationSpecialistPanel.tsx`
 
-**Purpose:** Provides an interface for AI-powered documentation generation, supporting both migration of existing documentation and creation of new documentation.
+**Purpose**: Manages AI-powered documentation generation, supporting both migration of existing documentation and creation from scratch. Allows granular control over documentation scope, content structure, and repository selection.
 
-**Props Interface:**
+**Props Interface** (lines 11-19):
 ```typescript
 interface AIDocumentationSpecialistPanelProps {
   isOpen: boolean;
@@ -148,298 +232,614 @@ interface AIDocumentationSpecialistPanelProps {
 }
 ```
 
-**Key Implementation Details:**
+**Key State Variables** (lines 29-48):
+```typescript
+// Core state
+const [instructions, setInstructions] = useState(
+  action === 'migrate' 
+    ? "Analyze existing documentation and restructure..."
+    : "Create comprehensive documentation from product analysis."
+);
+const [isStarting, setIsStarting] = useState(false);
+const [loadingWorkflowConfig, setLoadingWorkflowConfig] = useState(false);
+const [showProgressDialog, setShowProgressDialog] = useState(false);
+const [docConfig, setDocConfig] = useState<any>(null);
 
-1. **Documentation Scope Selection:**
-   ```typescript
-   const [selectedScopes, setSelectedScopes] = useState({
-     userFacing: true,
-     internal: true,
-     sbom: true,
-   });
-   ```
+// Scope selection
+const [isAdvancedExpanded, setIsAdvancedExpanded] = useState(false);
+const [selectedScopes, setSelectedScopes] = useState({
+  userFacing: true,
+  internal: true,
+  sbom: true,
+});
 
-2. **Content Structure Customization:**
-   ```typescript
-   const [selectedContentStructure, setSelectedContentStructure] = useState({
-     intro: true,
-     tutorials: true,
-     howTo: false,
-     reference: true,
-     concepts: false,
-     troubleshooting: false,
-     releaseNotes: false,
-   });
-   ```
+// Content structure selection
+const [selectedContentStructure, setSelectedContentStructure] = useState({
+  intro: true,
+  tutorials: true,
+  howTo: false,
+  reference: true,
+  concepts: false,
+  troubleshooting: false,
+  releaseNotes: false,
+});
 
-3. **Repository Scope Management:**
-   - Loads OrchestrAI-enabled repositories from the workspace
-   - Supports full repository analysis or specific commit documentation
-   - Implements commit selection UI with GitHub API integration
+// Repository selection
+const [selectedRepositories, setSelectedRepositories] = useState<string[]>([]);
+const [availableRepositories, setAvailableRepositories] = useState<any[]>([]);
+const [isRepositorySelectorExpanded, setIsRepositorySelectorExpanded] = useState(false);
+const [repositoryScopes, setRepositoryScopes] = useState<Record<string, {
+  scope: 'full' | 'commit';
+  commitSha?: string;
+  commitMessage?: string;
+}>>({});
+const [repositoryCommits, setRepositoryCommits] = useState<Record<string, Array<{
+  sha: string;
+  message: string;
+  date: string;
+}>>>({});
+const [loadingCommits, setLoadingCommits] = useState<Record<string, boolean>>({});
+```
 
-   ```typescript
-   const [repositoryScopes, setRepositoryScopes] = useState<
-     Record<string, { 
-       scope: 'full' | 'commit'; 
-       commitSha?: string; 
-       commitMessage?: string 
-     }>
-   >({});
-   ```
+**Resume Execution from Checkpoint** (lines 50-101):
+```typescript
+useEffect(() => {
+  if (isOpen && currentWorkspace) {
+    loadDocumentationConfig();
+    loadEnabledRepositories();
+    
+    // Load checkpoint data if resuming
+    if (resumeExecution?.hasCheckpoints) {
+      loadCheckpointData();
+    }
+  }
+}, [isOpen, currentWorkspace, resumeExecution]);
 
-4. **Checkpoint/Resume Support:**
-   - Loads previous execution state from `function_checkpoints` table
-   - Restores user selections, instructions, and repository configurations
-   - Indicated via `resumeExecution` prop with checkpoint data
+const loadCheckpointData = async () => {
+  if (!resumeExecution?.id) return;
+  
+  try {
+    console.log('[RESUME] Loading checkpoint data for execution:', resumeExecution.id);
+    const { data: checkpoint, error } = await supabase
+      .from('function_checkpoints')
+      .select('checkpoint_data')
+      .eq('execution_id', resumeExecution.id)
+      .eq('execution_type', 'documentation')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
 
-5. **Configuration Loading:**
-   ```typescript
-   const loadDocumentationConfig = async () => {
-     const configs = await workflowService.getWorkflowConfigurations(
-       currentWorkspace.id
-     );
-     const config = configs.find(c => c.function_name === 'Documentation');
-     setDocConfig(config);
-   };
-   ```
+    if (error) throw error;
+    
+    if (checkpoint?.checkpoint_data) {
+      const checkpointData = checkpoint.checkpoint_data as any;
+      
+      // Restore configuration from checkpoint
+      if (checkpointData.scopesToGenerate) {
+        const scopes = checkpointData.scopesToGenerate;
+        setSelectedScopes({
+          userFacing: scopes.includes('user_facing'),
+          internal: scopes.includes('internal_developer'),
+          sbom: scopes.includes('sbom'),
+        });
+      }
+      
+      if (checkpointData.userInstructions) {
+        setInstructions(checkpointData.userInstructions);
+      }
+      
+      if (checkpointData.sourceRepositories) {
+        const repos = checkpointData.sourceRepositories;
+        setSelectedRepositories(repos.map((r: any) => r.fullName));
+        
+        const scopes: Record<string, { scope: 'full' | 'commit'; commitSha?: string }> = {};
+        repos.forEach((repo: any) => {
+          scopes[repo.fullName] = {
+            scope: repo.scope,
+            commitSha: repo.commitSha
+          };
+        });
+        setRepositoryScopes(scopes);
+      }
+      
+      toast({
+        title: "Configuration Restored",
+        description: "Previous execution settings have been loaded",
+      });
+    }
+  } catch (error) {
+    console.error('[RESUME] Error loading checkpoint:', error);
+  }
+};
+```
 
-**Usage Example:**
+**Configuration Loading** (lines 103-134):
+```typescript
+const loadDocumentationConfig = async () => {
+  if (!currentWorkspace) return;
+  
+  setLoadingWorkflowConfig(true);
+  try {
+    const configs = await workflowService.getWorkflowConfigurations(currentWorkspace.id);
+    const config = configs.find(c => c.function_name === 'Documentation');
+    
+    setDocConfig(config);
+    
+    // Only set defaults if not resuming
+    if (!resumeExecution) {
+      // Enable all scopes by default
+      setSelectedScopes({
+        userFacing: true,
+        internal: true,
+        sbom: true,
+      });
+      
+      // Initialize content structure from config
+      if (config?.configuration?.contentStructure) {
+        const structure = config.configuration.contentStructure;
+        setSelectedContentStructure({
+          intro: structure.intro ?? true,
+          tutorials: structure.tutorials ?? true,
+          howTo: structure.howTo ?? false,
+          reference: structure.reference ?? true,
+          concepts: structure.concepts ?? false,
+          troubleshooting: structure.troubleshooting ?? false,
+          releaseNotes: structure.releaseNotes ?? false,
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error loading documentation config:', error);
+  } finally {
+    setLoadingWorkflowConfig(false);
+  }
+};
+```
+
+**Repository Selection** (lines 136-164):
+```typescript
+const loadEnabledRepositories = async () => {
+  if (!currentWorkspace) return;
+
+  try {
+    const { data: repos, error } = await supabase
+      .from('repository_settings')
+      .select(`
+        id,
+        repo_id,
+        name,
+        full_name,
+        orchestrai_enabled,
+        git_connection_id,
+        git_connections!inner(workspace_id)
+      `)
+      .eq('git_connections.workspace_id', currentWorkspace.id)
+      .eq('orchestrai_enabled', true);
+
+    if (error) throw error;
+
+    setAvailableRepositories(repos || []);
+    
+    // Auto-select all repositories by default and set to full scope
+    if (repos && repos.length > 0) {
+      const repoNames = repos.map(r => r.full_name);
+      setSelectedRepositories(repoNames);
+      
+      const initialScopes: Record<string, { scope: 'full' | 'commit' }> = {};
+      repoNames.forEach(name => {
+        initialScopes[name] = { scope: 'full' };
+      });
+      setRepositoryScopes(initialScopes);
+    }
+  } catch (error) {
+    console.error('Error loading enabled repositories:', error);
+  }
+};
+```
+
+**Commit Loading for Repositories** (lines 166-225):
+```typescript
+const loadCommitsForRepository = async (repoFullName: string) => {
+  if (!currentWorkspace || repositoryCommits[repoFullName]) return;
+
+  setLoadingCommits(prev => ({ ...prev, [repoFullName]: true }));
+
+  try {
+    const repo = availableRepositories.find(r => r.full_name === repoFullName);
+    if (!repo) return;
+
+    // Fetch connection with access token
+    const { data: connection, error: connError } = await supabase
+      .from('git_connections')
+      .select('access_token, vault_secret_id')
+      .eq('id', repo.git_connection_id)
+      .single();
+
+    if (connError) throw connError;
+
+    let accessToken = connection.access_token;
+    
+    // Retrieve from vault if needed
+    if (!accessToken && connection.vault_secret_id) {
+      const { data: vaultData } = await supabase.functions.invoke('vault-retrieve', {
+        body: { secret_id: connection.vault_secret_id }
+      });
+      accessToken = vaultData?.secret_value;
+    }
+
+    if (!accessToken) throw new Error('No access token available');
+
+    // Fetch commits from GitHub API
+    const response = await fetch(
+      `https://api.github.com/repos/${repoFullName}/commits?per_page=20`,
+      {
+        headers: {
+          'Authorization': `token ${accessToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+        }
+      }
+    );
+
+    if (!response.ok) throw new Error('Failed to fetch commits');
+
+    const commits = await response.json();
+    const formattedCommits = commits.map((commit: any) => ({
+      sha: commit.sha,
+      message: commit.commit.message.split('\n')[0], // First line only
+      date: new Date(commit.commit.author.date).toLocaleDateString()
+    }));
+
+    setRepositoryCommits(prev => ({ ...prev, [repoFullName]: formattedCommits }));
+  } catch (error) {
+    console.error('Error loading commits:', error);
+    toast({
+      title: "Failed to Load Commits",
+      description: "Could not fetch commits for this repository",
+      variant: "destructive",
+    });
+  } finally {
+    setLoadingCommits(prev => ({ ...prev, [repoFullName]: false }));
+  }
+};
+```
+
+**UI Structure** (lines 300+):
+
+1. **Resume Indicator** (lines 306-315): Shows green alert when resuming from checkpoint
+2. **Action Type Card** (lines 317-332): Displays whether migrating or creating new documentation
+3. **Migration Warning** (lines 334-342): Alert shown if migration selected but no documentation URL configured
+4. **Configuration Required Card** (lines 344-364): Warning with link to Workflow settings if repository/folder not configured
+5. **Instructions TextArea** (lines 366-380): Priority instructions that override configured defaults
+6. **Advanced Options - Scope & Content** (lines 382-528):
+   - Collapsible section with `Collapsible` component
+   - **User Facing Documentation** checkbox with nested content structure options:
+     - `/intro` (positioned Quickstart)
+     - `/tutorials` (end-to-end, outcome-driven)
+     - `/how-to` (task-centric, short)
+     - `/reference` (API/SDK; autogenerated)
+     - `/concepts` (architecture, models, quotas)
+     - `/troubleshooting` (error catalog, logs)
+     - `/release-notes` (automated)
+   - **Internal Developer Documentation** checkbox
+   - **SBOM** (Software Bill of Materials) checkbox
+
+7. **Code Scope Selection** (lines 530-686):
+   - Collapsible repository selector
+   - Lists all OrchestrAI-enabled repositories
+   - For each repository:
+     - Checkbox to include/exclude
+     - Radio buttons for "Whole Repo" vs "Specific Commit"
+     - If "Specific Commit" selected, loads and displays last 20 commits
+     - Commit selection UI with SHA, message, and date
+
+8. **Configuration Info Card** (lines 688-720): Shows configured repository, folder, and content structure
+9. **How it Works Card** (lines 722-736): Explains the documentation generation process
+
+**Start Button Logic** (lines 738-767):
+```typescript
+<Button
+  onClick={startDocumentation}
+  disabled={
+    !canStartDocumentation || 
+    !hasAtLeastOneScope || 
+    (action === 'migrate' && !hasDocumentationUrl) || 
+    isStarting || 
+    loadingWorkflowConfig
+  }
+>
+  {loadingWorkflowConfig ? "Loading configuration..." :
+   !canStartDocumentation ? "Configuration Required" :
+   !hasAtLeastOneScope ? "Select at least one scope" :
+   action === 'migrate' && !hasDocumentationUrl ? "Documentation URL Required" :
+   isStarting ? <><Spinner />Starting...</> :
+   <><Play />Generate Documentation</>
+  }
+</Button>
+```
+
+**Progress Dialog Integration** (lines 769-783):
+```typescript
+<DocumentationProgressDialog
+  isOpen={showProgressDialog}
+  onClose={() => setShowProgressDialog(false)}
+  action={action}
+  docConfig={docConfig}
+  repositoryName={docConfig?.configuration?.repo?.name || null}
+  instructions={instructions}
+  selectedScopes={selectedScopes}
+  selectedContentStructure={selectedContentStructure}
+  selectedRepositories={selectedRepositories}
+  repositoryScopes={repositoryScopes}
+  resumeExecutionId={resumeExecution?.id || null}
+  onComplete={handleProgressComplete}
+/>
+```
+
+---
+
+## Usage
+
+### Using the App Component
+
+The `App` component is the entry point and requires no props. It's mounted in `src/main.tsx`:
+
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+The component automatically:
+1. Sets up React Query client for data fetching
+2. Initializes authentication context from Supabase session
+3. Loads current workspace from context
+4. Shows welcome modal on first visit
+5. Handles all routing based on URL
+
+---
+
+### Using AI Compliance Analyst Panel
+
+**Import**:
+```typescript
+import { AIComplianceAnalystPanel } from '@/components/AIComplianceAnalystPanel';
+```
+
+**Basic Usage**:
+```tsx
+import { useState } from 'react';
+import { AIComplianceAnalystPanel } from '@/components/AIComplianceAnalystPanel';
+import type { Repository } from '@/types/github';
+
+function RepositoryList() {
+  const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  const handleAnalysisComplete = (analysisId: string) => {
+    console.log('Analysis completed:', analysisId);
+    // Navigate to results page
+    window.location.href = `/product/compliance/results?analysisId=${analysisId}`;
+  };
+
+  return (
+    <>
+      <button onClick={() => {
+        setSelectedRepo(repository);
+        setIsPanelOpen(true);
+      }}>
+        Analyze Compliance
+      </button>
+
+      {selectedRepo && (
+        <AIComplianceAnalystPanel
+          repository={selectedRepo}
+          isOpen={isPanelOpen}
+          onClose={() => setIsPanelOpen(false)}
+          onAnalysisComplete={handleAnalysisComplete}
+        />
+      )}
+    </>
+  );
+}
+```
+
+**Repository Object Structure**:
+```typescript
+interface Repository {
+  id: number;
+  name: string;
+  full_name: string;
+  html_url: string;
+  private: boolean;
+  // ... other GitHub repository fields
+}
+```
+
+**Panel Behavior**:
+- Opens as a slide-in panel from the right (fixed position, 384px width)
+- Checks user permissions on mount via `useWorkspaceFunctionPermissions('Compliance')`
+- Verifies compliance is enabled in workflow configuration
+- If disabled, shows "Compliance Disabled" card with link to Workflow settings
+- If user lacks permission (paid plan), shows "No Permission" alert
+- On "Start Analysis" click, opens `ComplianceProgressDialog` with live progress
+- After completion, shows "Analysis Complete" card with "View Results" button
+
+---
+
+### Using AI Documentation Specialist Panel
+
+**Import**:
+```typescript
+import { AIDocumentationSpecialistPanel } from '@/components/AIDocumentationSpecialistPanel';
+```
+
+**Basic Usage** (Create New Documentation):
+```tsx
+import { useState } from 'react';
+import { AIDocumentationSpecialistPanel } from '@/components/AIDocumentationSpecialistPanel';
+
+function DocumentationPage() {
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  const handleComplete = (result: { success: boolean; error?: string }) => {
+    if (result.success) {
+      console.log('Documentation generated successfully');
+      // Refresh page or navigate
+    } else {
+      console.error('Documentation generation failed:', result.error);
+    }
+  };
+
+  return (
+    <>
+      <button onClick={() => setIsPanelOpen(true)}>
+        Create Documentation
+      </button>
+
+      <AIDocumentationSpecialistPanel
+        isOpen={isPanelOpen}
+        onClose={() => setIsPanelOpen(false)}
+        action="create"
+        hasDocumentationUrl={false}
+        onComplete={handleComplete}
+      />
+    </>
+  );
+}
+```
+
+**Migrate Existing Documentation**:
+```tsx
+<AIDocumentationSpecialistPanel
+  isOpen={isPanelOpen}
+  onClose={() => setIsPanelOpen(false)}
+  action="migrate"
+  hasDocumentationUrl={true} // Must be true for migration
+  onComplete={handleComplete}
+/>
+```
+
+**Resume from Checkpoint**:
 ```tsx
 <AIDocumentationSpecialistPanel
   isOpen={isPanelOpen}
   onClose={() => setIsPanelOpen(false)}
   action="create"
-  hasDocumentationUrl={true}
-  resumeExecution={previousExecution}
-  onComplete={(result) => {
-    if (result.success) {
-      console.log('Documentation generated successfully');
-    }
+  hasDocumentationUrl={false}
+  resumeExecution={{
+    id: "execution_uuid_123",
+    hasCheckpoints: true
   }}
+  onComplete={handleComplete}
 />
 ```
 
-**Advanced Features:**
+**Panel Features**:
+- **Scope Selection**: Choose between User Facing, Internal Developer, and SBOM documentation
+- **Content Structure**: Customize which sections to generate (intro, tutorials, how-to, reference, concepts, troubleshooting, release notes)
+- **Repository Selection**: Select multiple repositories and choose full repo or specific commit analysis
+- **Priority Instructions**: Custom instructions override configured defaults
+- **Checkpoint Resume**: Automatically restores previous configuration if resuming
 
-1. **Collapsible Advanced Options:**
-   - Uses `Collapsible` component from Radix UI
-   - Allows customization of scope and content structure
-   - Nested checkbox structure for content types under user-facing scope
+**Repository Scope Options**:
+- **Whole Repo**: Analyzes entire repository codebase
+- **Specific Commit**: Generates documentation update based on a single commit
+  - Shows last 20 commits when selected
+  - Displays commit SHA, message, and date
+  - Highlights selected commit
 
-2. **Repository Commit Selector:**
-   - Fetches last 20 commits from GitHub API
-   - Displays commit SHA, message, and date
-   - Supports selection of specific commits for documentation updates
-   - Handles GitHub authentication via vault secrets
+---
 
-3. **Priority Instructions:**
-   - User-provided instructions override default workspace configuration
-   - Clearly labeled with priority badge to indicate override behavior
+## Styling and Layout
 
-**State Validation:**
-- Requires at least one repository selected when repositories are available
-- Requires at least one scope selected (userFacing, internal, or sbom)
-- For migration action, requires `hasDocumentationUrl` to be true
-- Validates that workflow configuration includes repository and folder settings
+### Component CSS Classes
 
-**UI Structure:**
+All components use Tailwind CSS classes for styling. Key patterns:
+
+**Panel Layout** (used by both AI panels):
+```tsx
+<div className="fixed inset-y-0 right-0 w-96 bg-white shadow-xl border-l border-gray-200 z-50 flex flex-col">
 ```
-Fixed Right Panel (width: 384px)
-├── Header (title + close button)
-├── Scrollable Content Area
-│   ├── Resume Checkpoint Alert (conditional)
-│   ├── Action Type Card (migrate/create)
-│   ├── Configuration Required Alert (conditional)
-│   ├── Instructions TextArea (priority)
-│   ├── Advanced Options (Collapsible)
-│   │   ├── Scope Selection
-│   │   └── Content Structure (nested under userFacing)
-│   ├── Code Scope Selection (Collapsible)
-│   │   └── Repository List with Scope Options
-│   ├── Configuration Info Card
-│   └── How It Works Card
-└── Footer (Generate Documentation button)
+- `fixed inset-y-0 right-0`: Fixed positioning, full height, aligned right
+- `w-96`: 384px width (24rem)
+- `z-50`: High z-index to overlay other content
+- `flex flex-col`: Vertical flex layout for header, content, footer
+
+**Header Section**:
+```tsx
+<div className="flex items-center justify-between p-6 border-b border-gray-200">
 ```
 
-**Integration Points:**
-- `DocumentationProgressDialog`: Handles the generation progress and execution
-- `workflowService.getWorkflowConfigurations()`: Retrieves workspace documentation settings
-- Supabase `repository_settings` table: Loads OrchestrAI-enabled repositories
-- Supabase `function_checkpoints` table: Loads/saves execution state for resume functionality
-- GitHub API: Fetches commits for specific commit documentation
+**Scrollable Content**:
+```tsx
+<div className="flex-1 p-6 space-y-6 overflow-y-auto">
+```
+- `flex-1`: Expands to fill available space
+- `overflow-y-auto`: Scrolls if content exceeds height
+- `space-y-6`: 24px vertical spacing between children
 
-## Component Styling
+**Footer Button Section**:
+```tsx
+<div className="p-6 border-t border-gray-200">
+```
 
-All components use a consistent styling approach:
+### Color Schemes
 
-**Styling Framework:**
-- Tailwind CSS utility classes for layout and basic styling
-- Custom component library in `@/components/ui/` built on Radix UI primitives
-- Consistent color scheme: violet/purple for compliance, emerald/green for success, amber/yellow for warnings
+- **Compliance Panel**: Violet (`violet-600`, `violet-700`, `violet-50`)
+- **Documentation Panel**: Purple (`purple-600`, `purple-700`, `purple-50`)
+- **Alerts**: 
+  - Red for errors/restrictions (`red-200`, `red-50`, `red-700`)
+  - Amber for warnings (`amber-200`, `amber-50`, `amber-700`)
+  - Green for success (`green-200`, `green-50`, `green-700`)
+  - Blue for information (`blue-200`, `blue-50`, `blue-700`)
 
-**Common CSS Classes:**
-- Fixed panels: `fixed inset-y-0 right-0 w-96 bg-white shadow-xl border-l border-gray-200 z-50 flex flex-col`
-- Card borders: `border-{color}-200 bg-{color}-50`
-- Text colors: `text-{color}-700` for headings, `text-{color}-600` for body text
-- Spacing: consistent `space-y-{n}` for vertical spacing, `p-6` for padding
-
-## Testing
-
-The codebase includes comprehensive test files located in `orchestrai_tests/` directory with multiple test runs dating from July 2025 through October 2025.
-
-**Test Structure:**
-
-1. **JavaScript Configuration Tests:**
-   - `eslint.config.test.js`: Validates ESLint configuration structure
-   - `postcss.config.test.js`: Validates PostCSS plugin configuration
-
-2. **TypeScript Component Tests:**
-   - `App.test.tsx`: Tests main application component rendering and routing
-   - `AIQualityEngineerPanel.test.tsx`: Tests quality engineer panel functionality
-   - `AITestEngineerPanel.test.tsx`: Tests test engineer panel functionality (partial implementation)
-   - `CodePageContent.test.tsx`: Tests code page content component (partial implementation)
-
-**Testing Patterns Used:**
-
-1. **Component Mocking:**
-   ```typescript
-   jest.mock('../../src/components/AIQualityEngineerPanel', () => {
-     return function MockAIQualityEngineerPanel() {
-       return <div data-testid="ai-quality-engineer-panel">
-         AI Quality Engineer Panel
-       </div>;
-     };
-   });
-   ```
-
-2. **Service Mocking:**
-   ```typescript
-   const mockApiCall = jest.fn();
-   jest.mock('../../../src/services/api', () => ({
-     generateTests: mockApiCall,
-     analyzeCode: mockApiCall,
-   }));
-   ```
-
-3. **Async Operations:**
-   ```typescript
-   await waitFor(() => {
-     expect(mockApiCall).toHaveBeenCalledWith(codeContent);
-   });
-   ```
-
-**Test Files Location:**
-- Latest test run: `orchestrai_tests/2025-10-09_17-31-41/`
-- TypeScript tests: `orchestrai_tests/{date}/typescript/tests/`
-- JavaScript tests: `orchestrai_tests/{date}/javascript/tests/`
+---
 
 ## Dependencies
 
-**Core Libraries:**
-- `react`: ^18.x (React framework)
-- `react-router-dom`: Client-side routing
-- `@tanstack/react-query`: Data fetching and state management
-- `lucide-react`: Icon library
-- `@radix-ui/*`: Headless UI components
+### Core Libraries (from `src/App.tsx`)
 
-**UI Components:**
-- All custom UI components are located in `@/components/ui/`
-- Built on top of Radix UI primitives
-- Includes: Button, Card, Alert, Progress, Textarea, Label, Checkbox, Badge, Collapsible, Dialog
-
-**Backend Integration:**
-- `@supabase/supabase-js`: Supabase client for backend communication
-- Custom service layer in `@/services/` for business logic
-- Integration with Supabase edge functions for AI operations
-
-**State Management:**
-- Context API: `AuthContext` and `WorkspaceContext` in `@/contexts/`
-- Custom hooks: `useWelcomeModal`, `useWorkspaceFunctionPermissions`
-- React Query for server state management
-
-## File Organization
-
-```
-src/
-├── App.tsx                           # Main application component
-├── components/
-│   ├── ui/                          # Reusable UI components (Radix-based)
-│   ├── AIComplianceAnalystPanel.tsx # Compliance analysis panel
-│   ├── AIDocumentationSpecialistPanel.tsx # Documentation generation panel
-│   ├── ComplianceProgressDialog.tsx # Progress dialog for compliance
-│   ├── DocumentationProgressDialog.tsx # Progress dialog for documentation
-│   └── WelcomeModal.tsx             # Welcome modal for new users
-├── contexts/
-│   ├── AuthContext.tsx              # Authentication state management
-│   └── WorkspaceContext.tsx         # Workspace state management
-├── hooks/
-│   ├── useWelcomeModal.ts           # Welcome modal state hook
-│   ├── useWorkspaceFunctionPermissions.ts # Permission checking hook
-│   └── use-toast.ts                 # Toast notification hook
-├── services/
-│   └── workflowService.ts           # Workflow configuration service
-├── integrations/
-│   └── supabase/
-│       └── client.ts                # Supabase client configuration
-├── pages/                           # Route components
-└── types/
-    └── github.ts                    # TypeScript type definitions
+```typescript
+import { Toaster } from "@/components/ui/toaster";           // Shadcn toast notifications
+import { Toaster as Sonner } from "@/components/ui/sonner"; // Alternative toast system
+import { TooltipProvider } from "@/components/ui/tooltip";  // Tooltip context
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Data fetching
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Routing
+import { AuthProvider } from "@/contexts/AuthContext";      // Authentication state
+import { WorkspaceProvider } from "@/contexts/WorkspaceContext"; // Workspace state
+import { WelcomeModal } from "@/components/WelcomeModal";  // Onboarding modal
+import { useWelcomeModal } from "@/hooks/useWelcomeModal"; // Welcome modal logic
 ```
 
-## Configuration Files
+### AI Panel Dependencies (from `src/components/AIComplianceAnalystPanel.tsx`)
 
-**ESLint Configuration** (`eslint.config.js`):
-- Uses `@eslint/js` recommended configuration
-- Extends TypeScript ESLint recommended rules
-- Configures React hooks and React refresh plugins
-- Disables `@typescript-eslint/no-unused-vars` rule
-- Ignores `dist` directory
-- Targets `**/*.{ts,tsx}` files
+```typescript
+import { useState, useEffect } from "react";
+import { X, Bot, FileText, AlertCircle, ExternalLink, Settings, Shield, CheckCircle, Clock, Play } from "lucide-react"; // Icons
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useToast } from "@/hooks/use-toast";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
+import { useWorkspaceFunctionPermissions } from "@/hooks/useWorkspaceFunctionPermissions";
+import { workflowService } from "@/services/workflowService";
+import { supabase } from "@/integrations/supabase/client";
+import { ComplianceProgressDialog } from "./ComplianceProgressDialog";
+import type { Repository } from "@/types/github";
+```
 
-**PostCSS Configuration** (`postcss.config.js`):
-- Integrates Tailwind CSS via `tailwindcss` plugin
-- Adds vendor prefixes via `autoprefixer` plugin
-- Simple plugin-only configuration structure
+### Documentation Panel Additional Dependencies
 
-## Best Practices
-
-**Component Patterns:**
-
-1. **Side Panel Pattern:**
-   - Fixed positioning with consistent width (384px)
-   - Flexbox layout with scrollable content area
-   - Sticky header and footer sections
-   - Close handler with state reset
-
-2. **Permission Checking:**
-   - Use `useWorkspaceFunctionPermissions` hook
-   - Display permission alerts before disabled functionality
-   - Distinguish between free plan and paid plan restrictions
-   - Check workflow configuration enablement settings
-
-3. **State Management:**
-   - Local state for UI interactions
-   - Context providers for global state
-   - React Query for server state
-   - Custom hooks for reusable logic
-
-4. **Error Handling:**
-   - Try-catch blocks around async operations
-   - Toast notifications for user feedback
-   - Error state variables for UI error display
-   - Graceful degradation when services unavailable
-
-5. **Async Operations:**
-   - Loading states for user feedback
-   - Disabled buttons during operations
-   - Progress dialogs for long-running tasks
-   - Error recovery mechanisms
-
-**Code Organization:**
-- Separate concerns: presentation, business logic, data fetching
-- Reusable UI components in dedicated directory
-- Service layer for API interactions
-- Custom hooks for stateful logic
-- Type definitions in dedicated types directory
-
-This documentation reflects the actual implementation found in the source code and provides accurate references to file paths, component structures, and implementation patterns used throughout the orchestrai-dev application.
+```typescript
+import { Checkbox } from "@/components/ui/checkbox";
+import { Collapsible, Coll
