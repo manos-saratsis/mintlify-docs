@@ -1,4 +1,4 @@
-I'll analyze the source code to create comprehensive getting started documentation for OrchestrAI. Let me examine the key files to understand the application flow.
+I'll analyze the provided source code and create a comprehensive Getting Started guide for orchestrai-dev.
 
 <read_file>
 <path>src/pages/Index.tsx</path>
@@ -17,14 +17,6 @@ I'll analyze the source code to create comprehensive getting started documentati
 </read_file>
 
 <read_file>
-<path>src/components/WelcomeModal.tsx</path>
-</read_file>
-
-<read_file>
-<path>src/hooks/useWelcomeModal.ts</path>
-</read_file>
-
-<read_file>
 <path>src/pages/ProductCode.tsx</path>
 </read_file>
 
@@ -36,225 +28,306 @@ I'll analyze the source code to create comprehensive getting started documentati
 <path>src/pages/ProductCodeQuality.tsx</path>
 </read_file>
 
-Based on my analysis of the source code, I'll now create user-facing getting started documentation:
+<read_file>
+<path>src/pages/ProductCompliance.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/pages/ProductDocumentation.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/pages/WorkspaceManagement.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/components/WelcomeModal.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/hooks/useWelcomeModal.ts</path>
+</read_file>
+
+Based on my analysis of the source code, I'll now create comprehensive Getting Started documentation for orchestrai-dev.
 
 ---
 
-# **OrchestrAI - Getting Started**
+# orchestrai-dev - Getting Started
 
-Welcome to OrchestrAI! This guide will help you get started with your AI-powered development platform and show you how to begin automating your software quality, testing, documentation, and compliance workflows.
+**Overview**:
+OrchestrAI is an AI-powered development platform that helps you automate testing, analyze code quality, ensure compliance, and generate documentation for your software projects. This guide will walk you through your first steps with the platform, from signing in to running your first AI-powered analysis.
 
-## **What is OrchestrAI?**
+**Getting Started with OrchestrAI**:
 
-OrchestrAI is an intelligent development platform that brings AI assistance directly into your software development workflow. Think of it as having a team of AI specialists working alongside you - a Quality Engineer checking your code, a Test Engineer creating comprehensive tests, a Documentation Specialist keeping your docs up-to-date, and a Compliance Analyst ensuring regulatory requirements are met.
+## Your First Visit
 
-## **Your First Steps**
+When you first arrive at OrchestrAI, you'll be greeted with a welcome screen that introduces you to the platform's capabilities. The platform is built around AI specialists that work together to improve your code quality, testing, compliance, and documentation.
 
-### **Step 1: Sign In and Create Your Account**
+### Signing In
 
-When you first visit OrchestrAI, you'll arrive at the welcome page. Here's how to get started:
+1. Visit the OrchestrAI website
+2. Click the sign-in button to access the platform
+3. You'll be authenticated and taken to your workspace
 
-1. Click the "Get Started" button on the homepage
-2. Sign in using your GitHub account (this allows OrchestrAI to access your repositories)
-3. Grant the necessary permissions when prompted
+The application uses secure authentication to protect your account and code repositories. Once signed in, you'll have access to all the AI-powered tools.
 
-After signing in, you'll see a welcome dialog that guides you through the initial setup. This is your first introduction to the platform and helps you understand what OrchestrAI can do for you.
+## Understanding Workspaces
 
-### **Step 2: Set Up Your Workspace**
+Think of a workspace as your project's home in OrchestrAI. Everything you do - connecting repositories, running analyses, managing team members - happens within a workspace.
 
-Once you've signed in, you'll need to create or join a workspace. Think of a workspace as your team's project area where all your AI-assisted development happens.
+### Your First Workspace
 
-**Creating a New Workspace:**
-1. Navigate to the Workspace Management section from the main menu
-2. Click "Create New Workspace"
-3. Give your workspace a meaningful name (like your project or team name)
-4. Click "Create"
+When you first sign in, the platform creates a personal workspace for you automatically. This workspace includes:
+- Your GitHub repositories
+- AI analysis results
+- Documentation
+- Team settings (if you invite others)
 
-**Joining an Existing Workspace:**
-If you've been invited to a workspace by your team, you'll see it listed in your workspace selector. Simply click on it to switch to that workspace.
+You can create additional workspaces for different projects or organizations from the workspace management area.
 
-### **Step 3: Connect Your GitHub Repositories**
+## Connecting Your Code
 
-Now it's time to connect your code repositories so OrchestrAI can help you:
+Before the AI can help you, it needs access to your code repositories.
 
-1. Go to the "Code" section from the main navigation
-2. You'll see a button to connect your GitHub repositories
-3. Click "Connect GitHub" and authorize OrchestrAI to access your repositories
-4. Select which repositories you want OrchestrAI to work with
-5. For each repository, enable "OrchestrAI" to activate AI features
+### Connecting GitHub
 
-Once connected, you'll see your repositories listed with their current status and available actions.
+1. Navigate to the Code section from the main menu
+2. Click the "Connect GitHub" button
+3. Authorize OrchestrAI to access your repositories
+4. Select which repositories you want to enable for AI analysis
 
-### **Step 4: Configure Your Product Information**
+After connecting, you'll see a list of your repositories. Each repository can be individually enabled or disabled for OrchestrAI analysis.
 
-Before the AI can help you effectively, it needs to understand what your product does:
+### Repository Setup
 
-1. Navigate to "Organization Information" from the menu
-2. Fill in details about your product:
-   - What your product does
-   - Who uses it
-   - Key features and capabilities
-   - Any existing documentation URLs
-3. Save your information
+For each repository you want to work with:
+1. Find it in your repository list
+2. Toggle the "Enable OrchestrAI" switch
+3. The repository is now ready for AI-powered analysis
 
-This helps the AI understand your context and provide more accurate assistance.
+## Running Your First Analysis
 
-## **Core Features and How to Use Them**
+OrchestrAI offers several types of AI-powered analysis. Let's start with code quality analysis, which gives you immediate insights into your codebase.
 
-### **Code Quality Analysis**
+### Code Quality Analysis
 
-Want to improve your code quality? Here's how:
+1. Go to the Code Quality section
+2. Select a repository from your connected repositories
+3. Click "Start Analysis"
+4. The AI Quality Engineer will analyze your code
 
-1. Go to the "Code Quality" section
-2. Select a repository you want to analyze
-3. Click on the repository card to open the AI Quality Engineer panel
-4. The AI will analyze your code and show you:
-   - Code quality scores
-   - Areas for improvement
-   - Security vulnerabilities
-   - Best practice recommendations
+The analysis examines:
+- Code complexity and maintainability
+- Potential bugs and code smells
+- Security vulnerabilities
+- Best practice violations
 
-You can review the findings and see detailed explanations for each issue discovered.
+You'll see a progress indicator while the AI works. This typically takes a few minutes depending on your repository size.
 
-### **Automated Test Generation**
+### Understanding Results
 
-Creating comprehensive tests has never been easier:
+Once complete, you'll see:
+- An overall quality score for your repository
+- Detailed findings organized by severity
+- Specific file locations where issues were found
+- AI-generated recommendations for improvements
 
-1. Navigate to the "Testing" section
-2. Choose a repository that needs test coverage
-3. Click on the repository to activate the AI Test Engineer
-4. Provide any specific testing instructions (optional)
-5. Click "Generate Tests"
+Each finding includes:
+- **What**: A clear description of the issue
+- **Where**: The file and line number
+- **Why**: Why it matters for your code quality
+- **How**: Suggested fixes
 
-The AI will analyze your code and create test cases that cover various scenarios. You can review the generated tests before they're added to your repository.
+## Generating Tests
 
-### **Documentation Generation**
+The AI Test Engineer can automatically create tests for your code.
 
-Keep your documentation fresh and comprehensive:
+### Creating Your First Tests
 
-1. Go to the "Documentation" section
-2. Configure where you want documentation stored (repository and folder)
-3. Choose your documentation approach:
-   - **Create New:** AI builds documentation from scratch by analyzing your product
-   - **Migrate Existing:** AI restructures your current documentation following best practices
-4. Customize what to include:
-   - User-facing guides
-   - Internal developer documentation
-   - API references
-   - Tutorials and how-to guides
-5. Select which repositories to document
-6. Click "Generate Documentation"
+1. Navigate to the Testing section
+2. Choose a repository
+3. Click "Generate Tests"
+4. Provide any specific instructions (optional)
 
-The AI will create comprehensive, well-structured documentation and commit it directly to your chosen repository.
+The AI will:
+- Analyze your code structure
+- Identify functions and components that need testing
+- Generate appropriate test cases
+- Create test files in your testing framework
 
-### **Compliance Analysis**
+The generated tests are committed directly to your repository, ready to run.
 
-Ensure your code meets regulatory requirements:
+### Test Coverage
 
-1. Visit the "Compliance" section
-2. Select a repository to analyze
-3. Enable compliance checking in your workflow settings
-4. Click "Start Analysis"
-5. Review the compliance report showing:
-   - Data privacy checks
-   - Security requirements
-   - Access control validation
-   - Audit trail verification
+After generating tests, you can:
+- View which parts of your code are covered
+- See suggestions for additional test scenarios
+- Run the tests to verify everything works
 
-The AI identifies compliance gaps and provides recommendations for fixes.
+## Checking Compliance
 
-## **Understanding Your Workflow**
+For projects that need to meet regulatory requirements, the Compliance Analyst helps ensure your code follows necessary standards.
 
-OrchestrAI works through AI specialists that operate in panels on the right side of your screen. Here's what each specialist does:
+### Running a Compliance Check
 
-- **AI Quality Engineer**: Reviews your code for quality issues, security vulnerabilities, and improvement opportunities
-- **AI Test Engineer**: Creates comprehensive test suites based on your code functionality
-- **AI Documentation Specialist**: Generates and maintains documentation that's always current
-- **AI Compliance Analyst**: Ensures your code meets regulatory and security standards
+1. Visit the Compliance section
+2. Select your repository
+3. Click "Start Compliance Analysis"
+4. Add any specific compliance requirements in the instructions
 
-When you open any of these panels, you can:
-- Provide specific instructions for what you want
-- Start the AI process with a single click
-- Monitor progress in real-time
-- Review results and findings
-- Accept or modify AI-generated content
+The AI examines your code for:
+- Data privacy practices
+- Access control implementation
+- Audit trail capabilities
+- Encryption usage
+- Security best practices
 
-## **Workspace Management and Permissions**
+### Compliance Reports
 
-If you're managing a team workspace, you have additional capabilities:
+Results show:
+- Compliance status for each requirement
+- Areas that need attention
+- Specific code locations to review
+- Remediation suggestions
 
-**Managing Team Members:**
+## Creating Documentation
+
+The Documentation Specialist can create comprehensive documentation for your project.
+
+### Generating Documentation
+
+You have two options:
+
+**Create New Documentation:**
+1. Go to the Documentation section
+2. Click "Create Documentation"
+3. Choose what to document (User guides, API reference, etc.)
+4. The AI analyzes your product and creates documentation
+
+**Migrate Existing Documentation:**
+1. If you already have documentation, click "Migrate"
+2. Provide your documentation URL
+3. The AI restructures it according to best practices
+
+### Documentation Types
+
+You can generate:
+- **User-facing documentation**: Guides and tutorials for your users
+- **Internal documentation**: Technical docs for developers
+- **API reference**: Automatically generated from your code
+- **SBOM**: Software Bill of Materials
+
+### Customizing Your Documentation
+
+Before generating, you can select:
+- Which sections to include (intro, tutorials, reference, etc.)
+- Specific repositories to document
+- Whether to document the full repository or specific commits
+- Additional instructions for the AI
+
+## Managing Your Workspace
+
+The Workspace Management area lets you control your OrchestrAI environment.
+
+### Team Collaboration
+
+If you're working with a team:
 1. Go to Workspace Management
 2. Invite team members by email
-3. Assign roles and permissions:
-   - **Admin**: Full control over workspace settings
-   - **Member**: Can use all AI features
-   - **Viewer**: Can view but not execute AI operations
+3. Assign roles and permissions
+4. Each member can access shared repositories and analyses
 
-**Controlling Feature Access:**
-Navigate to the Permissions section to control which team members can:
-- Run code quality checks
-- Generate tests
-- Create documentation
-- Perform compliance analysis
+### Permissions
 
-## **Tips for Success**
+Control what team members can do:
+- **Admin**: Full access to everything
+- **Member**: Can run analyses and view results
+- **Viewer**: Can only view results
 
-1. **Start Small**: Begin with one repository and one AI feature. Get comfortable with how OrchestrAI works before expanding.
+Permissions are set per workspace and can be customized for different features.
 
-2. **Provide Clear Instructions**: When using AI panels, specific instructions lead to better results. Tell the AI exactly what you're looking for.
+## Workflow Configuration
 
-3. **Review AI Output**: While the AI is powerful, always review what it generates. You're the expert on your product.
+Configure how AI specialists work for your project.
 
-4. **Enable Features Gradually**: Use the Workflow settings to enable AI features one at a time as your team becomes comfortable with them.
+### Setting Up Workflows
 
-5. **Use Checkpoints**: If an AI process is interrupted, OrchestrAI can resume from where it left off. Look for the "Resume" option.
+1. Visit the Workflow section
+2. For each AI specialist (Testing, Quality, Compliance, Documentation):
+   - Enable or disable the feature
+   - Choose whether AI can make automatic fixes
+   - Set specific instructions
+   - Configure output locations
 
-6. **Monitor Costs**: Check the Cost Analysis section regularly to understand your AI usage and associated costs.
+### Automatic vs. Manual
 
-## **Common Workflows**
+You can configure each AI specialist to:
+- **Analysis Only**: AI reviews code and reports findings
+- **Analysis and Fix**: AI can automatically create pull requests with fixes
 
-### **Setting Up a New Project**
-1. Create workspace
-2. Connect repositories
-3. Add product information
-4. Run initial code quality analysis
-5. Generate baseline test suite
-6. Create documentation structure
+## Tips for Success
 
-### **Onboarding a New Repository**
-1. Connect the repository in Code section
-2. Enable OrchestrAI for the repository
-3. Run quality analysis to understand current state
-4. Generate tests for existing code
-5. Create documentation
+### Starting Small
+Begin with one or two repositories and one type of analysis. This helps you understand how OrchestrAI works before expanding to your entire codebase.
 
-### **Regular Maintenance**
-1. Run weekly code quality checks
-2. Update tests when adding new features
-3. Refresh documentation after major changes
-4. Perform compliance checks before releases
+### Clear Instructions
+When running analyses, provide specific instructions. Instead of "analyze my code," try "focus on security vulnerabilities in authentication logic."
 
-## **Getting Help**
+### Review AI Suggestions
+The AI is powerful but should work with you, not replace you. Always review generated tests, suggested fixes, and documentation before accepting them.
 
-If you run into issues:
+### Use Checkpoints
+For long-running tasks, OrchestrAI saves checkpoints. If something interrupts the process, you can resume from where it left off instead of starting over.
 
-- **Configuration Problems**: Check the Workflow settings to ensure features are properly enabled
-- **Permission Issues**: Contact your workspace administrator to adjust your permissions
-- **AI Generation Errors**: Review your instructions for clarity and try again
-- **Repository Connection Problems**: Verify your GitHub authorization is still active
+### Iterate
+Your first analysis might surface many findings. Don't try to fix everything at once. Address critical issues first, then work through recommendations incrementally.
 
-## **What's Next?**
+## Common Workflows
 
-Now that you understand the basics:
+### Daily Development
+1. Make code changes in your repository
+2. Run Code Quality analysis to catch issues early
+3. Generate or update tests for new features
+4. Review and address any findings
 
-1. Explore the Enterprise features if you need advanced team capabilities
-2. Set up automated workflows that run on a schedule
-3. Integrate OrchestrAI insights into your CI/CD pipeline
-4. Customize AI instructions for your specific needs and coding standards
+### Release Preparation
+1. Run Compliance analysis to ensure regulatory requirements are met
+2. Update documentation to reflect new features
+3. Run comprehensive Code Quality checks
+4. Generate final test coverage reports
 
-Welcome to a more intelligent way of developing software. OrchestrAI is here to help you build better, faster, and with greater confidence.
+### Onboarding New Team Members
+1. Share your workspace with the new developer
+2. Point them to your generated documentation
+3. They can immediately understand the codebase through AI-generated insights
+4. Grant appropriate permissions for their role
+
+## What's Next?
+
+Now that you've completed your first analysis, explore:
+- **Cost tracking**: Monitor AI usage and costs per workspace
+- **Account settings**: Customize your profile and preferences
+- **Pricing plans**: Upgrade for more features and higher usage limits
+- **Product information**: Configure organizational details for better documentation
+
+## Getting Help
+
+If you encounter issues or have questions:
+- Check the product documentation sections for detailed guides
+- Review compliance and quality reports for specific guidance
+- Ensure your GitHub connection is active and repositories are enabled
+- Verify workspace permissions if team members can't access features
+
+## Privacy and Security
+
+OrchestrAI takes security seriously:
+- Your code is analyzed securely
+- Authentication tokens are encrypted
+- Repository access follows GitHub's permission model
+- You control what OrchestrAI can access
+
+Your data remains yours. The platform only accesses what you explicitly authorize.
 
 ---
 
-**Note**: OrchestrAI requires a GitHub account and appropriate repository permissions to function. Make sure you have owner or admin access to repositories you want to analyze and improve.
+Welcome to OrchestrAI! Start with a simple code quality check, explore the results, and gradually discover how AI specialists can transform your development workflow. The platform grows with you, from individual projects to team collaboration to organization-wide automation.
