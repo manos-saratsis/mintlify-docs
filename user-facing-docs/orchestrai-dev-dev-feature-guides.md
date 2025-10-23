@@ -1,759 +1,322 @@
-I'll analyze the source code to generate comprehensive, user-friendly Feature Guides for the Code Quality and Compliance checks in OrchestrAI.
+# OrchestrAI Feature Guides
 
-<think>
-Let me examine the code to understand:
-1. The Code Quality feature from AIQualityEngineerPanel and related components
-2. The Compliance feature from AIComplianceAnalystPanel
-3. How users interact with these features
-4. The workflow and results
+## Code Quality Analysis Tutorial
 
-Key findings:
-- Code Quality: Uses AIQualityEngineerPanel, analyzes code, generates quality reports and test plans
-- Compliance: Uses AIComplianceAnalystPanel, performs compliance analysis on repositories
-- Both have progress dialogs, permission checks, and result viewing
-- Users can provide instructions, select repositories, and view results
-- Both require workspace configuration and permissions
-</think>
+### Overview
 
-<bos>I'll create user-friendly feature guides for Code Quality and Compliance checks based on the actual implementation in the codebase.
+The Code Quality feature helps you understand and improve the quality of your code. Think of it as having an expert code reviewer available 24/7, analyzing your code and giving you helpful suggestions to make it better.
 
-<read_file>
-<path>src/components/AIQualityEngineerPanel.tsx</path>
-</read_file>
+### Getting Started with Code Quality
 
-<read_file>
-<path>src/pages/ProductCodeQuality.tsx</path>
-</read_file>
-
-<read_file>
-<path>src/pages/ProductCodeQualityResults.tsx</path>
-</read_file>
-
-<read_file>
-<path>src/pages/ProductCompliance.tsx</path>
-</read_file>
-
-<read_file>
-<path>src/pages/ProductComplianceResults.tsx</path>
-</read_file>
-
-Now I'll create comprehensive feature guides:
-
-<write_file>
-<path>user-facing-docs/orchestrai-dev-code-quality-guide.md</path>
-<content>
-# OrchestrAI Code Quality Feature Guide
-
-## What is Code Quality Analysis?
-
-Code Quality Analysis helps you understand and improve your codebase automatically. Think of it as having an expert developer review your code and suggest improvements, but powered by AI. The tool examines your code for issues, suggests fixes, and even generates test plans to ensure your software works correctly.
-
-## Why Use Code Quality Analysis?
-
-- **Catch Problems Early**: Find bugs and issues before they cause problems
-- **Improve Code**: Get suggestions to make your code cleaner and easier to maintain
-- **Save Time**: Automated analysis is faster than manual code reviews
-- **Better Testing**: Generate comprehensive test plans automatically
-- **Learn Best Practices**: Understand industry-standard coding practices through AI suggestions
-
-## Getting Started with Code Quality
-
-### Step 1: Navigate to Code Quality
+#### Step 1: Access Code Quality
 
 1. Log into your OrchestrAI account
-2. Look for the main navigation menu
-3. Click on "Code Quality" 
+2. From the main menu, go to the Product section
+3. Click on "Code Quality" in the navigation
 
-You'll see a dashboard showing all your connected code repositories.
+You'll see your dashboard with all your connected repositories listed.
 
-### Step 2: Connect Your Code Repository
+#### Step 2: Connect Your Code
 
 If this is your first time:
 
-1. You'll see a list of your GitHub repositories
-2. Find the repository you want to analyze
-3. Make sure it's enabled for OrchestrAI (look for a toggle switch or checkmark)
-4. If a repository isn't connected yet, click the "Connect Repository" button and follow the prompts
+1. Click the "Connect Repository" button
+2. You'll be asked to connect your GitHub account if you haven't already
+3. Select which repositories you want OrchestrAI to analyze
+4. Click "Enable" on the repositories you want to analyze
 
-### Step 3: Start Your First Analysis
+After a successful connection, you'll see a green checkmark next to your repository name.
 
-Once your repository is connected:
+#### Step 3: Run Your First Analysis
 
 1. Find the repository you want to analyze in the list
-2. Click the "Analyze Quality" button next to it
-3. A panel will slide in from the right side of your screen - this is your AI Quality Engineer
+2. Click the "Analyze" button next to the repository name
+3. A panel will slide open from the right side of your screen
 
-The panel shows:
-- **Repository Information**: The name and details of what you're analyzing
-- **Analysis Instructions**: A text box where you can add specific requests
-- **Quality Metrics**: Where results will appear after analysis
+In this panel, you can:
+- Add specific instructions for what you want the AI to focus on
+- View information about your repository
+- See your analysis configuration
 
-### Step 4: Customize Your Analysis (Optional)
+#### Step 4: Start the Analysis
 
-In the instruction box, you can tell the AI what to focus on. For example:
+1. Review or edit the analysis instructions if needed (for example: "Focus on security issues" or "Check for code duplication")
+2. Click the "Start Analysis" button at the bottom of the panel
+3. A progress window will appear showing you what's happening
 
-- "Focus on security vulnerabilities"
-- "Check for performance issues"
-- "Review error handling practices"
-- "Analyze code complexity"
+The analysis typically goes through these stages:
+- Connecting to your repository
+- Scanning your code files
+- Analyzing code quality
+- Generating recommendations
+- Preparing your results
 
-If you don't add custom instructions, the AI will perform a comprehensive general analysis.
+This process usually takes a few minutes depending on the size of your repository.
 
-### Step 5: Run the Analysis
+#### Step 5: Understanding Your Results
 
-1. Click the "Analyze Code" button at the bottom of the panel
-2. A progress window will appear showing what's happening
-3. You'll see steps like:
-   - "Preparing analysis"
-   - "Reviewing code"
-   - "Generating insights"
-   - "Creating report"
+Once the analysis completes:
 
-The analysis typically takes a few minutes, depending on your repository size.
+1. Click the "View Results" button
+2. You'll be taken to a detailed results page
 
-## Understanding Your Results
+On the results page, you'll see:
 
-### Quality Score
+- **Overall Quality Score**: A number that tells you the overall health of your code (higher is better)
+- **Issues Found**: Problems that were detected in your code
+- **Suggestions**: Specific recommendations for improvement
+- **Metrics**: Technical measurements like complexity and maintainability
 
-After analysis completes, you'll see a Quality Score (for example, "85/100"). This number gives you a quick sense of your code's overall health:
-
-- **90-100**: Excellent - Your code follows best practices
-- **75-89**: Good - Some areas for improvement
-- **60-74**: Fair - Several issues to address
-- **Below 60**: Needs attention - Important improvements needed
-
-### Issues Found
-
-The results page shows specific problems the AI discovered, such as:
-
-- **Missing Error Handling**: Places where your code should handle errors better
-- **Unused Variables**: Code that's written but never used (clutters your codebase)
-- **Complexity Issues**: Parts of your code that are too complicated
-- **Security Concerns**: Potential security vulnerabilities
-
-Each issue includes:
-- Where it was found (file name and line number)
+Each issue will show you:
+- What the problem is
+- Where it's located in your code
 - Why it matters
 - How to fix it
 
-### Suggestions
+#### Step 6: Taking Action
 
-Beyond just pointing out problems, the AI provides actionable suggestions:
+After reviewing your results:
 
-- "Add try-catch blocks around database calls"
-- "Consider breaking this function into smaller pieces"
-- "Use const instead of let for variables that don't change"
-- "Add input validation to prevent security issues"
+1. Click on any issue to see more details
+2. Use the suggestions to improve your code
+3. Make changes in your code editor
+4. Run another analysis to see your improvements
 
-### Test Plan
+### What Gets Analyzed
 
-The AI also generates a testing strategy:
+The AI examines your code for:
 
-- What should be tested
-- Why it's important to test
-- Suggestions for test cases
-- Estimated test coverage goals
+- **Code complexity**: Is your code too complicated?
+- **Maintainability**: Will it be easy to update later?
+- **Best practices**: Are you following recommended coding patterns?
+- **Potential bugs**: Are there issues that could cause problems?
+- **Code organization**: Is your code well-structured?
 
-## Viewing and Exporting Results
+### Tips for Better Results
 
-### View Results in the Dashboard
+1. **Be specific with instructions**: Instead of "analyze my code," try "check for security vulnerabilities in authentication code"
+2. **Run analyses regularly**: Check your code quality after major changes
+3. **Start with one repository**: Get familiar with the process before analyzing multiple projects
+4. **Review issues systematically**: Work through suggestions one category at a time
 
-1. After analysis completes, click "View Results"
-2. You'll be taken to a detailed results page
-3. Browse through different sections:
-   - **Overview**: Quick summary of findings
-   - **Issues**: Detailed list of problems
-   - **Recommendations**: Suggestions for improvement
-   - **Metrics**: Charts and graphs showing code quality trends
+### When Things Don't Work
 
-### Export Your Report
+If your analysis doesn't start:
+- Make sure your repository is properly connected
+- Check that Code Quality is enabled in your workspace settings
+- Verify you have the necessary permissions
+- Try disconnecting and reconnecting your repository
 
-Want to share results with your team?
+If you don't see results:
+- Wait a few more minutes - large repositories take longer
+- Check the progress window for error messages
+- Make sure your repository contains code (not just documentation)
 
-1. On the results page, look for the "Export Results" button
-2. Click it to download a report
-3. The report includes all findings in an easy-to-read format
-4. Share it via email or save it for your records
+### Understanding Permissions
 
-## Real-World Example Walkthrough
+Some workspaces have restrictions on who can run analyses:
+- Free plans: Everyone can run analyses
+- Paid plans: Check with your workspace administrator if you see permission messages
+- If you see "Permission Denied," contact your admin to grant access
 
-### Example: Analyzing a Web Application
+---
 
-Let's say you're building a customer management web application. Here's how you'd use Code Quality:
+## Compliance Analysis Tutorial
 
-**1. Starting the Analysis**
+### Overview
 
-You connect your "customer-portal" repository and click "Analyze Quality." You add this instruction:
+The Compliance feature helps ensure your code meets regulatory and security standards. It's like having a compliance officer review your code, checking that you're following important rules about data privacy, security, and other requirements.
 
-"Focus on security and data handling, especially around customer information."
+### Getting Started with Compliance
 
-**2. During Analysis**
+#### Step 1: Enable Compliance Analysis
 
-The progress window shows:
-- "Analyzing authentication code"
-- "Reviewing database queries"
-- "Checking input validation"
-- "Examining API endpoints"
+Compliance is not enabled by default. Here's how to turn it on:
 
-**3. Results Received**
+1. Go to the Product section
+2. Click on "Workflow" in the navigation
+3. Find the "Compliance" section
+4. Change the setting from "Disabled" to "Analysis Only" or "Analysis and Fix"
+5. Click "Save"
 
-The AI gives you a score of 72/100 and finds several issues:
+**Note**: You need administrator permissions to change workflow settings.
 
-**Issue 1: Missing Input Validation**
-- **Location**: customer-form.js, line 45
-- **Problem**: User input isn't validated before saving to database
-- **Risk**: Could allow malicious data or cause errors
-- **Fix**: Add validation to check that email addresses are properly formatted
+#### Step 2: Access Compliance
 
-**Issue 2: Weak Password Requirements**
-- **Location**: auth-service.js, line 23
-- **Problem**: Passwords only require 6 characters
-- **Risk**: Easy for hackers to guess
-- **Fix**: Require at least 12 characters with mixed case and numbers
+1. From the main menu, go to the Product section
+2. Click on "Compliance" in the navigation
+3. You'll see your list of connected repositories
 
-**Issue 3: Unencrypted Data Storage**
-- **Location**: database-config.js, line 89
-- **Problem**: Customer phone numbers stored without encryption
-- **Risk**: Data breach could expose sensitive information
-- **Fix**: Use encryption before storing personal data
+#### Step 3: Select a Repository to Analyze
 
-**4. Taking Action**
+1. Find the repository you want to check for compliance
+2. Click the "Analyze Compliance" button
+3. A panel will open on the right side of your screen
 
-You work through the list:
-- Add input validation to all forms
-- Update password requirements
-- Implement encryption for sensitive data
-- Run the analysis again and see your score improve to 89/100
+The panel shows:
+- Repository information
+- Analysis instructions
+- Current compliance settings
 
-## Tips for Better Results
+#### Step 4: Configure Your Analysis
 
-### Be Specific with Instructions
+Before starting, you can customize what the analysis checks:
 
-Instead of: "Check my code"
-Try: "Review authentication logic for security vulnerabilities and check all database queries for SQL injection risks"
+1. In the instructions box, describe what you want to focus on
+   - Example: "Focus on data privacy and encryption"
+   - Example: "Check GDPR compliance requirements"
+   - Example: "Verify access control implementation"
 
-### Run Analysis Regularly
+2. Review the repository information to make sure you're analyzing the right code
 
-- After completing major features
-- Before releasing updates
-- Weekly for active projects
-- After onboarding new team members
+#### Step 5: Start the Compliance Check
 
-### Focus on High-Priority Issues First
+1. Review or update the analysis instructions
+2. Click the "Start Analysis" button
+3. A progress window will appear
 
-Not all issues are equally important. Start with:
-1. Security vulnerabilities
-2. Critical bugs
-3. Performance problems
-4. Code maintainability issues
+The compliance analysis goes through several steps:
+- Connecting to your repository
+- Reviewing your code structure
+- Checking security practices
+- Analyzing data handling
+- Examining access controls
+- Generating compliance report
 
-### Track Your Progress
+This process typically takes several minutes.
 
-Run analysis multiple times to see improvement:
-- Save your score each time
-- Watch trends over weeks and months
-- Celebrate improvements with your team
+#### Step 6: Review Your Compliance Results
 
-## Common Questions
+When the analysis finishes:
 
-**Q: How long does analysis take?**
-Most analyses complete in 3-5 minutes. Larger repositories may take up to 10 minutes.
+1. Click "View Results"
+2. You'll see a comprehensive compliance report
 
-**Q: Will it analyze all my code?**
-Yes, the AI reviews your entire repository by default. You can specify particular areas in your instructions if needed.
+The report includes:
 
-**Q: What programming languages are supported?**
-The AI can analyze most popular languages including JavaScript, TypeScript, Python, Java, C#, and more.
+- **Compliance Overview**: How well your code meets standards
+- **Data Privacy Issues**: Problems with how data is handled
+- **Security Concerns**: Vulnerabilities that need attention
+- **Access Control**: Issues with permissions and authentication
+- **Encryption**: Problems with data protection
+- **Audit Trail**: Issues with logging and tracking
+- **Recommendations**: Steps to improve compliance
 
-**Q: Can I re-run analysis?**
-Yes! Run it as often as you like. Each analysis uses the latest version of your code.
+#### Step 7: Understanding Issues
 
-**Q: What if I don't understand a suggestion?**
-Each suggestion includes an explanation. If you need more help, your team lead or administrator can provide guidance.
+Each compliance issue shows:
 
-**Q: Does this replace code reviews?**
-No, it complements them. Use AI analysis to catch common issues, then have humans review for logic, design, and business requirements.
+- **Category**: What type of compliance problem it is (e.g., "Data Privacy")
+- **Severity**: How serious the issue is (Critical, High, Medium, Low)
+- **Description**: What the problem is in plain English
+- **Location**: Where in your code the issue exists
+- **Impact**: Why this matters for compliance
+- **Remediation**: How to fix it
 
-## Troubleshooting
+#### Step 8: Addressing Compliance Issues
 
-**Problem: Analysis Won't Start**
+To fix compliance problems:
 
-If clicking "Analyze Code" doesn't work:
-1. Check that your repository is connected (look for a green checkmark)
-2. Verify you have permission to analyze this repository
-3. If you see a message about permissions, contact your workspace administrator
-4. Try refreshing your browser and starting again
+1. Review each issue starting with Critical and High severity
+2. Read the remediation steps carefully
+3. Make the suggested changes in your code
+4. Test your changes
+5. Run another compliance analysis to verify fixes
 
-**Problem: Results Look Wrong**
+### What Gets Checked
 
-If results don't make sense:
-1. Make sure you analyzed the correct repository
-2. Check that your code repository is up to date
-3. Try running the analysis again
-4. Provide more specific instructions to focus the AI
+The compliance analysis examines:
 
-**Problem: Can't View Results**
+- **Data Privacy**: How personal information is collected, stored, and used
+- **Data Protection**: Whether sensitive data is properly secured
+- **Access Control**: How you manage who can access what
+- **Encryption**: If data is encrypted properly
+- **Audit Trails**: Whether you're logging important actions
+- **Authentication**: How users prove their identity
+- **Authorization**: How you control what users can do
 
-If the "View Results" button isn't working:
-1. Wait for the analysis to fully complete (check the progress indicator)
-2. Refresh your browser
-3. Try navigating to the Code Quality section and looking for recent analyses
-4. Contact support if the problem persists
+### Common Compliance Issues
 
-## Next Steps
+**Data Privacy Problems**:
+- Personal data stored without proper consent
+- Missing data retention policies
+- Lack of user data deletion capability
 
-After mastering basic Code Quality analysis, you can:
+**Security Concerns**:
+- Passwords stored in plain text
+- Missing input validation
+- Inadequate error handling
 
-1. **Set Up Automated Analysis**: Configure regular automatic checks
-2. **Create Quality Goals**: Set target scores for your team
-3. **Integrate with Workflow**: Connect analysis to your development process
-4. **Enable Compliance Checks**: Combine quality analysis with regulatory compliance scanning
+**Access Control Issues**:
+- Overly permissive access rights
+- Missing authentication checks
+- Weak password requirements
 
-Ready to ensure your code meets industry standards? Check out our [Compliance Feature Guide](orchestrai-dev-compliance-guide.md) next!
-</content>
-</write_file>
+### Tips for Better Compliance
 
-<write_file>
-<path>user-facing-docs/orchestrai-dev-compliance-guide.md</path>
-<content>
-# OrchestrAI Compliance Feature Guide
+1. **Run regular checks**: Schedule compliance analyses monthly or after major changes
+2. **Start with critical issues**: Focus on fixing high-severity problems first
+3. **Document your fixes**: Keep notes on what you changed and why
+4. **Test thoroughly**: Make sure fixes don't break existing functionality
+5. **Stay informed**: Compliance requirements change - run analyses regularly
 
-## What is Compliance Analysis?
+### When Compliance is Disabled
 
-Compliance Analysis ensures your software meets regulatory requirements and industry standards. Think of it as an automated auditor that checks whether your code follows rules for data privacy, security, and regulatory compliance. This is especially important for applications that handle sensitive information like healthcare records, financial data, or personal information.
+If you see a message that compliance is disabled:
 
-## Why Use Compliance Analysis?
+1. Go to Workflow settings
+2. Change Compliance from "Disabled" to "Analysis Only"
+3. Click Save
+4. Return to the Compliance page
 
-- **Avoid Legal Issues**: Meet regulatory requirements before they become problems
-- **Protect User Data**: Ensure sensitive information is properly secured
-- **Build Trust**: Show customers you take compliance seriously
-- **Reduce Risk**: Catch compliance violations early
-- **Save Money**: Avoid costly fines and penalties from regulators
-- **Peace of Mind**: Know your software follows best practices
+**Note**: Only administrators can enable or disable compliance features.
 
-## Common Compliance Standards
+### Understanding Permission Restrictions
 
-OrchestrAI checks for compliance with standards including:
+You might see permission messages if:
+- You're on a paid plan without compliance permissions
+- Your administrator hasn't granted you access
+- Compliance is disabled for your workspace
 
-- **GDPR**: European data privacy regulations
-- **HIPAA**: Healthcare information protection (US)
-- **SOC 2**: Security and privacy controls
-- **PCI-DSS**: Payment card data security
-- **Data Privacy**: General data protection best practices
-- **Access Control**: Who can see and modify data
-- **Audit Trails**: Logging of important actions
-- **Encryption**: Protecting data in storage and transit
+To resolve this:
+- Contact your workspace administrator
+- Request compliance analysis permissions
+- Verify that compliance is enabled in workflow settings
 
-## Getting Started with Compliance
+### What to Do With Results
 
-### Step 1: Navigate to Compliance
+After receiving your compliance report:
 
-1. Log into your OrchestrAI account
-2. Find the navigation menu
-3. Click on "Compliance"
+1. **Prioritize**: Work on critical and high-severity issues first
+2. **Plan**: Create a timeline for addressing each issue
+3. **Implement**: Make the recommended changes
+4. **Verify**: Run another analysis to confirm fixes
+5. **Document**: Keep records of compliance improvements
+6. **Monitor**: Schedule regular analyses to maintain compliance
 
-You'll see a dashboard showing your repositories and their compliance status.
+### Best Practices
 
-### Step 2: Enable Compliance for Your Workspace
+- **Analyze before releases**: Check compliance before deploying to production
+- **Keep records**: Save compliance reports for auditing purposes
+- **Communicate**: Share results with your team and stakeholders
+- **Continuous improvement**: Use each analysis to learn and improve
+- **Stay proactive**: Don't wait for problems - check regularly
 
-Before running your first analysis:
+### Getting Help
 
-1. Click on "Workflow" in the navigation menu
-2. Find the "Compliance" section
-3. Make sure compliance analysis is enabled
-4. If you see "Disabled," ask your administrator to enable it
+If you encounter issues:
+- Check that Compliance is enabled in Workflow settings
+- Verify your repository connection is working
+- Ensure you have proper permissions
+- Contact your administrator for access issues
+- Review the instructions for clarity on what's being analyzed
 
-### Step 3: Select a Repository
+### Progress Tracking
 
-On the Compliance dashboard:
+During analysis, you'll see updates about:
+- Which stage is currently running
+- Estimated time remaining
+- Any issues encountered
+- Overall progress percentage
 
-1. You'll see a list of your connected repositories
-2. Each repository shows:
-   - Repository name
-   - Last compliance check date (if any)
-   - Current compliance status
-3. Find the repository you want to analyze
-4. Click the "Analyze Compliance" button
-
-### Step 4: Configure Your Analysis
-
-A panel slides in from the right showing the AI Compliance Analyst. Here you can:
-
-**Add Custom Instructions** (in the text box):
-Focus the analysis on specific areas. For example:
-- "Focus on GDPR compliance for user data"
-- "Check HIPAA compliance for patient records"
-- "Review payment processing for PCI-DSS"
-- "Verify encryption of sensitive data"
-
-**Review Repository Information**:
-- Repository name
-- Visibility (public or private)
-- Last analysis date
-
-### Step 5: Start the Analysis
-
-1. After adding any custom instructions, click "Start Analysis" at the bottom
-2. A progress window appears showing:
-   - "Initializing compliance check"
-   - "Scanning code for data handling"
-   - "Reviewing access controls"
-   - "Checking encryption methods"
-   - "Analyzing audit logging"
-   - "Generating compliance report"
-
-The analysis usually takes 5-10 minutes depending on your codebase size.
-
-## Understanding Compliance Results
-
-### Compliance Status
-
-After analysis, you'll see an overall status:
-
-- **✓ Compliant**: Your code meets requirements - great job!
-- **⚠ Issues Found**: Some problems need attention
-- **✗ Critical Issues**: Serious violations that need immediate action
-
-### Categories of Findings
-
-Results are organized by compliance area:
-
-#### 1. Data Privacy & Protection
-
-Issues related to handling personal information:
-- **Example Finding**: "User passwords stored without hashing"
-- **Why It Matters**: Passwords must be encrypted to protect users
-- **How to Fix**: Implement bcrypt or similar hashing library
-
-#### 2. Access Control
-
-Who can access what data:
-- **Example Finding**: "No role-based access control for admin functions"
-- **Why It Matters**: Regular users shouldn't access admin features
-- **How to Fix**: Implement role checking before allowing sensitive operations
-
-#### 3. Audit Trails
-
-Logging important actions:
-- **Example Finding**: "No logging of data deletions"
-- **Why It Matters**: You need to track who deletes what for accountability
-- **How to Fix**: Add logging when records are modified or deleted
-
-#### 4. Encryption
-
-Protecting data:
-- **Example Finding**: "API keys stored in plain text"
-- **Why It Matters**: Exposed keys can compromise your entire system
-- **How to Fix**: Use environment variables and secret management
-
-#### 5. Data Retention
-
-How long data is kept:
-- **Example Finding**: "No automatic deletion of old user data"
-- **Why It Matters**: Regulations often require deleting data after a certain time
-- **How to Fix**: Implement automatic cleanup processes
-
-### Severity Levels
-
-Each finding has a severity:
-
-- **Critical** 🔴: Fix immediately - serious security or legal risk
-- **High** 🟠: Fix soon - important compliance requirement
-- **Medium** 🟡: Address when possible - best practice violation
-- **Low** 🟢: Minor issue - consider for future improvements
-
-## Real-World Example Walkthrough
-
-### Example: E-Commerce Platform Compliance Check
-
-Let's walk through analyzing an online store that handles customer data and payments.
-
-**1. Starting the Analysis**
-
-You select your "online-store-backend" repository and add this instruction:
-
-"Check PCI-DSS compliance for payment processing and GDPR compliance for customer data handling."
-
-**2. During Analysis**
-
-The progress window shows each step:
-- Scanning payment processing code
-- Reviewing customer database structure
-- Checking data encryption methods
-- Analyzing user consent mechanisms
-- Reviewing data deletion procedures
-
-**3. Results Breakdown**
-
-The AI identifies several issues:
-
-**Critical Issue: Credit Card Storage**
-- **Finding**: Full credit card numbers stored in database
-- **Regulation Violated**: PCI-DSS
-- **Risk Level**: Critical 🔴
-- **Impact**: Major security violation, potential for data breach
-- **Explanation**: Storing full credit card numbers is prohibited. Use a payment processor's tokenization instead.
-- **Fix**: Implement Stripe or similar service, store only tokens
-
-**High Priority: Missing Consent Tracking**
-- **Finding**: No record of when users accepted privacy policy
-- **Regulation Violated**: GDPR
-- **Risk Level**: High 🟠
-- **Impact**: Cannot prove user consent if audited
-- **Explanation**: You must track when and how users consent to data collection
-- **Fix**: Add consent tracking with timestamps to user database
-
-**High Priority: Insufficient Password Security**
-- **Finding**: Passwords hashed with MD5 (weak algorithm)
-- **Regulation Violated**: Data Protection Best Practices
-- **Risk Level**: High 🟠
-- **Impact**: Vulnerable to password cracking
-- **Explanation**: MD5 is outdated and easily broken
-- **Fix**: Migrate to bcrypt with appropriate salt rounds
-
-**Medium Priority: Missing Data Export Feature**
-- **Finding**: No way for users to download their data
-- **Regulation Violated**: GDPR (Right to Data Portability)
-- **Risk Level**: Medium 🟡
-- **Impact**: Users cannot exercise their data rights
-- **Explanation**: Users must be able to export their personal data
-- **Fix**: Create an export function in user account settings
-
-**Low Priority: Verbose Error Messages**
-- **Finding**: Error messages expose internal system details
-- **Regulation Violated**: Security Best Practices
-- **Risk Level**: Low 🟢
-- **Impact**: Could help attackers understand system structure
-- **Explanation**: Error messages should be generic for users
-- **Fix**: Log detailed errors internally, show simple messages to users
-
-**4. Taking Action**
-
-Based on severity, you prioritize fixes:
-
-**Week 1 (Critical):**
-- Stop storing credit card numbers
-- Implement payment tokenization
-- Migrate sensitive data
-
-**Week 2 (High):**
-- Add consent tracking system
-- Upgrade password hashing
-- Audit all authentication code
-
-**Week 3 (Medium):**
-- Build data export feature
-- Test with sample user data
-- Update privacy policy
-
-**Week 4 (Low):**
-- Review error handling
-- Implement generic error messages
-- Update logging system
-
-After implementing fixes, run compliance analysis again to verify improvements.
-
-**5. Viewing Updated Results**
-
-Click "View Results" to see:
-- Compliance status changed to "✓ Compliant"
-- All critical and high issues resolved
-- Summary report showing improvements
-- Ready for audit or certification
-
-## Tips for Maintaining Compliance
-
-### Regular Compliance Checks
-
-Run analysis:
-- **Before Every Release**: Ensure new code doesn't introduce violations
-- **Monthly**: Catch issues early in active projects
-- **Quarterly**: For stable, mature applications
-- **After Major Changes**: When adding new features that handle data
-
-### Focus on High-Risk Areas
-
-Prioritize checking:
-- Payment processing
-- User authentication
-- Personal data storage
-- API endpoints
-- File uploads
-- Admin functions
-
-### Document Your Compliance
-
-Keep records of:
-- When you ran compliance checks
-- What issues were found
-- How you fixed them
-- Who approved changes
-
-This documentation helps during audits.
-
-### Stay Updated
-
-Regulations change. When you see news about:
-- New privacy laws
-- Updated security standards
-- Industry-specific regulations
-
-Run a fresh compliance analysis to ensure you're still compliant.
-
-## Working with Your Team
-
-### For Developers
-
-When you receive compliance findings:
-1. Review the "Why It Matters" section to understand the risk
-2. Read the suggested fix
-3. Implement the fix in a separate branch
-4. Test thoroughly
-5. Request code review focusing on the compliance aspect
-6. Run analysis again after deploying
-
-### For Managers
-
-Use compliance results to:
-- Prioritize security and privacy work
-- Justify resource allocation
-- Prepare for audits
-- Demonstrate due diligence
-- Train team on compliance requirements
-
-### For Compliance Officers
-
-The compliance reports provide:
-- Evidence of regular compliance checks
-- Documentation of issues and resolutions
-- Audit trail of security improvements
-- Risk assessment for your application
-- Gap analysis for certification requirements
-
-## Common Questions
-
-**Q: How often should I run compliance analysis?**
-At minimum, before each major release. For applications handling sensitive data, run monthly checks.
-
-**Q: What if I get a critical finding?**
-Stop deploying new code until you fix critical issues. These represent serious legal or security risks.
-
-**Q: Can compliance analysis guarantee I'm fully compliant?**
-No automated tool can guarantee full compliance. Use this as part of a comprehensive compliance program that includes legal review, security audits, and proper policies.
-
-**Q: What regulations does OrchestrAI check?**
-The AI checks for common requirements across major standards like GDPR, HIPAA, SOC 2, and PCI-DSS, plus general security best practices.
-
-**Q: Do I need to fix every issue found?**
-Prioritize by severity. Critical and high issues should be addressed quickly. Medium and low issues can be planned into your regular development cycle.
-
-**Q: Can I get a report for auditors?**
-Yes! Use the "Export Results" button to download a comprehensive report suitable for audit purposes.
-
-**Q: What if my organization has specific compliance requirements?**
-Use the custom instructions field to focus analysis on your specific needs, or contact your administrator about configuring organization-specific rules.
-
-## Troubleshooting
-
-**Problem: Can't Start Compliance Analysis**
-
-If the "Start Analysis" button is disabled:
-1. **Check Workflow Settings**: Compliance might be disabled in your workspace
-   - Navigate to Workflow settings
-   - Enable compliance analysis
-   - Return to compliance page
-2. **Verify Permissions**: You might not have the right access level
-   - Contact your workspace administrator
-   - Request compliance analysis permissions
-3. **Repository Not Connected**: Ensure the repository is properly connected
-   - Check repository connection status
-   - Reconnect if needed
-
-**Problem: Analysis Shows "Configuration Required"**
-
-If you see this message:
-1. **Workflow Not Set Up**: Ask your administrator to configure compliance in Workflow settings
-2. **Repository Configuration Missing**: Some workspace settings need to be completed first
-
-**Problem: Results Don't Match Expectations**
-
-If findings seem off:
-1. **Review Custom Instructions**: Make sure you specified the right compliance standards
-2. **Check Repository Branch**: Verify you analyzed the correct code branch
-3. **Run Again**: Sometimes re-running provides updated results
-4. **Add Context**: Use more specific instructions about your application's purpose
-
-**Problem: Too Many Issues Found**
-
-If overwhelmed by findings:
-1. **Filter by Severity**: Focus on critical and high priority items first
-2. **One Category at a Time**: Address data privacy first, then access control, etc.
-3. **Request Help**: Share results with your team lead or security specialist
-4. **Plan Incrementally**: Create a phased plan to address issues over time
-
-## Next Steps After Compliance
-
-Once your application is compliant:
-
-1. **Set Up Monitoring**: Configure automatic compliance checks
-2. **Create Compliance Calendar**: Schedule regular reviews
-3. **Document Procedures**: Write internal guides for maintaining compliance
-4. **Train Your Team**: Share compliance requirements with developers
-5. **Prepare for Audits**: Keep compliance reports organized and accessible
-
-## Compliance + Quality = Better Software
-
-Compliance and Code Quality work together:
-
-- **Quality Checks** ensure code is well-written and maintainable
-- **Compliance Checks** ensure code follows legal and security requirements
-
-For the best results, use both features regularly. Good code quality makes it easier to maintain compliance, and compliance checks often reveal code quality issues too.
-
-Ready to improve your code quality? Check out our [Code Quality Feature Guide](orchestrai-dev-code-quality-guide.md)!
-
-## Getting Help
-
-If you need assistance:
-- **Permission Issues**: Contact your workspace administrator
-- **Technical Questions**: Refer to the OrchestrAI documentation or support
-- **Compliance Interpretation**: Consult with your legal or compliance team
-- **Implementation Help**: Work with your development team lead
-
-Remember: Compliance is an ongoing process, not a one-time check. Regular analysis and prompt fixes keep your application secure and legally compliant.
-</content>
-</write_file>
-
-I've created two comprehensive, user-friendly feature guides for OrchestrAI's Code Quality and Compliance features:
-
-## Files Created:
-
-1. **orchestrai-dev-code-quality-guide.md** - Complete guide to using the Code Quality feature including:
-   - Clear explanation of what it is and why it matters
-   - Step-by-step walkthrough for running analysis
-   - Understanding results (quality scores, issues, suggestions)
-   - Real-world example with a customer management app
-   - Tips for better results
-   - Common questions and troubleshooting
-
-2. **orchestrai-dev-compliance-guide.md** - Complete guide to using the Compliance feature including:
-   - What compliance analysis does and why it's important
-   - Common compliance standards (GDPR, HIPAA, PCI-DSS, etc.)
-   - Step-by-step setup and execution
-   - Understanding different types of findings
-   - Detailed real-world example with an e-commerce platform
-   - Severity levels and prioritization
-   - Team collaboration guidance
-   - Troubleshooting help
-
-## Key Features of These Guides:
-
-✅ **User-friendly language** - No technical jargon, explains concepts simply
-✅ **Real examples** - Concrete walkthroughs with realistic scenarios
-✅ **Step-by-step instructions** - Clear, numbered steps anyone can follow
-✅ **Visual indicators** - Uses emoji and formatting to highlight important information
-✅ **Practical tips** - Actionable advice for getting the most value
-✅ **Troubleshooting** - Common problems and solutions
-✅ **No code references** - Focuses on what users see and do, not implementation details
-
-Both guides are based entirely on the actual features implemented in the source code, including the permission systems, workflow configurations, progress dialogs, and result viewing capabilities.
+You can close the progress window and the analysis will continue in the background. Check back later to view your results.
