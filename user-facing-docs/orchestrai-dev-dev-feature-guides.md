@@ -1,391 +1,442 @@
-# orchestrai-dev Feature Guides
+I'll analyze the provided source code to generate comprehensive, user-friendly feature guides for OrchestrAI.
 
-## Code Quality Analysis
+<analysis>
+The codebase shows:
+1. AI Compliance Analyst Panel - for compliance analysis of repositories
+2. AI Documentation Specialist Panel - for generating/migrating documentation
+3. Various configuration options, permission checks, and workflow settings
+4. Integration with GitHub repositories
+5. Progress dialogs and checkpoint/resume functionality
+</analysis>
 
-### Overview
-The Code Quality Analysis feature helps you understand and improve the quality of your codebase. Using AI-powered analysis, it examines your repositories to identify potential issues, suggest improvements, and provide quality metrics.
-
-### Getting Started with Code Quality
-
-To analyze your code quality:
-
-1. Navigate to the Code Quality section from the main menu
-2. Find the repository you want to analyze in your connected repositories list
-3. Click on the repository to open the analysis panel
-4. Review the AI Quality Engineer panel that appears on the right side
-
-### Running Your First Analysis
-
-When you're ready to check your code quality:
-
-1. Look for the purple "AI Quality Engineer" panel on the right
-2. Review or customize the analysis instructions if needed (these tell the AI what to focus on)
-3. Click the "Analyze Code" button to start
-4. Wait while the analysis runs - you'll see a progress indicator
-5. Review the results when complete
-
-The analysis will examine various aspects of your code, including complexity, maintainability, and potential issues.
-
-### Understanding Analysis Results
-
-After the analysis completes, you'll see:
-
-- **Quality Score**: An overall rating of your code quality
-- **Issues Found**: Specific problems the AI identified in your code
-- **Suggestions**: Recommended improvements to enhance code quality
-- **Complexity Metrics**: Information about how complex your code is
-- **Maintainability Score**: How easy it will be to maintain and update your code
-
-### Customizing Your Analysis
-
-You can tailor the analysis to your needs:
-
-- **Custom Instructions**: Add specific areas you want the AI to focus on
-- **Repository Selection**: Choose which repositories to analyze
-- **Analysis Scope**: Focus on recent changes or analyze the entire repository
+# OrchestrAI Feature Guides
 
 ## Compliance Analysis
 
-### Overview
-The Compliance Analysis feature helps ensure your code meets regulatory and security requirements. The AI Compliance Analyst examines your repositories for compliance issues related to data privacy, security, and regulatory standards.
+### Getting Started with Compliance Analysis
 
-### Starting a Compliance Check
+**What is Compliance Analysis?**
 
-To check your code for compliance:
+Compliance analysis helps ensure your code meets regulatory requirements and follows best practices for data privacy, security, and access control. The AI Compliance Analyst automatically reviews your repositories and identifies potential compliance issues.
 
-1. Go to the Compliance section from the main menu
-2. Select a repository from your connected repositories
-3. The AI Compliance Analyst panel will open on the right
-4. Review the analysis settings
+**Before You Begin**
 
-### Running Compliance Analysis
+Make sure compliance analysis is enabled for your workspace. If you see a message saying "Compliance Disabled," ask your workspace administrator to enable it in the Workflow settings.
 
-Before running compliance analysis:
+---
 
-1. Check that compliance is enabled for your workspace (you'll see a notice if it's disabled)
-2. Review the analysis instructions - you can add specific compliance requirements to check
-3. Click "Start Analysis" to begin
-4. Monitor the progress as the AI examines your code
-5. View the detailed results when complete
+### Running a Compliance Analysis
 
-### Understanding Compliance Results
+**Step 1: Open the Compliance Panel**
 
-The compliance analysis will show:
+When viewing your repositories, look for the Compliance option. Click on it to open the AI Compliance Analyst panel on the right side of your screen.
 
-- **Data Privacy Issues**: Problems with how data is handled
-- **Security Concerns**: Potential security vulnerabilities
-- **Access Control**: Issues with who can access what
-- **Audit Trail**: Whether actions are properly logged
-- **Encryption**: Problems with data protection
+**Step 2: Select Your Repository**
 
-Each issue includes recommendations on how to fix it.
+The panel will show information about the repository you're analyzing, including:
+- Repository name
+- Full path
+- Whether it's public or private
 
-### Managing Compliance Settings
+**Step 3: Add Custom Instructions (Optional)**
 
-If compliance is disabled:
+You'll see a text box with default instructions. You can customize these to focus on specific compliance areas:
+- Data privacy requirements
+- Access control policies
+- Encryption standards
+- Audit trail requirements
 
-1. Contact your workspace administrator
-2. They can enable compliance in the Workflow settings
-3. Once enabled, you'll be able to run compliance analysis
+**Step 4: Start the Analysis**
+
+Click the purple "Start Analysis" button at the bottom of the panel. The AI will begin examining your code for compliance issues.
+
+**What Happens During Analysis**
+
+The system will:
+1. Review your code for compliance patterns
+2. Check for data protection measures
+3. Analyze access control implementations
+4. Verify encryption usage
+5. Generate a comprehensive report
+
+You'll see a progress indicator showing the analysis is underway. This typically takes a few minutes depending on repository size.
+
+**Step 5: View Results**
+
+Once complete, you'll see a success message and a "View Results" button. Click it to see:
+- Compliance score
+- List of issues found
+- Recommendations for improvements
+- Detailed findings by category
+
+---
+
+### Understanding Your Results
+
+**Compliance Score**
+
+Your repository receives an overall compliance score. Higher scores indicate better compliance with standards.
+
+**Issues and Recommendations**
+
+The report categorizes findings into:
+- **Critical**: Must be addressed immediately
+- **Warnings**: Should be reviewed and fixed
+- **Suggestions**: Optional improvements
+
+Each issue includes:
+- What was found
+- Why it matters
+- How to fix it
+- Relevant code locations
+
+---
+
+### What to Do If Analysis Fails
+
+**Permission Issues**
+
+If you see "You do not have the right permissions," contact your workspace administrator to grant you compliance analysis permissions.
+
+**Configuration Issues**
+
+If compliance is disabled, your administrator needs to:
+1. Go to Workflow settings
+2. Find the Compliance section
+3. Enable analysis
+
+**Technical Errors**
+
+If the analysis fails unexpectedly:
+1. Check your internet connection
+2. Verify the repository is accessible
+3. Try again in a few minutes
+4. Contact support if the issue persists
+
+---
 
 ## Documentation Generation
 
-### Overview
-The AI Documentation Specialist creates comprehensive documentation for your product automatically. It can either create new documentation from scratch or migrate and restructure your existing documentation.
+### Understanding Documentation Generation
+
+**Two Ways to Create Documentation**
+
+OrchestrAI offers two approaches:
+
+1. **Create New Documentation**: The AI analyzes your product directly and writes documentation from scratch
+2. **Migrate Existing Documentation**: The AI reviews your current documentation and restructures it following best practices
+
+---
 
 ### Creating New Documentation
 
-To generate documentation for your product:
+**When to Use This**
 
-1. Navigate to the Documentation section
-2. Click "Create New Documentation"
-3. The AI Documentation Specialist panel opens on the right
-4. Choose what type of documentation you want to create
+Choose this option when:
+- You're starting fresh with no existing documentation
+- Your current documentation is incomplete
+- You want the AI to analyze your product directly
 
-### Selecting Documentation Types
+**Step 1: Open the Documentation Panel**
 
-You can generate different types of documentation:
+From the Documentation page, click "Create Documentation." The AI Documentation Specialist panel opens on the right side.
 
-**User-Facing Documentation**:
-- Quickstart guides to help users get started
-- Tutorials for end-to-end workflows
-- How-to guides for specific tasks
-- Reference materials for APIs and features
-- Concept explanations of how things work
-- Troubleshooting guides for common problems
-- Release notes tracking changes
+**Step 2: Customize Your Instructions**
 
-**Internal Documentation**:
-- Developer guides for your team
-- Architecture documentation
-- Code explanations
+In the instructions box, describe what you want the documentation to cover. The AI will prioritize these instructions over default settings.
 
-**Software Bill of Materials (SBOM)**:
-- Component inventory
-- Dependency tracking
-- License information
+Example instructions:
+- "Focus on getting started guides for new users"
+- "Include detailed API reference sections"
+- "Emphasize troubleshooting and common issues"
 
-### Choosing Documentation Scope
+**Step 3: Choose Documentation Scope**
 
-Select which parts of your product to document:
+Click "Customize Scope & Content Structure" to select what types of documentation to generate:
 
-1. Expand the "Customize Scope & Content Structure" section
-2. Check the boxes for the documentation types you need
-3. For user-facing docs, choose which sections to include
-4. Select which repositories to analyze
-5. Choose between analyzing the entire repository or specific commits
+**Documentation Types:**
+- **User Facing**: Documentation for end users of your product
+- **Internal Developer**: Technical documentation for your development team
+- **SBOM**: Software Bill of Materials listing all components
 
-### Adding Custom Instructions
+**Content Structure (for User Facing):**
+- **/intro**: Quick start guides to get users up and running
+- **/tutorials**: Step-by-step walkthroughs for complete workflows
+- **/how-to**: Short, task-focused guides
+- **/reference**: Detailed API and SDK documentation
+- **/concepts**: Explanations of architecture and key ideas
+- **/troubleshooting**: Help for common problems
+- **/release-notes**: What's new in each version
 
-You can guide the AI's documentation creation:
+Select the sections most relevant to your needs.
 
-1. Find the "Additional Instructions" box
-2. Add specific requirements or focus areas
-3. These instructions take priority over default settings
-4. Be specific about what you want emphasized or excluded
+**Step 4: Select Repositories**
 
-### Starting Documentation Generation
+If you have multiple code repositories, you can choose which ones to document:
 
-When you're ready:
+**Whole Repository**: Document the entire codebase
+**Specific Commit**: Document changes from a particular update
 
-1. Review your selections
-2. Make sure at least one documentation type is checked
-3. Click "Generate Documentation"
-4. Monitor the progress - this may take several minutes
-5. The AI will analyze your product and create documentation
-6. Your documentation will be automatically committed to your repository
+To select specific commits:
+1. Choose a repository
+2. Click "Specific Commit"
+3. Pick from the list of recent updates
+4. The AI will focus on changes in that commit
+
+**Step 5: Generate Documentation**
+
+Click the purple "Generate Documentation" button. The AI will:
+1. Analyze your product functionality
+2. Study your code repositories
+3. Create structured documentation
+4. Save it to your configured documentation repository
+
+**Monitoring Progress**
+
+A progress window shows what's happening:
+- "Analyzing product..." - Understanding your product
+- "Generating content..." - Writing documentation
+- "Creating files..." - Saving documentation
+
+This process can take 10-30 minutes depending on complexity.
+
+---
 
 ### Migrating Existing Documentation
 
-If you already have documentation and want to improve it:
+**When to Use This**
 
-1. Click "Migrate Existing Documentation"
-2. Make sure your current documentation URL is configured
-3. The AI will analyze your existing documentation
-4. It will restructure and enhance it following best practices
-5. Your improved documentation will be saved to your repository
+Choose this option when:
+- You have existing documentation that needs reorganization
+- You want to adopt a standard documentation structure
+- Your current documentation is scattered or inconsistent
 
-## Testing
+**Requirements**
 
-### Overview
-The Testing feature helps you create and run automated tests for your code. The AI Test Engineer can generate test cases based on your code and execute them to ensure everything works correctly.
+Before migrating, make sure you've added your documentation URL in Product Information settings.
 
-### Generating Tests
+**The Migration Process**
 
-To create tests for your code:
+1. Open the Documentation Specialist panel
+2. Select "Migrate Documentation"
+3. The AI will:
+   - Review your existing documentation
+   - Understand its structure and content
+   - Reorganize it according to best practices
+   - Apply your selected content structure
+   - Preserve all important information
 
-1. Navigate to the Testing section
-2. Find the code you want to test
-3. Open the AI Test Engineer panel
-4. The AI will analyze your code and suggest test cases
+**What Gets Preserved**
 
-### Understanding Test Types
+The AI maintains:
+- All technical accuracy
+- Code examples
+- Screenshots and images
+- Important warnings and notes
 
-The system can generate different types of tests:
+**What Changes**
 
-- **Unit Tests**: Test individual functions and components
-- **Integration Tests**: Test how different parts work together
-- **End-to-End Tests**: Test complete user workflows
+The AI improves:
+- Document organization and hierarchy
+- Navigation between topics
+- Consistency in style and formatting
+- Completeness of coverage
 
-### Running Tests
+---
 
-To execute your tests:
+### Resuming Interrupted Documentation
 
-1. Select the tests you want to run
-2. Click the "Run Tests" button
-3. Watch the progress as tests execute
-4. Review the results
+If documentation generation stops unexpectedly, OrchestrAI can resume where it left off.
 
-### Interpreting Test Results
+**When You See the Resume Option**
 
-After tests run, you'll see:
+You'll notice a green notice saying "Resuming from checkpoint" - this means:
+- Your previous progress was saved
+- The AI will continue from that point
+- Your original settings are preserved
 
-- **Passed Tests**: Tests that completed successfully
-- **Failed Tests**: Tests that found problems
-- **Coverage**: Percentage of your code that's tested
-- **Detailed Reports**: Specific information about each test
+**What's Preserved**
 
-## Workspace Management
+When resuming:
+- Selected documentation scopes
+- Content structure choices
+- Custom instructions
+- Repository selections
 
-### Overview
-Workspace Management helps you organize your work and control who can access different features. Think of a workspace as your team's shared environment where all your projects and settings live.
+Simply click "Generate Documentation" again to continue.
 
-### Creating a New Workspace
+---
 
-To set up a new workspace:
+### Understanding Configuration
 
-1. Go to Workspace Management from the main menu
-2. Click "Create New Workspace"
-3. Enter a name for your workspace
-4. Add any initial team members
-5. Configure initial settings
-6. Click "Create"
+**Repository and Folder Setup**
 
-### Managing Team Access
+Documentation must be saved somewhere. Your administrator configures:
+- Which repository stores documentation
+- What folder within that repository
+- What content structure to follow
 
-To control who can use which features:
+If you see "Configuration Required," ask your administrator to set this up in Workflow settings.
 
-1. Open your workspace settings
-2. Navigate to the Permissions section
-3. Add or remove team members
-4. Assign roles to team members
-5. Set feature-specific permissions
+**Priority of Instructions**
 
-### Understanding Permissions
+Instructions work in layers:
+1. **Your run-specific instructions** (highest priority) - what you type in the panel
+2. **Workspace configuration** - defaults set by your administrator
+3. **System defaults** - OrchestrAI's built-in best practices
 
-Different features can have different permission levels:
+This means your custom instructions always take precedence.
 
-- **Full Access**: Can use and configure the feature
-- **Read Only**: Can view but not modify
-- **No Access**: Cannot see or use the feature
+---
 
-Contact your workspace administrator if you need access to a feature that's currently restricted.
+### Tips for Great Documentation
 
-### Switching Between Workspaces
+**Be Specific in Instructions**
 
-If you're part of multiple workspaces:
+Instead of: "Create documentation"
+Try: "Create beginner-friendly guides with lots of examples"
 
-1. Look for the workspace selector in the top navigation
-2. Click to see all your available workspaces
-3. Select the workspace you want to use
-4. The page will update to show that workspace's content
+**Choose Relevant Sections**
 
-## Connected Repositories
+Don't select everything - focus on what your users actually need. New products might need more tutorials; mature products might need better reference documentation.
 
-### Overview
-Connected repositories are your GitHub repositories that OrchestrAI can analyze and work with. You need to connect repositories before using most features.
+**Use Specific Commits for Updates**
 
-### Connecting a Repository
+When documenting new features, select the specific commit that added them. This creates targeted, accurate documentation for just those changes.
 
-To make a repository available to OrchestrAI:
+**Review and Refine**
 
-1. Go to the Code section
-2. Click "Connect Repository" if you haven't connected any yet
-3. Authorize OrchestrAI to access your GitHub account
-4. Select which repositories to enable
-5. Click "Enable" for each repository you want to use
+After generation:
+1. Review the created documentation
+2. Test the examples
+3. Have team members read it
+4. Generate again with refined instructions if needed
 
-### Managing Repository Settings
+---
 
-For each connected repository, you can:
+### Common Questions
 
-- Enable or disable OrchestrAI features
-- View connection status
-- Update access permissions
-- Disconnect if no longer needed
+**How long does documentation generation take?**
 
-### Understanding Repository Status
+Typically 10-30 minutes, depending on:
+- How much code you're documenting
+- How many sections you selected
+- Whether you're creating or migrating
 
-Repositories can have different states:
+**Can I edit the documentation after generation?**
 
-- **Enabled**: Ready to use with all features
-- **Connected**: Linked but not yet enabled for analysis
-- **Disconnected**: Previously connected but access removed
+Yes! The documentation is saved as regular files in your repository. You can edit them like any other code files.
 
-## Workflow Configuration
+**What if I don't like the result?**
 
-### Overview
-Workflow Configuration lets you control how OrchestrAI features work in your workspace. You can enable or disable features, set default behaviors, and configure where outputs are saved.
+You can:
+- Run generation again with different instructions
+- Select different content sections
+- Edit the files directly
+- Mix AI-generated and manually-written documentation
 
-### Accessing Workflow Settings
+**Do I need to select all content types?**
 
-To configure workflows:
+No - select only what makes sense for your product. A simple tool might only need Intro and Reference documentation.
 
-1. Navigate to Workflow from the main menu
-2. You'll see all available features
-3. Click on a feature to configure it
+---
 
-### Enabling Features
+### Troubleshooting
 
-To turn features on or off:
+**"Configuration Required" Message**
 
-1. Find the feature you want to configure
-2. Toggle it on (enabled) or off (disabled)
-3. Choose whether to allow analysis only or analysis and automatic fixes
-4. Save your changes
+**Problem**: No documentation repository is set up
+**Solution**: Ask your administrator to configure the documentation repository in Workflow settings
 
-### Setting Default Instructions
+**"Documentation URL Required" Message**
 
-You can set default instructions for AI features:
+**Problem**: Trying to migrate without providing the current documentation location
+**Solution**: Add your documentation URL in Product Information settings before migrating
 
-1. Open the feature's workflow settings
-2. Find the instructions section
-3. Enter your default instructions
-4. These will be used unless overridden during execution
+**"Select at least one scope" Message**
 
-### Configuring Output Locations
+**Problem**: No documentation types selected
+**Solution**: Choose at least one type: User Facing, Internal Developer, or SBOM
 
-For features that generate files (like documentation):
+**"Repository Selection Required" Message**
 
-1. Specify which repository to use
-2. Set the folder path where files should be saved
-3. Choose the branch to commit to
-4. Save your configuration
+**Problem**: No repositories selected when repositories are available
+**Solution**: Select at least one repository from the list to document
 
-## Account Management
+**Generation Takes Too Long**
 
-### Overview
-Account Management is where you control your personal settings, view your usage, and manage your subscription.
+**What's Normal**: 10-30 minutes
+**If Longer**: 
+- Check your internet connection
+- Wait a bit longer for large projects
+- Contact support if it exceeds an hour
 
-### Updating Your Profile
+**Generated Documentation is Incomplete**
 
-To change your account information:
+**Possible Causes**:
+- Instructions were too narrow
+- Not all relevant repositories selected
+- Some content sections weren't chosen
 
-1. Navigate to Account from the menu
-2. Update your personal details
-3. Change your email or password if needed
-4. Save your changes
+**Solutions**:
+- Broaden your instructions
+- Select additional repositories
+- Enable more content structure sections
+- Run generation again
 
-### Viewing Usage
+---
 
-To see how much you've used OrchestrAI:
+## General Tips
 
-1. Go to your Account page
-2. Find the Usage section
-3. Review your current usage statistics
-4. Check your plan limits
+### Making the Most of AI Features
 
-### Managing Your Subscription
+**Start Small**
 
-To change your plan:
+When trying these features for the first time:
+1. Start with one small repository
+2. Review the results carefully
+3. Adjust your approach
+4. Scale up to larger projects
 
-1. Go to the Pricing page
-2. Compare available plans
-3. Choose the plan that fits your needs
-4. Follow the upgrade process
+**Iterate and Improve**
 
-## Getting Help
+Don't expect perfection on the first try:
+- Run analysis or generation
+- Review what worked and what didn't
+- Refine your instructions
+- Try again with improvements
 
-### Support Resources
+**Collaborate with Your Team**
 
-If you need assistance:
+These tools work best when:
+- Multiple team members review results
+- You discuss findings together
+- Everyone contributes to improving instructions
+- You share what works well
 
-- Check the documentation for detailed guidance
-- Review troubleshooting guides for common issues
-- Contact your workspace administrator for permission-related questions
-- Reach out to OrchestrAI support for technical problems
+### Getting Help
 
-### Common Issues
+**Permission Issues**
 
-**"Permission Denied" Messages**:
-- Contact your workspace administrator
-- They can grant you access to the feature
+Contact your workspace administrator to:
+- Grant you access to features
+- Enable functions in workflow settings
+- Configure repositories and folders
 
-**"Configuration Required" Notices**:
-- Go to Workflow settings
-- Configure the necessary options for that feature
+**Technical Problems**
 
-**"Repository Not Found" Errors**:
-- Make sure the repository is connected
-- Check that it's enabled for OrchestrAI
-- Verify your GitHub access is still valid
+If something isn't working:
+1. Check this guide for troubleshooting steps
+2. Verify your permissions
+3. Ensure settings are configured
+4. Contact OrchestrAI support with specific details about what you tried
 
-### Best Practices
+**Best Practices Questions**
 
-For the best experience:
+For advice on how to best use these features:
+- Review the tips in each section
+- Experiment with different approaches
+- Share experiences with your team
+- Reach out to support for guidance
 
-- Keep your repositories organized and clearly named
-- Use descriptive instructions when running AI features
-- Review results carefully before applying changes
-- Configure default settings to match your team's workflow
-- Regularly check for updates and new features
+---
