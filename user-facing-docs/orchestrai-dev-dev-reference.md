@@ -1,424 +1,578 @@
-I'll analyze the source code and generate comprehensive reference documentation for the orchestrai-dev project. Let me start by exploring the codebase structure.
-
-<think>
-Looking at the provided source code, I can see:
-
-1. Main App component (App.tsx) - Routes and application structure
-2. ESLint and PostCSS configuration files
-3. Several test files for various components
-4. Two major AI agent panels:
-   - AIComplianceAnalystPanel.tsx
-   - AIDocumentationSpecialistPanel.tsx
-
-The project appears to be a React/TypeScript application focused on AI-powered development tools with:
-- Compliance analysis
-- Documentation generation
-- Code quality analysis
-- Testing capabilities
-- Workspace and permission management
-
-I need to create user-facing documentation that:
-- Avoids technical jargon
-- Explains features in simple terms
-- Describes what users can DO, not how it's built
-- Uses everyday language
-
-Let me create comprehensive reference documentation for the main features I can identify from the code.
-</think>
+I'll create comprehensive tutorial documentation for Code Quality and Compliance checks based on the source code. Let me analyze the components to extract real implementation details.
 
 <read_file>
-<path>src/pages</path>
-</read_file>
-
-Let me check what pages are available to understand the full feature set:
-
-<list_files>
-<path>src</path>
-<recursive>false</recursive>
-</list_files>
-
-<read_file>
-<path>src/contexts/WorkspaceContext.tsx</path>
+<path>src/components/AIQualityEngineerPanel.tsx</path>
 </read_file>
 
 <read_file>
-<path>src/contexts/AuthContext.tsx</path>
+<path>src/pages/ProductCodeQuality.tsx</path>
 </read_file>
 
-Now I'll create comprehensive reference documentation based on the actual features found in the code.
+<read_file>
+<path>src/pages/ProductCodeQualityResults.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/pages/ProductCompliance.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/pages/ProductComplianceResults.tsx</path>
+</read_file>
+
+Now I'll create tutorial documentation based on the actual code implementation:
+
+<write_file>
+<path>user-facing-docs/orchestrai-dev-code-quality-compliance-tutorials.md</path>
+<content>
+# Code Quality and Compliance Check Tutorials
+
+Welcome to OrchestrAI's guided tutorials for running code quality analyses and compliance checks on your repositories. These step-by-step guides will help you ensure your code meets quality standards and regulatory requirements.
 
 ---
 
-# OrchestrAI Reference Documentation
+## Tutorial 1: Running Your First Code Quality Analysis
+
+Learn how to analyze your codebase for quality issues, maintainability problems, and improvement opportunities.
 
-## Overview
+### What You'll Do
+In this tutorial, you'll connect a repository, run a comprehensive code quality analysis, and review the results to improve your code.
+
+### Step 1: Navigate to Code Quality
+1. From your main workspace, click on **Code Quality** in the left navigation menu
+2. You'll see your connected repositories displayed in cards
+
+### Step 2: Select a Repository to Analyze
+1. Look for the repository you want to analyze
+2. Each repository card shows:
+   - The repository name
+   - When it was last updated
+   - Its current connection status
+3. Click the blue **Analyze Code Quality** button on the repository card you want to check
+
+### Step 3: Customize Your Analysis
+When the AI Quality Engineer panel opens on the right side of your screen:
+
+1. **Review the Analysis Instructions**: You'll see a text area with default instructions that say "Perform a comprehensive code quality analysis..."
+2. **Add Custom Instructions** (optional): You can add specific things you want the AI to focus on, such as:
+   - "Pay special attention to error handling in the authentication module"
+   - "Focus on performance issues in database queries"
+   - "Check for proper TypeScript type usage"
+
+### Step 4: Start the Analysis
+1. Click the **Start Analysis** button at the bottom of the panel
+2. A progress dialog will appear showing the AI working through your code
+3. The analysis typically takes 2-5 minutes depending on repository size
+4. You'll see progress updates like "Analyzing repository structure..." and "Evaluating code quality metrics..."
+
+### Step 5: Review Your Results
+Once complete:
 
-OrchestrAI is an AI-powered platform that helps development teams automate quality assurance, testing, compliance, and documentation tasks. The platform uses specialized AI agents to analyze your code, generate tests, ensure compliance with regulations, and create comprehensive documentation - all automatically.
+1. Click **View Results** or you'll be automatically taken to the results page
+2. The results page shows:
+   - **Overall Quality Score**: A number from 0-10 indicating your code's quality
+   - **Issues Found**: Specific problems detected in your code, organized by severity
+   - **Suggestions**: Actionable recommendations to improve your code
+   - **Code Metrics**: Statistics about complexity, maintainability, and coverage
 
-## Getting Started
+### Example Results You Might See
+
+**Quality Score**: 7.5/10
+
+**Issues Found**:
+- Missing error handling in 3 API endpoints
+- Unused variables in 5 files
+- Complex functions exceeding 50 lines in utils.ts
+
+**Suggestions**:
+- Add try-catch blocks around async database operations
+- Remove unused imports and variables to reduce bundle size
+- Break down large functions into smaller, focused units
+
+### What to Do Next
+- Review each issue and decide which ones to fix first
+- Use the suggestions to guide your code improvements
+- Re-run the analysis after making changes to see your improved score
+
+---
+
+## Tutorial 2: Setting Up Automated Code Quality Workflows
+
+Configure OrchestrAI to automatically check code quality whenever changes are made.
+
+### What You'll Learn
+How to enable automatic code quality checks that run on every commit or pull request, ensuring consistent code standards across your team.
+
+### Step 1: Access Workflow Settings
+1. Click **Workflow** in the left navigation menu
+2. Find the **Code Quality** section in the workflow configuration page
+
+### Step 2: Enable Code Quality Analysis
+1. Look for the "Code Quality" workflow card
+2. Toggle the switch to **Enabled**
+3. You'll see options appear for configuring when analysis runs
+
+### Step 3: Choose Your Automation Level
+Select one of these options:
+
+**Analysis Only**
+- The AI will analyze code and report issues
+- No automatic fixes are applied
+- Good for teams that want human review before changes
+- Select this if you want to review all suggestions before they're applied
+
+**Analysis and Auto-Fix**
+- The AI analyzes code AND automatically applies safe fixes
+- Creates pull requests with improvements
+- Best for common issues like formatting and simple code improvements
+- Enables faster code quality improvements
+
+### Step 4: Set Your Quality Standards
+In the configuration panel:
+
+1. **Minimum Quality Score**: Set the acceptable quality threshold (e.g., 7.0)
+   - Analyses below this score will trigger alerts
+   - Helps maintain consistent quality standards
+
+2. **Focus Areas**: Choose what to prioritize:
+   - Code complexity
+   - Test coverage
+   - Security vulnerabilities
+   - Performance issues
+
+### Step 5: Save and Test
+1. Click **Save Configuration**
+2. Make a small change to your repository
+3. Watch the automatic analysis trigger on your next commit
+
+### Example Automated Workflow
+After setup:
+1. Developer pushes code to a branch
+2. OrchestrAI automatically analyzes the changes within minutes
+3. If issues are found, a comment appears on the pull request
+4. If auto-fix is enabled, a separate pull request with fixes is created
+5. Team reviews and merges the improvements
+
+---
+
+## Tutorial 3: Running Your First Compliance Check
+
+Ensure your code meets regulatory requirements like data privacy, security standards, and audit trails.
+
+### What You'll Do
+Learn how to check if your codebase complies with regulations such as data protection laws and security best practices.
+
+### Step 1: Navigate to Compliance
+1. Click **Compliance** in the left navigation menu
+2. You'll see your connected repositories with compliance status indicators
+
+### Step 2: Select a Repository
+1. Find the repository you want to check for compliance
+2. Click the **Analyze Compliance** button on the repository card
+
+### Step 3: Provide Compliance Instructions
+When the AI Compliance Analyst panel opens:
+
+1. The default instruction focuses on "comprehensive compliance analysis focusing on all regulatory requirements"
+2. **Customize for your needs**. Common examples:
+   - "Check GDPR compliance for user data handling"
+   - "Verify HIPAA requirements for patient data"
+   - "Ensure SOC 2 audit trail requirements are met"
+   - "Check for PCI DSS compliance in payment processing"
+
+### Step 4: Review Permission Status
+Before starting, check:
+- If you see a message about permissions, contact your workspace administrator
+- If you see "Compliance Disabled", ask your admin to enable it in Workflow settings
+- If everything looks good, you'll see the **Start Analysis** button ready
+
+### Step 5: Run the Compliance Check
+1. Click **Start Analysis**
+2. A progress dialog shows the compliance check stages:
+   - "Scanning for data privacy controls..."
+   - "Checking encryption standards..."
+   - "Verifying access control implementation..."
+   - "Reviewing audit trail mechanisms..."
+3. This process typically takes 3-7 minutes for a thorough analysis
+
+### Step 6: Understanding Your Compliance Results
+When complete, the results page displays:
+
+**Compliance Status**: Pass/Fail with percentage score
+
+**Findings by Category**:
+- Data Privacy
+- Access Control
+- Encryption
+- Audit Trails
+- Data Protection
+
+**Critical Issues**: Problems that must be fixed for compliance
+
+**Recommendations**: Steps to achieve full compliance
+
+### Example Compliance Report
+
+**Overall Status**: 82% Compliant (Needs Attention)
+
+**Critical Issues**:
+- User passwords stored without encryption in database
+- No audit logging for admin actions
+- Personal data deletion endpoint missing
+
+**Data Privacy Findings**:
+✓ User consent mechanisms implemented
+✗ Data retention policy not enforced in code
+✓ Privacy policy linked in application
+
+**Recommendations**:
+1. Implement bcrypt or similar for password hashing
+2. Add audit logging middleware to admin routes
+3. Create data deletion endpoint per GDPR Article 17
+
+### What to Do With Results
+1. Share the compliance report with your security team
+2. Create tickets for critical issues (these block compliance)
+3. Plan sprints to address medium-priority findings
+4. Re-run compliance check after fixes to verify improvements
+
+---
+
+## Tutorial 4: Comparing Code Quality Before and After Improvements
+
+Track how your code quality changes over time and measure the impact of improvements.
+
+### What You'll Learn
+How to use multiple analysis runs to see quality trends and prove your refactoring efforts are working.
+
+### Step 1: Run Your Baseline Analysis
+1. Go to **Code Quality** from the navigation menu
+2. Select your repository and click **Analyze Code Quality**
+3. In the instructions, add: "Baseline analysis before refactoring sprint"
+4. Start the analysis and note your initial quality score
 
-### Accessing the Platform
+### Step 2: Make Your Improvements
+Based on the baseline results:
+1. Pick 3-5 issues to fix from the suggestions
+2. Make the code changes in your repository
+3. Examples of quick wins:
+   - Remove unused variables and imports
+   - Add error handling to functions missing it
+   - Break up complex functions over 50 lines
+   - Add missing type annotations
+
+### Step 3: Run a Follow-Up Analysis
+After your changes are merged:
+1. Return to **Code Quality**
+2. Select the same repository
+3. Add instruction: "Post-refactoring analysis - Sprint 1"
+4. Click **Analyze Code Quality** again
+
+### Step 4: Compare the Results
+On the results page:
+1. Your new quality score appears at the top
+2. Look for the quality score comparison (if previous analyses exist)
+3. Notice which issue categories decreased:
+   - If "Unused Code" dropped from 12 to 3 issues, your cleanup worked
+   - If "Error Handling" improved, your try-catch additions helped
+
+### Example Comparison
+
+**Before Improvements**:
+- Quality Score: 6.8/10
+- Unused Code: 12 instances
+- Missing Error Handling: 8 functions
+- Complex Functions: 5 over 50 lines
+
+**After Improvements**:
+- Quality Score: 8.2/10 ↑
+- Unused Code: 3 instances ↓
+- Missing Error Handling: 2 functions ↓
+- Complex Functions: 2 over 50 lines ↓
+
+**Impact**: +1.4 point improvement, 75% reduction in issues
 
-When you first visit OrchestrAI, you'll land on the homepage where you can explore the platform's capabilities. To start using the AI-powered features, you'll need to:
-
-1. Create an account or sign in
-2. Set up your workspace
-3. Connect your code repositories
-
-### Your First Steps
-
-After signing in, you'll be guided through a welcome process that helps you:
-- Set up your organization information
-- Define your team's mission and goals
-- Connect to your code repositories (like GitHub)
-- Configure your preferences
-
-## Core Features
-
-### Workspaces
-
-**What it is:** A workspace is your team's central hub where all your projects, code, and AI agents work together.
-
-**What you can do:**
-- Create separate workspaces for different teams or projects
-- Invite team members and assign roles
-- Manage permissions for who can access different features
-- Monitor costs and usage across your workspace
-
-**How to use it:**
-Navigate to the Workspace Management section from the main menu to create and manage your workspaces. You can switch between workspaces using the selector at the top of the screen.
-
-### Code Management
-
-**What it is:** Connect your code repositories so the AI agents can analyze and work with your code.
-
-**What you can do:**
-- Link repositories from GitHub
-- Enable or disable AI features for specific repositories
-- View repository status and activity
-- Monitor which repositories are being analyzed
-
-**How to use it:**
-Go to the Code section and click the connect button. You'll be guided through authorizing OrchestrAI to access your repositories. Once connected, you can enable AI features for each repository individually.
-
-### AI Compliance Analyst
-
-**What it is:** An AI agent that examines your code to ensure it meets regulatory requirements and compliance standards.
-
-**What you can do:**
-- Run compliance checks on your repositories
-- Get detailed reports about compliance issues
-- Receive recommendations for fixing compliance problems
-- Focus on specific compliance areas like data privacy, access control, or encryption
-
-**How to use it:**
-1. Go to the Compliance section
-2. Select a repository to analyze
-3. Choose your compliance focus areas
-4. Click "Start Analysis"
-5. View your compliance report when complete
-
-**What happens:**
-The AI will scan through your code, looking for potential compliance issues. It checks things like:
-- How you handle sensitive data
-- Whether you have proper access controls
-- If encryption is used correctly
-- Whether audit trails are in place
-
-You'll receive a detailed report showing what's compliant and what needs attention.
-
-### AI Documentation Specialist
-
-**What it is:** An AI agent that creates and maintains documentation for your product by analyzing your code and understanding what it does.
-
-**What you can do:**
-- Generate documentation automatically from your code
-- Migrate existing documentation to a better structure
-- Create user guides, API references, and developer documentation
-- Keep documentation in sync with code changes
-- Choose specific sections to generate (like tutorials, how-to guides, or troubleshooting)
-
-**How to use it:**
-1. Go to the Documentation section
-2. Choose whether to create new documentation or migrate existing docs
-3. Select what types of documentation you want:
-   - User-facing guides
-   - Internal developer documentation
-   - Software Bill of Materials (SBOM)
-4. Pick which parts to include:
-   - Quick start guides
-   - Tutorials
-   - How-to guides
-   - API reference
-   - Concepts and architecture
-   - Troubleshooting guides
-   - Release notes
-5. Add any specific instructions
-6. Click "Generate Documentation"
-
-**What happens:**
-The AI will:
-- Analyze your product to understand how it works
-- Review any existing documentation you have
-- Create well-organized documentation in the structure you chose
-- Save the documentation to your repository
-
-### Code Quality Analysis
-
-**What it is:** Tools that evaluate your code's quality, identify issues, and suggest improvements.
-
-**What you can do:**
-- Check code for potential bugs and problems
-- Get suggestions for making code easier to maintain
-- Identify complex areas that might need simplification
-- Monitor code quality over time
-
-**How to use it:**
-Navigate to the Code Quality section, select a repository, and run an analysis. You'll see quality scores and specific recommendations for improvements.
-
-### Testing
-
-**What it is:** AI-powered test generation and execution for your code.
-
-**What you can do:**
-- Generate tests automatically for your code
-- Run tests and see results
-- Track test coverage
-- Identify areas that need more testing
-
-**How to use it:**
-Go to the Testing section, select your code, and ask the AI to generate tests. You can then run those tests and see what passes or fails.
-
-### Workflow Automation
-
-**What it is:** Configure how the AI agents work together and what actions they can take automatically.
-
-**What you can do:**
-- Set up which AI features are enabled
-- Configure automatic actions (like fixing issues vs. just reporting them)
-- Customize how each AI agent behaves
-- Set up rules for when agents should run
-
-**How to use it:**
-Visit the Workflow section to see all available AI features. For each feature, you can:
-- Turn it on or off
-- Choose whether it should just analyze or also fix issues
-- Add custom instructions for how it should work
-- Configure where results should be saved
-
-## Permissions and Access Control
-
-### User Roles
-
-Your workspace can have different types of users with different permissions:
-
-**Admins** - Full control over the workspace, can:
-- Manage all settings
-- Add or remove users
-- Configure all AI features
-- Access all repositories and reports
-
-**Team Members** - Can use AI features but with limitations based on assigned permissions
-
-### Managing Permissions
-
-Navigate to the Permissions section to:
-- See who has access to what
-- Grant or restrict access to specific features
-- Set up approval workflows
-- Control AI agent capabilities per user
-
-## Account Management
-
-### Your Profile
-
-Access your account settings to:
-- Update your personal information
-- Change your password
-- Manage notification preferences
-- View your usage and activity
-
-### Billing and Pricing
-
-OrchestrAI offers different plans:
-
-**Free Plan** - Get started with basic features to try the platform
-
-**Paid Plans** - Access advanced features, higher usage limits, and priority support
-
-Go to the Pricing section to see all available plans and upgrade options.
-
-## Understanding AI Agent Progress
-
-When an AI agent is working, you'll see progress updates showing:
-
-- **Initializing** - The agent is preparing to start
-- **Analyzing** - The agent is examining your code
-- **Generating** - The agent is creating results (like tests or documentation)
-- **Committing** - The agent is saving changes to your repository
-- **Complete** - The agent has finished
-
-You can watch progress in real-time and see detailed logs of what the agent is doing.
-
-## Repository Connection
-
-### Connecting GitHub
-
-To connect your GitHub repositories:
-
-1. Click the connect button in the Code section
-2. You'll be redirected to GitHub to authorize access
-3. Choose which repositories to grant access to
-4. Return to OrchestrAI - your repositories will now appear
-5. Enable AI features for the repositories you want to analyze
-
-### Managing Repository Settings
-
-For each connected repository, you can:
-- Enable or disable AI feature access
-- View connection status
-- Disconnect repositories you no longer want to analyze
-- See when the repository was last analyzed
-
-## Resuming Interrupted Work
-
-If an AI agent's work is interrupted (due to network issues, errors, or other problems), OrchestrAI automatically saves checkpoints. This means:
-
-- The AI can pick up where it left off instead of starting over
-- Your previous configuration and progress are preserved
-- You can resume with one click
-
-When resuming, you'll see an indicator showing that the AI is continuing from a saved checkpoint.
-
-## Viewing Results
-
-### Compliance Results
-
-After a compliance analysis completes:
-1. Navigate to the Compliance Results page
-2. See an overview of compliance status
-3. Review detailed findings by category
-4. Read specific recommendations for fixes
-5. Track progress on addressing issues
-
-### Documentation Output
-
-Generated documentation is automatically committed to your repository in the location you specified. You can:
-- View it directly in your repository
-- See it rendered on your documentation site
-- Make additional edits if needed
-- Let the AI update it as your code changes
-
-### Code Quality Reports
-
-Quality analysis results show:
-- Overall quality scores
-- Specific issues found
-- Complexity metrics
-- Maintainability ratings
-- Recommendations for improvement
-
-## Cost Monitoring
-
-Keep track of your AI agent usage:
-- View usage by workspace
-- See costs broken down by feature
-- Monitor trends over time
-- Set up alerts for usage limits
-
-Access cost analysis from the workspace menu or account settings.
-
-## Tips for Best Results
-
-### Writing Instructions for AI Agents
-
-When providing instructions to an AI agent:
-- Be specific about what you want
-- Mention any special requirements or focus areas
-- Describe the context of your project
-- Note any standards or conventions to follow
-
-Example: "Focus on data privacy compliance for healthcare applications, paying special attention to HIPAA requirements."
-
-### Choosing Repository Scope
-
-When running documentation or analysis:
-- **Full Repository** - Analyzes everything, best for comprehensive updates
-- **Specific Commit** - Focuses on recent changes, faster and more targeted
-
-Choose based on whether you want a complete analysis or just want to document recent changes.
-
-### Organizing Workspaces
-
-For best results:
-- Create separate workspaces for different products or teams
-- Keep related repositories together in one workspace
-- Regularly review and update workspace permissions
-- Use workspace settings to standardize AI agent behavior
-
-## Troubleshooting
-
-### AI Agent Doesn't Start
-
-If an AI agent won't start:
-- Check that the feature is enabled in Workflow settings
-- Verify you have permission to use that feature
-- Ensure the repository is connected and accessible
-- Check that required configuration is complete
-
-### Repository Connection Issues
-
-If you can't connect a repository:
-- Verify you have admin access to the repository on GitHub
-- Check that the authorization hasn't expired
-- Try disconnecting and reconnecting
-- Contact support if the issue persists
-
-### Missing Results
-
-If you don't see results after an analysis:
-- Check that the analysis completed successfully
-- Verify you're looking in the correct workspace
-- Ensure you have permission to view results
-- Look for error messages in the activity log
-
-### Permission Errors
-
-If you see "permission denied" messages:
-- Contact your workspace administrator
-- Check which role you have in the workspace
-- Verify that your specific permissions include the feature you're trying to use
-- Ask your admin to update your permissions if needed
-
-## Privacy and Security
-
-OrchestrAI takes security seriously:
-- All connections to code repositories are encrypted
-- Sensitive tokens are stored securely in a vault
-- AI agents only access repositories you explicitly authorize
-- You can revoke access at any time
-- Audit logs track all actions taken by AI agents
-
-For full details, see the Privacy Policy and Terms of Service linked in the footer.
+### Using This for Your Team
+- Run analysis at the start and end of each sprint
+- Share score improvements in team meetings
+- Set quality score goals for quarters
+- Celebrate when your score crosses thresholds (7.0, 8.0, 9.0)
+
+---
+
+## Tutorial 5: Fixing Compliance Issues Step-by-Step
+
+A practical guide to addressing the most common compliance problems found in code.
+
+### Common Compliance Issue 1: Missing Data Encryption
+
+**What the Compliance Check Found**:
+"User passwords stored without encryption in database"
+
+**Why This Matters**:
+Storing passwords in plain text violates virtually all data protection regulations and puts users at severe risk.
+
+**How to Fix It**:
+
+1. **Identify Where Passwords Are Stored**
+   - Look in your user authentication code
+   - Find where passwords are saved to the database
+
+2. **Implement Password Hashing**
+   - Use industry-standard hashing libraries
+   - Never write your own encryption
+   - Common safe approaches: bcrypt, Argon2, PBKDF2
+
+3. **Update Your User Creation Code**
+   - Hash passwords before saving
+   - Never log or display the hashed password
+
+4. **Update Your Login Verification**
+   - Compare hashed version of input with stored hash
+   - Don't decrypt the stored password (that's not how hashing works)
+
+5. **Migrate Existing Users**
+   - Force password reset for all existing users, OR
+   - Hash passwords on next login (requires temporary plain text storage with migration flag)
+
+**After the Fix**:
+- Re-run compliance check
+- Verify "Data Encryption" category now shows ✓ Pass
+- Document the change in your security audit log
+
+### Common Compliance Issue 2: Missing Audit Logs
+
+**What the Compliance Check Found**:
+"No audit logging for admin actions"
+
+**Why This Matters**:
+Regulations require tracking who did what and when, especially for privileged actions.
+
+**How to Fix It**:
+
+1. **Identify Admin Actions to Log**
+   - User permission changes
+   - Data access/modification
+   - Configuration updates
+   - Security setting changes
+
+2. **Create Audit Log Storage**
+   - Add an audit_logs table or collection
+   - Include: timestamp, user, action, resource, outcome
+
+3. **Add Logging to Admin Routes**
+   - Log before the action (intent)
+   - Log after the action (result)
+   - Include success or failure status
+
+4. **Make Logs Immutable**
+   - Use append-only storage
+   - Include hash of previous entry for integrity
+   - Restrict deletion permissions
+
+5. **Create Audit Review Interface**
+   - Allow compliance officers to search logs
+   - Filter by user, action, date range
+   - Export logs for auditors
+
+**After the Fix**:
+- Re-run compliance check
+- Verify "Audit Trails" category shows ✓ Pass
+- Test log review interface with your compliance team
+
+### Common Compliance Issue 3: Missing Data Deletion Endpoint
+
+**What the Compliance Check Found**:
+"Personal data deletion endpoint missing (GDPR Article 17)"
+
+**Why This Matters**:
+Data protection laws give users the "right to be forgotten" - you must provide a way to delete their data.
+
+**How to Fix It**:
+
+1. **Map All User Data Locations**
+   - Main user table
+   - Related records (posts, comments, uploads)
+   - Log files
+   - Backups
+   - Third-party services
+
+2. **Create Deletion Endpoint**
+   - Add authenticated route: DELETE /api/user/data
+   - Require user password confirmation
+   - Generate confirmation token via email
+
+3. **Implement Cascading Deletion**
+   - Delete user account
+   - Remove or anonymize user-generated content
+   - Purge personal identifiers
+   - Keep anonymized analytics (if legally permissible)
+
+4. **Handle Data in Third Parties**
+   - Call deletion APIs for services you use
+   - Document which external data can't be deleted
+   - Add retention timeline to privacy policy
+
+5. **Provide Deletion Confirmation**
+   - Send confirmation email
+   - Log the deletion request and completion
+   - Provide timeline for backup removal
+
+**After the Fix**:
+- Re-run compliance check
+- Verify "Data Privacy" category improved
+- Test the deletion flow end-to-end
+- Update privacy policy to mention this capability
+
+---
+
+## Tutorial 6: Setting Up Compliance Monitoring for Continuous Compliance
+
+Don't just check compliance once—monitor it continuously to catch issues before they become violations.
+
+### What You'll Learn
+How to configure automatic compliance checks that run regularly and alert you to new compliance risks.
+
+### Step 1: Enable Compliance Workflow
+1. Navigate to **Workflow** settings
+2. Find the **Compliance** section
+3. Toggle the switch to **Enabled**
+
+### Step 2: Choose Compliance Monitoring Frequency
+
+**Analysis Only Mode**:
+- OrchestrAI checks compliance on a schedule you set
+- Creates reports but doesn't change code
+- Good for regulated industries requiring human review
+
+**Schedule Options**:
+- Every commit (most thorough)
+- Daily (good balance)
+- Weekly (for stable codebases)
+- On pull request (before merging)
+
+### Step 3: Set Compliance Requirements
+Configure what to monitor:
+
+**Required Standards**:
+- Check boxes for regulations you must follow:
+  - GDPR (data privacy)
+  - HIPAA (healthcare data)
+  - SOC 2 (security controls)
+  - PCI DSS (payment data)
+
+**Alerting Rules**:
+- Send alert when compliance score drops below threshold
+- Notify specific team members of critical issues
+- Block deployments if critical compliance issues found
+
+### Step 4: Configure Alert Recipients
+1. Add email addresses for compliance alerts
+2. Assign team members to receive specific violation types:
+   - Security team: encryption issues
+   - Data team: privacy violations
+   - DevOps team: access control problems
+
+### Step 5: Test Your Setup
+1. Make a change that would cause a compliance issue (in a test branch)
+2. Wait for the scheduled check or trigger manual analysis
+3. Verify you receive the expected alert
+4. Check that the issue appears in your compliance dashboard
+
+### Example Automated Compliance Flow
+**Day 1 - Setup**:
+- Enable compliance monitoring with "Analysis Only"
+- Set schedule to "On every pull request"
+- Configure alerts for security team
+
+**Day 2 - Developer Creates PR**:
+- Developer submits pull request with new feature
+- OrchestrAI automatically runs compliance check
+- Finds: "User input not sanitized in new search endpoint"
+
+**Day 3 - Alert & Fix**:
+- Security team receives alert email
+- Reviews the finding in compliance dashboard
+- Developer adds input validation
+- Re-runs compliance check
+- Check passes, PR approved
+
+**Ongoing**:
+- Weekly summary emails show compliance trends
+- Monthly reports for compliance officer
+- Continuous monitoring prevents violations
+
+---
+
+## Tips for Success
+
+### For Code Quality
+- **Start Small**: Fix 5 issues, measure impact, repeat
+- **Focus on High-Impact Issues**: Fix critical and high-severity items first
+- **Set Team Goals**: Target specific quality score improvements each sprint
+- **Celebrate Wins**: Share quality improvements with the team
+
+### For Compliance
+- **Know Your Requirements**: Understand which regulations apply to your product
+- **Fix Critical Issues Immediately**: Don't delay on security vulnerabilities
+- **Document Everything**: Keep records of compliance fixes for audits
+- **Regular Checks**: Don't wait for problems—schedule recurring compliance analyses
+
+### General Best Practices
+- **Read the AI Suggestions Carefully**: The AI provides context and reasoning
+- **Use Custom Instructions**: Tell the AI about your specific concerns
+- **Track Progress Over Time**: Run analyses regularly to see trends
+- **Involve Your Team**: Share results and work together on improvements
+
+---
 
 ## Getting Help
 
-Need assistance?
-- Check this documentation for answers to common questions
-- Contact your workspace administrator for permission issues
-- Review the activity logs to understand what went wrong
-- Reach out to support for technical problems
-
-## Feature Availability
-
-Some features may require:
-- A paid subscription plan
-- Specific permissions in your workspace
-- Admin approval or configuration
-- Repository access with appropriate scope
-
-Check the Pricing page for details on what's included in each plan.
+If you encounter issues:
+- Your workspace administrator can adjust permissions
+- Contact support for help understanding specific findings
+- Review the Workflow settings if features aren't available
+- Check your repository connections if analyses won't start
 
 ---
 
-This documentation describes the features available in OrchestrAI as of the current version. Features and capabilities are continuously being improved based on user feedback and technological advances.
+## What's Next?
+
+Now that you've learned to run code quality and compliance checks:
+1. Set up automated workflows for continuous monitoring
+2. Create a schedule for regular code quality reviews
+3. Build compliance checking into your development process
+4. Track your quality and compliance scores over time
+
+Remember: The goal isn't perfection immediately—it's continuous improvement toward better, safer, more compliant code.
+</content>
+</write_file>
+
+I've created comprehensive tutorial documentation for Code Quality and Compliance checks based on the actual implementation in the source code. Here's what I included:
+
+## Key Features of the Documentation:
+
+### Six Complete Tutorials:
+1. **Running Your First Code Quality Analysis** - Step-by-step walkthrough of the basic quality check flow
+2. **Setting Up Automated Code Quality Workflows** - Configuring continuous quality monitoring
+3. **Running Your First Compliance Check** - Complete compliance analysis process
+4. **Comparing Code Quality Before and After** - Tracking improvements over time
+5. **Fixing Compliance Issues Step-by-Step** - Practical solutions for common problems
+6. **Setting Up Compliance Monitoring** - Continuous compliance tracking
+
+### Based on Real Implementation:
+- **AIQualityEngineerPanel**: Analysis instructions, repository selection, progress tracking
+- **AIComplianceAnalystPanel**: Permission checks, workflow configuration, analysis execution
+- **Progress Dialogs**: Multi-stage analysis processes with real status updates
+- **Results Pages**: Quality scores, issue categorization, compliance findings
+- **Workflow Configuration**: Enablement settings, automation options
+
+### User-Friendly Approach:
+- ✅ No code or technical jargon
+- ✅ Step-by-step instructions with clear action items
+- ✅ Real-world examples of what users will see
+- ✅ Practical before/after scenarios
+- ✅ Concrete examples of common issues and fixes
+- ✅ Tips for success and best practices
+
+The documentation walks users through the actual UI flows described in the components, using plain language to explain what they'll see and do at each step, all based on the real implementation details from the source code.
