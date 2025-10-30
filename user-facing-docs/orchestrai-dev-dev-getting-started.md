@@ -1,688 +1,626 @@
-I'll analyze the provided source code to generate comprehensive getting started documentation for orchestrai-dev, focusing on the Code Quality and Compliance sections.
+I'll analyze the source code and create a comprehensive "Getting Started" guide for OrchestrAI. Let me examine the key components first.
 
-<bun_run>
-const fs = require('fs');
-const path = require('path');
+<read_file>
+<path>src/pages/Index.tsx</path>
+</read_file>
 
-// Let me explore the repository structure to understand the product better
-const files = [
-  'src/pages/ProductCodeQuality.tsx',
-  'src/pages/ProductCompliance.tsx',
-  'src/components/AIQualityEngineerPanel.tsx',
-  'src/components/AIComplianceAnalystPanel.tsx'
-];
+<read_file>
+<path>src/contexts/AuthContext.tsx</path>
+</read_file>
 
-console.log('Analyzing OrchestrAI source code structure...');
-console.log('Key components identified:');
-console.log('- Code Quality Analysis');
-console.log('- Compliance Analysis');
-console.log('- AI-powered automation');
-console.log('- Repository-based workflows');
-</bun_run>
+<read_file>
+<path>src/contexts/WorkspaceContext.tsx</path>
+</read_file>
 
-<create_file>
+<read_file>
+<path>src/pages/Product.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/components/WelcomeModal.tsx</path>
+</read_file>
+
+<read_file>
+<path>src/hooks/useWelcomeModal.tsx</path>
+</read_file>
+
+Now let me create the Getting Started documentation:
+
+<write_file>
 <path>user-facing-docs/orchestrai-dev-getting-started.md</path>
 <content>
-# OrchestrAI - Getting Started
+# Getting Started with OrchestrAI
 
-Welcome to OrchestrAI! This guide will help you start improving your code quality and ensuring compliance for your software projects.
+Welcome to OrchestrAI! This guide will help you get started with your AI-powered development assistant platform.
 
 ## What is OrchestrAI?
 
-OrchestrAI is an AI-powered platform that helps development teams automatically analyze code quality and check for compliance issues. Think of it as having an expert quality engineer and compliance analyst working on your team 24/7.
+OrchestrAI is an intelligent platform that helps teams automate and improve their software development workflows. Think of it as having AI experts on your team who can analyze code quality, generate tests, ensure compliance, and create documentation automatically.
 
-## Prerequisites
+## First Steps
 
-Before you begin, you'll need:
+### 1. Sign Up and Access the Platform
 
-- A GitHub account with repositories you want to analyze
-- Access to the OrchestrAI workspace (ask your admin if you're not sure)
-- Basic understanding of your project's requirements
+When you first visit OrchestrAI, you'll see the homepage with information about what the platform can do. To get started:
 
-## Quick Start: Your First Steps
+1. Look for the sign-in or sign-up button in the top right corner
+2. Create your account using your preferred method
+3. Once signed in, you'll see a welcome screen that introduces you to the platform's key features
 
-### 1. Access Your Workspace
+### 2. Understanding the Welcome Screen
 
-When you first log into OrchestrAI, you'll land on your workspace dashboard. This is your central hub for managing all analysis activities.
+The first time you log in, a welcome dialog will appear explaining the platform's main capabilities:
 
-### 2. Connect Your Code
+- **Code Quality Analysis**: Automatically check your code for issues and improvements
+- **Automated Testing**: Generate and run tests for your codebase
+- **Compliance Checking**: Ensure your code meets regulatory and security standards
+- **Documentation Generation**: Create comprehensive documentation from your code
 
-Navigate to the Code section to connect your GitHub repositories:
+Click through this welcome guide to learn about each feature, or close it to jump straight into the platform.
 
-1. Click on the navigation menu
-2. Select the Code option
-3. Click the button to connect your GitHub account
-4. Choose which repositories you want OrchestrAI to access
+### 3. Set Up Your Workspace
 
-Once connected, you'll see your repositories listed and ready for analysis.
+After the welcome screen, you'll be in your main dashboard. Before you can start using OrchestrAI's features, you need to set up a workspace:
 
-### 3. Enable Repositories
+**What is a Workspace?**
+A workspace is like a project container that holds all your repositories, settings, and configurations. Think of it as your team's dedicated environment within OrchestrAI.
 
-For each repository you want to analyze:
+**Creating Your First Workspace:**
+1. Navigate to the Workspace Management section
+2. Click the button to create a new workspace
+3. Give your workspace a meaningful name (like "My Company Project" or "Team Alpha")
+4. Save your workspace
 
-1. Find the repository in your list
-2. Toggle the switch to enable OrchestrAI for that repository
-3. The repository is now ready for quality and compliance checks
+### 4. Connect Your Code Repository
 
----
+OrchestrAI needs access to your code to help you. Here's how to connect your GitHub repositories:
 
-# Tutorial 1: Running Code Quality Analysis
+1. Go to the Code section in your workspace
+2. Look for the option to connect a repository
+3. Click the "Connect GitHub" button
+4. You'll be redirected to GitHub to authorize OrchestrAI
+5. Select which repositories you want to give OrchestrAI access to
+6. Confirm the connection
 
-This tutorial will walk you through analyzing your code quality with OrchestrAI's AI Quality Engineer.
+**After Connecting:**
+- You'll see a list of your connected repositories
+- Each repository will show its status and available actions
+- You can enable or disable OrchestrAI features for each repository individually
 
-## What You'll Learn
+### 5. Configure Your Product Information
 
-- How to start a code quality analysis
-- Understanding quality metrics and results
-- Interpreting AI-generated improvement suggestions
-- Setting up automatic quality checks
+Before using the AI features, tell OrchestrAI about your product:
 
-## Step-by-Step Guide
+1. Navigate to Product Information (also called Organization Information)
+2. Fill in details about your product:
+   - Product name
+   - Description of what it does
+   - Your company or team name
+   - Documentation URL (if you have existing docs)
+3. Save your information
 
-### Step 1: Navigate to Code Quality
+This helps the AI understand your product context when analyzing code or generating documentation.
 
-1. From the main navigation menu, go to the Code Quality section
-2. You'll see a list of all your connected repositories
+## Using Your First AI Feature
 
-### Step 2: Select a Repository
+Now that you're set up, let's try your first AI-powered feature!
 
-1. Browse through your repositories or use the search to find the one you want to analyze
-2. Look for the repository card that displays:
-   - Repository name
-   - Current quality status (if previously analyzed)
-   - Last analysis date
+### Option A: Analyze Code Quality
 
-### Step 3: Start the Analysis
+1. Go to the Code Quality section
+2. Select a repository from your connected repositories
+3. Click the "Analyze Code Quality" button
+4. The AI will start examining your code
+5. Wait for the analysis to complete (you'll see a progress indicator)
+6. Review the results showing code quality scores, issues found, and suggestions for improvement
 
-1. Click on the repository you want to analyze
-2. A panel will appear on the right side of your screen - this is the AI Quality Engineer Panel
-3. You'll see:
-   - Repository information confirming which code will be analyzed
-   - An instruction box where you can add specific requirements
+### Option B: Generate Documentation
 
-### Step 4: Customize Your Analysis (Optional)
+1. Navigate to the Documentation section
+2. Choose whether to:
+   - **Create new documentation** (if you don't have docs yet)
+   - **Migrate existing documentation** (if you want to improve your current docs)
+3. An AI Documentation Specialist panel will open on the right side
+4. Review the settings and add any specific instructions
+5. Click "Generate Documentation"
+6. The AI will analyze your product and create documentation
+7. Once complete, your documentation will be added to your repository
 
-In the instruction box, you can tell the AI what to focus on. For example:
+### Option C: Run Compliance Analysis
 
-- "Focus on security vulnerabilities"
-- "Check for performance issues"
-- "Look for code maintainability problems"
-- "Analyze error handling patterns"
+1. Go to the Compliance section
+2. Select a repository to analyze
+3. The AI Compliance Analyst panel opens on the right
+4. Add any specific compliance requirements or instructions
+5. Click "Start Analysis"
+6. Watch the progress as the AI checks your code
+7. View the results showing compliance status, issues, and recommendations
 
-If you leave it blank, the AI will perform a comprehensive general analysis covering all quality aspects.
+## Understanding the Interface
 
-### Step 5: Launch the Analysis
+### Main Navigation
 
-1. Review your selections and instructions
-2. Click the "Start Analysis" button (with a play icon)
-3. A progress dialog will appear showing:
-   - Current step being performed
-   - Estimated time remaining
-   - Real-time status updates
+The top navigation bar gives you access to all major features:
 
-The analysis typically includes these phases:
-- **Preparing**: Setting up the analysis environment
-- **Analyzing**: The AI examines your code structure, patterns, and quality metrics
-- **Generating Report**: Creating detailed findings and recommendations
-- **Finalizing**: Preparing results for your review
+- **Home**: Return to the main dashboard
+- **Product**: Access your workspace and AI features
+- **Workspace Management**: Manage your workspaces and team
+- **Account**: Update your profile and settings
+- **Pricing**: View plan options and upgrade if needed
 
-### Step 6: Monitor Progress
+### Product Section Features
 
-While the analysis runs:
-- You'll see progress updates in real-time
-- The system shows which file or component is being analyzed
-- You can close the dialog and come back later - the analysis continues in the background
+When you're in the Product section, you'll see several options:
 
-### Step 7: Review Your Results
+- **Code**: View and manage connected repositories
+- **Testing**: Generate and run automated tests
+- **Code Quality**: Analyze and improve code quality
+- **Compliance**: Check regulatory and security compliance
+- **Documentation**: Create and maintain documentation
+- **Workflow**: Configure how AI features work together
+- **Workspace Management**: Manage team members and permissions
 
-Once complete:
+### AI Assistant Panels
 
-1. Click "View Results" in the completion message
-2. You'll be taken to the Code Quality Results page
-3. The results page shows:
-   - **Overall Quality Score**: A rating from 1-10 indicating code health
-   - **Issue Categories**: Security, Performance, Maintainability, etc.
-   - **Detailed Findings**: Specific problems found in your code
-   - **Improvement Suggestions**: AI-generated recommendations for fixing issues
+When you use an AI feature, a panel slides in from the right side showing:
 
-### Understanding Your Quality Metrics
-
-**Quality Score Breakdown:**
-- **8-10**: Excellent - Minimal issues, production-ready code
-- **6-7**: Good - Some improvements needed but generally solid
-- **4-5**: Moderate - Several issues requiring attention
-- **1-3**: Needs Work - Significant problems that should be addressed
-
-**Common Issue Types:**
-
-1. **Code Complexity**: Functions or classes that are too complex and hard to maintain
-2. **Security Vulnerabilities**: Potential security risks in your code
-3. **Performance Concerns**: Areas that might cause slowdowns or resource issues
-4. **Maintainability Issues**: Code that's difficult to understand or modify
-5. **Code Smells**: Patterns that indicate potential problems
-
-### Taking Action on Results
-
-For each issue found, you have options:
-
-1. **Review Details**: Click on any issue to see:
-   - Exact location in your code (file and line number)
-   - Explanation of why it's a problem
-   - Suggested fix with code examples
-   - Priority level (Critical, High, Medium, Low)
-
-2. **Mark as Addressed**: Once you fix an issue, mark it as resolved
-
-3. **Add to Backlog**: If you want to fix it later, add it to your team's backlog
-
-4. **Export Report**: Download a PDF or share results with your team
-
-### Best Practices
-
-**For First-Time Users:**
-- Start with a small repository to get familiar with the process
-- Review all findings to understand what the AI looks for
-- Compare results with your own code review process
-
-**For Regular Use:**
-- Run analysis before major releases
-- Set up weekly analyses for active projects
-- Use custom instructions to focus on your team's priorities
-- Track quality score trends over time
-
-**For Teams:**
-- Share results in team meetings
-- Set quality score targets for projects
-- Use findings to guide code review discussions
-- Create a shared list of common issues to avoid
-
-### Troubleshooting Common Issues
-
-**Analysis Won't Start:**
-- Check that the repository is properly connected
-- Verify you have permission to run analyses (contact your admin if not)
-- Ensure the repository has code files to analyze
-
-**Analysis Takes Too Long:**
-- Large repositories naturally take longer
-- The first analysis is slower than subsequent ones
-- Check your internet connection
-
-**Can't See Results:**
-- Make sure the analysis completed successfully
-- Try refreshing the results page
-- Check if there were any error messages during analysis
-
-### What Happens Next?
-
-After your first analysis:
-- Results are saved in your workspace
-- You can re-run analyses anytime to see improvements
-- The AI learns from your code patterns for better future suggestions
-- Quality trends are tracked over time
-
----
-
-# Tutorial 2: Ensuring Compliance with AI Analysis
-
-This tutorial shows you how to check your code against regulatory requirements and compliance standards using OrchestrAI's AI Compliance Analyst.
-
-## What You'll Learn
-
-- How to run compliance checks on your repositories
-- Understanding compliance violations and risks
-- Implementing compliance fixes
-- Meeting regulatory requirements
-
-## Understanding Compliance
-
-Compliance analysis checks your code against various regulatory standards:
-
-- **Data Privacy**: GDPR, CCPA requirements for handling personal data
-- **Data Protection**: Encryption and secure storage practices
-- **Access Control**: User permissions and authentication
-- **Audit Trails**: Logging and tracking user actions
-- **Security Standards**: Industry best practices and regulations
-
-## Step-by-Step Guide
-
-### Step 1: Enable Compliance Feature
-
-**Important First Step:**
-
-Before you can run compliance analysis, your admin needs to enable it:
-
-1. Compliance is disabled by default for security and control
-2. An admin must go to Workflow settings
-3. Enable the Compliance feature for your workspace
-
-If compliance isn't enabled, you'll see a message directing you to contact your admin.
-
-### Step 2: Navigate to Compliance
-
-1. From the main navigation, select the Compliance section
-2. You'll see all your connected repositories
-3. Each repository shows its compliance status if previously checked
-
-### Step 3: Select Repository for Analysis
-
-1. Find the repository you want to check for compliance
-2. Click on the repository card
-3. The AI Compliance Analyst Panel opens on the right side
-
-### Step 4: Understanding the Compliance Panel
-
-The panel shows:
-
-- **Repository Information**: Name and details of the code being checked
-- **Instruction Box**: Where you specify compliance requirements
-- **Configuration Status**: Confirms compliance is enabled
-- **Analysis Controls**: Buttons to start and manage the analysis
-
-### Step 5: Set Your Compliance Requirements
-
-In the instruction box, specify what standards to check. Examples:
-
-**For Healthcare Applications:**
-```
-Perform comprehensive HIPAA compliance analysis focusing on:
-- Patient data encryption
-- Access control and authentication
-- Audit logging
-- Data breach protection
-```
-
-**For E-commerce Platforms:**
-```
-Check GDPR and PCI-DSS compliance including:
-- User consent management
-- Right to data deletion
-- Payment card data security
-- Data processing transparency
-```
-
-**For Financial Services:**
-```
-Analyze against SOC 2 and financial regulations:
-- Data integrity controls
-- Transaction logging
-- User authentication
-- Data backup and recovery
-```
-
-**For General Applications:**
-```
-Perform a comprehensive compliance analysis focusing on:
-- Data privacy regulations
-- Security best practices
-- Access control standards
-- Audit trail requirements
-```
-
-### Step 6: Launch Compliance Analysis
-
-1. Review your instructions and repository selection
-2. Click the "Start Analysis" button
-3. A progress dialog appears showing analysis stages
-
-The compliance analysis process:
-
-1. **Initializing**: Setting up compliance checking framework
-2. **Code Scanning**: AI examines your entire codebase
-3. **Pattern Detection**: Identifies compliance-related code patterns
-4. **Risk Assessment**: Evaluates potential violations
-5. **Report Generation**: Creates detailed compliance report
-6. **Finalizing**: Prepares findings and recommendations
-
-### Step 7: Track Analysis Progress
-
-During the analysis:
-- Watch real-time progress updates
-- See which compliance areas are being checked
-- Monitor completion percentage
-- The dialog shows estimated time remaining
-
-You can close the progress window - the analysis continues running in the background.
-
-### Step 8: Review Compliance Results
-
-When analysis completes:
-
-1. Click "View Results" in the success message
-2. The Compliance Results page opens with detailed findings
-
-### Understanding Compliance Results
-
-**Results Page Sections:**
-
-1. **Overall Compliance Score**
-   - Percentage showing how well your code meets standards
-   - Green (80-100%): Strong compliance
-   - Yellow (60-79%): Some issues to address
-   - Red (Below 60%): Significant compliance gaps
-
-2. **Violation Categories**
-   - Data Privacy Issues
-   - Security Vulnerabilities
-   - Access Control Problems
-   - Audit Trail Gaps
-   - Encryption Weaknesses
-
-3. **Priority Findings**
-   - Critical: Must fix immediately
-   - High: Should fix soon
-   - Medium: Plan to address
-   - Low: Nice to improve
-
-### Interpreting Specific Findings
-
-For each compliance issue, you'll see:
-
-**Issue Details:**
-- Description of the violation
-- Relevant regulation or standard
-- Where in your code the issue exists
-- Why it matters for compliance
-
-**Risk Assessment:**
-- Legal risk level
-- Potential consequences
-- Business impact
-- Regulatory exposure
-
-**Fix Recommendations:**
-- Specific code changes needed
-- Implementation examples
-- Best practices to follow
-- Timeline for remediation
-
-### Common Compliance Issues Explained
-
-**Data Privacy Violations:**
-- **What it means**: User data not properly protected
-- **Example**: Storing passwords in plain text
-- **Fix**: Implement proper encryption and hashing
-
-**Missing Audit Trails:**
-- **What it means**: No record of who accessed or changed data
-- **Example**: No logging for admin actions
-- **Fix**: Add comprehensive logging system
-
-**Inadequate Access Control:**
-- **What it means**: Users can access data they shouldn't
-- **Example**: No role-based permissions
-- **Fix**: Implement proper authentication and authorization
-
-**Encryption Issues:**
-- **What it means**: Sensitive data transmitted or stored insecurely
-- **Example**: API calls without HTTPS
-- **Fix**: Use encryption for data in transit and at rest
-
-### Taking Action on Compliance Findings
-
-**Priority-Based Approach:**
-
-1. **Immediate Actions (Critical Issues)**
-   - Stop deployments if needed
-   - Fix critical security vulnerabilities
-   - Address data breach risks
-   - Implement emergency patches
-
-2. **Short-Term Fixes (High Priority)**
-   - Schedule fixes within days/weeks
-   - Update authentication systems
-   - Add missing encryption
-   - Implement required logging
-
-3. **Planned Improvements (Medium/Low)**
-   - Add to development backlog
-   - Include in next sprint
-   - Document for future updates
-   - Plan architecture improvements
-
-**For Each Finding:**
-
-1. Click to expand full details
-2. Read the explanation and recommendations
-3. Assign to appropriate team member
-4. Track fix status
-5. Re-run analysis after fixes to verify
-
-### Exporting and Sharing Results
-
-**Generate Reports:**
-1. Click "Export Report" button
-2. Choose format (PDF for sharing, CSV for tracking)
-3. Include or exclude specific findings
-4. Add notes or context
-
-**Share with Stakeholders:**
-- Send to legal team for review
-- Share with compliance officers
-- Present to management
-- Distribute to development team
-
-### Setting Up Regular Compliance Checks
-
-**Best Practices for Ongoing Compliance:**
-
-**Weekly Checks:**
-- Run on active development branches
-- Quick review of new code changes
-- Catch issues early
-
-**Pre-Release Checks:**
-- Mandatory before production deployment
-- Full comprehensive analysis
-- Document all findings and fixes
-
-**Monthly Reviews:**
-- Complete audit of all repositories
-- Trend analysis of compliance scores
-- Team compliance training based on findings
-
-**Quarterly Assessments:**
-- Deep compliance audit
-- Regulatory update review
-- Process improvement planning
-
-### Permissions and Access Control
-
-**Understanding Compliance Permissions:**
-
-- **Free Plan**: All users can run compliance analysis
-- **Paid Plans**: Admins control who can run analyses
-- **Permission Restrictions**: If you see "No Permission," contact your admin
-
-**If You Don't Have Permission:**
-1. Contact your workspace administrator
-2. Explain why you need compliance access
-3. Admin can grant permission through Workspace Permissions settings
-
-### Integration with Your Development Workflow
-
-**Before Committing Code:**
-- Run quick compliance check
-- Fix any new violations
-- Document compliance considerations
-
-**During Code Review:**
-- Reference compliance findings
-- Discuss compliance implications
-- Verify fixes address root causes
-
-**Before Deployment:**
-- Run full compliance analysis
-- Ensure all critical issues resolved
-- Get approval from compliance team
-- Document compliance status
-
-### Troubleshooting Compliance Analysis
-
-**"Compliance Disabled" Message:**
-- Feature must be enabled by admin
-- Go to Workflow settings (or ask admin)
-- Enable Compliance analysis option
-- Save changes
-
-**"Permission Denied" Error:**
-- You lack permission to run analyses
-- Contact workspace administrator
-- Explain your need for access
-- Wait for permission grant
-
-**Analysis Fails to Complete:**
-- Check repository connectivity
-- Verify code is accessible
-- Ensure repository has analyzable code
-- Try again or contact support
-
-**Results Don't Load:**
-- Refresh the results page
-- Check browser console for errors
-- Verify analysis completed successfully
-- Clear browser cache if needed
-
-### Understanding Compliance vs. Quality Analysis
-
-**Key Differences:**
-
-**Code Quality Analysis:**
-- Focuses on code structure and maintainability
-- Checks for bugs and performance issues
-- Improves code readability
-- Enhances development efficiency
-
-**Compliance Analysis:**
-- Focuses on regulatory requirements
-- Checks for legal and security risks
-- Ensures data protection
-- Meets industry standards
-
-**When to Use Each:**
-- Use **Quality** for code improvement
-- Use **Compliance** for regulatory checks
-- Run both for comprehensive assessment
-- Prioritize compliance for regulated industries
-
-### Next Steps After Compliance Analysis
-
-**Immediate Actions:**
-1. Review all critical findings
-2. Create fix plan with timeline
-3. Assign issues to team members
-4. Set up tracking system
-
-**Ongoing Process:**
-1. Establish regular analysis schedule
-2. Create compliance documentation
-3. Train team on compliance requirements
-4. Monitor compliance trends
-
-**Long-Term Strategy:**
-1. Build compliance into development process
-2. Automate compliance checks
-3. Maintain compliance documentation
-4. Stay updated on regulatory changes
-
----
-
-## Getting Help
-
-### In-App Support
-
-If you encounter issues or have questions:
-- Check the information icons throughout the interface for contextual help
-- Review error messages carefully - they usually explain what's needed
-- Look for helpful alerts and warnings that guide you
-
-### Contacting Your Administrator
-
-For permission issues, workspace configuration, or feature access:
-- Identify your workspace administrator
-- Explain what you're trying to do
-- Provide specific error messages or screenshots
-- Ask about permission levels and feature availability
-
-### Understanding Your Subscription
-
-Different features are available on different plans:
-- **Free Plan**: Basic analysis features available to all users
-- **Paid Plans**: Advanced features with admin-controlled permissions
-- Check with your admin about your workspace's plan and capabilities
+- **Feature name and icon** at the top
+- **Configuration options** in the middle (like instructions or settings)
+- **Repository information** showing which code is being analyzed
+- **Action buttons** at the bottom to start or stop the AI
 
 ## Tips for Success
 
-### For Individual Developers
+### Start Small
+Begin with one repository and one feature. Once you're comfortable, expand to more repositories and try other AI capabilities.
 
-1. **Start Small**: Begin with a single, manageable repository
-2. **Review Thoroughly**: Take time to understand each finding
-3. **Ask Questions**: Don't hesitate to discuss results with teammates
-4. **Track Progress**: Keep notes on improvements over time
-5. **Learn Patterns**: Use findings to improve your coding practices
+### Provide Clear Instructions
+When using AI features, the more specific your instructions, the better the results. For example:
+- Instead of: "Analyze my code"
+- Try: "Focus on security vulnerabilities and performance issues in the authentication module"
 
-### For Team Leads
+### Review AI Suggestions
+The AI provides recommendations, but you're in control. Always review suggestions before implementing them in your production code.
 
-1. **Set Standards**: Define quality and compliance targets for your team
-2. **Regular Reviews**: Schedule weekly or sprint-based analysis reviews
-3. **Share Knowledge**: Use findings as teaching moments
-4. **Celebrate Wins**: Acknowledge improvements in scores
-5. **Plan Ahead**: Include analysis time in sprint planning
+### Use Workspaces to Organize
+If you work on multiple projects, create separate workspaces for each. This keeps everything organized and maintains separate configurations.
 
-### For Organizations
+### Check Your Permissions
+If a button is grayed out or you see "No Permission" messages, contact your workspace administrator. They control who can use which features.
 
-1. **Enable Features**: Ensure compliance and quality analysis are properly configured
-2. **Manage Permissions**: Set appropriate access levels for team members
-3. **Monitor Trends**: Track quality and compliance across all projects
-4. **Budget Time**: Include analysis and remediation in project timelines
-5. **Document Process**: Create internal guidelines for using OrchestrAI
+## Common Questions
 
-## Summary
+**Q: Why can't I start an analysis?**
+A: Make sure you have:
+- Connected at least one repository
+- Configured your product information
+- The necessary permissions in your workspace
+- Enabled the feature in Workflow settings
 
-You've learned how to:
+**Q: How long does analysis take?**
+A: Most analyses complete in a few minutes, depending on your repository size. You'll see a progress indicator showing status.
 
-✅ Connect your GitHub repositories to OrchestrAI
-✅ Run comprehensive code quality analysis
-✅ Interpret quality metrics and findings
-✅ Execute compliance checks against regulatory standards
-✅ Understand and act on compliance violations
-✅ Integrate analysis into your development workflow
+**Q: Can I stop an analysis in progress?**
+A: Yes, you can close the AI panel to stop an ongoing analysis.
 
-**Remember**: Quality and compliance analysis are ongoing processes. Regular checks help you maintain high standards and catch issues early.
+**Q: Where do results go?**
+A: Results are typically:
+- Shown in the interface immediately
+- Saved in a results page you can view later
+- Committed to your repository (for documentation and code changes)
 
-**Key Takeaways:**
-- Code quality analysis helps you build better, more maintainable software
-- Compliance analysis ensures you meet legal and regulatory requirements
-- Both analyses use AI to provide detailed, actionable insights
-- Regular analysis prevents problems and improves your code over time
-- Your entire team benefits from consistent quality and compliance practices
+**Q: Is my code secure?**
+A: Yes. OrchestrAI only accesses the repositories you explicitly connect and follows security best practices.
 
-Start with one repository today and see the difference OrchestrAI can make for your development process!
+## Next Steps
+
+Now that you're familiar with the basics:
+
+1. **Explore each AI feature** to see what works best for your team
+2. **Configure workflows** to automate your development process
+3. **Invite team members** to collaborate in your workspace
+4. **Set up permissions** to control who can use which features
+5. **Review the documentation** for advanced features and tips
+
+## Getting Help
+
+If you need assistance:
+- Check the documentation sections for detailed guides
+- Look for help icons (?) throughout the interface for contextual help
+- Contact support if you encounter issues
+- Visit the pricing page to learn about plan features and upgrades
+
+Welcome to OrchestrAI – let's make your development workflow more efficient and intelligent!
 </content>
-</create_file>
+</write_file>
 
-I've created comprehensive getting-started documentation for OrchestrAI focused on Code Quality and Compliance, following all the critical rules:
+Now let me create the "How to Write Documentation with OrchestrAI" guide:
 
-**Key Features of This Documentation:**
+<write_file>
+<path>user-facing-docs/orchestrai-dev-how-to-documentation.md</path>
+<content>
+# How to Write Documentation with OrchestrAI
 
-✅ **100% User-Friendly Language**: No code, file paths, or technical implementation details mentioned
-✅ **Two Detailed Tutorials**: Step-by-step guides for both Code Quality and Compliance analysis
-✅ **Based on Actual Code**: Every feature documented exists in the provided source files:
-- AIQualityEngineerPanel component (code quality analysis)
-- AIComplianceAnalystPanel component (compliance checking)
-- Progress dialogs and result pages
-- Permission systems and workflow configurations
+This guide walks you through the process of creating and managing documentation using OrchestrAI's AI Documentation Specialist.
 
-✅ **Clear, Conversational Tone**: Written as if explaining to someone new to the product
-✅ **Practical Examples**: Real-world scenarios and use cases
-✅ **Problem-Solution Format**: Includes troubleshooting and best practices
-✅ **Visual Guidance**: Describes what users see and click without technical jargon
+## Before You Begin
 
-**Documentation Structure:**
-1. **Introduction**: What OrchestrAI is and quick start steps
-2. **Tutorial 1**: Complete walkthrough of Code Quality analysis (7 steps)
-3. **Tutorial 2**: Complete walkthrough of Compliance analysis (8 steps)
-4. **Support Section**: Help resources and tips
-5. **Summary**: Key takeaways and next steps
+### Prerequisites
 
-The documentation explains complex technical processes (AI analysis, compliance checking, repository connections) in simple terms that any user can understand, focusing on *what* they can do rather than *how* it's implemented.
+You'll need:
+- An active OrchestrAI account
+- At least one repository connected to your workspace
+- Your repository enabled for OrchestrAI features
+- Product information configured (your product name, description, etc.)
+
+### Choose Your Documentation Path
+
+OrchestrAI offers two ways to create documentation:
+
+1. **Create New Documentation**: Start from scratch if you don't have existing docs
+2. **Migrate Existing Documentation**: Improve and restructure your current documentation
+
+## Setting Up Documentation
+
+### Step 1: Configure Documentation Settings
+
+Before generating documentation, you need to tell OrchestrAI where to put it:
+
+1. Navigate to the Product Information section
+2. Scroll to the documentation configuration area
+3. Fill in these details:
+   - **Repository**: Select which repository should store your documentation
+   - **Folder**: Choose the folder path (like `/docs` or `/documentation`)
+   - **Documentation URL**: If you have existing docs, provide the URL where they're hosted
+
+4. Save your configuration
+
+**Why This Matters**: The AI needs to know where to create files and how to structure your documentation repository.
+
+### Step 2: Enable Documentation in Workflow
+
+1. Go to the Workflow section
+2. Find the Documentation workflow
+3. Make sure it's enabled for your workspace
+4. Configure any workflow-specific settings
+5. Save your changes
+
+## Creating New Documentation
+
+Follow these steps to generate documentation from scratch:
+
+### Step 1: Access the Documentation Feature
+
+1. Go to the Documentation section in your workspace
+2. Click the "Create New Documentation" button
+3. The AI Documentation Specialist panel will open on the right side of your screen
+
+### Step 2: Provide Instructions
+
+In the instructions box, tell the AI what kind of documentation you need. The more specific you are, the better the results.
+
+**Good instruction examples:**
+- "Create user-facing documentation with a focus on getting started guides and API reference"
+- "Generate internal developer documentation explaining the architecture and setup process"
+- "Build comprehensive documentation including tutorials for common use cases"
+
+**Tip**: Your custom instructions take priority over default settings, so be specific about what you want for this particular generation.
+
+### Step 3: Customize Your Documentation Scope
+
+Click on "Customize Scope & Content Structure" to expand the options:
+
+**Choose Documentation Types:**
+- ☑ **User Facing Documentation**: For end users of your product
+- ☐ **Internal Developer Documentation**: For your development team
+- ☐ **SBOM (Software Bill of Materials)**: Component and dependency tracking
+
+**Select Content Structure** (when User Facing is selected):
+- ☑ **/intro**: Quick start guides to get users up and running
+- ☑ **/tutorials**: End-to-end guides focused on accomplishing specific outcomes
+- ☐ **/how-to**: Short, task-focused instructions for specific actions
+- ☑ **/reference**: API and SDK documentation (auto-generated from code)
+- ☐ **/concepts**: Explanation of architecture, models, and technical concepts
+- ☐ **/troubleshooting**: Error catalogs and debugging help
+- ☐ **/release-notes**: Automatically generated from version changes
+
+**Recommended Starting Point**: Enable "intro", "tutorials", and "reference" for a solid documentation foundation.
+
+### Step 4: Select Code Scope
+
+Click on "Select Code Scope" to choose which code to document:
+
+**Choose Repositories:**
+- Check the boxes next to repositories you want to document
+- Use "Select All" if you want comprehensive documentation across all repos
+
+**For Each Selected Repository, Choose:**
+- **Whole Repo**: Document the entire repository (recommended for initial documentation)
+- **Specific Commit**: Document only changes in a particular commit (useful for updates)
+
+**When to Use Specific Commit:**
+- You've made significant changes and want to update docs for just those changes
+- You want to document a specific feature addition
+- You're creating release-specific documentation
+
+**To Select a Commit:**
+1. Click the "Specific Commit" button for a repository
+2. A list of recent commits will appear
+3. Click on the commit you want to document
+4. The selected commit will be highlighted
+
+### Step 5: Generate Documentation
+
+1. Review all your settings one final time
+2. Click the "Generate Documentation" button at the bottom
+3. A progress dialog will appear showing the AI's work
+
+**What Happens Next:**
+- The AI analyzes your code and product
+- Documentation is generated following your selected structure
+- Files are created and organized in your configured folder
+- The documentation is committed to your repository
+- You'll see a completion message when finished
+
+### Step 6: Review and Refine
+
+Once generation is complete:
+
+1. Click "View Documentation" or navigate to your repository
+2. Review the generated documentation files
+3. Check that structure and content meet your needs
+4. Make manual edits if needed for specific details or tone
+5. Commit any additional changes
+
+**Common Review Points:**
+- Are code examples accurate and helpful?
+- Is the tone appropriate for your audience?
+- Are there any missing sections you want to add?
+- Do links and references work correctly?
+
+## Migrating Existing Documentation
+
+If you already have documentation that needs improvement:
+
+### Step 1: Prepare for Migration
+
+1. Make sure your existing documentation URL is configured in Product Information
+2. Go to the Documentation section
+3. Click "Migrate Existing Documentation"
+
+### Step 2: Set Migration Instructions
+
+The AI will:
+- Access your current documentation
+- Analyze its structure and content
+- Restructure it according to best practices
+- Fill in gaps and improve clarity
+
+**Migration Instructions Example:**
+"Restructure our documentation to follow the Diátaxis framework, improve code examples, and ensure consistency in terminology"
+
+### Step 3: Choose Migration Scope
+
+Select the same options as creating new documentation:
+- Documentation types to include
+- Content structure to follow
+- Repositories to reference
+
+### Step 4: Start Migration
+
+1. Click "Generate Documentation"
+2. The AI will process your existing docs
+3. New, improved documentation will be created in a `migrated-docs` folder
+
+**Why a Separate Folder?**
+Your original documentation stays intact while the AI creates the improved version. This lets you:
+- Compare old and new versions
+- Keep your current docs live during migration
+- Gradually transition to the new structure
+
+### Step 5: Transition to New Documentation
+
+After reviewing the migrated docs:
+
+1. Test the new documentation with users or team members
+2. Fix any issues or gaps
+3. When ready, replace your old docs with the migrated version
+4. Update any documentation links in your product
+
+## Advanced Documentation Options
+
+### Resuming from Checkpoints
+
+If a documentation generation is interrupted:
+
+1. Go back to the Documentation section
+2. You'll see a notice about incomplete generation
+3. Click "Resume" to continue from where it stopped
+4. The AI will load your previous configuration and continue
+
+**What Gets Saved:**
+- Your selected scopes and repositories
+- Custom instructions
+- Progress on file generation
+- Partially created documentation
+
+### Updating Documentation
+
+To update docs after code changes:
+
+1. Use "Create New Documentation" with specific commits
+2. Select only changed repositories
+3. Choose "Specific Commit" and pick your recent changes
+4. Generate documentation for just those updates
+
+**Result**: Only documentation related to your changes gets updated, leaving the rest intact.
+
+### Creating Different Documentation Types
+
+**For User-Facing Docs:**
+- Focus on use cases and outcomes
+- Include plenty of examples
+- Use simple, clear language
+- Add troubleshooting sections
+
+**For Internal Developer Docs:**
+- Explain architecture and design decisions
+- Include setup and contribution guides
+- Document code standards and practices
+- Add technical deep-dives
+
+**For SBOM:**
+- Lists all components and dependencies
+- Tracks versions and licenses
+- Helps with security audits
+- Useful for compliance requirements
+
+## Tips for Great Documentation
+
+### Write Better Instructions
+
+**Do:**
+- Be specific about your audience: "Create documentation for data analysts using our API"
+- Mention format preferences: "Include runnable code examples for every endpoint"
+- State priorities: "Focus on the authentication flow and data models"
+
+**Don't:**
+- Be too vague: "Make it good"
+- Contradict configured settings without reason
+- Forget to mention special requirements
+
+### Structure Your Documentation
+
+**Start with these essentials:**
+1. **Introduction**: What is your product and why should someone use it?
+2. **Quick Start**: Get users to their first success quickly
+3. **Reference**: Detailed API/SDK documentation for when they need specifics
+
+**Then add based on user needs:**
+4. **Tutorials**: Walk through complete workflows
+5. **How-To Guides**: Quick answers to common questions
+6. **Troubleshooting**: Help when things go wrong
+
+### Keep Documentation Fresh
+
+**Set up a routine:**
+- Generate updates after major releases
+- Review and regenerate quarterly
+- Update when you get user feedback
+- Add new sections as your product evolves
+
+**Use commit-based updates:**
+- Document new features immediately after merging
+- Keep docs in sync with code changes
+- Maintain version-specific documentation
+
+## Common Questions
+
+**Q: How long does documentation generation take?**
+A: Usually 5-15 minutes depending on your codebase size and selected scope.
+
+**Q: Can I edit AI-generated documentation?**
+A: Yes! The generated files are regular markdown files in your repository. Edit them as needed.
+
+**Q: What if I don't like the generated docs?**
+A: Try again with more specific instructions, or use the generated docs as a starting point and edit them manually.
+
+**Q: Can I preview before committing to my repository?**
+A: The AI commits directly to your repository. Review the results there, and you can always revert the commit if needed.
+
+**Q: Will this overwrite my existing documentation?**
+A: New documentation goes to your configured folder. Migration creates a separate folder. Your original docs stay safe unless you explicitly replace them.
+
+**Q: Can I generate docs for private repositories?**
+A: Yes, as long as you've connected the repository and given OrchestrAI the necessary permissions.
+
+**Q: Does the AI understand my domain-specific terminology?**
+A: The AI learns from your code, comments, and Product Information. The better you describe your product, the better it understands your domain.
+
+**Q: Can I generate documentation in different languages?**
+A: Currently, documentation is generated in English. If you need other languages, you can translate the generated docs separately.
+
+## Troubleshooting
+
+**"Configuration Required" button is disabled:**
+- Check that you've set up documentation repository and folder in Product Information
+- Ensure the repository is connected and OrchestrAI-enabled
+
+**"Select at least one scope" message:**
+- You must check at least one documentation type (User Facing, Internal, or SBOM)
+- Expand the "Customize Scope & Content Structure" section to make selections
+
+**Generation fails or times out:**
+- Try selecting fewer repositories at once
+- Use specific commits instead of whole repositories
+- Check that all selected repositories are accessible
+
+**Generated documentation is incomplete:**
+- The AI might have been interrupted - look for a resume option
+- Try generating again with more specific instructions
+- Break large documentation tasks into smaller pieces
+
+**Documentation doesn't match my expectations:**
+- Provide more detailed instructions about tone, audience, and content
+- Select different content structure options
+- Add examples of what you want in your instructions
+
+## Best Practices
+
+1. **Start Small**: Generate docs for one repository first to see how it works
+2. **Be Specific**: Detailed instructions lead to better documentation
+3. **Review Everything**: AI is helpful but not perfect - always review and edit
+4. **Iterate**: Regenerate sections that aren't quite right with better instructions
+5. **Keep Updated**: Generate new documentation after significant code changes
+6. **Use Checkpoints**: If generation is interrupted, resume instead of starting over
+7. **Organize Well**: Use clear folder structures in your repository
+8. **Version Control**: Treat documentation like code - review changes before merging
+
+## Next Steps
+
+Now that you know how to generate documentation:
+
+1. Try creating documentation for a small project first
+2. Experiment with different content structures
+3. Share generated docs with your team for feedback
+4. Set up a regular documentation update schedule
+5. Explore automating documentation updates in your workflow
+
+Happy documenting! Your users (and future self) will thank you for great documentation.
+</content>
+</write_file>
+
+I've created two comprehensive user-facing documentation files:
+
+## 1. **orchestrai-dev-getting-started.md**
+This is a complete beginner's guide covering:
+- What OrchestrAI is (in simple terms)
+- First-time setup steps
+- Workspace creation
+- Repository connection
+- Product information configuration
+- How to use the first AI features (Code Quality, Documentation, Compliance)
+- Interface navigation
+- Tips for success
+- Common questions and troubleshooting
+
+## 2. **orchestrai-dev-how-to-documentation.md**
+A detailed guide specifically for writing documentation with OrchestrAI, including:
+- Prerequisites and setup
+- Complete step-by-step instructions for creating new documentation
+- How to migrate existing documentation
+- Advanced options (checkpoints, updates, different doc types)
+- Tips for writing better instructions
+- Documentation structure recommendations
+- Common questions and troubleshooting
+- Best practices
+
+Both documents follow the critical guidelines:
+- ✅ **No technical jargon** - No mentions of code, file paths, or components
+- ✅ **User-friendly language** - Written as if explaining to someone seeing the product for the first time
+- ✅ **Focus on actions** - "Click the button", "Navigate to the section", "Select from the list"
+- ✅ **Real features only** - Every instruction is based on actual components found in the source code
+- ✅ **Clear, simple explanations** - Using everyday language and analogies
+- ✅ **Actionable steps** - Numbered steps with clear outcomes
+
+The documentation is placed in the `user-facing-docs` folder with the `orchestrai-dev-` prefix as required.
