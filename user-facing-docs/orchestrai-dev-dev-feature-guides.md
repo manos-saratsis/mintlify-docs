@@ -1,21 +1,26 @@
 I'll analyze the source code to create a comprehensive how-to guide for generating documentation with OrchestrAI.
 
 <thinking>
-Let me examine the AIDocumentationSpecialistPanel component to understand the documentation generation workflow.
+Let me examine the AIDocumentationSpecialistPanel component to understand the documentation generation workflow:
 
-Key findings from the code:
-1. The panel supports two actions: 'create' (new documentation) and 'migrate' (existing documentation)
-2. Documentation scopes available: User Facing, Internal Developer, and SBOM
-3. User Facing has specific content structure options: intro, tutorials, howTo, reference, concepts, troubleshooting, releaseNotes
-4. Repository selection with full repo or specific commit scope
-5. Custom instructions can override default workspace configuration (marked as "Priority")
-6. Configuration requires: repository, folder setup in workflow settings
-7. Files are generated as markdown files with customizable filenames
-8. Documentation is committed to the configured repository
-9. Task explanation can optionally be added at the top of files
-10. Credit system applies (daily/monthly limits)
-11. Progress dialog shows the generation process
-12. Results can be viewed after completion
+1. The panel supports two actions: 'migrate' (existing docs) and 'create' (from scratch)
+2. Users can select documentation scopes: User Facing, Internal Developer, SBOM
+3. For User Facing docs, users can customize content structure (intro, tutorials, how-to, reference, concepts, troubleshooting, release notes)
+4. Users can select repositories and choose between full repo or specific commit analysis
+5. Users can provide custom instructions that take priority over default settings
+6. The process involves:
+   - Product analysis
+   - Documentation generation following selected structure
+   - Code deployment to repository
+7. Configuration requirements: documentation repository and folder must be set in workflow settings
+8. The generated files are deployed to the configured repository location
+
+Key features I need to document:
+- How to create documentation from scratch
+- Selecting User Facing content structure
+- Using custom instructions
+- Repository selection and scope
+- The deployment process
 </thinking>
 
 <read_file>
@@ -23,491 +28,209 @@ Key findings from the code:
 </read_file>
 
 <read_file>
-<path>src/services/workflowService.ts</path>
-</read_file>
-
-<read_file>
 <path>src/pages/ProductDocumentation.tsx</path>
 </read_file>
 
-<read_file>
-<path>src/contexts/WorkspaceContext.tsx</path>
-</read_file>
+Based on the source code analysis, I'll now create the user-facing documentation:
 
-# OrchestrAI Documentation Generation Guide
+# **OrchestrAI Feature Guide: Generating Documentation**
 
-## Overview
+## **Creating Product Documentation from Scratch**
 
-This guide walks you through creating product documentation from scratch using OrchestrAI's AI Documentation Specialist. The AI analyzes your product directly and generates comprehensive documentation following industry best practices, automatically deploying it to your repository.
+OrchestrAI's AI Documentation Specialist can automatically create comprehensive documentation for your product by analyzing your codebase and generating structured content.
 
-## Before You Start
+### **Getting Started**
 
-**Prerequisites:**
-- Active OrchestrAI workspace with available credits
-- At least one repository connected and enabled in your workspace
-- Documentation repository and folder configured in Product Information settings
+Before you begin generating documentation, you'll need to:
 
-**What You'll Need:**
-- Access to the Documentation page in your workspace
-- Permission to generate documentation (Free plan or appropriate workspace permissions)
-- Clear understanding of what documentation you want to create
+1. Make sure you have at least one repository connected and enabled for OrchestrAI
+2. Configure your documentation settings by going to Product Information and setting:
+   - Which repository will store your documentation
+   - What folder the documentation should be saved in
+   - Your preferred content structure
 
-## Creating Documentation from Scratch
+If these aren't configured yet, you'll see a friendly reminder with a button to set them up.
 
-### Step 1: Access the Documentation Generator
+### **Opening the Documentation Generator**
 
-1. Navigate to the **Documentation** page from your workspace sidebar
-2. Look for the documentation action buttons in the main area
-3. Click the **"Create Documentation"** button
+1. Navigate to the Documentation page in your workspace
+2. Look for the "Create Documentation" option
+3. The AI Documentation Specialist panel will open on the right side of your screen
 
-This opens the AI Documentation Specialist panel on the right side of your screen.
+### **Choosing What to Document**
 
-### Step 2: Choose Your Documentation Scope
+When the panel opens, you have several choices to make:
 
-The panel shows several documentation types you can generate. By default, **User Facing documentation** is selected.
+#### **Documentation Type**
 
-**Available Scopes:**
+You can generate three types of documentation:
 
-- **User Facing Documentation**: Public-facing docs for your product users
-- **Internal Developer Documentation**: Technical docs for your development team  
-- **SBOM (Software Bill of Materials)**: Component and dependency listings
+- **User Facing**: Documentation for people who use your product (selected by default)
+- **Internal Developer**: Technical documentation for your development team
+- **SBOM**: Software Bill of Materials for compliance and security tracking
 
-You can select multiple scopes at once - the AI will generate all selected types in a single run.
+Select one or more types by checking the boxes. You must select at least one type to proceed.
 
-### Step 3: Select User Facing Content Pieces
+#### **User Facing Content Structure**
 
-When User Facing documentation is selected, you'll see content structure options. These determine what documentation files are created:
+When you select User Facing documentation, you can customize what sections to include:
 
-**Recommended Content Pieces:**
+- **Intro/Quickstart** (selected by default): A quick introduction to get users started
+- **Tutorials** (selected by default): Step-by-step guides that walk users through complete workflows
+- **How-To Guides**: Short, task-focused instructions for specific actions
+- **API Reference** (selected by default): Automatically generated API and SDK documentation
+- **Concepts**: Explanations of your product's architecture, models, and important ideas
+- **Troubleshooting**: Solutions to common problems and error messages
+- **Release Notes**: Automatically generated update logs
 
-- **Intro (Quickstart)**: Gets users started quickly - selected by default
-- **Tutorials**: End-to-end, outcome-driven guides - selected by default  
-- **API Reference**: Autogenerated API/SDK documentation - selected by default
-- **How-To Guides**: Task-centric, short instructional content
-- **Concepts**: Architecture, models, and system explanations
-- **Troubleshooting**: Error catalog and debugging guides
-- **Release Notes**: Automated version history
+The AI will create separate files for each section you select. By default, Intro, Tutorials, and Reference are selected to give you a solid documentation foundation.
 
-**To customize content structure:**
+### **Selecting Your Code**
 
-1. Expand the **"Customize Scope & Content Structure"** section
-2. Check or uncheck the content types you want
-3. At minimum, keep Intro and Tutorials selected for comprehensive documentation
+You need to tell the AI which parts of your codebase to analyze:
 
-### Step 4: Select Code Repositories
+1. Expand the "Select Code Scope" section
+2. You'll see all repositories that are enabled for OrchestrAI
+3. Use "Select All" to include everything, or check individual repositories
+4. For each selected repository, choose:
+   - **Whole Repo**: Analyzes your entire codebase (recommended for first-time documentation)
+   - **Specific Commit**: Updates documentation based on a particular code change
 
-The AI needs access to your code to understand your product:
+When you select "Specific Commit", you'll see a list of recent changes. Click on one to focus the documentation update on just those changes.
 
-1. Expand the **"Select Code Scope"** section
-2. All OrchestrAI-enabled repositories are listed and **selected by default**
-3. Choose analysis scope for each repository:
-   - **Whole Repo**: Analyzes the entire codebase (recommended for initial documentation)
-   - **Specific Commit**: Documents changes from a particular commit
+### **Adding Custom Instructions**
 
-**For whole repository documentation:**
-- Simply leave the "Whole Repo" option selected
-- This gives the AI complete product understanding
+The "Additional Instructions" box is where you can guide the AI to create exactly what you need:
 
-**For specific commit documentation:**
-1. Click **"Specific Commit"** for a repository
-2. Wait for the commit list to load
-3. Select the commit you want to document
-4. The AI will focus on changes introduced in that commit
+**What to Include:**
+- Specific topics or features to emphasize
+- Your preferred writing style or tone
+- Special formatting requirements
+- Particular examples you want included
 
-### Step 5: Write Custom Instructions
+**Example Instructions:**
+- "Focus heavily on the authentication flow and include code examples in Python and JavaScript"
+- "Write in a friendly, conversational tone suitable for beginner developers"
+- "Include detailed error handling examples for each API endpoint"
+- "Add screenshots placeholders where visual guides would be helpful"
 
-The **Additional Instructions** field is where you specify exactly what you want documented.
+**Important:** These instructions take priority over any default settings you've configured elsewhere. Whatever you write here will be the AI's primary guidance.
 
-**This is the most important step** - your instructions take priority over all default settings.
+### **Customizing File Names**
 
-**Example Custom Instructions:**
+The AI creates files based on the sections you selected. You can customize the file names:
 
-```
-Focus on the authentication flow and user management features. 
-Create detailed API examples for each endpoint.
-Include code samples in JavaScript and Python.
-Emphasize security best practices throughout.
-```
+1. Look for the "Files to be generated" section
+2. Each file shows a text box with the current name
+3. Click in any box to change the filename (the .md extension is added automatically)
+4. Keep names simple and descriptive (like "getting-started" or "api-guide")
 
-**For custom documentation files:**
+### **Additional Options**
 
-```
-Create a dedicated guide for the payment integration process.
-Include step-by-step webhook setup instructions.
-Add troubleshooting section for common payment errors.
-Generate API reference for all payment-related endpoints.
-```
+- **Task Explanation**: Check this box if you want the AI to add a note at the top of each file explaining what it generated and why. This helps your team understand the AI's work.
 
-**Best practices for instructions:**
-- Be specific about features to emphasize
-- Mention any technical details to include
-- Specify code sample languages if needed
-- Note any special formatting requirements
-- Reference specific sections or topics you want covered
+### **Starting the Generation**
 
-### Step 6: Customize File Names (Optional)
+When you're ready:
 
-Scroll down to the **Configuration** section to see files that will be generated.
+1. Click the "Generate Documentation" button at the bottom of the panel
+2. You'll see a progress window showing what the AI is doing:
+   - Analyzing your product
+   - Understanding your code structure
+   - Creating documentation files
+   - Preparing deployment
+3. The entire process typically takes a few minutes
 
-For each file listed:
-1. The default filename is shown (e.g., "intro", "tutorials")
-2. Click the filename field to edit it
-3. Enter your preferred name (without the .md extension)
-4. The file will be created with your custom name
+You can safely close the progress window—the AI will continue working in the background.
 
-**Example customizations:**
-- Change "intro" to "getting-started"
-- Change "tutorials" to "guides"
-- Change "reference" to "api-docs"
-
-### Step 7: Add Task Explanations (Optional)
+### **How Documentation Gets Deployed**
 
-Check the box **"Add documentation task explanation at the top of the file"** if you want each generated file to include:
-- A header explaining what the file covers
-- Context about the documentation scope
-- Information about when it was generated
+Once generation is complete, here's what happens automatically:
 
-This is helpful for maintaining documentation over time.
+1. **Commit Creation**: The AI creates a new commit in your documentation repository
+2. **File Organization**: Your documentation files are saved in the folder you configured
+3. **Folder Structure**: Each documentation type gets its own subfolder:
+   - User Facing docs go in `/user-facing-docs/`
+   - Internal docs go in `/internal-developer-docs/`
+   - SBOM files go in `/sbom/`
+4. **File Naming**: Files are prefixed with your repository name (like "my-product-intro.md")
 
-### Step 8: Start Documentation Generation
+**Important Notes:**
+- Your original code repositories are never modified—only your documentation repository receives updates
+- Each generation creates a fresh set of files
+- The AI includes a timestamp and generation details in each file
 
-1. Review all your selections and instructions
-2. Click the **"Generate Documentation"** button at the bottom of the panel
-
-**What happens next:**
-- A progress dialog appears showing generation steps
-- The AI analyzes your selected repositories
-- Documentation is generated according to your specifications
-- Files are automatically committed to your configured repository
-
-**Progress Stages:**
-1. **Initializing**: Setting up the generation process
-2. **Analyzing Code**: AI examines your product
-3. **Generating Content**: Creating documentation files
-4. **Deploying**: Committing files to your repository
-5. **Complete**: Documentation is ready
-
-### Step 9: Review Generated Documentation
-
-Once generation completes:
-
-1. A success message appears confirming completion
-2. Click **"View Documentation"** to see the generated files
-3. Your documentation is now live in your repository
-
-The files are created in the folder you configured in Product Information settings (typically a `docs` folder in your repository).
-
-## Deploying Your Documentation
-
-Documentation is **automatically deployed** to your repository when generation completes. Here's what happens:
-
-### Automatic Deployment Process
-
-1. **Commit Creation**: The AI creates a new commit with all generated documentation files
-2. **Branch**: Files are committed to your default branch (usually `main` or `master`)
-3. **Location**: Files are placed in your configured documentation folder
-4. **File Format**: All files are created as Markdown (.md) files
-
-### Viewing Your Deployed Documentation
-
-**In Your Repository:**
-1. Navigate to your repository on GitHub
-2. Go to the documentation folder (e.g., `/docs`)
-3. You'll see all generated markdown files
-
-**Typical file structure:**
-```
-docs/
-├── intro.md
-├── tutorials.md
-├── how_to.md
-├── reference.md
-├── concepts.md
-└── troubleshooting.md
-```
-
-### Setting Up Documentation Hosting
-
-While OrchestrAI deploys the files, you'll need to set up hosting separately:
-
-**GitHub Pages:**
-1. Go to your repository Settings
-2. Navigate to Pages section
-3. Select your documentation branch and folder
-4. Your docs will be available at `https://yourusername.github.io/repository`
-
-**Documentation Platforms:**
-- **GitBook**: Connect your repository for automatic updates
-- **ReadTheDocs**: Configure to build from your markdown files
-- **Docusaurus**: Use generated files with your Docusaurus site
-- **MkDocs**: Configure mkdocs.yml to use generated files
-
-## Creating Custom Documentation Files
-
-You can use custom instructions to generate specific documentation beyond the standard structure.
-
-### Example: Custom Integration Guide
-
-**Instructions:**
-```
-Create a comprehensive Stripe payment integration guide.
-Include:
-- Prerequisites and setup requirements
-- Step-by-step integration process
-- Code examples for creating charges
-- Webhook handling instructions
-- Error handling best practices
-- Testing procedures
-```
-
-**Result:** The AI generates a detailed integration guide focused on your specifications.
-
-### Example: Feature-Specific Documentation
-
-**Instructions:**
-```
-Document the real-time notifications feature.
-Cover:
-- WebSocket connection setup
-- Message format and types
-- Client-side implementation
-- Server-side event handling
-- Reconnection logic
-- Browser compatibility
-```
-
-### Example: Migration Guide
-
-**Instructions:**
-```
-Create a migration guide from v1 to v2 of our API.
-Include:
-- Breaking changes summary
-- Endpoint mapping (old to new)
-- Code migration examples
-- Data transformation requirements
-- Deprecated feature alternatives
-```
-
-## Understanding Content Structure
-
-Each content piece serves a specific purpose in your documentation:
-
-### Intro (Quickstart)
-- First file users see
-- Gets them productive quickly
-- Includes installation and basic usage
-- Shows "hello world" equivalent for your product
-
-### Tutorials
-- End-to-end learning experiences
-- Outcome-driven (achieves a specific goal)
-- Step-by-step with explanations
-- Takes users from beginner to capable
-
-### How-To Guides
-- Task-focused instructions
-- Shorter than tutorials
-- Assumes basic knowledge
-- "How do I accomplish X?" format
-
-### API Reference
-- Autogenerated from code
-- Complete endpoint/method documentation
-- Parameters, return values, examples
-- Technical and precise
-
-### Concepts
-- Explains "why" and "how it works"
-- Architecture documentation
-- System design explanations
-- Background knowledge
-
-### Troubleshooting
-- Common problems and solutions
-- Error message catalog
-- Debugging procedures
-- FAQ-style content
-
-### Release Notes
-- Version history
-- New features
-- Bug fixes
-- Breaking changes
-
-## Tips for Best Results
-
-### Writing Effective Instructions
-
-**DO:**
-- Be specific about features to cover
-- Mention target audience (e.g., "beginners", "advanced users")
-- Specify code example languages
-- Reference existing documentation style if migrating
-- Include any critical information that must appear
-
-**DON'T:**
-- Leave instructions blank (use them to guide the AI)
-- Be vague ("make it good" won't help)
-- Contradict your scope selections
-- Ask for content outside selected repositories
-
-### Choosing Repository Scope
-
-**Use "Whole Repo" when:**
-- Creating initial documentation
-- You want comprehensive coverage
-- Product has evolved since last documentation
-- Multiple features need documenting
-
-**Use "Specific Commit" when:**
-- Updating docs for a new feature
-- Documenting a specific release
-- Creating release notes
-- Incremental documentation updates
-
-### Organizing Generated Files
-
-**Standard structure recommendation:**
-```
-docs/
-├── intro.md                 (Quickstart)
-├── tutorials/              (Tutorial guides)
-│   ├── getting-started.md
-│   └── advanced-usage.md
-├── how-to/                 (Task guides)
-│   └── common-tasks.md
-├── api/                    (API Reference)
-│   └── reference.md
-└── concepts/               (Explanations)
-    └── architecture.md
-```
+### **Reviewing Your Documentation**
 
-You can request this structure in your custom instructions.
+After generation completes:
 
-## Common Scenarios
+1. You'll see a success message
+2. The files are immediately available in your repository
+3. Navigate to your documentation repository on GitHub to review the generated content
+4. If you use a documentation hosting service (like GitBook or ReadTheDocs), it will automatically pick up the new files
 
-### Scenario 1: New Product Launch
+### **Tips for Best Results**
 
-**Goal:** Create complete documentation for a new product.
+**First Time Setup:**
+- Select "Whole Repo" for all repositories to give the AI complete context
+- Include Intro, Tutorials, and Reference for a comprehensive documentation set
+- Keep your custom instructions simple and focused
 
-**Steps:**
-1. Select User Facing scope
-2. Enable: Intro, Tutorials, Reference, Concepts
-3. Select all relevant repositories (Whole Repo)
-4. Instructions: "Create beginner-friendly documentation for users new to [product type]. Include plenty of examples."
+**Updating Documentation:**
+- Use "Specific Commit" when you've made targeted changes
+- Reference the commit message in your custom instructions
+- Only select the content sections that need updates
 
-### Scenario 2: Feature Release
+**Custom Instructions:**
+- Be specific about what you want but don't over-constrain the AI
+- Mention your audience (beginners, experienced developers, etc.)
+- Specify if you need code examples in particular languages
+- Request specific formats if your documentation platform requires them
 
-**Goal:** Document a newly released feature.
+### **What If Something Goes Wrong?**
 
-**Steps:**
-1. Select User Facing scope
-2. Enable: Tutorials, How-To, Reference
-3. Select repository with feature (Specific Commit)
-4. Instructions: "Document the new [feature name]. Focus on practical usage examples and common use cases."
+If documentation generation fails:
 
-### Scenario 3: Developer Onboarding
+1. Check that your repository and folder are properly configured
+2. Verify that your GitHub connection has the necessary permissions
+3. Make sure you've selected at least one documentation type
+4. Try simplifying your custom instructions
 
-**Goal:** Help new developers understand the codebase.
+You can retry generation at any time—each attempt is independent.
 
-**Steps:**
-1. Select Internal Developer scope
-2. Select all relevant repositories (Whole Repo)
-3. Instructions: "Create onboarding documentation for new developers. Include architecture overview, development setup, coding standards, and contribution guidelines."
+### **Understanding Credit Usage**
 
-### Scenario 4: API Documentation Update
-
-**Goal:** Refresh API documentation after endpoint changes.
-
-**Steps:**
-1. Select User Facing scope
-2. Enable: Reference only
-3. Select API repository (Specific Commit if recent changes)
-4. Instructions: "Generate comprehensive API reference. Include request/response examples, authentication details, and error codes for all endpoints."
-
-## Troubleshooting
-
-### "Configuration Required" Button
-
-**Problem:** Can't start generation.
-
-**Solution:** 
-1. Go to Product Information page
-2. Configure documentation repository and folder
-3. Return to Documentation page
-
-### "No Permission" Error
-
-**Problem:** Button disabled with permission message.
-
-**Solution:**
-- Free plan users have full access
-- Paid plan users need permission from workspace admin
-- Contact your workspace owner to grant Documentation permission
-
-### "Credit Limit Reached"
-
-**Problem:** No credits available for generation.
-
-**Solution:**
-- Daily limit: Wait until next day (resets at midnight UTC)
-- Monthly limit: Workspace owner/admin can upgrade plan
-- Click "Upgrade Plan" button if you're an admin
-
-### Documentation Not Appearing
-
-**Problem:** Generation completed but files not in repository.
-
-**Solution:**
-1. Check configured repository and folder in Product Information
-2. Verify you have write access to the repository
-3. Check repository recent commits for the documentation commit
-4. Contact support if issue persists
-
-### Incomplete Documentation
-
-**Problem:** Generated docs missing expected content.
-
-**Solution:**
-1. Review your custom instructions for clarity
-2. Ensure selected repositories contain relevant code
-3. Try regenerating with more specific instructions
-4. Check if all desired content structure pieces were selected
-
-## Credit Usage
-
-Documentation generation uses credits from your workspace allocation:
-
-- **Free Plan**: Limited monthly credits
-- **Paid Plans**: Higher monthly credits based on tier
-- **Daily Limit**: Prevents accidental overuse
-- **Monthly Limit**: Total credits available per billing period
-
-Each documentation generation run consumes credits based on:
+Documentation generation uses workspace credits. The amount depends on:
 - Number of repositories analyzed
-- Amount of code processed
-- Number of documentation files generated
-- Complexity of selected scopes
+- Size of your codebase
+- Number of documentation sections generated
 
-**Credit-saving tips:**
-- Use specific commit scope for incremental updates
-- Select only needed content structure pieces
-- Avoid regenerating unchanged documentation
-- Combine multiple updates into single generations when possible
-
-## Next Steps
-
-After generating your documentation:
-
-1. **Review the content**: Check generated files for accuracy and completeness
-2. **Customize as needed**: Edit files to add company-specific details
-3. **Set up hosting**: Configure GitHub Pages or other documentation platform
-4. **Share with team**: Distribute documentation URL to stakeholders
-5. **Plan updates**: Schedule regular documentation updates with new releases
-
-For ongoing documentation maintenance, use the specific commit scope to document incremental changes rather than regenerating everything.
+If you run out of credits:
+- Free plans have daily and monthly limits
+- Workspace admins can upgrade the plan for more credits
+- You'll see a clear message about credit status before starting
 
 ---
 
-**Need Help?** If you encounter issues not covered in this guide, check the OrchestrAI troubleshooting documentation or contact support through your workspace.
+## **Quick Reference**
+
+**Minimum Requirements:**
+- At least one repository enabled
+- Documentation repository and folder configured
+- At least one documentation type selected
+
+**Recommended First-Time Setup:**
+- Select: User Facing documentation
+- Include: Intro, Tutorials, Reference
+- Choose: All repositories, Whole Repo scope
+- Add custom instructions about your product's main purpose
+
+**Generated Files Location:**
+- Your documentation repository
+- In the folder you configured
+- Organized in subfolders by documentation type
+
+**Time to Complete:**
+- Small projects: 2-3 minutes
+- Medium projects: 5-8 minutes
+- Large codebases: 10-15 minutes
