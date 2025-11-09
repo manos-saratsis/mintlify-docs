@@ -1,308 +1,242 @@
-I'll analyze the source code to create a user-friendly how-to guide for generating documentation from scratch in OrchestrAI.
+# Generating Documentation from Scratch
 
-<analysis>
-Let me examine the key files:
-
-1. **AIDocumentationSpecialistPanel.tsx** - This is the main component that handles documentation generation
-2. The component shows:
-   - Two action types: 'migrate' (existing docs) and 'create' (from scratch)
-   - Scope selection: User Facing, Internal Developer, SBOM
-   - Content Structure options (nested under User Facing): intro, tutorials, how-to, reference, concepts, troubleshooting, release notes
-   - Repository selection with full repo or specific commit options
-   - Custom filename editing for generated files
-   - Instructions field for customization
-   - Task explanation option
-
-Key user flows I can identify:
-1. Opening the AI Documentation Specialist panel
-2. Selecting documentation scope
-3. Customizing content structure
-4. Adding custom instructions
-5. Customizing file names
-6. Generating documentation
-</analysis>
-
-# orchestrai-dev-creating-documentation-from-scratch.md
-
-## How to Create Documentation from Scratch
-
-This guide will walk you through creating comprehensive documentation for your product using OrchestrAI's AI Documentation Specialist. You'll learn how to customize the scope, structure, and content of your documentation to match your exact needs.
+Learn how to create comprehensive documentation for your project using OrchestrAI's Documentation feature. The AI will analyze your code and generate organized, professional documentation automatically.
 
 ---
 
-## Before You Begin
+## What This Guide Covers
+
+This guide walks you through:
+- Creating brand new documentation from your codebase
+- Choosing what types of documentation to generate
+- Customizing the documentation structure
+- Adding specific instructions for focused content
+- Managing where your documentation files are saved
+
+---
+
+## Before You Start
 
 Make sure you have:
-- Configured your documentation repository and folder in the Workflow settings
-- At least one repository enabled for OrchestrAI
-- Sufficient credits available in your workspace
-
-If you see a message about "Configuration Required," click the button to set up your documentation location first.
+1. **Selected a workspace** - Choose the workspace containing your project
+2. **Connected your code repository** - Your repository should be connected and enabled in OrchestrAI
+3. **Configured documentation settings** - Set up where you want your documentation to be stored (go to Product Information to configure the documentation repository and folder)
 
 ---
 
-## Step 1: Open the AI Documentation Specialist
+## Creating Documentation Step by Step
 
-1. Navigate to the Documentation page in your product
-2. Look for the "Create New Documentation" option
-3. Click to open the AI Documentation Specialist panel on the right side of your screen
+### 1. Open the Documentation Tool
 
-The panel will appear with all the tools you need to customize your documentation.
+1. Navigate to the Documentation section in your workspace
+2. Click the **"Create New Documentation"** button
+3. The AI Documentation Specialist panel will open on the right side of your screen
 
----
+### 2. Choose Your Documentation Scope
 
-## Step 2: Choose Your Documentation Scope
+The documentation scope determines what types of documentation will be generated. You have three main options:
 
-The AI can create three different types of documentation. By default, "User Facing documentation" is selected, which is perfect for most products.
+#### **User Facing Documentation** (Selected by default)
+This creates documentation for people who will use your product. When you select this, you can customize what sections to include:
 
-### Available Scopes:
+- **Intro** - A quickstart guide to help users get started quickly
+- **Tutorials** - Step-by-step lessons that guide users through complete workflows
+- **How-To Guides** - Short, focused instructions for specific tasks
+- **API Reference** - Technical details about your APIs and SDKs (auto-generated)
+- **Concepts** - Explanations of how your product works, its architecture, and key ideas
+- **Troubleshooting** - Solutions for common problems and error messages
+- **Release Notes** - Automatically generated updates about what's new
 
-**User Facing Documentation** (Selected by default)
-- Perfect for your end users and customers
-- Includes tutorials, guides, and references
-- This is what most people see when they visit your docs
+**Tip:** Start with just Intro, Tutorials, and API Reference if you're creating documentation for the first time.
 
-**Internal Developer Documentation**
-- For your development team
-- Includes architecture and setup guides
-- Keep this checked if you want docs for your engineers
+#### **Internal Developer Documentation**
+This creates documentation for your development team:
 
-**SBOM (Software Bill of Materials)**
-- Technical inventory of your software components
-- Required for compliance in some industries
-- Generates both CycloneDX and SPDX formats
+- Architecture documentation explaining how your code is organized
+- Development setup guides for new team members
+- Developer overview with technical details
 
-**How to select:**
-1. Scroll down to the "Customize Scope & Content Structure" section
-2. Click the arrow to expand it
-3. Check or uncheck the boxes for each type you want
+#### **SBOM - Software Bill of Materials**
+This creates a detailed list of all software components in your project, useful for security and compliance:
 
----
+- CycloneDX format
+- SPDX format
 
-## Step 3: Customize Your Content Structure
+**You can select multiple scopes** - For example, you might want both User Facing and Internal Developer documentation.
 
-When you have "User Facing documentation" selected, you can choose exactly what sections to include. Think of this as choosing which chapters go in your documentation book.
+### 3. Select Your Code Repositories
 
-### Available Content Types:
+Choose which parts of your codebase the AI should analyze:
 
-**Quickstart / Introduction** (Recommended - Checked by default)
-- The "start here" page for new users
-- Gets people up and running quickly
-- Every good documentation set needs this
+1. Click on **"Select Code Scope"** to expand the repository section
+2. You'll see all repositories that are enabled for OrchestrAI
+3. Check the boxes next to the repositories you want to include
+4. Use **"Select All"** to include everything, or pick specific repositories
 
-**Tutorials** (Recommended - Checked by default)
-- Step-by-step guides from start to finish
-- Shows users how to accomplish real goals
-- Great for learning
+For each selected repository, you can choose:
 
-**How-To Guides**
-- Short, task-focused instructions
-- "How do I do X?" type questions
-- Practical and to the point
-
-**API Reference** (Checked by default)
-- Technical details about your APIs and SDKs
-- Automatically generated from your code
-- Essential for developers
-
-**Concepts**
-- Explains how your product works
-- Covers architecture and key ideas
-- Helps users understand the "why"
-
-**Troubleshooting**
-- Common problems and solutions
-- Error messages explained
-- Helps users help themselves
-
-**Release Notes**
-- What's new in each version
-- Automatically generated from your updates
-- Keeps users informed
-
-**How to customize:**
-1. In the "Customize Scope & Content Structure" section
-2. Look under "User Facing documentation"
-3. Check or uncheck each content type you want
-4. The AI will only create the sections you select
-
----
-
-## Step 4: Select Which Code to Analyze
-
-The AI needs to look at your code to understand what to document. You can choose which repositories to analyze and even focus on specific recent changes.
-
-### Choosing Repositories:
-
-1. Scroll to the "Select Code Scope" section
-2. Click to expand it
-3. You'll see all your OrchestrAI-enabled repositories
-4. By default, all are selected - uncheck any you don't want included
-
-### Whole Repo vs. Specific Commit:
-
-For each repository, you can choose:
-
-**Whole Repo** (Default)
-- Analyzes the entire codebase
+**Whole Repo** - Analyze everything in the repository
 - Best for comprehensive documentation
-- Takes longer but covers everything
+- Takes longer but gives complete coverage
 
-**Specific Commit**
-- Focuses on recent changes
-- Perfect for updating docs after a specific feature
-- Much faster for targeted updates
+**Specific Commit** - Focus on recent changes
+- Select this when you want to update documentation for new features
+- Click to see a list of recent commits
+- Choose the commit that contains the changes you want to document
 
-**To use specific commits:**
-1. Click the "Specific Commit" button for a repository
-2. Wait for the list of recent commits to load
-3. Click on the commit you want to focus on
-4. You'll see it highlighted in blue
+### 4. Customize File Names (Optional)
 
----
+By default, documentation files are named based on their type (like "intro.md" or "tutorials.md"). You can customize these:
 
-## Step 5: Add Custom Instructions
+1. Scroll down to **"Files to be generated"**
+2. Click on any filename to edit it
+3. Type your preferred name (without the .md extension)
+4. The label on the right shows what type of content will be in that file
 
-This is where you can tell the AI exactly what you want. These instructions are incredibly powerful and take priority over everything else.
+**Example:** You might rename "intro.md" to "getting-started.md" or "tutorials.md" to "learn-by-doing.md"
 
-### What to Include in Your Instructions:
+### 5. Add Custom Instructions
 
-**Be Specific About:**
-- Special terminology your product uses
-- The tone you want (friendly, technical, formal)
-- Specific features to emphasize or skip
-- Your target audience (beginners, experts, etc.)
+Want the AI to focus on something specific? Add additional instructions:
+
+1. Find the **"Additional Instructions"** text box (marked with a "Priority" badge)
+2. Type specific guidance for what you want documented
 
 **Example Instructions:**
+- "Focus on explaining the authentication flow in detail"
+- "Include code examples for Python developers"
+- "Emphasize security best practices throughout"
+- "Make sure to document all command-line options"
 
-*For a friendly approach:*
-"Use a conversational, welcoming tone. Explain technical concepts in simple terms. Include lots of examples and assume users are new to this type of product."
+These instructions take priority over any default settings, so the AI will pay special attention to what you write here.
 
-*For technical documentation:*
-"Write for experienced developers. Include code examples in Python and JavaScript. Focus on advanced features and best practices."
+### 6. Add Task Explanations (Optional)
 
-*For specific features:*
-"Emphasize our new payment integration feature. Include step-by-step setup instructions and common troubleshooting tips. Use real-world e-commerce examples."
+If you want each documentation file to include a note at the top explaining what that file covers:
 
-**How to add instructions:**
-1. Find the "Additional Instructions" box
-2. Type or paste your instructions
-3. You'll see a purple "Priority" badge - this means your instructions override defaults
+1. Check the box for **"Add documentation task explanation at the top of the file"**
+2. This adds a helpful header to each file showing its purpose
 
-### Optional: Task Explanation
+This is useful when multiple people will be working with the documentation.
 
-If you want to see notes about what the AI did at the top of each file:
-1. Check the box "Add documentation task explanation at the top of the file"
-2. This helps you understand the AI's approach
-3. You can remove these notes before publishing
+### 7. Start Generating
 
----
+When you're ready:
 
-## Step 6: Customize File Names (Optional)
+1. Review your selections
+2. Click the **"Generate Documentation"** button at the bottom of the panel
+3. A progress window will appear showing what the AI is doing
+4. Wait while the AI analyzes your code and creates the documentation
 
-Each documentation file gets a default name, but you can change them to match your preferences.
-
-**Default file naming:**
-- intro → intro.md
-- tutorials → tutorials.md
-- how_to → how_to.md
-- reference → reference.md
-
-**How to change file names:**
-1. Scroll to the "Configuration" section
-2. Look for "Files to be generated"
-3. Click on any filename
-4. Type your preferred name
-5. The ".md" extension is added automatically
-
-**Example customizations:**
-- Change "intro" to "getting-started"
-- Change "tutorials" to "learn"
-- Change "reference" to "api-docs"
+The process usually takes a few minutes depending on how much code you're documenting.
 
 ---
 
-## Step 7: Generate Your Documentation
+## Creating Focused Documentation Files
 
-Once you've customized everything, you're ready to create your documentation!
+Sometimes you want to create a specific, focused piece of documentation. Here's how:
 
-**What happens when you click Generate:**
-1. The AI analyzes your selected repositories
-2. It reviews your product to understand functionality
-3. It creates documentation following your structure
-4. The files are committed to your documentation repository
+### Example: Creating a Security Guide
 
-**To start generation:**
-1. Review your selections one more time
-2. Make sure you have enough credits (check the top of the panel)
-3. Click the purple "Generate Documentation" button at the bottom
-4. A progress dialog will appear showing the AI's work
+Let's say you want a dedicated security documentation file:
 
-**During generation:**
-- Don't close your browser
-- You'll see status updates as the AI works
-- This can take several minutes depending on your code size
-- Checkpoints are saved automatically in case of interruption
+1. **In Documentation Scope**, select **User Facing**
+2. **In Content Structure**, check **Concepts** (since security is a key concept)
+3. **In Additional Instructions**, write:
+   ```
+   Create a comprehensive security guide covering authentication, 
+   authorization, data encryption, and security best practices. 
+   Include real code examples and common security pitfalls to avoid.
+   ```
+4. **In Files to be generated**, find the "concepts" file and rename it to:
+   ```
+   security-guide
+   ```
+5. Click **Generate Documentation**
 
-**When it's complete:**
-- You'll see a success message
-- Your documentation is committed to your repository
-- You can view the results immediately
+The AI will create a file called "security-guide.md" focused entirely on security topics.
+
+### Example: Creating an API Cookbook
+
+For a collection of practical API examples:
+
+1. **In Documentation Scope**, select **User Facing**
+2. **In Content Structure**, check **How-To Guides** and **Reference**
+3. **In Additional Instructions**, write:
+   ```
+   Create an API cookbook with practical, copy-paste ready examples 
+   for every major API endpoint. Include request/response examples, 
+   error handling, and rate limiting information.
+   ```
+4. Rename the "how_to" file to:
+   ```
+   api-cookbook
+   ```
+5. Click **Generate Documentation**
 
 ---
 
-## Tips for Best Results
+## What Happens Next
 
-**Start Simple:**
-- For your first time, use the default selections
-- Add customizations as you learn what works
+After you click Generate Documentation:
 
-**Be Clear in Instructions:**
-- The more specific you are, the better the results
-- Include examples of what you want
-- Mention what to avoid
+1. **Analysis Phase** - The AI reads through your code to understand what it does
+2. **Generation Phase** - The AI writes documentation based on your selections and instructions
+3. **Deployment Phase** - The documentation files are created in your configured repository and folder
 
-**Use Specific Commits for Updates:**
-- When you add a new feature, use "Specific Commit"
-- This updates only the relevant documentation
-- Saves time and credits
+When complete, you'll see a success message and can view your new documentation.
 
-**Choose the Right Content Structure:**
-- Not sure? Start with just Intro, Tutorials, and Reference
-- You can always generate more sections later
+---
 
-**Review Generated Files:**
-- The AI does great work, but always review before publishing
-- Make minor adjustments to match your voice
-- Add any missing details you notice
+## Tips for Better Documentation
+
+**Be Specific with Instructions**
+- Instead of "document everything," try "document the user authentication flow with examples"
+- Specific instructions produce more focused, useful documentation
+
+**Start Small**
+- On your first run, select just one or two content types
+- See what the AI generates, then expand from there
+
+**Use Meaningful File Names**
+- Rename files to match what users will look for
+- "getting-started.md" is clearer than "intro.md"
+
+**Select Relevant Repositories**
+- If creating user documentation, you might skip internal tool repositories
+- For developer docs, include all repositories
+
+**Review the Configuration**
+- Make sure the documentation repository and folder are set correctly in Product Information
+- This determines where your files will be saved
 
 ---
 
 ## Common Questions
 
-**Can I generate documentation multiple times?**
-Yes! You can run the AI as many times as you want. Each run creates fresh documentation based on your current settings.
+**How long does generation take?**
+Usually 3-10 minutes depending on code size and scope selections.
 
-**What if I only want to add one new section?**
-Uncheck all content types except the one you want, then generate. The AI will only create that specific section.
+**Can I run it again?**
+Yes! You can generate documentation as many times as needed. The AI will update existing files or create new ones based on your configuration.
 
-**Do I need to select all my repositories?**
-No - only select repositories that are relevant to your documentation. For example, if documenting your API, just select the API repository.
+**What if I want to change something?**
+Simply open the Documentation panel again, adjust your selections or instructions, and click Generate Documentation to create updated files.
 
-**Can I edit the documentation after it's generated?**
-Absolutely! The generated files are markdown files in your repository. Edit them however you like.
+**Can I generate just one specific file?**
+Yes! Select only the scope and content type for that file, add focused instructions, and name the file specifically.
 
-**What happens if generation is interrupted?**
-The AI saves checkpoints automatically. You can resume from where it left off without starting over.
+**What format is the documentation?**
+All documentation is created in Markdown (.md) format, which is readable as plain text and can be rendered beautifully by documentation platforms.
 
 ---
 
 ## Next Steps
 
 After generating your documentation:
-1. Review the files in your documentation repository
-2. Make any minor edits needed
-3. Set up your documentation site to display the new files
-4. Share with your users!
+1. Review the created files in your repository
+2. Share them with your team or users
+3. Set up automated regeneration when code changes
+4. Expand to additional documentation types as needed
 
-Remember: You can always regenerate or add new sections as your product evolves. The AI Documentation Specialist grows with your product.
+Your documentation is now ready to help users and developers understand and work with your project!
