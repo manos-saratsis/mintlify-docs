@@ -1,276 +1,241 @@
-# Getting Started with Security Engineering Features
+# Getting Started with OrchestrAI
 
-Welcome to OrchestrAI! This tutorial will walk you through using the platform's security engineering capabilities, helping you maintain code quality, ensure compliance, and manage your software bill of materials (SBOM).
+Welcome to OrchestrAI! This guide will help you understand how to use the platform to improve your code quality and generate tests for your projects.
 
-## Understanding the Platform
+## What is OrchestrAI?
 
-OrchestrAI provides AI-powered tools to help you analyze and improve your codebase. The platform has three main sections that you'll navigate between:
+OrchestrAI is a tool that helps you write better code by analyzing your work and automatically creating tests. Think of it as having an expert developer looking over your code and suggesting ways to make it better, while also writing tests to make sure everything works correctly.
 
-- **Quality Engineer** - Where you analyze code quality and get improvement recommendations
-- **Test Engineer** - Where you generate and manage tests
-- **Code Page** - Where you view your repositories and code metrics
+## Your First Code Analysis
 
-## Your First Code Quality Analysis
+### Starting a Code Analysis
 
-### Step 1: Access the Quality Analysis Tool
+When you first open OrchestrAI, you'll see the main workspace with different sections. Here's how to analyze your code for the first time:
 
-When you first open OrchestrAI, you'll see the Quality Engineer section on your screen. This is where you'll perform most of your security and compliance work.
+1. **Open the Quality Analysis Section**
+   - Look for the section labeled "AI Quality Engineer" on your screen
+   - You'll see a text area where you can paste your code
 
-### Step 2: Submit Code for Analysis
+2. **Add Your Code**
+   - Copy the code you want to analyze from your project
+   - Paste it into the text area on the screen
+   - The text area will accept any programming language
 
-1. Look for the text area labeled "Paste your code" in the main panel
-2. Copy the code you want to analyze from your project
-3. Paste it into the text area
-4. Click the blue "Analyze Code" button
+3. **Run the Analysis**
+   - Click the "Analyze Code" button (you'll find it near the text area)
+   - Wait a moment while OrchestrAI examines your code
+   - You'll see a "Analyzing..." message while this happens
 
-The system will now examine your code. You'll see a "Analyzing..." message appear while the AI reviews your code.
+4. **Review Your Results**
+   - Once complete, you'll see several pieces of information:
+     - **Quality Score**: A number showing how well your code is written
+     - **Issues Found**: A list of problems that might need fixing
+     - **Suggestions**: Recommendations for improving your code
 
-### Step 3: Review Your Results
+### Understanding Your Quality Score
 
-Once the analysis completes, you'll see several important metrics:
+Your quality score appears as a number (like "85/100"). Here's what different scores mean:
 
-**Quality Score**: A number from 0 to 10 showing overall code health. Higher numbers mean better quality.
+- **90-100**: Excellent! Your code follows best practices
+- **75-89**: Good, with some room for improvement
+- **60-74**: Average, consider addressing the suggestions
+- **Below 60**: Needs attention, review the issues carefully
 
-**Coverage Percentage**: Shows how much of your code has test coverage. Aim for 75% or higher for production code.
+## Generating Tests Automatically
 
-**Code Issues**: A list of specific problems found in your code, such as:
-- Missing error handling
-- Unused variables
-- Security vulnerabilities
+### Creating Test Cases
 
-**Recommendations**: Practical suggestions for improving your code, like:
-- "Consider using const instead of let"
-- "Add error handling"
-- "Use type annotations"
+After analyzing your code, you can have OrchestrAI create tests for you:
 
-## Generating Tests for Compliance
+1. **Choose Your Test Framework**
+   - Look for the dropdown menu labeled "Test Framework"
+   - Select the testing tool you use in your project (like Jest or Mocha)
 
-Comprehensive testing is crucial for security compliance. Here's how to create tests automatically:
+2. **Start Test Generation**
+   - Click the "Generate Tests" button
+   - OrchestrAI will create test cases based on your code
+   - Wait for the "Generating..." message to disappear
 
-### Step 1: Navigate to Test Generation
+3. **View Your Tests**
+   - The generated tests will appear in a new section
+   - You'll see complete test code ready to use
+   - Each test includes a description of what it checks
 
-1. Look for the navigation menu at the top or side of your screen
-2. Click on "Test Engineer" to switch views
+4. **Use the Tests**
+   - Click the "Copy" button to copy all the test code
+   - Paste the tests into your project's test files
+   - Run them in your project to verify everything works
 
-### Step 2: Generate Test Cases
+## Working with Multiple Files
 
-1. In the code input area, paste the function or code you need to test
-2. Select your testing framework from the dropdown menu (the system supports Jest, Mocha, and other popular frameworks)
-3. Click "Generate Tests"
+### Analyzing a Whole Project
 
-Wait for the generation to complete. The AI will create comprehensive test cases including:
-- Normal operation tests (happy path)
-- Error scenario tests
-- Edge case handling
-- Input validation tests
+You can analyze multiple files at once to get a complete picture:
 
-### Step 3: Review and Use Generated Tests
+1. **Upload Your Files**
+   - Look for the "Upload" button or file upload area
+   - Select multiple files from your computer
+   - Supported file types include JavaScript, TypeScript, and others
 
-The generated tests will appear in a new section below. You'll see:
-- Test descriptions explaining what each test does
-- Complete test code ready to copy
-- Expected coverage improvement
+2. **Review All Files**
+   - Each uploaded file appears in a list
+   - Click on any file name to see its individual analysis
+   - The overall quality score reflects all files combined
 
-Click the "Copy" button to copy all tests to your clipboard, then paste them into your project's test files.
+3. **Compare Files**
+   - See which files have the highest quality scores
+   - Identify files that need the most improvement
+   - Focus your efforts on the files with lower scores
 
-## Monitoring Code Quality Metrics
+## Understanding Code Issues
 
-Understanding your code quality metrics helps maintain compliance and security standards.
+### Reading Issue Reports
 
-### Viewing Your Dashboard
+When OrchestrAI finds problems, it explains them in simple terms:
 
-From the main Quality Engineer page, you'll see several key metrics displayed:
+- **Missing Error Handling**: Your code should handle situations when things go wrong
+- **Unused Variables**: You've created variables but never use them
+- **Code Complexity**: Parts of your code are difficult to understand and should be simplified
+- **Missing Tests**: Areas of your code that don't have any tests
 
-**Complexity Score**: Measures how difficult your code is to understand and maintain. Lower numbers (1-5) are ideal.
+### Fixing Issues
 
-**Maintainability Rating**: Shown as Low, Medium, or High. You want "High" for production code.
+For each issue, OrchestrAI provides:
 
-**Test Coverage**: The percentage of your code covered by tests. Security standards typically require 80% or higher.
+1. **What's Wrong**: A clear description of the problem
+2. **Where It Is**: The line number where the issue appears
+3. **How to Fix It**: Specific suggestions for resolving the issue
 
-**Code Smells**: The number of potential problem areas found. Aim to keep this at zero.
+## Improving Your Code Quality
 
-## Working with Your Repositories
+### Following Suggestions
 
-The Code Page helps you track quality across all your projects.
+OrchestrAI provides actionable suggestions like:
 
-### Accessing Repository Information
+1. **Add Type Annotations**
+   - Makes your code clearer and prevents errors
+   - Helps other developers understand your code
 
-1. Click "Code" in the navigation menu
-2. You'll see two main sections:
-   - A table showing individual file quality scores
-   - A list of your connected repositories
+2. **Simplify Complex Functions**
+   - Break large functions into smaller ones
+   - Makes your code easier to test and maintain
 
-### Understanding the Quality Table
+3. **Add Error Handling**
+   - Prepare for situations when things don't go as planned
+   - Makes your application more reliable
 
-Each row shows:
-- File name
-- Current quality score (0-100)
-- Number of issues found
-- Last analysis date
+### Tracking Your Progress
 
-Files with scores below 70 should be prioritized for improvement.
+As you make improvements:
 
-### Repository Status
+1. **Re-analyze After Changes**
+   - Paste your updated code back into the analysis area
+   - Click "Analyze Code" again
+   - See how your quality score improves
 
-The repository table displays:
-- Repository name
-- Current status (Active or Inactive)
-- Overall quality metrics
-- Last update time
+2. **Watch Your Score Grow**
+   - Each fix typically raises your score
+   - Aim to get your score above 85 for good quality code
 
-Active repositories are automatically monitored for quality changes.
+## Exporting Your Results
 
-## Managing Your Software Bill of Materials (SBOM)
+### Saving Your Analysis
 
-While code quality metrics help identify issues, tracking your dependencies is crucial for security compliance.
+You can save your results for future reference:
 
-### Reviewing Code Dependencies
+1. **Generate a Report**
+   - Click the "Generate Report" button
+   - OrchestrAI creates a detailed document of your analysis
 
-When you analyze code, the system identifies:
-- External libraries used
-- Version information
-- Known security vulnerabilities in dependencies
-- Recommended updates
+2. **Download the Report**
+   - Click the "Download Report" link that appears
+   - Save it to your computer
+   - Share it with your team if needed
 
-### Interpreting Security Findings
+### Sharing Results
 
-Security issues appear in the quality report with severity levels:
+You can share your quality analysis with teammates:
 
-**Critical**: Must be addressed immediately (security vulnerabilities)
-**Warning**: Should be fixed soon (potential issues)
-**Info**: Consider for future improvements (best practices)
+1. **Export Results**
+   - Click the "Export Results" button
+   - Choose your preferred format
+   - Save or email the exported file
 
-## Best Practices for Daily Use
+## Tips for Best Results
 
-### Morning Routine
+### Getting Accurate Analysis
 
-1. Open the Quality Engineer page
-2. Check for any new security alerts on your repositories
-3. Review the quality scores for files you worked on yesterday
-4. Address any critical issues before starting new work
+To get the most helpful feedback:
 
-### Before Committing Code
+1. **Analyze Complete Functions**
+   - Include whole functions or components, not just snippets
+   - This gives OrchestrAI better context
 
-1. Paste your changed code into the analysis tool
-2. Wait for the quality report
-3. Fix any critical or high-priority issues found
-4. Generate tests for new functions
-5. Ensure your coverage percentage hasn't decreased
+2. **One File at a Time for Beginners**
+   - Start by analyzing individual files
+   - Once comfortable, move to analyzing multiple files
 
-### Weekly Reviews
+3. **Regular Analysis**
+   - Analyze your code frequently as you work
+   - Catch issues early before they become bigger problems
 
-1. Navigate to the Code Page
-2. Review quality trends across all repositories
-3. Identify files consistently scoring below 70
-4. Schedule time to refactor problem areas
-5. Update dependencies with known security issues
+### Making the Most of Test Generation
 
-## Handling Common Scenarios
+For the best generated tests:
 
-### When Analysis Shows Many Issues
+1. **Choose the Right Framework**
+   - Make sure you select the test framework your project uses
+   - This ensures the tests work correctly in your project
 
-Don't be overwhelmed if your first analysis reveals many problems. Focus on:
+2. **Review Generated Tests**
+   - Read through the tests to understand what they check
+   - Modify them if needed for your specific requirements
 
-1. **Critical security issues first**: Look for anything marked as a security vulnerability
-2. **Quick wins next**: Fix simple issues like unused variables
-3. **Refactor gradually**: Tackle complex maintainability issues in small batches
+3. **Run Tests Immediately**
+   - After copying tests to your project, run them right away
+   - This confirms they work correctly
 
-### When Tests Fail to Generate
+## Common Questions
 
-If test generation doesn't produce results:
+### What to Do When Analysis Takes Too Long
 
-1. Check that your code is valid (no syntax errors)
-2. Ensure you've selected the correct test framework
-3. Try analyzing a smaller section of code
-4. Refresh the page and try again
+If the analysis seems stuck:
 
-### When Quality Scores Seem Low
+1. Try analyzing a smaller piece of code first
+2. Check your internet connection
+3. Refresh the page and try again
 
-Remember that quality scores consider multiple factors. To improve:
+### When Test Generation Doesn't Work
 
-1. Add comments explaining complex logic
-2. Break large functions into smaller ones
-3. Add error handling with try-catch blocks
-4. Remove unused code and variables
-5. Add type annotations where possible
+If tests don't generate properly:
 
-## Getting the Most Value
+1. Make sure you've selected the correct test framework
+2. Verify your code is complete and properly formatted
+3. Try generating tests for a simpler function first
 
-### Set Quality Goals
+### Understanding Error Messages
 
-Establish team standards such as:
-- Minimum quality score of 75 for all new code
-- 80% test coverage requirement
-- Zero critical security issues before deployment
+If you see an error message:
 
-### Regular Monitoring
-
-Check your quality metrics:
-- Daily for active development
-- Weekly for maintenance projects
-- Before every release
-
-### Team Collaboration
-
-Share your analysis results with your team:
-1. Export quality reports using the "Export Results" button
-2. Discuss issues during code reviews
-3. Track improvement trends over time
-
-## Tips for Security Compliance
-
-### Documentation
-
-Keep records of:
-- Quality analysis results before and after fixes
-- Test coverage improvements
-- Security vulnerability remediation
-
-### Continuous Improvement
-
-Use the platform's recommendations to:
-- Learn secure coding practices
-- Identify recurring issues in your code
-- Train junior team members
-
-### Audit Preparation
-
-When preparing for security audits:
-1. Run analysis on all production code
-2. Document all critical issues and their resolutions
-3. Ensure test coverage meets audit requirements
-4. Review dependency versions and security status
-
-## Troubleshooting
-
-### If Analysis Takes Too Long
-
-- Try analyzing smaller code sections
-- Check your internet connection
-- Refresh the page if it's been more than 2 minutes
-
-### If Results Don't Appear
-
-- Ensure your code doesn't have syntax errors
-- Check that you clicked the correct button
-- Try pasting the code again
-
-### If You See Error Messages
-
-Most errors resolve by:
-1. Refreshing the page
-2. Checking your code for syntax errors
-3. Trying again in a few moments
-
-If errors persist, note the error message you see and contact support.
+1. Read the message carefully—it often tells you what went wrong
+2. Check that your code is valid and can run
+3. Try the action again after making corrections
 
 ## Next Steps
 
 Now that you understand the basics:
 
-1. **Practice with sample code**: Try analyzing code you know has issues to see how the system identifies them
-2. **Establish your workflow**: Integrate quality checks into your daily development routine
-3. **Track your progress**: Monitor how your quality scores improve over time
-4. **Share with your team**: Help others adopt these security and quality practices
+1. **Practice with Simple Code First**
+   - Start with a small function from your project
+   - Get comfortable with the analysis process
 
-Remember: improving code quality is a journey, not a destination. Use these tools regularly, and you'll see steady improvements in your code's security, maintainability, and compliance with industry standards.
+2. **Gradually Increase Complexity**
+   - Once confident, analyze larger pieces of code
+   - Work up to analyzing entire files
+
+3. **Make It Part of Your Workflow**
+   - Analyze code before submitting it for review
+   - Generate tests as you write new features
+   - Use OrchestrAI regularly to maintain high code quality
+
+Remember, OrchestrAI is here to help you become a better developer. Take your time learning the features, and don't hesitate to experiment with different types of code and analysis options!

@@ -1,352 +1,244 @@
-I'll analyze the source code to create a comprehensive, user-friendly how-to guide for generating documentation with OrchestrAI.
-
-<readme>
-
-<think>
-Let me analyze the provided source code to understand how documentation generation works in OrchestrAI:
-
-1. From `AIDocumentationSpecialistPanel.tsx`:
-   - Two modes: 'migrate' (existing docs) and 'create' (from scratch)
-   - Requires documentation URL for migration
-   - User can select scopes: user-facing, internal developer, SBOM
-   - User-facing content structure options: intro, tutorials, how-to, reference, concepts, troubleshooting, release notes
-   - Custom instructions take priority over default settings
-   - Repository selection with full repo or specific commit scope
-   - Files generated as markdown (.md)
-   - Configuration needed: repository and folder settings
-   - Process: Product Analysis → Documentation Review (if migrate) → Structured Generation → Code Deployment
-
-2. From the workflow and panel logic:
-   - Uses AI Documentation Specialist
-   - Generates documentation in configured repository folder
-   - For migration, creates docs in "migrated-docs" folder
-   - Requires workspace credits
-   - Progress tracked with checkpoints
-   - Results deployed to repository
-
-3. Key user actions:
-   - Select documentation scope
-   - Choose content structure
-   - Provide custom instructions
-   - Select source repositories
-   - Generate and deploy
-
-Now I'll create a user-friendly how-to guide without technical jargon.
-</think>
-
-</readme>
-
-<artifact type="user-facing-docs" language="markdown" title="orchestrai-dev-generate-documentation-guide.md">
-# How to Generate Documentation with OrchestrAI
-
-This guide walks you through creating product documentation from scratch using OrchestrAI's AI Documentation Specialist.
-
-## Before You Start
-
-You'll need:
-- A documentation repository configured (where your docs will be saved)
-- At least one code repository enabled in your workspace
-- Available credits in your account
-
-> **Note:** If you haven't set up your documentation repository yet, visit the Product Information page first to configure where your documentation should be created.
-
-## Step 1: Open the Documentation Specialist
-
-1. Navigate to the Documentation section
-2. Click the **"Create New Documentation"** button
-3. The AI Documentation Specialist panel will open on the right side of your screen
-
-## Step 2: Choose What Documentation to Create
-
-### Select Your Documentation Scope
-
-You can generate three types of documentation. Check the boxes for what you need:
-
-**User Facing Documentation** (recommended to start)
-- This creates documentation for your end users and customers
-- Most commonly needed for product launches
-
-**Internal Developer Documentation**
-- Technical documentation for your development team
-- Includes architecture and setup guides
-
-**SBOM (Software Bill of Materials)**
-- Automatically generates a list of all software components
-- Available in CycloneDX and SPDX formats
-
-> **Getting Started Tip:** If you're creating documentation for the first time, start with just "User Facing Documentation" selected. You can always generate the other types later.
-
-## Step 3: Choose Your Content Structure (User Facing Only)
-
-When you select User Facing Documentation, you'll see options to customize what pages get created. Here's what each section means:
-
-### Essential Pages (Recommended)
-
-**Quickstart / Introduction**
-- The first page users see
-- Explains what your product does and how to get started quickly
-- **File created:** `intro.md`
-
-**Tutorials**
-- Complete, step-by-step walkthroughs
-- Shows users how to accomplish real goals with your product
-- **File created:** `tutorials.md`
-
-**API Reference**
-- Technical reference for developers using your product
-- Automatically generated from your code
-- **File created:** `reference.md`
-
-### Optional Pages
-
-**How-To Guides**
-- Short, task-focused instructions
-- Answers specific "how do I...?" questions
-- **File created:** `how_to.md`
-
-**Concepts**
-- Explains how your product works under the hood
-- Describes architecture, models, and key ideas
-- **File created:** `concepts.md`
-
-**Troubleshooting**
-- Common errors and how to fix them
-- Helpful for reducing support requests
-- **File created:** `troubleshooting.md`
-
-**Release Notes**
-- Automatically tracks what's new in each version
-- **File created:** `release_notes.md`
-
-> **Recommendation:** For a complete documentation set, select at minimum: Quickstart, Tutorials, and API Reference. You can always add more sections later.
-
-## Step 4: Write Custom Instructions
-
-In the "Additional Instructions" box, tell the AI what's special about your documentation needs.
-
-### Examples of Good Instructions
-
-**For a developer tool:**
-```
-Focus on code examples and API usage. Include authentication steps 
-in the quickstart. Make tutorials show real-world integration scenarios.
-```
-
-**For a SaaS product:**
-```
-Write for non-technical users. Use simple language. Include screenshots 
-descriptions. Focus on business benefits in the intro.
-```
-
-**For a specific feature launch:**
-```
-Emphasize the new payment processing feature. Include migration 
-steps for existing users. Add troubleshooting for common payment errors.
-```
-
-> **Pro Tip:** These custom instructions take priority over your default workspace settings. Be specific about what makes your product unique and what your users need to know.
-
-## Step 5: Customize Filenames (Optional)
-
-The AI will create markdown files with default names. You can change these:
-
-1. Expand the "Configuration" section
-2. Find the "Files to be generated" list
-3. Click on any filename to edit it
-4. The `.md` extension is added automatically
-
-**Example:** Change `intro` to `getting-started` if that fits your style better.
-
-## Step 6: Select Which Code to Document
-
-### Choose Your Source Repositories
-
-Expand the "Select Code Scope" section to see your available repositories.
-
-You have two options for each repository:
-
-**Whole Repo** (recommended for initial documentation)
-- Analyzes your entire codebase
-- Creates comprehensive documentation
-- Best for first-time documentation generation
-
-**Specific Commit**
-- Documents only changes in a particular commit
-- Useful for updating docs after specific features
-- Click to see recent commits and select one
-
-> **Default Behavior:** All your enabled repositories are pre-selected with "Whole Repo" mode. This is perfect for getting started.
-
-## Step 7: Generate Your Documentation
-
-1. Review your selections:
-   - Documentation scope (User Facing, Internal, SBOM)
-   - Content structure (which pages)
-   - Custom instructions
-   - Source repositories
-
-2. Click the **"Generate Documentation"** button at the bottom
-
-3. A progress window will appear showing:
-   - Current step being processed
-   - Estimated time remaining
-   - Real-time status updates
-
-The generation process typically takes 5-15 minutes depending on your code size and selected documentation scope.
-
-## Step 8: Monitor Progress
-
-While the AI works, you'll see updates like:
-
-- "Analyzing product functionality..."
-- "Creating Quickstart documentation..."
-- "Generating tutorials..."
-- "Writing API reference..."
-- "Preparing deployment..."
-
-> **Can I Close the Window?** Yes! The generation continues in the background. You can check progress by reopening the Documentation Specialist panel.
-
-## Step 9: Deploy Your Documentation
-
-Once generation is complete:
-
-1. You'll see a success notification
-2. Click **"View Results"** to review your new documentation
-3. Your documentation is automatically committed to your configured repository
-
-Your documentation files will be in the folder you specified in your configuration settings.
-
-## Understanding File Organization
-
-Your generated documentation follows this structure:
-
-```
-/your-docs-folder/
-  ├── intro.md              (Quickstart/Introduction)
-  ├── tutorials.md          (Complete walkthroughs)
-  ├── reference.md          (API documentation)
-  ├── how_to.md            (Task guides)
-  ├── concepts.md          (Technical explanations)
-  ├── troubleshooting.md   (Error solutions)
-  └── release_notes.md     (Version history)
-```
-
-If you selected Internal Developer documentation:
-```
-/your-docs-folder/
-  ├── architecture.md       (System design)
-  ├── development-setup.md  (Getting dev environment running)
-  └── overview.md          (Developer onboarding)
-```
-
-## Creating Custom Documentation Files
-
-Want to create documentation that doesn't fit the standard structure? Use custom instructions:
-
-### Example: Adding a Security Documentation Page
-
-In the Additional Instructions field, add:
-```
-Create an additional security.md file that documents:
-- Authentication methods
-- Authorization policies  
-- Data encryption practices
-- Security best practices for users
-```
-
-### Example: Creating Industry-Specific Documentation
-
-```
-Generate a compliance.md file covering:
-- HIPAA compliance features
-- Data privacy controls
-- Audit trail capabilities
-- Required configurations for healthcare use
-```
-
-The AI will create these custom files alongside your standard documentation.
-
-## Tips for Great Documentation
-
-### Write Clear Instructions
-
-❌ **Too vague:** "Make it good"
-
-✅ **Better:** "Focus on beginners. Include visual descriptions. Explain technical terms in simple language."
-
-### Start Simple, Expand Later
-
-Your first documentation run should focus on essentials:
-- Quickstart (how to get started)
-- Tutorials (accomplish key tasks)
-- API Reference (technical details)
-
-Add advanced sections like Concepts and Troubleshooting once you have the basics in place.
-
-### Use Specific Examples in Instructions
-
-Instead of: "Include code examples"
-
-Try: "Include code examples in Python and JavaScript for all API endpoints. Show both successful responses and error handling."
-
-### Update Documentation Regularly
-
-When you make product changes:
-1. Use "Specific Commit" mode
-2. Select the commit with your changes
-3. The AI updates only affected documentation sections
-
-## Troubleshooting Common Issues
-
-### "Configuration Required" Error
-
-**Solution:** Visit the Product Information page and set up:
-- Which repository should contain your documentation
-- Which folder inside that repository
-
-### "Select at Least One Scope" Error
-
-**Solution:** Check at least one box under Documentation Scope (User Facing, Internal Developer, or SBOM)
-
-### "No Permission" Message
-
-**Solution:** Contact your workspace administrator to grant you documentation generation permissions
-
-### Documentation Takes Too Long
-
-**Expected:** 5-15 minutes is normal for comprehensive documentation
-
-**If longer:** Check your code repository size. Very large repositories take more time to analyze.
-
-### Generated Documentation Needs Changes
-
-After generation, you can:
-1. Edit files directly in your repository
-2. Run generation again with more specific custom instructions
-3. Generate additional sections to supplement existing docs
-
-## Next Steps
-
-After generating your documentation:
-
-1. **Review the Content:** Read through the generated documentation to ensure accuracy
-
-2. **Customize Further:** Make manual edits to add company-specific information, branding, or examples
-
-3. **Set Up Hosting:** Deploy your documentation to your preferred hosting platform (your docs are standard markdown files)
-
-4. **Keep It Updated:** Re-run documentation generation when you release new features or make significant changes
-
-5. **Gather Feedback:** Share with your team and users, then refine with better custom instructions
-
-## Need Help?
-
-- **Credit Limits:** If you see a credit limit message, visit your Account page to upgrade your plan
-- **Configuration Issues:** Check the Product Information page for documentation repository settings  
-- **Permission Problems:** Contact your workspace administrator
-- **Questions About Results:** Review your custom instructions and try being more specific about what you need
-
----
-
-**Remember:** Good documentation takes iteration. Your first generation provides a solid foundation, and you can refine it over time with more specific instructions and manual edits.
-</artifact>
+# OrchestrAI Dev - Reference Documentation
+
+## Overview
+
+OrchestrAI Dev is a quality assurance and testing platform powered by AI. The application helps developers analyze code quality, generate tests, and improve software reliability. It provides an intuitive interface with specialized AI-powered panels for different aspects of software quality engineering.
+
+The platform is built using React with TypeScript, implementing modern web development practices including ESLint for code quality and PostCSS with Tailwind CSS for styling.
+
+## Core Features
+
+### AI Quality Analysis
+The platform analyzes your code to identify potential issues, complexity metrics, and maintainability scores. It provides actionable recommendations to improve code quality.
+
+### Test Generation
+Automatically generates test cases and test plans based on your source code. The system understands different programming languages and testing frameworks to create relevant, comprehensive tests.
+
+### Code Metrics Dashboard
+View detailed metrics about your codebase including test coverage, code complexity, and quality scores. The dashboard presents this information in an easy-to-understand visual format.
+
+## Getting Started
+
+### Accessing the Platform
+When you first open OrchestrAI Dev, you'll see the main dashboard with several sections available through the navigation menu. The platform automatically loads with the Quality Engineer panel ready to use.
+
+### Understanding the Interface
+The application has three main areas:
+- **Header**: Shows the OrchestrAI branding and provides access to settings
+- **Navigation Menu**: Located on the left side, allows switching between different analysis tools
+- **Main Content Area**: Displays the currently selected tool or dashboard
+
+### Theme Settings
+The platform supports both light and dark themes. You can switch between themes using the theme toggle button, and your preference will be remembered for future sessions.
+
+## Using the AI Quality Engineer
+
+### Analyzing Your Code
+1. Navigate to the Quality Engineer section using the navigation menu
+2. Paste your code into the provided text area
+3. Click the "Analyze Code" button to start the analysis
+4. Wait while the system examines your code (you'll see a progress indicator)
+5. Review the results that appear, including quality scores and identified issues
+
+### Understanding Quality Metrics
+After analysis completes, you'll see several metrics:
+- **Quality Score**: An overall rating from 0 to 10 indicating code quality
+- **Complexity**: Shows how complex your code structure is (low, medium, or high)
+- **Maintainability**: Indicates how easy the code will be to maintain over time
+- **Test Coverage**: Displays the percentage of code covered by tests
+
+### Viewing Code Issues
+The system highlights specific problems it finds in your code:
+- Each issue includes a description of the problem
+- You'll see suggestions for how to fix each issue
+- Issues are categorized by severity to help prioritize fixes
+
+### Getting Improvement Recommendations
+Along with issue detection, the platform provides specific recommendations:
+- Concrete steps to improve code quality
+- Best practices relevant to your programming language
+- Suggestions for adding or improving tests
+
+## Using the AI Test Engineer
+
+### Generating Test Cases
+1. Switch to the Test Engineer panel from the navigation menu
+2. Enter or paste the code you want to test
+3. Select your testing framework from the dropdown menu (options include Jest, Mocha, or others)
+4. Click "Generate Tests" to create test cases
+5. Review the generated tests that appear
+
+### Selecting Test Frameworks
+The platform supports multiple testing frameworks:
+- Choose the framework that matches your project setup
+- The generated tests will use the correct syntax for your selected framework
+- Framework-specific best practices are automatically applied
+
+### Generating Test Plans
+For comprehensive testing strategy:
+1. Click the "Generate Test Plan" button
+2. The system analyzes your code to identify what needs testing
+3. You'll receive a structured plan including unit tests, integration tests, and edge cases
+4. The plan includes suggested test coverage targets
+
+### Using Generated Tests
+Once tests are generated:
+- Copy the test code to use in your project
+- Each test includes descriptive names explaining what it checks
+- Tests cover common scenarios, edge cases, and error conditions
+
+## Viewing Code Quality Reports
+
+### Accessing the Dashboard
+The Code page shows an overview of your project's quality:
+- Navigate to the Code section from the menu
+- View aggregate statistics across all analyzed files
+- See trends in quality metrics over time
+
+### Understanding Repository Tables
+The repository table displays:
+- List of all analyzed code repositories
+- Status indicators showing whether each repository is active or needs attention
+- Quality metrics for each repository
+
+### Reviewing Quality Tables
+The quality table presents:
+- Individual files and their quality scores
+- Number of identified issues per file
+- Coverage statistics for each component
+
+## Working with Analysis Results
+
+### Exporting Results
+After analyzing your code:
+1. Look for the "Export Results" button
+2. Click to download your analysis report
+3. The export includes all metrics, issues, and recommendations
+4. Use the exported data for team reviews or tracking improvements
+
+### Sharing Analysis
+To share results with your team:
+- Export the analysis report
+- Share the file with team members
+- Use the findings to guide code review discussions
+
+### Tracking Improvements
+After making changes:
+1. Re-analyze your code using the same process
+2. Compare new results with previous analysis
+3. Verify that quality scores improve
+4. Confirm that identified issues are resolved
+
+## Tips for Best Results
+
+### Preparing Your Code
+For optimal analysis:
+- Submit complete, functioning code snippets
+- Include relevant context and dependencies
+- Use clear, descriptive variable and function names
+
+### Understanding Analysis Time
+Analysis duration depends on:
+- The amount of code submitted
+- Complexity of the codebase
+- Current system load
+- Expect most analyses to complete within seconds to a few minutes
+
+### Handling Errors
+If you encounter issues:
+- Check that your code is properly formatted
+- Ensure you've pasted complete code blocks
+- Verify your internet connection is stable
+- Try refreshing the page if the system becomes unresponsive
+
+### Getting Accurate Results
+To ensure quality analysis:
+- Submit code from supported programming languages
+- Include proper syntax and structure
+- Provide sufficient context for the analyzer to understand your code's purpose
+
+## Supported Languages and Frameworks
+
+### Programming Languages
+The platform analyzes code written in:
+- TypeScript
+- JavaScript
+- And other common web development languages
+
+### Testing Frameworks
+Compatible testing frameworks include:
+- Jest (default)
+- Other popular testing libraries based on your project configuration
+
+## Browser Compatibility
+
+OrchestrAI Dev works in modern web browsers:
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+- Ensure JavaScript is enabled
+- Works on both desktop and tablet devices
+
+## Responsive Design
+
+The platform adapts to different screen sizes:
+- Full functionality on desktop computers
+- Optimized layouts for tablets
+- Key features accessible on all device sizes
+- Navigation adjusts automatically to screen width
+
+## Keyboard Navigation
+
+For efficient navigation:
+- Use Tab to move between interactive elements
+- Press Enter to activate buttons
+- Use arrow keys in dropdown menus
+- All features accessible via keyboard
+
+## Understanding Loading States
+
+While the system processes your requests:
+- A loading indicator appears
+- The interface shows progress messages
+- Buttons become temporarily disabled
+- Wait for analysis to complete before submitting new requests
+
+## Common Workflows
+
+### First-Time Analysis
+1. Open the platform
+2. Navigate to the Quality Engineer panel
+3. Paste a code sample
+4. Click "Analyze Code"
+5. Review the results
+6. Generate tests if needed
+
+### Regular Quality Checks
+1. Paste your latest code changes
+2. Run analysis
+3. Compare results to previous runs
+4. Address any new issues identified
+5. Verify improvements in quality score
+
+### Test Development Workflow
+1. Write or modify code
+2. Use Test Engineer to generate initial tests
+3. Review and customize the generated tests
+4. Run tests in your development environment
+5. Return to Quality Engineer to verify coverage
+
+## Data Privacy
+
+Your code and analysis results:
+- Are processed securely
+- Follow industry-standard security practices
+- Check the platform's privacy policy for detailed information
+
+## Performance Optimization
+
+The platform is optimized for:
+- Fast analysis processing
+- Responsive user interface
+- Efficient resource usage
+- Minimal loading times
