@@ -1,0 +1,1 @@
+I need to access the repository to analyze the source code and generate accurate documentation for Data Privacy and Protection Policies. Let me start by exploring the repository structure.

@@ -1,0 +1,1 @@
+I need to explore the repository structure to understand the codebase and identify data protection and privacy compliance implementations. Let me start by examining the repository.
