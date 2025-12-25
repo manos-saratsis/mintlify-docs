@@ -1,0 +1,1 @@
+I'll analyze the repository structure to understand the authentication and authorization framework. Let me start by exploring the codebase.
