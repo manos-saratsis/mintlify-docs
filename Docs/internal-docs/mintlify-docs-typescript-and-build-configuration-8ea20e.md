@@ -1,0 +1,1 @@
+I'll explore the repository structure to understand the TypeScript and build configuration, then create comprehensive documentation based on the actual source code.

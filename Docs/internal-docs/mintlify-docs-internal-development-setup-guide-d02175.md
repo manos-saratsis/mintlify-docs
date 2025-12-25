@@ -1,0 +1,1 @@
+I'll explore the repository structure to understand the project and create comprehensive documentation for the Internal Development Setup Guide.
