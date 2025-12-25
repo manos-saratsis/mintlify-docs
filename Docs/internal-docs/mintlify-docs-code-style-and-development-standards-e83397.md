@@ -1,0 +1,1 @@
+I'll explore the repository structure to understand the codebase and identify the relevant files for documenting code style and development standards.

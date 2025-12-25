@@ -1,0 +1,1 @@
+I'll explore the repository to understand its structure and identify relevant files for contribution guidelines and standards.
