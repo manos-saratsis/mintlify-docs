@@ -1,0 +1,1 @@
+I'll explore the repository to understand the structure and identify relevant files for creating FAQ documentation.
