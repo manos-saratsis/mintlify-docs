@@ -1,0 +1,1 @@
+I'll explore the repository to understand the product and create Core Concepts documentation based on the actual codebase.
