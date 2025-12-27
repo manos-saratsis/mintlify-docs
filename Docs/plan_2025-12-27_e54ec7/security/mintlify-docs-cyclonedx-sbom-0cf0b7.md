@@ -1,0 +1,1 @@
+I'll explore the repository structure to identify dependencies and create a comprehensive CycloneDX SBOM.
