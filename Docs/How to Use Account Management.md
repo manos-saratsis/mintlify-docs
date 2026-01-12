@@ -2,11 +2,11 @@
 
 ## Overview
 
-The Account Management page is your central hub for monitoring and managing all your OrchestrAI workspaces. From this page, you can view workspace details, check billing status, monitor usage patterns, and analyze costs across all your workspaces.
+The Account Management page provides a centralized location to monitor and manage all your OrchestrAI workspaces. View your workspace details, track usage, analyze costs, and monitor billing status all in one place.
 
 ## Accessing Account Management
 
-Navigate to the Account page from the main navigation menu. The page will automatically load and display all workspaces associated with your account.
+Navigate to the Account page from the main navigation menu. The page will display an overview of all workspaces associated with your account.
 
 ## Understanding Your Account Dashboard
 
@@ -14,123 +14,143 @@ Navigate to the Account page from the main navigation menu. The page will automa
 
 Each workspace appears as a card displaying key information:
 
-**Workspace Information:**
-- **Workspace Name**: The name you've assigned to your workspace
+- **Workspace Name**: The display name of your workspace
 - **Workspace ID**: A unique identifier for your workspace
-- **Plan Type**: Your current subscription plan (e.g., Free, Professional, Enterprise)
-- **Default Status**: Indicates if this is your default workspace
+- **Plan Type**: Your current subscription plan (e.g., Free, Pro, Enterprise)
+- **Default Workspace**: If a workspace is marked as "(Default)", it's your primary workspace
+- **Billing Status**: Shows the current state of your workspace billing
 
-**Billing Status Badge:**
-Each workspace displays a color-coded status indicator:
-- **Active**: Workspace is operating normally with available credits
-- **Reached Limits**: You've hit your usage limits and may need to upgrade
-- **Paused**: Workspace is temporarily suspended
-- **Closed**: Workspace has been deactivated
+### Billing Status Indicators
 
-## Monitoring Workspace Usage
+Your workspace billing status appears as a colored badge:
+
+- **Active**: Your workspace is in good standing with normal access
+- **Reached Limits**: You've hit your plan limits and may need to upgrade
+- **Paused**: Billing or workspace access is temporarily suspended
+- **Closed**: The workspace is no longer active
+
+## Monitoring Usage
 
 ### Viewing Usage Details
 
-To check how much you've used your workspace:
+To see detailed usage information for any workspace:
 
-1. Locate the workspace you want to review
-2. Click the **Usage** button on the workspace card
-3. A detailed usage history window will appear showing your monthly consumption
+1. Locate the workspace card you want to review
+2. Click the **Usage** button on the right side of the card
+3. A usage modal will open showing your consumption details
 
 The usage modal displays:
+- Monthly usage statistics
 - Current month's activity
 - Historical usage patterns
-- Credit consumption trends
-- Execution counts for your agents
 
-### Analyzing Costs
+This helps you understand how you're consuming credits and plan resources throughout the month.
 
-To understand your spending patterns:
+## Analyzing Costs
+
+### Accessing Cost Analysis
+
+For detailed cost breakdowns:
 
 1. Find the workspace you want to analyze
-2. Click the **Cost Analysis** button
-3. You'll be taken to a detailed cost breakdown page
+2. Click the **Cost Analysis** button next to the Usage button
+3. You'll be taken to a dedicated cost analysis page
 
-The Cost Analysis page shows:
-- Spending trends over time
-- Cost breakdowns by agent or service
-- Visual charts and graphs for easy understanding
-- Budget tracking and forecasting
+The cost analysis view provides insights into:
+- Spending patterns over time
+- Cost distribution across different activities
+- Budget planning information
 
 ## Managing Multiple Workspaces
 
+### Workspace Organization
+
 If you have multiple workspaces:
 
-- All workspaces are displayed on a single page for easy comparison
-- Your default workspace is clearly marked
+- All workspaces appear in a vertical list on the Account page
 - Each workspace maintains independent billing and usage tracking
-- You can switch between workspaces seamlessly
+- Your default workspace is clearly marked for easy identification
+- Switch between workspace contexts by accessing different workspace cards
 
-## Understanding Workspace Plans
+### Workspace Information
 
-Your plan determines:
-- Available credits per month
-- Number of agent executions allowed
-- Access to premium features
-- Support level
+Each workspace card shows:
+- The workspace name for easy identification
+- The unique workspace ID for reference in support requests
+- Current plan details to understand your feature access
+- Real-time billing status to stay informed of any issues
 
-Check your plan type on each workspace card to understand your current capabilities.
+## Monitoring Your Account Health
 
-## When Your Workspace Reaches Limits
+### Quick Status Checks
 
-If your billing status shows "Reached Limits":
+Use the Account page to regularly:
 
-1. Review your usage by clicking the Usage button
-2. Check the Cost Analysis to identify high-consumption areas
-3. Consider upgrading your plan for additional capacity
-4. Optimize your agent configurations to reduce unnecessary executions
+1. **Review Billing Status**: Check that all workspaces show "Active" status
+2. **Monitor Usage**: Click Usage buttons to ensure you're within plan limits
+3. **Track Costs**: Review cost analysis to stay within budget
+4. **Identify Issues**: Look for "Reached Limits" or "Paused" status indicators that need attention
+
+### Taking Action on Alerts
+
+If you see a warning status:
+
+- **Reached Limits**: Consider upgrading your plan or reducing usage
+- **Paused**: Check your billing information and payment methods
+- **Closed**: Contact support if you need to reactivate a workspace
 
 ## Best Practices
 
-**Regular Monitoring:**
-- Check your Account page weekly to track usage trends
-- Review cost analysis before month-end to avoid surprises
-- Set up alerts if your usage is approaching limits
+### Regular Monitoring
 
-**Workspace Organization:**
-- Use descriptive workspace names to identify purposes easily
-- Keep your default workspace for primary operations
-- Create separate workspaces for testing and production
+- Check your Account page at least once a week
+- Review usage before the end of each billing cycle
+- Monitor cost trends to anticipate future needs
+- Keep track of which workspace is your default
 
-**Budget Management:**
-- Monitor the usage patterns to predict monthly costs
-- Use Cost Analysis to identify optimization opportunities
-- Adjust agent execution frequency based on budget constraints
+### Usage Management
 
-## Loading States
+- Use the Usage button to spot unusual consumption patterns
+- Compare month-over-month trends in the usage modal
+- Set reminders to check usage as you approach plan limits
+- Review cost analysis quarterly to optimize spending
 
-When you first access the Account page, you may see a "Loading..." message while the system retrieves your workspace information. This typically takes only a few seconds.
+### Workspace Organization
 
-If you don't see any workspaces listed, you may need to create your first workspace or contact support if you believe this is an error.
-
-## Quick Actions Summary
-
-| Action | How to Do It | What You'll See |
-|--------|-------------|-----------------|
-| View all workspaces | Navigate to Account page | List of workspace cards with details |
-| Check usage | Click Usage button on workspace | Monthly usage history modal |
-| Analyze costs | Click Cost Analysis button | Detailed cost breakdown page |
-| Identify billing issues | Look for status badges | Color-coded status indicators |
-| Find default workspace | Scan for "(Default)" label | Workspace marked as default |
+- Keep workspace names clear and descriptive
+- Note the workspace ID for any support requests
+- Understand which plan each workspace is on
+- Regularly review if you still need all active workspaces
 
 ## Troubleshooting
 
-**No workspaces displayed:**
-- Verify you're logged into the correct account
-- Ensure you have at least one workspace created
-- Check your internet connection and refresh the page
+### No Workspaces Displayed
 
-**Billing status concerns:**
-- "Reached Limits" means you need to review usage or upgrade
-- "Paused" status requires action to reactivate
-- Contact support for "Closed" workspaces
+If you see "No workspaces found":
+- Ensure you're logged into the correct account
+- Contact support if you believe workspaces are missing
+- Check if you need to create your first workspace
 
-**Usage not loading:**
-- Ensure the workspace has recorded activity
-- Try refreshing the page
-- Check that your billing information is current
+### Loading Issues
+
+If the page shows "Loading..." indefinitely:
+- Refresh your browser
+- Check your internet connection
+- Try logging out and back in
+- Clear your browser cache if the issue persists
+
+### Billing Status Concerns
+
+If you see unexpected billing statuses:
+- Click the Usage button to investigate recent activity
+- Check the Cost Analysis for unusual charges
+- Review your payment methods and billing information
+- Contact support for billing discrepancies
+
+## Tips for Effective Account Management
+
+- **Stay Informed**: Regularly check billing status badges for all workspaces
+- **Plan Ahead**: Use cost analysis to forecast future spending needs
+- **Monitor Trends**: Track usage patterns to optimize your plan selection
+- **Keep Records**: Note your workspace IDs for easy reference
+- **Act Quickly**: Address "Reached Limits" status promptly to avoid service interruption

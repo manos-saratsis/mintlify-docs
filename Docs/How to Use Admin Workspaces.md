@@ -2,135 +2,135 @@
 
 ## Overview
 
-Admin Workspaces provides platform administrators with comprehensive analytics and insights across all workspaces in the organization. This powerful tool allows you to monitor usage patterns, track activity trends, and gain visibility into how teams are using the platform.
+The Admin Workspaces feature provides platform administrators with comprehensive analytics and insights across all workspaces. This powerful tool allows you to monitor platform usage, track trends, and gain visibility into organizational activity.
 
-## Who Can Access This Feature
+## Access Requirements
 
-Access to Admin Workspaces is restricted to authorized platform administrators only. If you don't have administrative privileges, you won't be able to access this feature and will see a "page not found" message instead.
+Access to Admin Workspaces is restricted to authorized platform administrators only. If you do not have administrative privileges, you will be redirected or shown an error page when attempting to access this feature.
 
-If you're logged out when attempting to access Admin Workspaces, you'll be automatically redirected to the login page and returned to the analytics dashboard after signing in.
+### Getting Access
 
-## Getting Started
+To access Admin Workspaces:
 
-### Accessing the Dashboard
+1. You must be logged into your account
+2. Your account must have administrative permissions
+3. Navigate to the Workspace Analytics page
 
-Navigate to the Workspace Analytics page to view your administrative dashboard. You'll see a comprehensive overview showing usage analytics and insights across all workspaces.
+If you are not logged in, you will be automatically redirected to the login page. After logging in, you will be returned to the analytics dashboard.
 
-### Understanding the Interface
+## Understanding the Analytics Dashboard
 
-The Admin Workspaces dashboard consists of four main areas:
+### Dashboard Overview
 
-1. **Header Section** - Displays the page title and a brief description of the analytics capabilities
-2. **Filters Panel** - Allows you to customize which data you want to view
-3. **Summary Cards** - Shows key metrics at a glance
-4. **Analytics Charts** - Provides visual representations of usage trends and patterns
+When you access the Admin Workspaces dashboard, you'll see:
 
-## Using the Filters
+- **Cross-workspace analytics** - View metrics and usage patterns across multiple workspaces
+- **Summary metrics** - Quick overview cards displaying key performance indicators
+- **Visual charts** - Graphical representations of usage trends and patterns
+- **Filtering options** - Tools to focus your analysis on specific workspaces or time periods
 
-The filters panel at the top of the dashboard lets you customize your view to focus on specific workspaces or time periods.
+### Time Period Selection
 
-### Filtering by Workspace
+By default, the dashboard displays analytics for the **last 3 months**, starting from three months ago through the current month.
 
-By default, the dashboard displays data from all workspaces you have access to. To narrow your view:
+You can adjust the time range to analyze different periods:
 
-1. Locate the workspace filter in the filters panel
-2. Select one or more specific workspaces from the list
+1. Locate the date range filters at the top of the page
+2. Select your **start month** - the beginning of your analysis period
+3. Select your **end month** - the end of your analysis period
+4. The dashboard will automatically update to show data for your selected timeframe
+
+## Filtering Workspaces
+
+### Viewing All Workspaces
+
+When you first open the dashboard, analytics are displayed for all workspaces across the platform. This gives you a comprehensive view of overall platform usage.
+
+### Filtering Specific Workspaces
+
+To focus on specific workspaces:
+
+1. Find the workspace filter controls near the top of the page
+2. Select one or more workspaces from the available list
 3. The analytics will automatically update to show only data from your selected workspaces
+4. To return to viewing all workspaces, clear your selections
 
-To return to viewing all workspaces, simply clear your workspace selections.
-
-### Selecting a Time Range
-
-The dashboard defaults to showing the last three months of data, but you can adjust this to any timeframe you need:
-
-1. Find the date range controls in the filters panel
-2. Set your desired **start month** using the first date selector
-3. Set your desired **end month** using the second date selector
-4. The analytics will refresh to show data for your selected period
-
-The date filters work on a monthly basis, making it easy to analyze trends over weeks or months.
+This filtering capability is useful when you want to:
+- Compare performance between specific organizations
+- Monitor a particular client or team
+- Investigate usage patterns in a subset of workspaces
 
 ## Reading the Analytics
 
 ### Summary Metrics
 
-The summary cards display high-level statistics that give you an instant understanding of platform usage. These metrics aggregate data across all selected workspaces and time periods, providing quick answers to common questions about platform adoption and activity levels.
+At the top of the dashboard, you'll find summary cards displaying:
+- Key performance indicators across your selected workspaces
+- High-level metrics for quick insights
+- Aggregated data for the selected time period
 
-### Trend Charts
+These summary cards provide an at-a-glance view of platform health and usage.
 
-Below the summary cards, you'll find detailed charts that visualize usage patterns over time. These charts help you:
+### Analytics Charts
 
-- Identify trends in platform adoption
-- Spot peaks and valleys in activity
-- Compare usage across different time periods
-- Track growth and engagement metrics
+Below the summary section, detailed charts visualize:
+- Usage trends over time
+- Activity patterns across workspaces
+- Comparative metrics between different periods
 
-## Tips for Effective Monitoring
+Use these charts to identify:
+- Growth or decline in platform usage
+- Seasonal patterns or trends
+- Anomalies that may require attention
 
-### Regular Check-ins
+## Data Loading and Error Handling
 
-Make it a habit to review the Admin Workspaces dashboard regularly. Weekly or monthly reviews can help you:
+### Loading States
 
-- Spot unusual activity patterns early
-- Identify workspaces that may need support
-- Understand seasonal trends in platform usage
-- Make data-driven decisions about resource allocation
-
-### Comparing Time Periods
-
-Use the date range filters to compare different months or quarters. This helps you understand if usage is growing, stable, or declining, and identify what factors might be driving changes.
-
-### Workspace-Specific Analysis
-
-When you notice interesting patterns in the overall data, use the workspace filter to drill down into specific teams or departments. This can help you:
-
-- Understand which teams are power users
-- Identify workspaces that might benefit from additional training
-- Recognize best practices that could be shared across the organization
-
-## Troubleshooting
-
-### Dashboard Won't Load
-
-If you see a loading indicator that doesn't complete:
-
-- Check your internet connection
-- Refresh the page
-- Try selecting a shorter time range (fewer months of data)
+When you first access the dashboard or change filters, you'll see a loading indicator while the system retrieves your analytics data. This typically takes just a few moments.
 
 ### Error Messages
 
-If you encounter an error message displayed in a red box:
+If there's an issue retrieving analytics data, you'll see an error message describing the problem. Common issues might include:
+- Connection problems
+- Data retrieval errors
+- Permission changes
 
-- Read the error description carefully
-- Try refreshing the page
-- Adjust your filters to a different combination
-- If the problem persists, contact technical support
+If you encounter persistent errors, contact your system administrator.
 
-### No Data Showing
+## Best Practices for Using Admin Workspaces
 
-If the dashboard loads but shows no analytics:
+### Regular Monitoring
 
-- Verify that your selected workspaces have activity during the chosen time period
-- Try expanding your date range to include more months
-- Check if any workspaces are actually selected (an empty selection might exclude all data)
+- Check the dashboard regularly to stay informed about platform usage
+- Set a consistent schedule (weekly or monthly) for reviewing analytics
+- Note any significant changes or trends for follow-up
 
-## Best Practices
+### Focused Analysis
 
-**Start Broad, Then Narrow**: Begin by viewing all workspaces and a longer time period to understand overall trends, then use filters to investigate specific patterns.
+- Use workspace filters to investigate specific areas of interest
+- Adjust time ranges to compare different periods (month-over-month, year-over-year)
+- Export or screenshot key metrics for reporting purposes
 
-**Track Month-to-Month Changes**: Set up a routine to compare each month against the previous one, helping you stay on top of usage trends.
+### Cross-Workspace Insights
 
-**Document Insights**: Keep notes about patterns you observe, especially if you notice correlations between platform usage and business events or seasons.
+- Compare activity levels between different workspaces
+- Identify high-performing or underutilized workspaces
+- Use insights to inform resource allocation and support decisions
 
-**Share Findings**: Use the insights from Admin Workspaces to inform conversations with team leaders about platform adoption and effectiveness.
+## Tips for Effective Analytics Review
 
-## Privacy and Security
+1. **Start broad, then narrow** - Begin by viewing all workspaces, then filter to investigate specific areas
+2. **Look for patterns** - Regular reviews help you establish baseline metrics and identify deviations
+3. **Combine metrics** - Use both summary cards and detailed charts together for comprehensive understanding
+4. **Track changes over time** - Adjust your date range to see how metrics evolve
+5. **Document findings** - Keep notes on significant trends or insights for future reference
+
+## Security and Privacy
 
 The Admin Workspaces feature is designed with security in mind:
+- Access is strictly controlled and limited to authorized administrators
+- Unauthorized users cannot access administrative analytics
+- All data is aggregated and presented in accordance with privacy guidelines
 
-- Only authorized administrators can access the dashboard
-- Unauthorized users see no indication that the feature exists
-- All analytics data is aggregated to protect individual privacy while providing organizational insights
-
-Your administrative access allows you to see cross-workspace data to fulfill your oversight responsibilities while maintaining appropriate boundaries.
+If you believe you should have access but cannot view the dashboard, contact your platform administrator to verify your permissions.
