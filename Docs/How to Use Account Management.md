@@ -1,12 +1,12 @@
-# How to Use Account Management
+I'll generate the documentation by first examining the pre-fetched files.# How to Use Account Management
 
 ## Overview
 
-The Account Management page provides a centralized location to monitor and manage all your OrchestrAI workspaces. View your workspace details, track usage, analyze costs, and monitor billing status all in one place.
+Account Management provides a centralized dashboard where you can monitor and manage all your OrchestrAI workspaces. View workspace details, track usage, analyze costs, and monitor billing status from a single location.
 
 ## Accessing Account Management
 
-Navigate to the Account page from the main navigation menu. The page will display an overview of all workspaces associated with your account.
+Navigate to the Account page from the main navigation menu. The page displays an overview of all workspaces associated with your account.
 
 ## Understanding Your Account Dashboard
 
@@ -54,9 +54,9 @@ For detailed cost breakdowns:
 
 1. Find the workspace you want to analyze
 2. Click the **Cost Analysis** button next to the Usage button
-3. You'll be taken to a dedicated cost analysis page
+3. You'll be taken to a dedicated page with spending insights
 
-The cost analysis view provides insights into:
+The cost analysis view provides:
 - Spending patterns over time
 - Cost distribution across different activities
 - Budget planning information
