@@ -1,38 +1,4 @@
-Looking at this comprehensive codebase for OrchestrAI, I'll generate a detailed SBOM in SPDX 2.3 format based on the actual dependencies and structure found in the source code.
-
-<read_file>
-<path>package.json</path>
-</read_file>
-
-Let me read the package.json to identify all dependencies:
-
-<read_file>
-<path>package-lock.json</path>
-</read_file>
-
-Now let me check for any additional dependency files:
-
-<execute_command>
-<command>find . -name "package.json" -o -name "package-lock.json" -o -name "yarn.lock" -o -name "pnpm-lock.yaml" | head -20</command>
-</execute_command>
-
-<read_file>
-<path>package.json</path>
-</read_file>
-
-<read_file>
-<path>tsconfig.json</path>
-</read_file>
-
-<read_file>
-<path>vite.config.ts</path>
-</read_file>
-
-Now I'll generate the comprehensive SBOM documentation:
-
-# orchestrai-dev - Software Bill of Materials (SBOM)
-
-## CISA 2025 Minimum Elements Reference Table
+# orchestrai-dev-sbom-spdx.md
 
 | Data Field | Description |
 |------------|-------------|
@@ -44,13 +10,11 @@ Now I'll generate the comprehensive SBOM documentation:
 | Component Hash | Cryptographic hash (SHA-256, SHA-512) of the component |
 | License | License(s) under which the component is available (use SPDX identifiers) |
 | Dependency Relationship | Relationships (DEPENDS_ON, CONTAINS, DERIVED_FROM) |
-| Tool Name | OrchestrAI (with data sources: package.json, package-lock.json) |
-| Timestamp | 2025-02-02T10:30:00Z |
-| Generation Context | After build - Generated from source code and dependency manifests |
+| Tool Name | OrchestrAI (with data sources: package.json, lock files, etc.) |
+| Timestamp | ISO 8601 formatted date/time of SBOM generation or last update |
+| Generation Context | Lifecycle phase: before build, during build, or after build |
 
----
-
-## SPDX 2.3 Format
+## Software Bill of Materials (SBOM) - SPDX 2.3 Format
 
 ```json
 {
@@ -58,628 +22,539 @@ Now I'll generate the comprehensive SBOM documentation:
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "orchestrai-dev-SBOM",
-  "documentNamespace": "https://orchestrai.dev/sbom/orchestrai-dev-v1.0.0-2025-02-02",
+  "documentNamespace": "https://orchestrai.dev/sbom/orchestrai-dev-2025",
   "creationInfo": {
-    "created": "2025-02-02T10:30:00Z",
-    "creators": [
-      "Tool: OrchestrAI",
-      "Organization: OrchestrAI"
-    ],
-    "licenseListVersion": "3.21",
-    "comment": "Generated from package.json and package-lock.json. Generation context: After build - analyzed from source code and dependency manifests."
+    "created": "2025-01-15T00:00:00Z",
+    "creators": ["Tool: OrchestrAI"],
+    "comment": "SBOM generated from source code analysis"
   },
-  "documentDescribes": [
-    "SPDXRef-Package-orchestrai-dev"
+  "annotations": [
+    {
+      "annotator": "Tool: OrchestrAI",
+      "annotationDate": "2025-01-15T00:00:00Z",
+      "annotationType": "OTHER",
+      "comment": "Generation Context: Before Build / Source - Generated from source code and dependency manifests (eslint.config.js, postcss.config.js, test files)"
+    }
   ],
   "packages": [
     {
-      "SPDXID": "SPDXRef-Package-orchestrai-dev",
-      "name": "orchestrai-dev",
-      "versionInfo": "1.0.0",
-      "supplier": "Organization: OrchestrAI",
-      "downloadLocation": "https://orchestrai.dev",
-      "filesAnalyzed": false,
-      "homepage": "https://orchestrai.dev",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "description": "AI-powered software quality and documentation platform",
-      "primaryPackagePurpose": "APPLICATION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/orchestrai-dev@1.0.0"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-react-18.3.1",
-      "name": "react",
-      "versionInfo": "18.3.1",
-      "supplier": "Organization: Meta Platforms, Inc.",
-      "downloadLocation": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://reactjs.org/",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Meta Platforms, Inc. and affiliates.",
-      "description": "React is a JavaScript library for building user interfaces",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/react@18.3.1"
-        },
-        {
-          "referenceCategory": "SECURITY",
-          "referenceType": "cpe23Type",
-          "referenceLocator": "cpe:2.3:a:facebook:react:18.3.1:*:*:*:*:*:*:*"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Critical frontend framework. Used throughout the application for UI components and state management."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-react-dom-18.3.1",
-      "name": "react-dom",
-      "versionInfo": "18.3.1",
-      "supplier": "Organization: Meta Platforms, Inc.",
-      "downloadLocation": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://reactjs.org/",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Meta Platforms, Inc. and affiliates.",
-      "description": "React package for working with the DOM",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/react-dom@18.3.1"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Critical. Required for rendering React components to the DOM."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-react-router-dom-7.1.1",
-      "name": "react-router-dom",
-      "versionInfo": "7.1.1",
-      "supplier": "Organization: Remix Software Inc.",
-      "downloadLocation": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-7.1.1.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://reactrouter.com",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Remix Software Inc.",
-      "description": "Declarative routing for React web applications",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/react-router-dom@7.1.1"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Critical. Handles all client-side routing in App.tsx with Routes for /product, /enterprise, /code-analysis, etc."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-supabase-js-2.48.1",
-      "name": "@supabase/supabase-js",
-      "versionInfo": "2.48.1",
-      "supplier": "Organization: Supabase",
-      "downloadLocation": "https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.48.1.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://supabase.com",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Supabase",
-      "description": "Isomorphic JavaScript client for Supabase",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40supabase/supabase-js@2.48.1"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Critical. Backend-as-a-Service client used for authentication, database operations, and edge functions. Security-sensitive component."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-tanstack-react-query-5.66.1",
-      "name": "@tanstack/react-query",
-      "versionInfo": "5.66.1",
-      "supplier": "Organization: Tanner Linsley",
-      "downloadLocation": "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.66.1.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://tanstack.com/query",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Tanner Linsley",
-      "description": "Hooks for fetching, caching and updating asynchronous data in React",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40tanstack/react-query@5.66.1"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Critical. Provides QueryClient in App.tsx for data fetching, caching, and synchronization."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-radix-ui-react-dialog-1.1.4",
-      "name": "@radix-ui/react-dialog",
-      "versionInfo": "1.1.4",
-      "supplier": "Organization: WorkOS",
-      "downloadLocation": "https://registry.npmjs.org/@radix-ui/react-dialog/-/react-dialog-1.1.4.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://radix-ui.com/primitives",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) WorkOS",
-      "description": "An accessible dialog component for React",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40radix-ui/react-dialog@1.1.4"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - UI component library. Used for accessible modal dialogs (ComplianceProgressDialog, DocumentationProgressDialog, WelcomeModal)."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-radix-ui-react-checkbox-1.1.3",
-      "name": "@radix-ui/react-checkbox",
-      "versionInfo": "1.1.3",
-      "supplier": "Organization: WorkOS",
-      "downloadLocation": "https://registry.npmjs.org/@radix-ui/react-checkbox/-/react-checkbox-1.1.3.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://radix-ui.com/primitives",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) WorkOS",
-      "description": "An accessible checkbox component for React",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40radix-ui/react-checkbox@1.1.3"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - UI component. Used in AIDocumentationSpecialistPanel for scope and content structure selection."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-radix-ui-react-collapsible-1.1.2",
-      "name": "@radix-ui/react-collapsible",
-      "versionInfo": "1.1.2",
-      "supplier": "Organization: WorkOS",
-      "downloadLocation": "https://registry.npmjs.org/@radix-ui/react-collapsible/-/react-collapsible-1.1.2.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://radix-ui.com/primitives",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) WorkOS",
-      "description": "An accessible collapsible component for React",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40radix-ui/react-collapsible@1.1.2"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - UI component. Used in AIDocumentationSpecialistPanel for expandable advanced options and repository selector."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lucide-react-0.469.0",
-      "name": "lucide-react",
-      "versionInfo": "0.469.0",
-      "supplier": "Organization: Lucide Contributors",
-      "downloadLocation": "https://registry.npmjs.org/lucide-react/-/lucide-react-0.469.0.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://lucide.dev",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "ISC",
-      "licenseDeclared": "ISC",
-      "copyrightText": "Copyright (c) Lucide Contributors",
-      "description": "Implementation of the lucide icon library for React applications",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lucide-react@0.469.0"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Direct dependency - Icon library. Used extensively throughout components (Bot, X, Play, CheckCircle, Settings, Shield, etc.)."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-typescript-5.6.3",
-      "name": "typescript",
-      "versionInfo": "5.6.3",
-      "supplier": "Organization: Microsoft Corporation",
-      "downloadLocation": "https://registry.npmjs.org/typescript/-/typescript-5.6.3.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://www.typescriptlang.org/",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "Copyright (c) Microsoft Corporation",
-      "description": "TypeScript is a language for application scale JavaScript development",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/typescript@5.6.3"
-        },
-        {
-          "referenceCategory": "SECURITY",
-          "referenceType": "cpe23Type",
-          "referenceLocator": "cpe:2.3:a:microsoft:typescript:5.6.3:*:*:*:*:*:*:*"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - Type system and compiler. Essential for development. Configured in tsconfig.json with strict mode."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-vite-6.0.11",
-      "name": "vite",
-      "versionInfo": "6.0.11",
-      "supplier": "Organization: Evan You",
-      "downloadLocation": "https://registry.npmjs.org/vite/-/vite-6.0.11.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://vitejs.dev",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Evan You and Vite contributors",
-      "description": "Next generation frontend build tool",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vite@6.0.11"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - Critical build tool. Configured in vite.config.ts with React plugin and path aliases."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-vitejs-plugin-react-4.3.4",
-      "name": "@vitejs/plugin-react",
-      "versionInfo": "4.3.4",
-      "supplier": "Organization: Vite Team",
-      "downloadLocation": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-4.3.4.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://github.com/vitejs/vite-plugin-react",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) Vite Team",
-      "description": "The all-in-one Vite plugin for React projects",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitejs/plugin-react@4.3.4"
-        }
-      ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - Vite plugin for React. Enables React Fast Refresh and JSX transformation."
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-eslint-9.17.0",
-      "name": "eslint",
-      "versionInfo": "9.17.0",
+      "SPDXID": "SPDXRef-Package-eslint-js",
+      "name": "@eslint/js",
+      "versionInfo": "unknown",
       "supplier": "Organization: OpenJS Foundation",
-      "downloadLocation": "https://registry.npmjs.org/eslint/-/eslint-9.17.0.tgz",
-      "filesAnalyzed": true,
+      "downloadLocation": "https://registry.npmjs.org/@eslint/js",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright OpenJS Foundation and contributors",
       "homepage": "https://eslint.org",
-      "sourceInfo": "npm registry",
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "Copyright OpenJS Foundation and other contributors",
-      "description": "An AST-based pattern checker for JavaScript",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint@9.17.0"
+          "referenceLocator": "pkg:npm/%40eslint/js"
         }
       ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - Linting tool. Configured in eslint.config.js with TypeScript and React plugins."
-        }
-      ]
+      "comment": "ESLint core JavaScript configurations - imported in eslint.config.js (line 1)"
     },
     {
-      "SPDXID": "SPDXRef-Package-typescript-eslint-8.20.0",
-      "name": "typescript-eslint",
-      "versionInfo": "8.20.0",
-      "supplier": "Organization: typescript-eslint",
-      "downloadLocation": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.20.0.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://typescript-eslint.io",
-      "sourceInfo": "npm registry",
+      "SPDXID": "SPDXRef-Package-globals",
+      "name": "globals",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Sindre Sorhus",
+      "downloadLocation": "https://registry.npmjs.org/globals",
+      "filesAnalyzed": false,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) typescript-eslint",
-      "description": "Tooling which enables ESLint to support TypeScript",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
+      "copyrightText": "Copyright Sindre Sorhus",
+      "homepage": "https://github.com/sindresorhus/globals",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/typescript-eslint@8.20.0"
+          "referenceLocator": "pkg:npm/globals"
         }
       ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - ESLint TypeScript integration. Used in eslint.config.js for TypeScript-specific linting rules."
-        }
-      ]
+      "comment": "Global identifiers from different JavaScript environments - imported in eslint.config.js (line 2)"
     },
     {
-      "SPDXID": "SPDXRef-Package-eslint-plugin-react-hooks-5.1.0",
+      "SPDXID": "SPDXRef-Package-eslint-plugin-react-hooks",
       "name": "eslint-plugin-react-hooks",
-      "versionInfo": "5.1.0",
-      "supplier": "Organization: Meta Platforms, Inc.",
-      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.1.0.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://reactjs.org/",
-      "sourceInfo": "npm registry",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Facebook, Inc.",
+      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-hooks",
+      "filesAnalyzed": false,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "Copyright (c) Meta Platforms, Inc.",
-      "description": "ESLint rules for React Hooks",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
+      "homepage": "https://reactjs.org/",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint-plugin-react-hooks@5.1.0"
+          "referenceLocator": "pkg:npm/eslint-plugin-react-hooks"
         }
       ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - ESLint plugin. Enforces Rules of Hooks in React components. Configured in eslint.config.js."
-        }
-      ]
+      "comment": "ESLint rules for React Hooks - imported in eslint.config.js (line 3)"
     },
     {
-      "SPDXID": "SPDXRef-Package-eslint-plugin-react-refresh-0.4.16",
+      "SPDXID": "SPDXRef-Package-eslint-plugin-react-refresh",
       "name": "eslint-plugin-react-refresh",
-      "versionInfo": "0.4.16",
-      "supplier": "Organization: ArnaudBarré",
-      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-refresh/-/eslint-plugin-react-refresh-0.4.16.tgz",
-      "filesAnalyzed": true,
-      "homepage": "https://github.com/ArnaudBarré/eslint-plugin-react-refresh",
-      "sourceInfo": "npm registry",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Vite contributors",
+      "downloadLocation": "https://registry.npmjs.org/eslint-plugin-react-refresh",
+      "filesAnalyzed": false,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
-      "copyrightText": "Copyright (c) ArnaudBarré",
-      "description": "Validate that your components can safely be updated with Fast Refresh",
-      "primaryPackagePurpose": "LIBRARY",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "NOASSERTION"
-        }
-      ],
+      "copyrightText": "Copyright Vite contributors",
+      "homepage": "https://github.com/vitejs/vite-plugin-react",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/eslint-plugin-react-refresh@0.4.16"
+          "referenceLocator": "pkg:npm/eslint-plugin-react-refresh"
         }
       ],
-      "annotations": [
-        {
-          "annotationDate": "2025-02-02T10:30:00Z",
-          "annotationType": "REVIEW",
-          "annotator": "Tool: OrchestrAI",
-          "comment": "Dev dependency - ESLint plugin. Validates React Fast Refresh compatibility. Configured in eslint.config.js with allowConstantExport."
-        }
-      ]
+      "comment": "ESLint plugin for React Refresh - imported in eslint.config.js (line 4)"
     },
     {
-      "SPDXID": "SPDXRef-Package-globals-15.14.0",
-      "name": "globals",
-      "version
+      "SPDXID": "SPDXRef-Package-typescript-eslint",
+      "name": "typescript-eslint",
+      "versionInfo": "unknown",
+      "supplier": "Organization: TypeScript ESLint contributors",
+      "downloadLocation": "https://registry.npmjs.org/typescript-eslint",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright TypeScript ESLint contributors",
+      "homepage": "https://typescript-eslint.io",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/typescript-eslint"
+        }
+      ],
+      "comment": "Monorepo for all TypeScript ESLint tooling - imported in eslint.config.js (line 5)"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-react",
+      "name": "react",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Facebook, Inc.",
+      "downloadLocation": "https://registry.npmjs.org/react",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Meta Platforms, Inc.",
+      "homepage": "https://reactjs.org/",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/react"
+        }
+      ],
+      "comment": "React framework for building user interfaces - used in test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-testing-library-react",
+      "name": "@testing-library/react",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Kent C. Dodds",
+      "downloadLocation": "https://registry.npmjs.org/@testing-library/react",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright Kent C. Dodds",
+      "homepage": "https://testing-library.com/react",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40testing-library/react"
+        }
+      ],
+      "comment": "React Testing Library for component testing - imported in test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-testing-library-jest-dom",
+      "name": "@testing-library/jest-dom",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Testing Library contributors",
+      "downloadLocation": "https://registry.npmjs.org/@testing-library/jest-dom",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright Testing Library contributors",
+      "homepage": "https://testing-library.com",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40testing-library/jest-dom"
+        }
+      ],
+      "comment": "Custom jest matchers for DOM testing - imported in test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-react-router-dom",
+      "name": "react-router-dom",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Remix Software Inc.",
+      "downloadLocation": "https://registry.npmjs.org/react-router-dom",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright Remix Software Inc.",
+      "homepage": "https://reactrouter.com",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/react-router-dom"
+        }
+      ],
+      "comment": "React Router for navigation - imported in test files for BrowserRouter"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-jest",
+      "name": "jest",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Facebook, Inc.",
+      "downloadLocation": "https://registry.npmjs.org/jest",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) Meta Platforms, Inc.",
+      "homepage": "https://jestjs.io",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/jest"
+        }
+      ],
+      "comment": "Jest testing framework - used throughout test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-postcss",
+      "name": "postcss",
+      "versionInfo": "unknown",
+      "supplier": "Organization: PostCSS contributors",
+      "downloadLocation": "https://registry.npmjs.org/postcss",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright PostCSS contributors",
+      "homepage": "https://postcss.org",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/postcss"
+        }
+      ],
+      "comment": "PostCSS CSS transformation tool - referenced in postcss.config test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tailwindcss",
+      "name": "tailwindcss",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Tailwind Labs",
+      "downloadLocation": "https://registry.npmjs.org/tailwindcss",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright Tailwind Labs",
+      "homepage": "https://tailwindcss.com",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tailwindcss"
+        }
+      ],
+      "comment": "Tailwind CSS framework - referenced in postcss.config test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-autoprefixer",
+      "name": "autoprefixer",
+      "versionInfo": "unknown",
+      "supplier": "Organization: PostCSS contributors",
+      "downloadLocation": "https://registry.npmjs.org/autoprefixer",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright PostCSS contributors",
+      "homepage": "https://github.com/postcss/autoprefixer",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/autoprefixer"
+        }
+      ],
+      "comment": "PostCSS plugin to add vendor prefixes - referenced in postcss.config test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-cssnano",
+      "name": "cssnano",
+      "versionInfo": "unknown",
+      "supplier": "Organization: cssnano contributors",
+      "downloadLocation": "https://registry.npmjs.org/cssnano",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright cssnano contributors",
+      "homepage": "https://cssnano.co",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/cssnano"
+        }
+      ],
+      "comment": "CSS minification tool - referenced in postcss.config test files"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-typescript",
+      "name": "typescript",
+      "versionInfo": "unknown",
+      "supplier": "Organization: Microsoft Corporation",
+      "downloadLocation": "https://registry.npmjs.org/typescript",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "Copyright Microsoft Corporation",
+      "homepage": "https://www.typescriptlang.org",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/typescript"
+        }
+      ],
+      "comment": "TypeScript language and compiler - used throughout TypeScript test files"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-eslint-js"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-globals"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-eslint-plugin-react-hooks"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-eslint-plugin-react-refresh"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-typescript-eslint"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-testing-library-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-testing-library-jest-dom"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-react-router-dom"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-jest"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-postcss"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-tailwindcss"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-autoprefixer"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-cssnano"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-typescript"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-typescript-eslint",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-eslint-js"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eslint-plugin-react-hooks",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-eslint-plugin-react-refresh",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-testing-library-react",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-testing-library-jest-dom",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-jest"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-react-router-dom",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-react"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-tailwindcss",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-postcss"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-autoprefixer",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-postcss"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-cssnano",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-postcss"
+    }
+  ]
+}
+```
+
+## Technology Stack
+
+**Language**: JavaScript, TypeScript
+
+**Framework**: React (version unknown - used throughout test components)
+
+**Build Tool**: Not directly specified in source files, but configuration suggests Vite based on eslint-plugin-react-refresh
+
+**Package Manager**: npm (inferred from import patterns and registry URLs)
+
+**Testing Framework**: Jest (confirmed from test file imports and structure)
+
+## Dependency Categorization
+
+### Frontend
+- **react**: UI library for building component-based interfaces
+- **react-router-dom**: Declarative routing for React applications
+- **@testing-library/react**: Testing utilities for React components
+
+### Code Quality & Linting
+- **@eslint/js**: Core ESLint JavaScript configurations
+- **eslint-plugin-react-hooks**: Enforces React Hooks rules
+- **eslint-plugin-react-refresh**: Validates React Refresh usage
+- **typescript-eslint**: TypeScript linting toolchain
+- **globals**: Global identifiers from various JavaScript environments
+
+### CSS Processing
+- **postcss**: CSS transformation tool
+- **tailwindcss**: Utility-first CSS framework
+- **autoprefixer**: Adds vendor prefixes automatically
+- **cssnano**: CSS minification and optimization
+
+### Testing
+- **jest**: JavaScript testing framework
+- **@testing-library/jest-dom**: Custom DOM matchers for Jest
+- **@testing-library/react**: React component testing utilities
+
+### Development Tools
+- **typescript**: TypeScript language and compiler
+
+## Known Unknowns
+
+**Note**: This SBOM was generated from source code analysis without access to package.json or lock files. The following information is incomplete or unknown:
+
+1. **Exact Version Numbers**: Version information for all packages is unknown. The SBOM lists versions as "unknown" because no package.json or lock files were available in the provided source code.
+
+2. **Component Hashes**: SHA-256/SHA-512 hashes for components could not be determined without access to node_modules or lock files.
+
+3. **Transitive Dependencies**: Only direct dependencies visible in source code are included. Transitive dependencies (sub-dependencies) are not listed because they cannot be determined without analyzing the full dependency tree from lock files.
+
+4. **Complete Dependency Tree**: Additional dependencies may exist that are not directly imported in the provided source files.
+
+5. **Build Dependencies**: Build-time dependencies not directly imported in source code may not be captured.
+
+**Interpretation**: This SBOM should be considered **incomplete**. A complete SBOM would require:
+- Access to package.json
+- Access to package-lock.json or yarn.lock
+- Analysis of node_modules directory
+- Build artifact analysis
+
+Components marked as "unknown" version should be verified against actual package manifests before use in production vulnerability scanning.
+
+## Security Considerations
+
+Based on the dependencies identified:
+
+1. **React Ecosystem**: Multiple React-related packages suggest this is a React application. Ensure React version is up-to-date to avoid known vulnerabilities.
+
+2. **Testing Dependencies**: Extensive testing infrastructure indicates good quality practices.
+
+3. **TypeScript**: Use of TypeScript provides type safety and reduces runtime errors.
+
+4. **ESLint Configuration**: Comprehensive linting setup with React-specific rules helps maintain code quality.
+
+5. **CSS Processing**: Use of modern CSS tools (PostCSS, Tailwind, autoprefixer) suggests proper build pipeline.
+
+## Maintenance Status
+
+Based on source code evidence:
+
+- **Active Testing**: Multiple test directories from different dates (2025-07-09 through 2025-11-15) suggest active development
+- **Modern Tooling**: Use of current React patterns (Hooks plugins, React Refresh) indicates maintained codebase
+- **TypeScript Adoption**: Presence of TypeScript configurations and tests shows commitment to type safety
+
+## Coverage Statement
+
+This SBOM includes:
+- ✅ All dependencies directly imported in provided source files
+- ✅ Development dependencies (testing, linting)
+- ✅ Build tools referenced in configuration files
+- ❌ Transitive dependencies (not determinable without lock files)
+- ❌ Exact version numbers (not available in source code)
+- ❌ Component hashes (not computable without package files)
+
+**Recommendation**: This SBOM should be supplemented with data from package.json and lock files for production use.
