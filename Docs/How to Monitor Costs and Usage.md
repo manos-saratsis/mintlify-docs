@@ -2,173 +2,205 @@
 
 ## Overview
 
-Track your credit usage, manage billing limits, and optimize your spending while maintaining code quality. The Cost Analysis page provides real-time visibility into your workspace's credit consumption and subscription status.
+Monitor your credit usage, track spending, and manage your subscription plan to stay in control of your OrchestrAI costs. The cost monitoring dashboard provides real-time visibility into your credit consumption and billing status.
 
-## Accessing Cost Analysis
+## Accessing Cost Monitoring
 
-1. Log into your workspace
-2. Navigate to the Cost Analysis page from your workspace menu
-3. View your current subscription status and credit usage
+1. Navigate to your workspace
+2. Open the Cost Analysis page from the main menu
+3. View your current usage, plan details, and billing information
 
-## Understanding Your Credit Usage
+## Understanding Your Plan
 
-### For Free Plan Users
+### Free Plan
+- **Monthly credits**: 50 credits per month
+- **Cost**: Free
+- **Best for**: Testing and small projects
 
-Your Free plan includes:
-- **Daily limit**: 5 credits per day
-- **Monthly limit**: 30 credits per month
+### Pro Plan
+Choose from multiple credit tiers based on your needs:
+- **100 credits/month** - $25/month
+- **200 credits/month** - $50/month
+- **400 credits/month** - $100/month
+- **1,000 credits/month** - $250/month
+- **2,000 credits/month** - $500/month
+- **3,000 credits/month** - $750/month
+- **5,000 credits/month** - $1,250/month
 
-On the Cost Analysis page, you'll see two usage meters:
-
-**Monthly Credit Usage**
-- Shows how many credits you've used out of your 30 monthly credits
-- Displays remaining credits for the current month
-- Resets at the beginning of each month
-
-**Daily Credit Usage**
-- Shows how many credits you've used out of your 5 daily credits
-- Displays remaining credits for today
-- Resets every 24 hours
-
-### For Paid Plan Users
-
-Your paid plan includes:
-- **Monthly credit allocation** based on your selected tier
-- Unlimited daily usage (no daily caps)
-- Enterprise-level analysis capabilities
-- 24/7 support access
+Pro plans include:
+- Enterprise analysis capabilities
+- Unlimited features
+- 24/7 support
 - Custom solutions
 
-You'll see:
-- Total monthly credits available
-- Credits used this month
-- Credits remaining until next billing cycle
-- Next billing date
+## Monitoring Your Usage
 
-## Monitoring Your Subscription Status
+### Credit Usage Display
 
-The subscription status card displays:
+The dashboard shows your current credit consumption with a visual progress bar:
 
-- **Current plan type** (Free or Pro)
-- **Billing status** with color-coded indicators:
-  - Green: Active subscription
-  - Yellow: Pending changes
-  - Red: Cancelling at period end
-- **Credit usage progress bars** showing real-time consumption
-- **Remaining credits** for your current billing period
+- **Used credits**: See exactly how many credits you've consumed this month
+- **Total credits**: Your monthly credit allowance
+- **Remaining credits**: Credits available for the rest of the billing period
+- **Usage percentage**: Visual indicator showing how much of your monthly allocation has been used
 
-Click the **Refresh** button to update your usage data with the latest information.
+### Subscription Status
+
+Your subscription status card displays:
+
+- **Current plan**: Free or Pro with credit tier
+- **Billing status**: Active, exceeded, or cancelling
+- **Next billing date**: When your subscription renews
+- **Credits after renewal**: Your credit allocation for the next period
+
+### Billing Cycle
+
+All credit allocations reset at the beginning of each monthly billing period. Your next billing date shows when your credits will refresh.
+
+## Understanding Billing Status
+
+### Active
+Your subscription is current and you have credits available. You can continue using OrchestrAI without interruption.
+
+### Exceeded
+You've used all your monthly credits. To continue using OrchestrAI:
+- Upgrade to a higher credit tier
+- Wait until your next billing period for credits to reset
+
+### Cancelling
+Your subscription is set to cancel at the end of the current billing period. You'll retain access until that date, then move to the Free plan.
 
 ## Managing Your Plan
 
-### Upgrading from Free to Paid
+### Upgrading from Free to Pro
 
-1. On the Cost Analysis page, click **Upgrade to Paid**
-2. Select your desired monthly credit allocation
-3. Enter your payment information
-4. Confirm your subscription
-5. Your new credit limit takes effect immediately
+1. Click **Upgrade to Paid** on the Cost Analysis page
+2. Select your desired credit tier from the dropdown menu
+3. Review the monthly price for your selected tier
+4. Click **Upgrade Now**
+5. Complete the payment process
+6. Your Pro plan activates immediately with full credit allocation
 
-### Modifying Your Paid Plan
+### Changing Your Credit Tier
 
-1. Click **Edit Plan** on the Cost Analysis page
-2. Choose a new credit tier (higher or lower)
-3. Confirm the change
+For active Pro subscriptions:
 
-**Important**: 
-- When upgrading, changes take effect immediately
-- When downgrading, changes take effect at the end of your current billing period
-- You'll see a notification showing when scheduled changes will occur
+**Upgrading to more credits:**
+1. Click **Edit Plan**
+2. Select a higher credit tier
+3. Click **Upgrade Now**
+4. The change takes effect immediately
+5. You'll be charged the prorated difference
 
-### Managing Billing Details
+**Downgrading to fewer credits:**
+1. Click **Edit Plan**
+2. Select a lower credit tier
+3. Click **Schedule Downgrade**
+4. Your current credits remain available until the billing period ends
+5. The new tier begins at your next billing date
 
-Click **Manage Billing** to:
+### Downgrading to Free
+
+1. Click **Edit Plan**
+2. Select **Go to Free** at the bottom of the modal
+3. Confirm the downgrade
+4. Your Pro features remain active until the current billing period ends
+5. After that date, you'll move to the Free plan with 50 credits/month
+
+**Important**: When downgrading to Free, access to private repositories will be automatically disabled.
+
+## Scheduled Changes
+
+### Understanding Scheduled Plans
+
+When you downgrade or cancel your subscription, the change is scheduled for the end of your billing period. This means:
+
+- You keep your current credits and features until the period ends
+- No immediate disruption to your work
+- The new plan activates automatically on the scheduled date
+
+### Managing Scheduled Changes
+
+If you have a scheduled plan change:
+
+1. A notification appears on your Cost Analysis page showing:
+   - The new plan that will take effect
+   - When the change will occur
+   - Your new credit allocation
+
+2. To modify or cancel the scheduled change:
+   - Click **Edit Plan**
+   - Select a different credit tier
+   - The scheduled change updates to your new selection
+
+3. To reactivate your current plan:
+   - Click **Edit Plan**
+   - Choose to upgrade or maintain your existing tier
+   - The cancellation is removed
+
+## Billing Portal
+
+### Accessing Billing Management
+
+For Pro subscribers, click **Manage Billing** to access the customer portal where you can:
+
+- View payment history
 - Update payment methods
-- View billing history
 - Download invoices
-- Update billing address
+- Review transaction details
+- Update billing information
 
-This opens your secure customer portal where you can manage all payment-related settings.
+### Refreshing Your Data
 
-## Understanding Scheduled Changes
+Click the **Refresh** button at any time to sync the latest usage data from your recent analysis activities. This ensures your credit counts are always up to date.
 
-If you've scheduled a plan change, you'll see notifications on the Cost Analysis page:
+## Optimizing Your Usage
 
-**Plan Upgrades**
-- Green notification showing your new credit allocation
-- Effective date of the change
-- Option to modify or cancel the scheduled upgrade
+### Tracking Credit Consumption
 
-**Plan Downgrades**
-- Blue notification showing your reduced credit allocation
-- Date when the change takes effect
-- Reminder that you'll keep your current plan until the billing period ends
+Monitor your credit usage regularly to:
+- Identify usage patterns
+- Plan for upcoming projects
+- Avoid running out of credits mid-month
+- Choose the right credit tier for your needs
 
-**Subscription Cancellations**
-- Red notification if you've cancelled your subscription
-- Information about downgrading to the Free plan
-- Date when you'll lose access to paid features
+### Choosing the Right Plan
 
-You can modify or cancel any scheduled changes by clicking **Edit Plan** before they take effect.
+Consider these factors when selecting your credit tier:
 
-## Optimizing Your Credit Usage
+- **Average monthly usage**: Review past months to estimate needs
+- **Project pipeline**: Account for upcoming analysis requirements
+- **Team size**: More users typically means higher consumption
+- **Analysis frequency**: Daily analyses require more credits than occasional use
 
-### Tips for Managing Costs
+### Managing Costs Effectively
 
-**Review your usage patterns**
-- Check the Cost Analysis page regularly to understand your consumption
-- Identify which days or periods use the most credits
+**Start conservative**: Begin with a lower tier and upgrade if needed
 
-**Adjust analysis frequency**
-- Consider running analyses less frequently if approaching your limit
-- Schedule important analyses when you have sufficient credits available
+**Monitor regularly**: Check your usage weekly to stay informed
 
-**Choose the right plan**
-- If you consistently hit your Free plan limits, consider upgrading
-- If you're using significantly less than your paid allocation, consider downgrading
+**Plan ahead**: Upgrade before busy periods rather than mid-month
 
-**Plan ahead for billing cycles**
-- Note your next billing date
-- Save complex analyses for early in your billing cycle when credits are plentiful
+**Use Free strategically**: For testing or low-volume periods, the Free plan may be sufficient
 
-### Cost Per Analysis
+## Billing Cycle Reset
 
-Each code analysis consumes credits based on:
-- Repository size
-- Number of files analyzed
-- Complexity of the codebase
+Credits reset automatically at the start of each billing period. Your unused credits do not roll over to the next month, so plan your usage accordingly.
 
-Monitor the credit deduction after each analysis to understand your typical usage patterns.
+## Notifications and Alerts
 
-## Preventing Service Interruptions
+Watch for status indicators on your Cost Analysis page:
+- **Green status**: Active subscription with credits available
+- **Yellow status**: Approaching your credit limit
+- **Red status**: Credits exceeded or subscription cancelling
+- **Blue notification**: Scheduled plan change pending
 
-**For Free Users**
-- Once daily or monthly limits are reached, analysis capabilities pause until reset
-- Daily limits reset every 24 hours
-- Monthly limits reset at the beginning of each month
-- Consider upgrading if you need continuous access
-
-**For Paid Users**
-- Monitor your monthly usage to avoid hitting your credit limit
-- Upgrade to a higher tier if you consistently use your full allocation
-- Set reminders to check usage mid-month
-
-## Billing Cycle Information
-
-Your Cost Analysis page displays:
-- Next billing date
-- Credits that will be available after the next billing date
-- Any scheduled plan changes
-- Current billing period status
-
-All billing dates and credit renewals happen automatically—no action required from you.
-
-## Getting Help
+## Support
 
 If you have questions about:
-- Unexpected credit usage
-- Billing discrepancies
-- Plan selection guidance
-- Usage optimization
+- Unexpected charges
+- Credit consumption rates
+- Plan recommendations
+- Billing issues
 
-Paid plan users have access to 24/7 support for immediate assistance with billing and usage questions.
+Contact support through your Pro plan's 24/7 support access, or use the Manage Billing portal to review detailed transaction information.
