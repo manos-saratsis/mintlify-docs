@@ -2,367 +2,400 @@
 
 ## Overview
 
-Generate comprehensive, up-to-date documentation for your product automatically using AI. Create user guides, developer documentation, API references, and security compliance documents—all kept in sync with your codebase.
-
-## What You Can Generate
-
-### User-Facing Documentation
-
-Create documentation written in plain, everyday language that anyone can understand:
-
-- **Getting Started Guides** - Welcome pages and onboarding walkthroughs that help new users reach their first success quickly
-- **How-To Guides** - Step-by-step instructions for every feature with visual walkthroughs and best practices
-- **Tutorials** - Hands-on learning experiences for common workflows
-- **Concept Guides** - Explanations of core concepts and key terms
-- **API Reference** - Complete endpoint documentation with examples
-- **FAQs & Troubleshooting** - Common questions, error resolution, and known limitations
-- **Release Notes** - Clear announcements of new features, bug fixes, and improvements
-
-### Developer Documentation
-
-Technical documentation for your development team:
-
-- **Architecture Documentation** - System architecture and data flow diagrams
-- **API Documentation** - Internal APIs and endpoint specifications
-- **Component Documentation** - UI components, hooks, and services
-- **Testing & QA** - Test strategy, coverage reports, and QA processes
-- **Deployment & DevOps** - CI/CD pipelines, infrastructure, and monitoring
-- **Contributing Guidelines** - Code style, PR process, and review guidelines
-
-### Security Documentation
-
-Compliance and security documentation:
-
-- **SBOM (CycloneDX)** - Software Bill of Materials in CycloneDX format
-- **SBOM (SPDX)** - Software Bill of Materials in SPDX format
-- **Security Policies** - Access control and data protection policies
-- **Threat Model** - Threat assessment and risk mitigation strategies
-- **Compliance Documentation** - Regulatory requirements and audit documentation
+Generate comprehensive documentation for your projects automatically using AI—from user guides and tutorials to API references and security compliance documents. The documentation system analyzes your codebase and creates professional documentation tailored to different audiences, all kept in sync with your code.
 
 ## Getting Started
 
 ### Prerequisites
 
-Before generating documentation, you need:
+Before generating documentation, ensure you have:
 
-1. **A Git Connection** - Connect GitHub to store and manage your documentation
-2. **Documentation Enabled** - Enable documentation generation in your Workflow settings
-3. **Target Repository** - Select which repository should store your documentation
-4. **Assigned Repositories** - Assign source code repositories to your product
+- **Active Workspace**: Select your workspace from the top navigation bar
+- **Connected Repository**: Link your GitHub repository in the Code section
+- **Product Created**: Set up a product and assign repositories to it
+- **Documentation Enabled**: Turn on documentation in your Workflow settings
 
 ### Initial Setup
 
-1. Navigate to the Documentation page from your product dashboard
-2. If you haven't connected Git yet, click "Add Git Connection" and follow the prompts
-3. Go to Workflow settings and enable Documentation generation
-4. Select your target repository and folder where documentation should be saved
-5. Assign source code repositories to your product in the Code section
+1. **Connect Your Repository**
+   - Navigate to the Code page
+   - Click "Add Git Connection"
+   - Authorize OrchestrAI to access your GitHub repositories
+   - Select the repositories you want to document
 
-## Creating a Documentation Plan
+2. **Assign Repositories to Your Product**
+   - Go to the Code page
+   - Find your repository in the list
+   - Select your product from the dropdown menu
+   - Save your changes
 
-### Understanding Plans
+3. **Enable Documentation**
+   - Visit the Workflow settings page
+   - Find the "Documentation" workflow
+   - Toggle it to "Enabled"
+   - Select where documentation should be saved (repository and folder)
+   - Save your configuration
 
-Documentation plans organize your documentation into specific tasks. Each plan is identified by a unique ID (like `plan_2025-01-15_a3c2f8`) and contains individual documentation pages to generate.
+## Types of Documentation
 
-### Generating Your First Plan
+The system can generate six distinct types of documentation:
 
-1. Navigate to the Documentation page
-2. Go to the **Planning** tab
-3. Select which types of documentation you want to create:
-   - User-Facing Documentation
-   - Internal Developer Documentation
-   - Security Documentation
-4. Click the model selection button to choose:
-   - **Claude Haiku** - Faster, more economical for standard documentation
-   - **Claude Sonnet** - More detailed analysis for complex projects
-5. Optionally add notes about specific areas to focus on
-6. Click "Generate Plan"
+### User-Facing Documentation
 
-The AI will analyze your codebase and create a structured plan with specific documentation pages. This typically takes 30-60 seconds.
+Written in plain, everyday language for people using your product:
 
-### What the AI Analyzes
+- **Getting Started Guides**: Quick start tutorials and account setup walkthroughs that help new users reach their first success
+- **How-To Guides**: Step-by-step instructions for every feature with visual walkthroughs and common workflows
+- **Concept Explanations**: Core concepts and key terms explained without technical jargon
+- **API References**: Complete API documentation with examples for developers integrating with your product
+- **Troubleshooting**: Common questions answered, error solutions, and performance tips
+- **Release Notes**: Updates explained in clear language with new features highlighted and breaking changes called out
 
-When creating a plan, the AI examines:
+### Internal Developer Documentation
 
-- Repository structure and file organization
-- README files and existing documentation
-- Package dependencies and configuration files
-- Page routes and user-facing features
-- API endpoints and services
-- Component architecture
-- Release history and version tags
+Technical documentation for your development team:
 
-### Reviewing Your Plan
+- **Architecture Documentation**: System architecture overviews and data flow diagrams
+- **API Documentation**: Internal API specifications and edge function references
+- **Component Documentation**: UI component guides, React hooks documentation, and service layer explanations
+- **Testing & QA**: Test strategy documentation, coverage reports, and QA processes
+- **Deployment & DevOps**: CI/CD pipeline documentation, infrastructure guides, and monitoring setup
+- **Contributing Guidelines**: Code style guides, pull request processes, and review guidelines
 
-After generation completes, you'll see a list of documentation tasks organized by:
+### Security Documentation
 
-- **Scope** (User-Facing, Developer, Security)
-- **Section** (Getting Started, Tutorials, API Reference, etc.)
-- **Individual Pages** - Specific documentation pages to generate
+Compliance and security materials for audits:
 
-Each task shows:
-- Task name and description
-- Priority level
-- Estimated effort
-- Current status (pending, generated, outdated)
+- **SBOM (Software Bill of Materials)**: Dependency lists in both SPDX and CycloneDX formats for security audits
+- **Security Policies**: Access control documentation and data protection guidelines
+- **Threat Model**: Threat assessments and risk mitigation strategies
+- **Compliance Documentation**: Regulatory requirement tracking and audit documentation
 
-### Customizing Your Plan
+## Planning Your Documentation
 
-You can refine the plan before generating documentation:
+### Creating a Documentation Plan
 
-- Review the suggested pages
-- Check that priorities match your needs
-- Note any missing topics
-- Select specific tasks to generate first
+The planning feature helps you organize documentation before generation:
+
+1. **Navigate to Documentation**
+   - Click "Documentation" in the product sidebar
+   - Select the "Planning" tab
+
+2. **Generate a Plan**
+   - Click "Generate Plan" in the top right
+   - Choose which types of documentation to create
+   - Select specific sections if desired
+   - Add any notes or context about your product
+   - Click "Generate Plan"
+
+3. **Review the Plan**
+   - View all proposed documentation pages
+   - See descriptions of what each page will cover
+   - Check priority and estimated effort
+   - Review which source files will be analyzed
+
+### Understanding Plan Details
+
+Each documentation task in your plan shows:
+
+- **Task Name**: The specific page or document to be created
+- **Scope Type**: Whether it's user-facing, developer, or security documentation
+- **Description**: What the page will cover
+- **Priority**: Importance ranking (1-10)
+- **Status**: Current state (pending, in progress, completed)
+- **Source Files**: Which code files will be analyzed
+- **Estimated Effort**: Time investment (small, medium, large)
+
+### Managing Plans
+
+- **Multiple Plans**: Create and compare different documentation plans without losing previous versions
+- **Selective Generation**: Choose specific tasks from your plan to generate
+- **Bulk Actions**: Select multiple tasks to generate together
+- **Plan Refresh**: Update your plan when your product changes
 
 ## Generating Documentation
 
-### Generating Selected Tasks
+### From a Plan (Recommended)
 
-1. From the Planning tab, review your documentation tasks
-2. Select the checkboxes next to specific tasks you want to generate
-3. Click "Generate Selected"
-4. The AI Documentation Specialist panel opens
+1. **Review Your Plan**
+   - Open the Planning tab
+   - Review the list of documentation tasks
 
-### Generating All Tasks
+2. **Select Tasks**
+   - Check the boxes next to tasks you want to generate
+   - Or click "Generate All" to create everything at once
 
-To generate all pending tasks:
+3. **Start Generation**
+   - Click "Generate Selected"
+   - A panel opens showing the documentation process
+   - Choose to watch progress or continue in the background
 
-1. Navigate to the **Documentation Changes** tab
-2. Click the **+** button in the top-right corner
-3. The AI Documentation Specialist panel opens
+4. **Monitor Progress**
+   - View each task as it completes
+   - See which files are being analyzed
+   - Track the overall completion percentage
 
-### The Generation Process
+### Quick Generation
 
-Once you start generation:
+For immediate documentation needs:
 
-1. **Repository Access** - The system verifies access to your source code
-2. **Job Creation** - Individual generation jobs are created for each task
-3. **Parallel Processing** - Multiple documentation pages are generated simultaneously
-4. **Quality Review** - You can review generated content before committing
-5. **Git Commit** - Documentation is committed to your target repository
+1. **Open the Documentation Panel**
+   - Navigate to the Documentation Changes tab
+   - Click the "+" button in the top right
 
-### Monitoring Progress
+2. **Configure Generation**
+   - Select documentation types to create
+   - Choose specific sections or generate all
+   - Add custom instructions if needed
 
-During generation:
+3. **Start the Process**
+   - Click "Generate Documentation"
+   - Choose to monitor or run in background
 
-- View real-time progress in the AI Documentation Specialist panel
-- See which pages are being generated
-- Track completion percentage
-- Monitor any errors or warnings
+### Migration from Existing Documentation
 
-### Continuing in Background
+If you have existing documentation to migrate:
 
-For large documentation sets:
+1. **Provide Your Current Documentation**
+   - Enter the URL of your existing documentation site
+   - This helps the AI understand your style and structure
 
-1. Click "Continue in Background" to close the panel
-2. Generation continues without keeping the page open
-3. Resume viewing progress anytime from the Documentation page
-4. You'll see a "Resume" button when background generation is active
+2. **Select What to Migrate**
+   - Choose which sections to update or recreate
+   - The AI will maintain your existing voice and format
 
-## Working with Generated Documentation
+3. **Review and Commit**
+   - Check the generated updates
+   - Approve or request changes
+   - Commit directly to your repository
 
-### Reviewing Changes
+## Background Processing
 
-After generation completes:
+Documentation generation runs in the background so you can continue working:
 
-1. Navigate to the **Documentation Changes** tab
-2. View recent documentation generations
-3. Each entry shows:
-   - Generation timestamp
-   - Number of pages created
-   - Commit information
-   - Status (completed, failed, or running)
+### Starting Background Processes
 
-### Viewing in Your Repository
+- Click "Continue in Background" when the generation panel is open
+- Close the panel—the process continues running
+- Navigate away from the page without interrupting generation
 
-Generated documentation is automatically committed to your target repository:
+### Monitoring Background Tasks
 
-1. Go to your Git repository
-2. Navigate to the documentation folder you configured
-3. Find your documentation organized by plan and scope
-4. Files use clear, descriptive names based on the task
+- Return to the Documentation page anytime
+- View active processes in the Documentation Changes tab
+- See a "Resume" button for any running generation
+- Check progress percentages and current steps
 
-### File Organization
+### Resuming Progress View
 
-Documentation is organized in your repository:
+- Click "Resume" next to any active process
+- View detailed progress of what's being generated
+- Watch real-time updates as tasks complete
+- Switch back to background mode anytime
 
-```
-your-docs-folder/
-├── plan_2025-01-15_a3c2f8/
-│   ├── user_facing/
-│   │   ├── getting-started/
-│   │   │   └── quick-start-guide.md
-│   │   ├── tutorials/
-│   │   └── api-reference/
-│   ├── internal_developer/
-│   │   ├── architecture/
-│   │   └── development-setup/
-│   └── security/
-│       ├── sbom/
-│       └── compliance/
-```
+## Reviewing Generated Documentation
 
-### Refreshing Documentation
+### Documentation Changes Tab
 
-To update documentation when your product changes:
+View all documentation generation activities:
 
-1. Go to the Planning tab
-2. Click "Refresh Plan" to check for outdated content
-3. The AI identifies which pages need updates
-4. Generate updated versions of outdated pages
+- **Recent Changes**: List of all documentation runs
+- **Status Indicators**: See completed, in-progress, or failed generations
+- **Details**: View which sections were created or updated
+- **Repository Links**: Jump directly to generated files in GitHub
 
-## Release Notes
+### What Gets Generated
 
-### Special Requirements
+Each documentation run creates:
 
-Release Notes require specific commit selection:
+- **Markdown Files**: Professional documentation in standard markdown format
+- **Organized Structure**: Files organized by type and topic
+- **Git Commits**: Changes committed directly to your repository
+- **Change History**: Track what was generated and when
 
-1. When creating a plan, the AI identifies available releases and tags
-2. To generate Release Notes, you must select specific commits or releases
-3. This ensures Release Notes accurately reflect changes in that version
+### Quality Checks
 
-### Generating Release Notes
+The system ensures:
 
-1. In the Planning tab, locate Release Notes tasks
-2. If commits weren't specified during planning, the task will show as failed
-3. To generate Release Notes properly:
-   - Create a new plan
-   - When selecting repositories, choose "Specific Commits" scope
-   - Select the release tag or commit range
-   - Generate the plan with Release Notes scope enabled
+- **Accuracy**: All information traced to actual code
+- **Clarity**: Plain language for user-facing content, technical detail for developers
+- **Completeness**: Comprehensive coverage of selected topics
+- **Consistency**: Uniform style and structure across all pages
 
-## Migration Mode
+## Customization Options
 
-### When to Use Migration
+### Documentation Frameworks
 
-Use migration to import existing documentation:
+The system supports popular documentation platforms:
 
-1. You have documentation scattered across multiple locations
-2. You want to consolidate documentation into your target repository
-3. You're standardizing documentation format
+- **Mintlify**: Modern documentation with built-in search and navigation
+- **Docusaurus**: Meta's documentation framework for versioned docs
+- **MkDocs**: Python-based static site generator
+- **Custom Markdown**: Standard markdown files for any system
 
-### How Migration Works
+### Repository Configuration
 
-1. Select "Migrate Documentation" action
-2. Point to your existing documentation sources
-3. The AI analyzes and imports content
-4. Documentation is saved to a dedicated `migrated-docs` folder
-5. Review and organize migrated content
+Control where documentation is saved:
 
-## Advanced Options
+1. **Target Repository**: Choose which repository receives documentation
+2. **Folder Path**: Specify the folder (e.g., `/docs`, `/documentation`)
+3. **Branch Strategy**: Documentation committed to your default branch
 
-### Selecting Documentation Scopes
+### Custom Instructions
 
-When generating a plan, choose which types to include:
+Provide context to improve generation:
 
-- Generate only User-Facing documentation for public-facing docs
-- Focus on Developer documentation for internal teams
-- Include Security documentation for compliance requirements
-- Combine multiple scopes for comprehensive documentation
-
-### Selecting Sub-Scopes
-
-Within each scope, choose specific sections:
-
-- For User-Facing: Select Getting Started, Tutorials, API Reference, etc.
-- For Developer: Choose Architecture, Testing, Deployment, etc.
-- For Security: Pick SBOM formats, policies, or threat models
-
-### Adding Context
-
-Provide additional information to improve documentation quality:
-
-- Describe your target audience
-- Explain unique features or workflows
-- Highlight areas that need special attention
-- Note any terminology specific to your product
-
-### Framework Support
-
-Generated documentation works with popular documentation frameworks:
-
-- **Mintlify** - Modern, interactive documentation
-- **Docusaurus** - React-based documentation sites
-- **MkDocs** - Python-based static site generator
-- **Custom Markdown** - Standard markdown for any platform
-
-## Tips for Best Results
-
-### Before Generation
-
-- Ensure your codebase has clear file organization
-- Include README files in repositories
-- Add comments to complex code sections
-- Keep package.json or equivalent files up to date
-
-### During Generation
-
-- Start with a small subset of documentation to test
-- Review generated content before committing all pages
-- Use Claude Sonnet for complex, technical projects
-- Use Claude Haiku for straightforward documentation needs
-
-### After Generation
-
-- Review generated documentation for accuracy
-- Customize documentation with brand-specific terminology
-- Add screenshots or diagrams where helpful
-- Keep documentation updated by regenerating when code changes
-
-### Maintaining Quality
-
-- Regenerate documentation after major feature releases
-- Use the Refresh Plan feature to identify outdated pages
-- Review Release Notes for accuracy before publishing
-- Assign repositories to products correctly for best analysis
+- **Product Description**: Explain what your product does
+- **Target Audience**: Describe who will read the documentation
+- **Special Requirements**: Note any specific needs or constraints
+- **Style Preferences**: Request specific tones or formats
 
 ## Troubleshooting
 
-### "No repositories assigned to this product"
+### No Repositories Assigned
 
-**Problem**: The system can't generate documentation without source code.
-
-**Solution**: Go to the Code section and assign repositories to your product before generating a plan.
-
-### Documentation is outdated
-
-**Problem**: Your code changed but documentation didn't update.
-
-**Solution**: Use the Refresh Plan feature to identify which pages need updates, then regenerate those specific tasks.
-
-### Generation fails or times out
-
-**Problem**: Large documentation sets may take significant time.
+**Problem**: "No repositories assigned to this product" error
 
 **Solution**: 
-- Use "Continue in Background" for large generation jobs
-- Generate in smaller batches by selecting specific tasks
-- Try Claude Haiku for faster generation of standard documentation
+- Navigate to the Code page
+- Find your repositories in the list
+- Assign them to your product using the dropdown menu
+- Return to Documentation and try again
 
-### Release Notes require commits
+### Documentation Not Enabled
 
-**Problem**: Release Notes tasks show as failed immediately.
-
-**Solution**: Create a new plan with specific commits selected for repositories, ensuring the Release Notes scope can analyze actual changes.
-
-### Generated content isn't relevant
-
-**Problem**: Documentation doesn't match your product features.
+**Problem**: "Documentation is not enabled" warning
 
 **Solution**:
-- Verify correct repositories are assigned to the product
-- Add detailed context notes when generating the plan
-- Ensure your codebase has descriptive README files
-- Try Claude Sonnet for deeper codebase analysis
+- Visit Workflow settings from the Documentation page
+- Find "Documentation" in the list
+- Toggle it to "Enabled"
+- Configure repository and folder settings
+- Save your changes
 
-## Credit Usage
+### Target Repository Not Configured
+
+**Problem**: "Target repository not configured" warning
+
+**Solution**:
+- Click the Workflow settings link in the warning
+- Select a repository for documentation storage
+- Choose a folder path (e.g., `/docs`)
+- Save your configuration
+
+### Generation Failed
+
+**Problem**: Documentation generation shows "failed" status
+
+**Solution**:
+- Click the retry button next to the failed generation
+- Check the error message for specific issues
+- Verify your GitHub connection is still active
+- Ensure the target repository is accessible
+
+### Background Process Stopped
+
+**Problem**: Background generation appears stuck
+
+**Solution**:
+- Click "Resume" to view current progress
+- Check the last updated timestamp
+- If stuck for over 10 minutes, retry the generation
+- Review error messages in the changes list
+
+## Best Practices
+
+### Planning Before Generation
+
+- Always create a documentation plan first
+- Review and adjust the plan before generating
+- Start with high-priority sections
+- Generate in batches to review quality
+
+### Keeping Documentation Updated
+
+- Regenerate documentation after major code changes
+- Use the refresh feature to update existing plans
+- Review generated changes before committing
+- Set a regular schedule for documentation updates
+
+### Writing Better Context
+
+When providing custom instructions:
+
+- Describe your product's purpose clearly
+- Explain unique features or workflows
+- Note any industry-specific terminology
+- Mention your target user's technical level
+
+### Organizing Documentation
+
+- Use consistent folder structures
+- Group related documentation together
+- Separate user guides from developer docs
+- Keep security documentation in dedicated sections
+
+## Advanced Features
+
+### Commit-Specific Documentation
+
+Generate documentation for specific code changes:
+
+- Select a commit when configuring generation
+- Useful for release notes and changelogs
+- Documents only changes in that commit
+- Perfect for version-specific documentation
+
+### Multi-Repository Documentation
+
+Document products spanning multiple repositories:
+
+- All assigned repositories are analyzed together
+- Documentation covers the complete product
+- Cross-repository references are handled automatically
+- Unified documentation for distributed systems
+
+### Incremental Updates
+
+Update documentation without regenerating everything:
+
+- Select only outdated sections in your plan
+- Regenerate specific pages after code changes
+- Preserve manual edits to other sections
+- Efficient updates for large documentation sets
+
+## Credits and Billing
 
 Documentation generation consumes credits based on:
 
-- **Model Selection** - Claude Sonnet uses more credits than Claude Haiku
-- **Plan Generation** - Analyzing your codebase to create the plan
-- **Page Generation** - Creating each individual documentation page
-- **Codebase Size** - Larger codebases require more analysis
+- **AI Model Used**: More powerful models cost more per page
+- **Documentation Scope**: Larger sections use more credits
+- **Code Complexity**: More complex codebases require more analysis
 
-Monitor your credit usage in the Organization settings page.
+View credit usage:
+
+- Check your remaining credits in the top navigation
+- Review credit consumption in billing history
+- Upgrade your plan if you need more credits
+
+## Getting Help
+
+### Support Resources
+
+- **Documentation Section**: Examples and templates for each documentation type
+- **Pricing Page**: Credit costs for different documentation scopes
+- **Workflow Settings**: Configuration guides and tips
+
+### Common Questions
+
+**How long does generation take?**
+Most documentation generates in 5-15 minutes depending on scope and complexity. Background processing lets you continue working while it runs.
+
+**Can I edit generated documentation?**
+Yes, all documentation is committed as standard markdown files. Edit them directly in your repository—they won't be overwritten unless you regenerate those specific sections.
+
+**What if the AI makes mistakes?**
+Review generated documentation before publishing. Use the retry feature with additional context to improve accuracy, or edit the files manually after generation.
+
+**How often should I update documentation?**
+Regenerate documentation after significant feature additions, major refactors, or API changes. User-facing documentation may need updates more frequently than developer docs.
