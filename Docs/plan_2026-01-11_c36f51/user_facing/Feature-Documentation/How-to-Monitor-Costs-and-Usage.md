@@ -1,354 +1,205 @@
-I'll start by reading the key source files to understand the cost monitoring and usage features.Let me explore the repository structure to find the correct paths.Let me read the existing cost monitoring documentation to understand what's already been documented.Now let me check related files to understand the credit billing system and analysis costs better.# How to Monitor Costs and Usage
+# How to Monitor Costs and Usage
 
 ## Overview
 
-Monitor your credit consumption, track subscription status, and manage your billing in real-time. The Cost Analysis page provides complete visibility into how your workspace uses credits, helping you optimize spending while maintaining access to AI-powered code analysis and automation.
+Monitor your credit usage, track billing cycles, and manage your subscription plan to control your OrchestrAI costs effectively. The Cost Analysis page provides a complete view of your workspace's credit consumption and billing status.
 
-## Accessing Your Cost Dashboard
+## Accessing Cost Monitoring
 
-1. Sign in to your workspace
-2. Select **Cost Analysis** from your workspace navigation menu
-3. View your subscription status, credit usage, and billing information
+Navigate to the Cost Analysis page from your workspace navigation menu. This page displays your current subscription status, credit usage, and available plan management options.
 
-The dashboard displays all billing information in one place, including usage meters, subscription details, and plan management options.
+## Understanding Your Subscription Status
 
-## Understanding the Credit System
+### Current Plan Display
 
-OrchestrAI uses credits as the currency for all AI operations. Credits are consumed when AI agents analyze code, generate documentation, write tests, or perform automated workflows.
+At the top of the Cost Analysis page, you'll see:
 
-### Credit Consumption
+- **Plan Type**: Either "Free Plan" or "Pro Plan"
+- **Status Badge**: Shows your billing status with color-coded indicators:
+  - Green "active" - Your subscription is active and in good standing
+  - Red "exceeded" - You've exceeded your monthly credit limit
+  - Red "cancelling at period end" - Your subscription is scheduled to cancel
+  - Yellow "New plan scheduled" - A plan change is scheduled for your next billing cycle
 
-Different operations consume different amounts of credits:
-- **Simple operations:** Less than 1 credit (quick checks, small file analysis)
-- **Standard analyses:** 1-3 credits (code quality reviews, documentation generation)
-- **Complex workflows:** Several credits (comprehensive security audits, multi-file processing)
+### Subscription Actions
 
-The exact cost depends on the complexity of your codebase and the scope of the analysis.
+Depending on your current plan, you'll see different action buttons:
+
+**On Free Plan:**
+- **Upgrade to Paid** - Opens the plan selection modal to choose a paid subscription
+
+**On Pro Plan:**
+- **Edit Plan** - Modify your credit allocation or downgrade your subscription
+- **Manage Billing** - Opens Stripe's customer portal to update payment methods, view invoices, and manage billing details
+- **Refresh** - Updates your billing information with the latest data
 
 ## Monitoring Credit Usage
 
-### Free Plan Usage Display
+### Monthly Credit Tracking
 
-If you're on the Free plan, your dashboard shows:
+The Cost Analysis page shows a visual progress bar displaying:
+- **Credits Used**: Current month's credit consumption
+- **Total Credits**: Your monthly credit allowance
+- **Credits Remaining**: Available credits for the rest of the month
 
-**Monthly Credit Usage**
-- Total monthly allocation: 50 credits
-- Credits consumed this month
-- Credits remaining until the next billing cycle
-- Visual progress bar showing usage percentage
+**Free Plan**: 50 credits per month
+**Pro Plans**: Credit limit based on your selected tier (100 to 5,000+ credits/month)
 
-**Key Information:**
-- No daily restrictions—use all 50 credits whenever needed
-- Credits reset at the beginning of each month
-- Approximately 3-4 complete AI workflows per month
-- Access to 1 public repository with 5 collaborators
+### Billing Cycle Information
 
-### Pro Plan Usage Display
+For paid subscriptions, you'll see:
+- **Next billing date**: When your next payment is due
+- **Credits after next billing**: Your credit allocation for the upcoming cycle
+- **Scheduled changes**: Any plan modifications that will take effect at the next billing date
 
-Pro subscribers see:
-
-**Monthly Credit Allocation**
-- Total credits purchased (100 to 5,000+ credits)
-- Credits used in the current billing period
-- Remaining credits until next billing date
-- Usage progress visualization
-
-**Additional Information:**
-- Next billing date
-- Current subscription tier
-- Scheduled plan changes (if any)
-- Billing status indicator
-
-### Real-Time Updates
-
-Click the **Refresh** button to synchronize your usage data with the latest information. The system automatically tracks credit consumption as AI agents perform operations, but manual refresh ensures you see the most current data.
-
-## Checking Subscription Status
-
-Your dashboard displays subscription status with color-coded indicators:
-
-**Active Subscription (Green)**
-- Your plan is working normally
-- All features are available
-- Credits are being allocated correctly
-
-**Cancelling at Period End (Red)**
-- You've cancelled your subscription
-- Current plan remains active until billing cycle ends
-- Will downgrade to Free plan after the end date
-
-**Plan Change Scheduled (Blue)**
-- You've scheduled an upgrade or downgrade
-- Current plan continues until next billing date
-- New credit allocation takes effect on the specified date
-
-**Credits Exceeded (Red)**
-- You've used all available credits for this month
-- AI operations are restricted until credits reset
-- Consider upgrading to a higher tier for immediate access
-
-## Managing Your Subscription
+## Managing Your Subscription Plan
 
 ### Upgrading from Free to Pro
 
-To access more credits and premium features:
+1. Click the **Upgrade to Paid** button
+2. In the modal that opens, select your desired credit allocation:
+   - 100 credits/month - $25
+   - 200 credits/month - $50
+   - 400 credits/month - $100
+   - 1,000 credits/month - $250
+   - 2,000 credits/month - $500
+   - 3,000 credits/month - $750
+   - 5,000 credits/month - $1,250
+3. Click **Upgrade Now**
+4. Complete the payment process in Stripe's secure checkout
+5. Your workspace will be upgraded immediately upon successful payment
 
-1. Click **Upgrade to Paid** on your Cost Analysis page
-2. Select your desired monthly credit tier:
-   - 100 credits: $25/month
-   - 200 credits: $50/month
-   - 400 credits: $100/month
-   - 1,000 credits: $250/month
-   - 2,000 credits: $500/month
-   - 3,000 credits: $750/month
-   - 5,000 credits: $1,250/month
-3. Enter your payment information in the secure checkout
-4. Confirm your subscription
+### Modifying Your Pro Plan
 
-Your Pro plan activates immediately and credits are available right away.
+#### Upgrading Your Credit Limit
 
-### Changing Your Credit Allocation
+1. Click **Edit Plan**
+2. Select a higher credit tier from the dropdown menu
+3. Click **Upgrade Now**
+4. The change takes effect immediately
+5. You'll be charged a prorated amount for the remainder of your billing cycle
 
-For existing Pro subscribers:
+#### Downgrading Your Credit Limit
 
-1. Click **Edit Plan** on the Cost Analysis page
-2. Select a different credit tier from the dropdown menu
-3. Review the change summary
-4. Confirm your new plan
+1. Click **Edit Plan**
+2. Select a lower credit tier from the dropdown menu
+3. Click **Schedule Downgrade**
+4. The change will take effect at the end of your current billing period
+5. You'll keep your current credit limit until the next billing date
 
-**Upgrade Changes:**
-- Take effect immediately
-- New credits added to your current allocation
-- Billing adjusts for the remainder of your cycle
+A notification will appear confirming: "Downgrade will take effect at the end of your current billing period. You'll keep your current credit limit until then."
 
-**Downgrade Changes:**
-- Scheduled for the end of your current billing period
-- You keep your current credits until then
-- New lower allocation starts on your next billing date
+#### Downgrading to Free
 
-### Accessing Billing Management
+1. Click **Edit Plan**
+2. Click **Go to Free** at the bottom of the modal
+3. Your subscription will be cancelled
+4. At the end of your billing period, your workspace will revert to the Free plan (50 credits/month)
+5. All private repositories will have OrchestrAI automatically disabled
 
-Click **Manage Billing** to open your secure customer portal where you can:
+## Understanding Scheduled Changes
 
-- Update payment methods
-- View complete billing history
-- Download invoices for accounting
-- Update billing address
-- Cancel or modify subscriptions
+### Pending Plan Changes
 
-All payment changes are processed securely through the billing provider.
+When you have a scheduled subscription change, you'll see a blue notification banner with:
+- **Current plan expiration**: When your current subscription ends
+- **New plan details**: The credit allocation that will take effect
+- **Modification options**: Click "Edit Plan" to change or cancel the scheduled update
 
-## Understanding Plan Changes
+### Cancelled Subscriptions
 
-### Scheduled Upgrades
+If you've cancelled your subscription, you'll see a red notification banner:
+- Your current plan remains active until the billing period ends
+- After that date, you'll be downgraded to the Free plan
+- You can click "Edit Plan" to schedule a new subscription or reactivate your current plan
 
-When you upgrade, you'll see:
-- Green notification confirming the upgrade
-- New credit allocation amount
-- Effective date (usually immediate)
-- Updated billing amount
+### Reactivating a Cancelled Subscription
 
-### Scheduled Downgrades
+1. Click **Edit Plan** while your cancellation is pending
+2. Select your desired credit tier
+3. Click **Schedule New Plan**
+4. The new subscription will automatically start after your current period ends
+5. No service interruption will occur
 
-When you downgrade, you'll see:
-- Blue notification about the pending change
-- Future credit allocation
-- Date the downgrade takes effect
-- Reminder that current credits remain available
+## Pro Plan Features
 
-### Cancellation Notices
+When you upgrade to any Pro plan, you gain access to:
+- **Enterprise analysis**: Advanced analysis capabilities
+- **Unlimited everything**: No restrictions on analysis types or frequency
+- **24/7 support**: Round-the-clock assistance
+- **Custom solutions**: Tailored configurations for your needs
 
-If you've cancelled:
-- Red notification appears at the top
-- Shows when you'll revert to the Free plan
-- Lists features you'll lose access to
-- Displays the final day of Pro benefits
+## Credit Usage by Analysis Type
 
-You can modify or cancel any scheduled change before it takes effect by clicking **Edit Plan**.
+Different analysis operations consume credits at varying rates. Monitor your usage patterns to optimize your credit consumption:
 
-## Optimizing Your Credit Usage
+- The system tracks credit usage in real-time from all analysis executions
+- Usage data syncs automatically to ensure accurate billing
+- Credits reset at the beginning of each billing cycle
 
-### Monitor Usage Patterns
+## Managing Billing Details
 
-Review your Cost Analysis page regularly to:
-- Identify which days you use the most credits
-- Understand typical consumption for different analysis types
-- Determine if your current tier matches your needs
-- Plan future analyses based on available credits
+### Updating Payment Methods
 
-### Choose the Right Plan
+1. Click **Manage Billing** on the Cost Analysis page
+2. You'll be redirected to Stripe's secure customer portal
+3. Update your payment method, billing address, or other details
+4. Changes take effect immediately
 
-**Signs you should upgrade:**
-- Consistently using all monthly credits
-- Frequently running out mid-month
-- Waiting for credits to reset to continue work
-- Need for more comprehensive analyses
+### Viewing Invoices
 
-**Signs you can downgrade:**
-- Using less than 50% of your allocation
-- Credits resetting with large amounts remaining
-- Analysis needs have decreased
-- Want to optimize costs
+Access your invoice history through the **Manage Billing** portal:
+- View all past invoices
+- Download invoices as PDFs
+- Track payment history
+- See itemized charges
 
-### Plan Your Billing Cycle
+## Best Practices for Cost Control
 
-**Early in the cycle:**
-- Run your most important analyses
-- Execute complex workflows
-- Take advantage of full credit availability
+### Monitoring Usage Regularly
 
-**Late in the cycle:**
-- Check remaining credits before starting large operations
-- Save simpler tasks for end-of-month
-- Consider whether to upgrade if you need more capacity
+- Check your Cost Analysis page weekly to track credit consumption
+- Use the **Refresh** button to ensure you're viewing the latest data
+- Set internal reminders before your billing date to review usage patterns
 
-### Cost-Effective Analysis Tips
+### Optimizing Credit Usage
 
-1. **Run analyses strategically:** Schedule comprehensive reviews when you have plenty of credits
-2. **Start with smaller scopes:** Test on single files before analyzing entire repositories
-3. **Monitor after each operation:** Check credit deduction to understand costs
-4. **Batch similar tasks:** Group related analyses to optimize agent efficiency
-5. **Use targeted workflows:** Focus on specific issues rather than running everything
+- Start with a lower credit tier and upgrade as needed
+- Monitor which analyses consume the most credits
+- Schedule downgrades in advance if you anticipate lower usage periods
+
+### Planning Plan Changes
+
+- **Upgrades**: Take effect immediately to provide instant access to more credits
+- **Downgrades**: Scheduled for the next billing cycle to avoid losing prepaid credits
+- Review scheduled changes before they take effect to ensure they match your needs
+
+## Troubleshooting
+
+### Usage Not Updating
+
+If your credit usage doesn't reflect recent activity:
+1. Click the **Refresh** button at the top of the Subscription Status card
+2. Wait a few moments for the system to sync
+3. The page will reload with updated information
+
+### Plan Change Not Processing
+
+If a plan modification doesn't complete:
+- Check the Manage Billing portal for any payment issues
+- Verify that your payment method is valid and has sufficient funds
+- Contact support if the issue persists
+
+### Exceeded Credit Limit
+
+When your status shows "exceeded":
+- New analyses may be blocked until you upgrade or wait for the next billing cycle
+- Click **Edit Plan** to increase your credit allocation immediately
+- Free plan users must upgrade to a paid plan to continue
 
 ## Understanding Billing Cycles
 
-### Monthly Allocation
-
-Credits are allocated based on your billing cycle:
-- **Free plan:** Resets on the 1st of each month
-- **Pro plans:** Resets on your subscription anniversary date
-
-### Billing Date Information
-
-Your dashboard displays:
-- Next billing date when credits will reset
-- Days remaining in current billing period
-- Expected credit renewal amount
-- Any scheduled changes taking effect that date
-
-### Automatic Renewals
-
-All billing happens automatically:
-- Credits reset at the start of each cycle
-- Payment processed on your billing date
-- No action required from you
-- Email confirmation sent for each transaction
-
-## Preventing Service Interruptions
-
-### For Free Plan Users
-
-When you reach 50 credits:
-- AI agent operations pause until the next month
-- You retain access to view previous analyses
-- Credits automatically reset on the 1st
-- Consider upgrading for immediate access
-
-### For Pro Plan Users
-
-When you exhaust your monthly credits:
-- AI operations are restricted until next billing date
-- Upgrade to a higher tier for instant credit top-up
-- Review usage patterns to select appropriate tier
-- Credits automatically renew on your next billing date
-
-### Setting Usage Alerts
-
-**Coming soon:** Credit threshold notifications that alert you when you've used:
-- 50% of monthly allocation
-- 75% of monthly allocation
-- 90% of monthly allocation
-
-## Billing Transparency
-
-### Real-Time Credit Tracking
-
-The system provides complete visibility:
-- Credits consumed per analysis displayed after each operation
-- Running total updated automatically
-- Usage history available for review
-- Detailed breakdown by workspace and operation type
-
-### Understanding Costs
-
-Every AI agent operation shows:
-- Credits consumed for that specific task
-- Brief explanation of the cost
-- Timestamp of the operation
-- User or automation that triggered it
-
-This transparency helps you understand exactly where credits are being used.
-
-### Payment History
-
-In the billing portal, access:
-- Complete invoice history
-- Payment method on file
-- Upcoming charges
-- Past transaction details
-- Downloadable receipts for expense reporting
-
-## Getting Support
-
-### Free Plan Support
-
-Access self-service resources:
-- Documentation and guides
-- Community forums
-- Email support for billing questions
-
-### Pro Plan Support
-
-Pro subscribers receive:
-- 24/7 email support
-- Priority response times
-- Direct assistance with billing issues
-- Usage optimization guidance
-- Custom solutions for high-volume needs
-
-Contact support through your dashboard or billing portal for:
-- Unexpected credit usage questions
-- Billing discrepancies
-- Plan selection advice
-- Usage pattern analysis
-- Technical billing issues
-
-## Ownership and Usage Rights
-
-**All code and documentation generated by OrchestrAI belongs to you:**
-- Export using git management tools
-- Integrate with GitHub (GitLab and Bitbucket coming soon)
-- Collaborate directly in the platform
-- Use generated content without restrictions
-
-You maintain full ownership regardless of your plan tier or credit usage.
-
-## Future Billing Features
-
-**Coming Soon:**
-
-**Cost Forecasting**
-- Estimate credit cost before running workflows
-- Preview operation costs in advance
-- Budget credits more effectively
-
-**Usage Analytics**
-- Detailed credit consumption reports
-- Trend analysis over time
-- Cost optimization recommendations
-- Comparative analysis across workspaces
-
-**Custom Enterprise Plans**
-- Dedicated credit pools
-- Volume discounts
-- Flexible billing arrangements
-- Service level agreements
-
----
-
-**Quick Reference:**
-- **Free Plan:** 50 credits/month, $0
-- **Pro Plans:** Starting at 100 credits for $25/month ($0.25 per credit)
-- **Pricing Formula:** $0.25 per credit across all Pro tiers
-- **Credit Reset:** Automatic at the start of each billing cycle
-- **Plan Changes:** Immediate upgrades, end-of-period downgrades
+- **Monthly billing**: Charges occur on the same day each month
+- **Credit reset**: Your credit allocation refreshes at the start of each billing cycle
+- **Prorated charges**: Upgrades are charged proportionally for the remaining cycle period
+- **Scheduled changes**: Downgrades and cancellations take effect at cycle end to preserve your prepaid credits

@@ -2,7 +2,7 @@
 
 ## Overview
 
-OrchestrAI's Testing Suite automatically generates comprehensive test coverage for your codebase using advanced AI. The system analyzes your repository structure, identifies untested code, and creates unit tests tailored to your programming languages and frameworks—eliminating manual test writing while ensuring code reliability.
+The Testing Suite automatically generates comprehensive test coverage for your codebase using AI technology. Simply connect your repository, set your target coverage percentage, and let the AI Test Engineer analyze your code and create appropriate tests for all supported languages and frameworks.
 
 ## Getting Started
 
@@ -10,326 +10,285 @@ OrchestrAI's Testing Suite automatically generates comprehensive test coverage f
 
 Before using the Testing Suite, you need:
 
-1. An active OrchestrAI account
-2. A connected repository (GitHub, GitLab, or Bitbucket)
-3. Sufficient credits in your workspace
+1. **A Connected Repository**: Your GitHub, GitLab, or Bitbucket repository must be connected to OrchestrAI
+2. **An Active Workspace**: Select a workspace from the top navigation bar
+3. **Repository Access**: Ensure OrchestrAI has permission to read your code and commit changes
 
-### Accessing the Testing Suite
+### Initial Setup
 
-1. Sign in to your OrchestrAI account
-2. Select your workspace from the top navigation bar
-3. Navigate to the Testing page from the product menu
-4. If no repositories are connected, you'll see an empty state with an option to add a Git connection
-
-## Connecting Your First Repository
-
-If you haven't connected a repository yet:
-
-1. Click the button to add a Git connection
-2. You'll be redirected to the connection management page
-3. Authorize OrchestrAI to access your repositories
-4. Select which repositories to enable for testing
-5. Return to the Testing page to see your connected repositories
+1. Navigate to the Testing page from your product dashboard
+2. If you don't see any repositories listed, click the button to add a Git connection
+3. Select the repositories you want to enable for automated testing
+4. Your repositories will appear in the test coverage table with their current coverage percentages
 
 ## Understanding Test Coverage
 
-The Testing Suite displays all your connected repositories in a coverage table showing:
+### Coverage Metrics
 
-- **Repository Name**: The full name of your repository
-- **Unit Test Percentage**: Current test coverage percentage (clickable to improve)
-- **Status**: Current testing status (pending, processing, completed, or failed)
-- **Last Updated**: When coverage was last measured
+The testing dashboard displays coverage information for each repository:
+
+- **Unit Test Percentage**: Shows the current percentage of your code covered by unit tests (target: 85%)
+- **Integration Test Status**: Indicates whether integration tests are available (currently in development)
+- **Status Indicators**: Color-coded bars show your progress toward coverage goals
+
+### Supported Technologies
+
+The AI Test Engineer automatically detects and generates tests for:
+
+- **Frontend**: React, TypeScript, JavaScript
+- **Backend**: Java, C#, C++, Kotlin, Python
+- **Test Frameworks**: Automatically detects the appropriate testing framework for your project
 
 ## Generating Tests
 
-### Starting Test Generation
+### Basic Test Generation
 
-1. Locate your repository in the coverage table
-2. Click on the unit test percentage for that repository
-3. An AI Test Engineer panel opens on the right side
+1. **Select a Repository**: Click on the unit test percentage for any repository in the coverage table
+2. **Set Your Target**: Choose your desired test coverage percentage (up to 100%)
+3. **Provide Instructions** (optional): Add specific requirements such as:
+   - Preferred testing framework
+   - Files or folders to focus on
+   - Test organization preferences
+   - Edge cases to cover
+4. **Choose Processing Mode**:
+   - **Now**: Generate tests immediately (faster results, standard cost)
+   - **Batch**: Process when capacity is available (50% cost savings, completed within 24 hours)
+5. **Start Generation**: Click to begin the automated test generation process
 
-### Configuring Test Generation
+### Custom Instructions Examples
 
-The AI Test Engineer panel provides several configuration options:
+You can guide the AI Test Engineer with specific instructions:
 
-**Target Coverage Percentage**
-- Set your desired test coverage goal (0-100%)
-- The AI will generate tests to reach this target
-- Higher percentages may take longer to complete
+- "Focus on testing the authentication module"
+- "Use Jest for all JavaScript tests"
+- "Prioritize edge case coverage for API endpoints"
+- "Organize tests by feature rather than file structure"
+- "Include integration tests for database operations"
 
-**Custom Instructions (Optional)**
-- Specify testing frameworks you prefer (e.g., "Use Jest for testing")
-- Indicate which files or areas to focus on
-- Define test organization preferences
-- Add any custom testing requirements
+### Scope Options
 
-**AI Model Selection**
-- Choose between different AI models based on your needs:
-  - **Claude Sonnet 4.5**: Most capable, best for complex codebases
-  - **GPT-5**: High-quality test generation
-  - **GPT-4o Mini**: Faster, cost-effective option
-  - **Claude Haiku**: Budget-friendly choice
-  - **Claude 3.5 Haiku**: Balanced speed and quality
+Choose what to test:
 
-**Execution Mode**
-- **Now**: Real-time processing with immediate results
-- **Batch**: Cost-saving mode (50% discount) with asynchronous processing
+- **Full Repository**: Analyze and generate tests for the entire codebase
+- **Specific Commits**: Focus on testing only the files changed in particular commits (useful for incremental testing)
 
-### Applying Changes
+## How Test Generation Works
 
-Once you've configured your preferences:
+### Phase 1: Repository Analysis
 
-1. Review your settings in the panel
-2. Click the "Apply" or "Generate Tests" button
-3. The panel closes and test generation begins
-4. Your repository status updates to show progress
+The AI examines your codebase to understand:
 
-## Monitoring Test Generation Progress
+- Code structure and organization
+- Programming languages and frameworks in use
+- Existing test patterns and conventions
+- Dependencies and interactions between components
+- Coverage gaps that need attention
+
+This analysis takes a few minutes and provides a comprehensive understanding of your testing needs.
+
+### Phase 2: Intelligent Test Creation
+
+Based on the analysis, the AI generates:
+
+- **Unit Tests**: Comprehensive tests for individual functions and methods
+- **Edge Case Coverage**: Tests for boundary conditions and error scenarios
+- **Dependency Mocking**: Appropriate mocks and stubs for external dependencies
+- **Assertion Validation**: Proper verification of expected behavior
+
+The AI creates tests that follow your project's conventions and use the appropriate testing framework automatically.
+
+### Phase 3: Results Delivery
+
+Once generation completes:
+
+- Test files are organized in a dedicated folder (default: `orchestrai/tests`)
+- Tests are committed to your repository based on your workspace settings
+- You receive a notification when the process completes
+- Coverage metrics update automatically
+
+## Tracking Progress
 
 ### Real-Time Status Updates
 
-The coverage table automatically updates to show:
+Monitor test generation progress through:
 
-- **Processing**: AI is analyzing your code and generating tests
-- **Connectivity Check**: Verifying repository access
-- **Analyzing**: Understanding your codebase structure
-- **Generating**: Creating test files
-- **Pushing**: Committing tests to your repository
-- **Completed**: Tests successfully generated and committed
-- **Failed**: An error occurred (hover for details)
+- **Status Column**: Shows current phase (analyzing, generating, pushing, completed)
+- **Progress Indicators**: Visual feedback on generation status
+- **File Counts**: Number of test files created
+- **Completion Notifications**: Email alerts when generation finishes
 
-### Progress Notifications
+### Execution History
 
-You'll receive:
-- On-screen notifications when generation starts
-- Status updates as different phases complete
-- Email notification when generation finishes
-- Links to view the generated tests
+View past test generation runs:
 
-## Understanding Test Generation Process
+- Click on any repository to see its execution history
+- Review previous coverage improvements
+- Check commit links for generated tests
+- View pull request URLs if your workspace uses PR-based delivery
 
-The AI Test Engineer follows a multi-phase approach:
+## Test Execution Modes
 
-**Phase 1: Repository Analysis**
-- Scans your codebase to understand structure
-- Identifies programming languages and frameworks
-- Detects existing test patterns
-- Locates untested files and functions
+### Real-Time Processing
 
-**Phase 2: Test Generation**
-- Creates comprehensive unit tests for identified code
-- Generates edge case scenarios
-- Ensures proper mocking and assertions
-- Adapts to your testing framework
+Best for:
+- Urgent testing needs
+- Small to medium repositories
+- When you need results quickly
 
-**Phase 3: Repository Integration**
-- Commits generated tests to a new branch
-- Organizes tests in appropriate folders
-- Creates a pull request for review
-- Provides links to view changes
-
-## Viewing Generated Tests
-
-After completion:
-
-1. Check your email for the completion notification
-2. Click the provided link to view the pull request or commit
-3. Review the generated test files in your repository
-4. Tests are organized in the configured output folder (default: `orchestrai/tests`)
-
-## Supported Technologies
-
-The Testing Suite automatically detects and generates tests for:
-
-- **React**: Component testing with proper setup
-- **TypeScript**: Type-safe test generation
-- **JavaScript**: ES6+ test coverage
-- **Java**: JUnit-style tests
-- **C#**: NUnit/xUnit patterns
-- **C++**: Google Test framework
-- **Kotlin**: KotlinTest support
-- **Python**: pytest-compatible tests
-
-## Test Coverage Types
-
-### Unit Tests
-- Tests individual functions and methods
-- Covers edge cases and error scenarios
-- Validates input/output behavior
-- Includes dependency mocking
-
-### Integration Tests
-- Tests component interactions (coming soon)
-- Validates API endpoint behavior
-- Checks database operations
-- Verifies service communication
-
-## Customizing Test Generation
-
-### Setting Test Output Location
-
-1. Navigate to Workflow Settings
-2. Locate the Testing configuration section
-3. Specify your preferred output folder
-4. Default location is `orchestrai/tests`
-
-### Configuring Ignored Folders
-
-Prevent certain directories from test generation:
-
-1. Go to Workflow Settings
-2. Add folders to the ignored list
-3. Common exclusions: `node_modules`, `dist`, `build`, `.git`
-
-### Code Push Behavior
-
-Control how tests are committed:
-
-1. Access Workflow Settings
-2. Find the "Code Push Behavior" option for Test Engineer
-3. Choose your preference:
-   - Create pull requests for review
-   - Direct commit to branch
-   - Custom branch naming
-
-## Advanced Features
-
-### Commit-Based Testing
-
-Generate tests only for specific changes:
-
-1. Enable commit-based scope in your configuration
-2. Specify which commits to analyze
-3. The AI focuses only on changed files
-4. Useful for incremental test coverage improvements
+How it works:
+- Processes immediately upon request
+- Completes within minutes to hours depending on repository size
+- Uses premium AI models for fastest results
+- Standard credit usage applies
 
 ### Batch Processing
 
-Save costs with batch processing mode:
+Best for:
+- Large repositories
+- Cost-conscious projects
+- When you can wait up to 24 hours
 
-1. Select "Batch" execution mode
-2. Tests generate asynchronously
-3. Receive 50% cost savings
-4. Ideal for large codebases or non-urgent testing
+How it works:
+- Queued for processing during off-peak times
+- Uses efficient batch API for 50% cost savings
+- Automatically processes when capacity is available
+- Same quality results at lower cost
 
-### Multi-Chunk Processing
+## Delivery Options
 
-For large repositories:
-- The system automatically divides work into manageable chunks
-- Each chunk processes independently
-- Progress updates show chunk completion
-- Ensures reliable processing of massive codebases
+### Direct Commit
 
-## Troubleshooting
+Tests are committed directly to your repository's main branch:
+- Immediate integration with your codebase
+- No review process required
+- Fastest path to improved coverage
 
-### Repository Access Denied
+### Pull Request Workflow
 
-If you see access errors:
-1. Verify your GitHub token has correct permissions
-2. Check that the repository exists and hasn't been deleted
-3. Reconnect your GitHub account if needed
-4. Ensure the repository URL is correct
+Tests are submitted via pull request:
+- Review generated tests before merging
+- Add comments or request changes
+- Maintain team approval processes
+- Better for collaborative environments
 
-### Test Generation Failed
+Configure your preferred delivery method in Workspace Settings under Code Push Behavior.
 
-Common solutions:
-1. Check your workspace has sufficient credits
-2. Verify the repository is accessible
-3. Review any custom instructions for conflicts
-4. Try again with a lower target percentage
+## Understanding Test Output
 
-### No Tests Generated
+### Test File Organization
 
-If no tests appear:
-1. Confirm source files exist in the repository
-2. Check ignored folders configuration
-3. Verify supported languages are present
-4. Review the execution log for details
+Generated tests are organized logically:
 
-### Billing Issues
+- Tests mirror your source code structure
+- Each source file gets corresponding test files
+- Tests are grouped by feature or module
+- Clear naming conventions for easy navigation
 
-If you receive billing errors:
-1. Check your workspace credit balance
-2. Verify your subscription is active
-3. Review recent usage in billing dashboard
-4. Contact support if charges seem incorrect
+### Test File Location
+
+By default, tests are saved to `orchestrai/tests/`, but you can customize this location in Workflow Settings under Output Folders.
+
+## Coverage Goals and Progress
+
+### Setting Targets
+
+Choose coverage percentages based on your needs:
+
+- **70-80%**: Basic coverage for most projects
+- **85%**: Recommended enterprise standard
+- **90-100%**: Comprehensive coverage for critical systems
+
+### Monitoring Improvement
+
+Track your progress over time:
+
+- Coverage percentages update after each generation
+- Compare current coverage to target goals
+- Identify remaining gaps
+- Plan incremental improvements
 
 ## Best Practices
 
-### Optimal Coverage Targets
+### Starting with Test Generation
 
-- Start with 70-80% for new projects
-- Gradually increase to 85-90% over time
-- 100% coverage may be excessive for some files
-- Focus on critical business logic first
+1. **Begin Small**: Start with one repository to understand the process
+2. **Review Results**: Check the first batch of generated tests before scaling up
+3. **Provide Feedback**: Use custom instructions to guide future generations
+4. **Set Realistic Targets**: Aim for 85% coverage initially, then increase if needed
 
-### Custom Instructions
+### Optimizing Test Quality
 
-Write clear, specific instructions:
-- "Use Jest with React Testing Library"
-- "Focus on API endpoint handlers in /src/api"
-- "Mock external service calls"
-- "Follow existing test file naming conventions"
+- **Be Specific**: Detailed instructions produce more relevant tests
+- **Incremental Approach**: Generate tests for new code as it's written using commit-scope
+- **Regular Updates**: Run generation periodically to maintain coverage as code evolves
+- **Review and Refine**: Examine generated tests to ensure they meet your standards
 
-### Regular Testing
+### Managing Costs
 
-- Generate tests after major feature additions
-- Update coverage after refactoring
-- Schedule periodic coverage improvements
-- Review generated tests before merging
+- **Use Batch Mode**: Save 50% on large repositories when time permits
+- **Scope Wisely**: Use commit-based scope for incremental testing
+- **Set Appropriate Targets**: Higher coverage percentages require more generation time
+- **Monitor Usage**: Check your workspace credit consumption regularly
 
-### Team Collaboration
+## Troubleshooting
 
-- Share testing standards via custom instructions
-- Review pull requests as a team
-- Maintain consistent test organization
-- Document framework preferences
+### No Repositories Showing
 
-## Credit Usage
+If you don't see repositories:
+- Ensure you've connected a Git provider in Connection Management
+- Verify your workspace is selected in the top navigation
+- Check that repositories are enabled for OrchestrAI
 
-Testing Suite operations consume credits based on:
+### Generation Failures
 
-- **AI Model Used**: Premium models cost more per operation
-- **Repository Size**: Larger codebases require more analysis
-- **Target Percentage**: Higher coverage goals use more credits
-- **Execution Mode**: Batch mode provides 50% savings
+If test generation fails:
+- Verify repository access permissions
+- Check that your GitHub token is still valid
+- Review error messages for specific issues
+- Try reconnecting your Git provider
 
-Monitor usage:
-1. Check the billing dashboard regularly
-2. Review individual execution costs
-3. Use batch mode for cost optimization
-4. Choose appropriate AI models for your needs
+### Incomplete Coverage
 
-## Email Notifications
+If coverage doesn't reach your target:
+- Review custom instructions for clarity
+- Check for complex code that may need manual testing
+- Consider running generation multiple times
+- Examine which files were skipped and why
 
-You'll receive emails when:
-- Test generation completes successfully
-- A pull request is created with new tests
-- Errors occur during generation
-- Coverage targets are achieved
+## Integration with Development Workflow
 
-Email includes:
-- Repository name
-- Execution summary
-- Direct link to results
-- Next steps for review
+### Continuous Testing
+
+Incorporate automated test generation into your workflow:
+
+1. **New Features**: Generate tests for newly committed code using commit scope
+2. **Code Reviews**: Include test coverage in your review criteria
+3. **Pre-Deployment**: Ensure adequate test coverage before releases
+4. **Maintenance**: Update tests when refactoring existing code
+
+### CI/CD Integration
+
+While OrchestrAI generates tests, you run them using your existing tools:
+
+- Generated tests work with your current test runners
+- Integrate test execution into your CI/CD pipeline
+- Monitor test results alongside your other quality metrics
+- Use generated tests in automated deployment gates
 
 ## Getting Help
 
 If you need assistance:
 
-1. Check the status message in the coverage table
-2. Review error details by hovering over failed status
-3. Consult this documentation for common issues
-4. Contact OrchestrAI support for complex problems
+- Check execution history for detailed error messages
+- Review repository settings for configuration issues
+- Contact support with specific execution IDs for faster resolution
+- Consult workspace members with management permissions for settings changes
 
 ## Next Steps
 
-After setting up your testing workflow:
+After setting up automated testing:
 
-1. Explore other OrchestrAI features like Documentation and Code Review
-2. Configure additional repositories for testing
-3. Set up automated testing in your CI/CD pipeline
-4. Share testing results with your team
-
-The Testing Suite helps you maintain high-quality, reliable code by automating the tedious process of test creation—letting you focus on building features while AI ensures comprehensive test coverage.
+1. Explore other OrchestrAI features like documentation generation and code review
+2. Configure workspace-level settings for consistent behavior across repositories
+3. Set up notifications to stay informed of test generation completion
+4. Establish team processes for reviewing and maintaining generated tests
