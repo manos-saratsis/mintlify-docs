@@ -2,256 +2,271 @@
 
 ## Overview
 
-Connect your GitHub account to OrchestrAI to access your repositories, enable automated testing, and streamline your development workflow. This guide walks you through connecting GitHub, managing permissions, and troubleshooting common issues.
+Connect your GitHub account to OrchestrAI to enable automated test engineering, repository management, and code analysis for your projects. This guide walks you through the complete GitHub integration process.
 
 ## Connecting Your GitHub Account
 
-### Initial Setup
+### Starting the Connection
 
-1. **Start the Connection Process**
-   - Navigate to the Code page in your workspace
-   - Click the "Connect GitHub" button
-   - You'll be redirected to GitHub's authorization page
+1. Navigate to the Code page in your workspace
+2. Click the **Connect GitHub** button
+3. You'll be redirected to GitHub's authorization page
+4. Review the permissions being requested (repository access)
+5. Click **Authorize** to grant OrchestrAI access to your repositories
 
-2. **Authorize Access**
-   - Review the permissions OrchestrAI is requesting
-   - Click "Authorize" to grant access to your repositories
-   - GitHub will redirect you back to OrchestrAI
+### What Happens During Connection
 
-3. **Confirmation**
-   - Upon successful connection, you'll see a success page showing your GitHub username
-   - Your account is now connected and ready to use
+When you authorize the connection:
 
-### What You're Authorizing
+- OrchestrAI securely stores your GitHub credentials
+- Your GitHub username is linked to your workspace
+- All repositories you have access to become available for selection
+- Your account information is encrypted and stored in a secure vault
 
-When you connect GitHub, OrchestrAI requests access to:
-- **Repository Access**: View and interact with your repositories
-- **Read/Write Permissions**: Enable automated testing and code analysis
-- **Organization Access** (optional): Access repositories from organizations you belong to
+### Successful Connection
 
-## Managing Multiple Accounts
+After authorization, you'll see a success page displaying:
 
-### Organization Access
+- A confirmation message that your account is connected
+- Your GitHub username
+- Information about next steps for managing repositories
 
-If you belong to GitHub organizations, you can grant OrchestrAI access to organizational repositories:
+You can now close this page and return to OrchestrAI to start working with your repositories.
 
-1. During the authorization process, GitHub will ask which organizations you want to grant access to
-2. Select the organizations where you want to use OrchestrAI
-3. Organization administrators may need to approve the installation
+## Understanding Connection Scope
+
+### Personal Account vs Organization Access
+
+Your GitHub connection can access:
+
+- **Personal repositories**: All repos under your personal account
+- **Organization repositories**: Repos from organizations you belong to
+- **Collaborator access**: Repositories where you have collaborator permissions
+
+The system automatically detects all repositories you can access based on your GitHub permissions.
+
+## Working with Multiple Accounts
+
+### Organization Selection
+
+If you belong to multiple GitHub organizations:
+
+1. After connecting, you'll see all available organizations
+2. Each organization shows its avatar and name
+3. Select the organization or personal account you want to use
+4. The system saves your selection for this workspace
 
 ### Switching Between Accounts
 
-Each workspace can have one active GitHub connection:
-- Your personal GitHub account is linked to your user profile
-- You can view all repositories you have access to, including those from organizations
-- All repositories from connected organizations appear in your repository list
+To change which GitHub account or organization is active:
 
-## Using the OrchestrAI Bot
+1. Navigate to the Code page
+2. Look for the organization selector
+3. Choose a different account from the dropdown
+4. Your repository list will update automatically
 
-### Installing the Bot
-
-The OrchestrAI Bot provides enhanced automation capabilities:
-
-1. **Check Bot Status**
-   - Navigate to your workspace settings
-   - Look for the GitHub Bot section to see if it's installed
-
-2. **Install the Bot**
-   - If not installed, click "Install OrchestrAI Bot"
-   - Choose whether to install on your personal account or an organization
-   - Select which repositories the bot can access (all repositories or specific ones)
-
-3. **Select Active Installation**
-   - If you have multiple bot installations (personal + organizations), choose which one to use
-   - The selected installation determines which repositories can use automated features
-
-### Bot Capabilities
-
-The OrchestrAI Bot can:
-- Automatically run tests on your repositories
-- Create pull requests with test results
-- Monitor repository changes
-- Generate documentation from your code
-
-## Working With Repositories
+## Managing Repository Access
 
 ### Viewing Your Repositories
 
 Once connected, you can:
-- See all repositories you have access to
-- View repositories from your personal account
-- Access repositories from organizations where the bot is installed
-- Filter and search through your repository list
 
-### Repository Information
+- See all repositories from your selected account
+- View repository names and descriptions
+- Check when each repository was last updated
+- Browse repository details before enabling features
 
-For each repository, you can see:
-- Repository name and description
-- Owner (your account or organization name)
-- Access level and permissions
-- Last update time
-- Primary programming language
+### Repository Permissions
 
-## Understanding Connection Status
+The integration requests these permissions:
 
-### Success Indicators
+- **Read access**: View repository contents and metadata
+- **Repository scope**: Access to public and private repositories you own or collaborate on
 
-When GitHub is properly connected:
-- Your GitHub username appears in your profile settings
-- You can view your repository list
-- The connection status shows as "Active"
-- Your account avatar displays next to the connection
+OrchestrAI uses these permissions to analyze your code and enable automated testing features.
 
-### Checking Rate Limits
+## GitHub App Installation
+
+### Installing the OrchestrAI Bot
+
+For advanced features like automated pull requests and code analysis:
+
+1. Install the OrchestrAI GitHub App on your account or organization
+2. Select which repositories the app can access
+3. The app appears in your list of available installations
+4. Choose the installation to activate for your workspace
+
+### Bot Capabilities
+
+When installed, the OrchestrAI Bot can:
+
+- Create automated pull requests with test code
+- Analyze repository structure and dependencies
+- Monitor code changes for documentation updates
+- Provide real-time integration status
+
+### Managing Bot Access
+
+To modify bot permissions:
+
+1. Visit your GitHub account settings
+2. Navigate to Applications → Installed GitHub Apps
+3. Find OrchestrAI in the list
+4. Adjust repository access or remove the installation
+
+## Rate Limits and Usage
+
+### Understanding GitHub Rate Limits
 
 GitHub limits how many requests can be made per hour:
-- The system automatically monitors your rate limit status
-- You'll see a percentage showing how much of your quota remains
-- Rate limits reset automatically every hour
-- If you hit the limit, wait for the reset time shown
+
+- **Standard limit**: 5,000 requests per hour for authenticated users
+- **Rate limit tracking**: OrchestrAI displays your remaining requests
+- **Reset time**: Limits reset hourly at a specific time
+
+### Monitoring Your Usage
+
+The system shows:
+
+- Current number of remaining requests
+- Percentage of your limit still available
+- When your limit will reset
+- Which account is being tracked
+
+### What Happens When Limits Are Reached
+
+If you hit the rate limit:
+
+- You'll see an error message explaining the situation
+- The system will display when your limit resets
+- You can continue once the reset time arrives
+- Consider upgrading to GitHub Enterprise for higher limits
 
 ## Troubleshooting Connection Issues
 
 ### Authorization Cancelled
 
-**What happened**: You clicked "Cancel" during the GitHub authorization process.
+**What it means**: You clicked "Cancel" during GitHub authorization
 
-**Solution**: Try connecting again and complete the authorization process.
+**Solution**: Try connecting again and complete the authorization process
 
 ### Session Expired
 
-**What happened**: Your connection attempt took too long, and the security token expired.
+**What it means**: Too much time passed between starting and completing authorization
 
-**Solution**: Start the connection process again. Complete authorization within 10 minutes.
+**Solution**: Start the connection process again from the Code page
 
 ### Connection Failed
 
-**What happened**: The system couldn't complete the GitHub connection.
+**What it means**: The system couldn't complete the connection to GitHub
 
 **Possible causes**:
 - Temporary GitHub service issues
 - Network connectivity problems
-- Browser blocking the redirect
+- Invalid credentials
 
-**Solutions**:
-- Try again in a few moments
-- Check your internet connection
-- Ensure pop-ups aren't blocked
-- Try a different browser if the issue persists
-
-### Storage Error
-
-**What happened**: Your GitHub connection couldn't be saved to your workspace.
-
-**Solution**: This usually resolves itself on retry. If it continues, contact support.
+**Solution**: Wait a moment and try reconnecting
 
 ### User Not Found
 
-**What happened**: The system couldn't locate your user account during connection.
+**What it means**: The system couldn't locate your OrchestrAI account during connection
 
-**Solution**: Make sure you're logged into OrchestrAI before connecting GitHub.
+**Solution**: 
+- Ensure you're logged into OrchestrAI
+- Try logging out and back in
+- Contact support if the issue persists
 
-### Rate Limit Reached
+### Storage Error
 
-**What happens**: GitHub restricts how many actions you can perform per hour.
+**What it means**: The system couldn't save your GitHub connection
 
-**What to do**:
-- Wait for the rate limit to reset (shown on your dashboard)
-- Limits typically reset within an hour
-- Authenticated users have higher limits (5,000 requests/hour)
-- The system shows when your quota will refresh
-
-### Token Retrieval Failed
-
-**What happened**: The system couldn't access your stored GitHub credentials.
-
-**Solution**: Disconnect and reconnect your GitHub account to refresh the authentication.
+**Solution**: 
+- Check your internet connection
+- Try connecting again
+- Contact support if repeated attempts fail
 
 ## Maintaining Your Connection
 
-### Connection Security
+### Connection Status
 
-Your GitHub access is secured through:
-- Encrypted storage of authentication tokens
-- Automatic token refresh when needed
-- Workspace-level isolation of credentials
-- Secure vault storage for sensitive data
+Your GitHub connection remains active until:
 
-### Updating Permissions
+- You manually disconnect
+- Your GitHub token expires or is revoked
+- You change your GitHub password
+- You revoke OrchestrAI's access on GitHub
 
-If you need to change what OrchestrAI can access:
+### Reconnecting After Disconnection
 
-1. Go to your GitHub account settings
-2. Navigate to "Applications" → "Authorized OAuth Apps"
-3. Find "OrchestrAI" in the list
-4. Click to modify permissions or revoke access
-5. Reconnect in OrchestrAI if you revoked access
+If your connection is lost:
 
-### Disconnecting GitHub
+1. You'll see a notification that reconnection is needed
+2. Click the **Reconnect GitHub** button
+3. Follow the authorization flow again
+4. Your repositories and settings are preserved
 
-To remove the GitHub connection:
+### Security Best Practices
 
-1. Navigate to your workspace settings
-2. Find the GitHub connection section
-3. Click "Disconnect GitHub"
-4. Confirm the disconnection
-5. Your repositories will no longer be accessible until you reconnect
+To keep your connection secure:
 
-## Best Practices
+- Review OrchestrAI's access periodically in GitHub settings
+- Use GitHub's security features like two-factor authentication
+- Monitor the activity log for unexpected repository access
+- Revoke access immediately if you suspect unauthorized use
 
-### Organization Setup
+## Working Across Workspaces
 
-For teams using organizations:
-- Install the OrchestrAI Bot at the organization level
-- Grant access only to repositories that need automated testing
-- Ensure team members have appropriate permissions in GitHub
-- Designate an administrator to manage the bot installation
+### Workspace-Specific Connections
 
-### Security Tips
+Each workspace maintains its own GitHub connection:
 
-- Review requested permissions before authorizing
-- Regularly audit which applications have access to your GitHub account
-- Use organization-level controls for sensitive repositories
-- Revoke access immediately if you suspect any security issues
+- Connecting in one workspace doesn't affect others
+- You can use different GitHub accounts per workspace
+- Repository selections are workspace-specific
+- Bot installations apply to the selected account/organization
 
-### Optimal Usage
+### Switching Workspaces
 
-- Connect once per workspace for seamless access
-- Keep your GitHub connection active for continuous integration
-- Monitor rate limits if you're working with many repositories
-- Select the appropriate bot installation for your current project
+When you switch workspaces:
+
+- Your GitHub connection for the new workspace loads automatically
+- You'll see the repositories available in that workspace
+- Settings and preferences are workspace-specific
+- You may need to connect GitHub if it's a new workspace
 
 ## Getting Help
 
 ### Common Questions
 
-**Q: Can I connect multiple GitHub accounts?**
-A: Each workspace connects to one GitHub account, but that account can access multiple organizations.
+**Can I connect multiple GitHub accounts?**
+Yes, by using different workspaces. Each workspace can have its own GitHub connection.
 
-**Q: Will OrchestrAI modify my code?**
-A: OrchestrAI only reads your code unless you explicitly enable features that create pull requests.
+**Will this give OrchestrAI access to all my code?**
+You control which repositories are accessible. During installation, you select specific repositories or allow access to all.
 
-**Q: What happens if I change my GitHub password?**
-A: Your OrchestrAI connection remains active. OAuth tokens are independent of your password.
+**Can I disconnect anytime?**
+Yes, either through OrchestrAI settings or by revoking access in your GitHub account settings.
 
-**Q: Can I use OrchestrAI with private repositories?**
-A: Yes, OrchestrAI works with both public and private repositories you have access to.
+**What happens to my data if I disconnect?**
+Your repository analysis and documentation remain available. New updates require reconnection.
 
 ### Support Resources
 
-If you encounter issues not covered in this guide:
+If you encounter issues:
+
 - Check the error message for specific guidance
-- Review your GitHub permissions and settings
+- Try the suggested solutions in this guide
 - Contact OrchestrAI support with details about the error
-- Include your GitHub username (not password) when requesting help
+- Include your workspace ID and GitHub username (but never share tokens or passwords)
 
 ## Next Steps
 
 After connecting GitHub:
-1. Browse your repository list
-2. Select repositories for automated testing
-3. Configure test engineering settings
-4. Enable continuous integration features
-5. Review generated documentation and test results
 
-Your GitHub integration is now complete and ready to enhance your development workflow.
+1. Browse your available repositories
+2. Select repositories for test engineering
+3. Enable automated documentation generation
+4. Configure bot settings for your workflow
+5. Start analyzing and improving your code
+
+Your GitHub integration is now ready to help automate testing and documentation for your projects.

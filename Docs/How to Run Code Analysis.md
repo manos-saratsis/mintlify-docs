@@ -2,368 +2,288 @@
 
 ## Overview
 
-Code Analysis helps you understand and improve your codebase by automatically evaluating code quality across multiple dimensions. The system analyzes your repositories and provides scores, detailed insights, and actionable recommendations to help you maintain high code standards.
+Code Analysis helps you understand and improve the quality of your code through automated evaluation. The system examines your repositories and provides scores across multiple quality dimensions, helping you identify areas for improvement and track code health over time.
 
 ## Getting Started
 
 ### Prerequisites
 
-Before running code analysis, you need:
+Before running code analysis, ensure you have:
 
-1. **Active Workspace**: Select a workspace from your account
-2. **Connected Repository**: Link your GitHub, GitLab, or Bitbucket repository
-3. **Repository Access**: Enable OrchestrAI on the repositories you want to analyze
+1. **An active workspace** - You must be logged in and have a workspace selected
+2. **Connected repositories** - At least one repository must be connected from GitHub, GitLab, or Bitbucket
+3. **Enabled repositories** - OrchestrAI must be enabled on the repositories you want to analyze
 
 ### Initial Setup
 
-1. Navigate to the Code Quality section from your product dashboard
-2. If you haven't connected any repositories yet, click "Add Git Connection"
-3. Authorize OrchestrAI to access your repositories
-4. Enable OrchestrAI on the repositories you want to analyze by visiting the repository management page
+1. Navigate to the Code Quality page from your product dashboard
+2. If you haven't connected any repositories yet, click the "Manage Repositories" button
+3. Enable OrchestrAI on the repositories you want to analyze
+4. Return to the Code Quality page to begin your analysis
 
 ## Running Your First Analysis
 
 ### Starting an Analysis
 
-1. Open the Code Quality page from your workspace
-2. Locate the repository you want to analyze in the "Recent Code Quality Analyses" table
-3. Click the **Analyze** button next to the repository name
-4. The analysis will begin processing your codebase
+1. From the Code Quality page, locate the "Recent Code Quality Analyses" section
+2. Find the repository you want to analyze in the list
+3. Click the **"Analyze"** button next to the repository name
+4. The system will begin processing your code immediately
 
 ### Monitoring Progress
 
-Once analysis starts:
+Once analysis starts, you'll see:
 
-- A progress indicator appears showing "Analyzing..." next to your repository
-- The system processes your code in real-time
-- You can navigate away from the page - analysis continues in the background
-- Return anytime to check status updates
+- **Real-time status updates** showing the current processing stage
+- **Progress indicators** displaying how much of the repository has been analyzed
+- **Processing metrics** including files scanned and completion percentage
 
-### Background Processing
+The analysis continues to run even if you navigate away from the page. Your results are saved automatically.
 
-Analysis runs automatically in the background:
+### Analysis Duration
 
-- You'll see a notification when you navigate away confirming "Your code quality analysis is running in the background"
-- The system maintains analysis state even if you close the browser
-- Progress tracking updates automatically when you return to the page
-- Multiple repositories can be analyzed simultaneously
+Analysis time varies based on:
+- Repository size (number of files and lines of code)
+- Code complexity
+- Current system load
 
-## Understanding Quality Dimensions
+Most repositories complete analysis within 2-5 minutes. Larger repositories may take up to 15 minutes.
 
-The analysis evaluates your code across six critical quality dimensions, each scored from 0-100:
+## Understanding Your Results
 
-### 1. Readability
-**What it measures**: How easy your code is to read and understand
+### The Quality Scoring System
 
-- Code clarity and structure
+Your code receives scores from 0-100 across six quality dimensions. Each score is color-coded for quick reference:
+
+- **Green (80-100)**: Excellent quality, meets best practices
+- **Yellow (60-79)**: Good quality with room for improvement
+- **Red (0-59)**: Needs attention and refactoring
+
+### Six Quality Dimensions
+
+#### Readability
+Evaluates how easy your code is to understand, including:
+- Code clarity and organization
 - Documentation quality and completeness
 - Variable and function naming conventions
 - Comment effectiveness
-- Code formatting consistency
 
-**Score Guide**:
-- 80-100 (Green): Excellent readability with clear documentation
-- 60-79 (Yellow): Acceptable but could be clearer
-- 0-59 (Red): Difficult to understand, needs improvement
-
-### 2. Maintainability
-**What it measures**: How easily your code can be modified and extended
-
-- Code complexity and organization
-- Modular design patterns
+#### Maintainability
+Measures how easily the code can be modified and extended:
+- Code structure and modularity
+- Complexity levels
 - Dependency management
-- Code duplication levels
-- Update and extension potential
+- Technical debt indicators
 
-**Why it matters**: Low maintainability increases the time and cost to add features or fix bugs.
-
-### 3. Reliability
-**What it measures**: Code stability and error resistance
-
+#### Reliability
+Assesses code stability and error resistance:
 - Error handling implementation
 - Edge case coverage
-- Input validation
 - Exception management
-- Defensive programming practices
+- Stability indicators
 
-**Why it matters**: High reliability means fewer crashes and better user experience.
+#### Security
+Identifies potential security vulnerabilities:
+- Security flaws and exploits
+- Authentication and authorization issues
+- Data handling practices
+- Compliance concerns
 
-### 4. Security
-**What it measures**: Protection against vulnerabilities and exploits
-
-- Security vulnerability detection
-- Input sanitization
-- Authentication and authorization checks
-- Data protection practices
-- Compliance with security standards
-
-**Why it matters**: Security issues can lead to data breaches and system compromises.
-
-### 5. Efficiency
-**What it measures**: Performance and resource usage
-
-- Algorithm optimization
-- Memory usage patterns
-- Processing speed
-- Resource consumption
+#### Efficiency
+Analyzes performance and resource usage:
 - Performance bottlenecks
+- Memory management
+- Algorithm optimization opportunities
+- Resource utilization patterns
 
-**Why it matters**: Inefficient code leads to slow applications and higher infrastructure costs.
-
-### 6. Testability
-**What it measures**: How well the code supports testing
-
+#### Testability
+Evaluates how well the code supports testing:
 - Unit test compatibility
 - Test coverage potential
-- Dependency injection usage
-- Mock-friendly design
-- Automated testing support
+- Mockability and isolation
+- Test automation readiness
 
-**Why it matters**: Testable code is easier to verify and maintain with confidence.
+### Overall Score
 
-## Viewing Analysis Results
+The overall score provides a single metric representing your code's general quality. This aggregate score helps you track improvement over time and compare different repositories.
 
-### Results Table
+## Viewing Detailed Results
 
-After analysis completes, view your scores in the results table:
+### Accessing Analysis Reports
 
-1. Each row represents one repository
-2. Scores appear as colored badges:
-   - **Green badges** (80-100): Excellent quality
-   - **Yellow badges** (60-79): Needs improvement
-   - **Red badges** (0-59): Requires immediate attention
-3. An overall score combines all dimensions
+1. After analysis completes, click the **"View Results"** button at the top of the Code Quality page
+2. Select the repository you want to review
+3. The detailed report opens showing all quality dimensions with complete breakdowns
 
-### Detailed Insights
+### Reading Score Details
 
-Click any score badge to see detailed information:
+To see specific recommendations for any quality dimension:
 
-1. **Score Details**: Exact numerical score for that dimension
-2. **Specific Issues**: List of detected problems
-3. **File References**: Which files contain issues
-4. **Recommendations**: Concrete steps to improve the score
+1. Click on any colored score badge in the results table
+2. A detailed breakdown appears showing:
+   - Specific issues found in your code
+   - File locations where problems exist
+   - Concrete improvement recommendations
+   - Technical debt assessment
 
-The notes dialog shows:
-- Repository name and quality dimension
-- Current score with color-coded indicator
-- Detailed explanation of detected issues
-- Actionable improvement suggestions
+### File-Level Reporting
 
-### Accessing Full Reports
-
-To view comprehensive results for a repository:
-
-1. Click the **View Results** button at the top of the Code Quality page
-2. Browse file-level analysis reports
-3. Review line-specific recommendations
-4. Track improvements over time
-
-## Interpreting Scores
-
-### Overall Score Calculation
-
-The overall score represents your codebase's general quality:
-- Calculated by averaging all six dimension scores
-- Weighted equally across all dimensions
-- Provides quick health indicator for your repository
-
-### Score Trends
-
-Monitor how scores change over time:
-- The "Last Analyzed" timestamp shows when analysis ran
-- Run analysis periodically to track improvements
-- Compare scores before and after making changes
-
-### Priority Actions
-
-Use scores to prioritize improvements:
-
-1. **Red Scores (0-59)**: Address immediately - critical issues present
-2. **Yellow Scores (60-79)**: Schedule improvements - moderate concerns
-3. **Green Scores (80-100)**: Maintain current quality - minor refinements only
+Each analysis includes file-specific information:
+- Individual file quality scores
+- Line-specific issue locations
+- Code patterns identified
+- Recommended refactoring steps
 
 ## Acting on Recommendations
 
 ### Understanding Issues
 
-Each detected issue includes:
-- **Issue Type**: Which quality dimension it affects
+Each issue in your report includes:
 - **Description**: What the problem is
-- **Location**: File and line references (when available)
-- **Severity**: How critical the issue is
+- **Location**: Where it exists in your code
+- **Impact**: How it affects code quality
+- **Remediation**: Steps to fix it
 
-### Implementation Steps
+### Prioritizing Improvements
 
-To improve your scores:
+Focus on issues in this order:
 
-1. **Review Notes**: Click score badges to read detailed findings
-2. **Prioritize Fixes**: Start with security and reliability issues
-3. **Make Changes**: Update your code based on recommendations
-4. **Re-analyze**: Run analysis again to verify improvements
-5. **Track Progress**: Compare new scores to previous results
+1. **Security vulnerabilities** - Address immediately
+2. **Critical reliability issues** - Fix to prevent failures
+3. **Performance bottlenecks** - Improve user experience
+4. **Maintainability concerns** - Reduce technical debt
+5. **Readability enhancements** - Improve team collaboration
+6. **Testability improvements** - Strengthen quality assurance
 
-### Best Practices
+### Tracking Progress
 
-- Run analysis before major releases
-- Address security issues first
-- Improve one dimension at a time for focused improvements
-- Re-analyze after significant code changes
-- Use analysis to guide code review priorities
+After making improvements:
+
+1. Commit your changes to the repository
+2. Return to the Code Quality page
+3. Run a new analysis on the same repository
+4. Compare the new scores with previous results
+5. Verify that targeted dimensions show improvement
 
 ## Managing Multiple Repositories
 
-### Repository Selection
+### Viewing All Analyses
 
-The analysis table shows all enabled repositories:
-- Only repositories with OrchestrAI enabled appear
-- Enable more repositories from the repository management page
-- Each repository maintains independent analysis history
+The "Recent Code Quality Analyses" table shows:
+- All repositories with analysis history
+- Most recent analysis date for each repository
+- Current quality scores across all dimensions
+- Quick access to analyze any repository
 
-### Batch Analysis
+### Comparing Repositories
 
-Analyze multiple repositories efficiently:
-- Click Analyze on each repository in sequence
-- All analyses run simultaneously in the background
-- Track progress for each repository independently
-- Results appear as each analysis completes
+Use the table view to:
+- Identify which repositories need attention
+- Compare quality metrics across your codebase
+- Spot trends in code quality
+- Allocate improvement resources effectively
 
-### Cross-Repository Insights
+### Scheduling Regular Analysis
 
-Compare quality across your codebase:
-- View all repository scores in one table
-- Identify patterns across projects
-- Set organization-wide quality standards
-- Share best practices from high-scoring repositories
+Best practices for ongoing code quality monitoring:
+
+- **After major features**: Run analysis when significant code is added
+- **Before releases**: Verify quality before deploying to production
+- **Weekly reviews**: Track quality trends over time
+- **After refactoring**: Confirm improvements achieved desired results
+
+## Analysis Features
+
+### Multi-Repository Support
+
+Analyze repositories from multiple platforms:
+- GitHub repositories
+- GitLab projects
+- Bitbucket repositories
+
+All results are centralized in one dashboard for easy comparison and tracking.
+
+### Background Processing
+
+Analysis runs in the background, allowing you to:
+- Continue working on other tasks
+- Navigate away from the page
+- Return later to view completed results
+- Check progress at any time
+
+### Automatic Result Storage
+
+Every analysis is saved automatically:
+- Historical results remain accessible
+- Compare current and past performance
+- Track improvement trends over time
+- Generate progress reports
+
+## Getting Better Results
+
+### Repository Preparation
+
+For optimal analysis results:
+
+1. **Ensure code is up to date** - Pull the latest changes before analyzing
+2. **Include documentation** - READMEs and comments improve readability scores
+3. **Organize file structure** - Clear organization improves maintainability
+4. **Remove generated files** - Focus analysis on your actual code
+
+### Understanding Limitations
+
+The analysis system:
+- Examines code structure and patterns
+- Identifies common issues and anti-patterns
+- Provides guidance based on industry best practices
+- Cannot understand business context or requirements
+
+Use the scores as guidance, not absolute measures. Your judgment about code quality should always consider your specific needs and constraints.
 
 ## Troubleshooting
 
-### Analysis Doesn't Start
+### No Repositories Available
 
-If analysis fails to begin:
-- Verify the repository is enabled for OrchestrAI
-- Check that you have sufficient credits in your workspace
-- Ensure repository connection is active
-- Try refreshing the page and clicking Analyze again
+If you see "No Enabled Repositories":
+1. Click "Manage Repositories" 
+2. Ensure OrchestrAI is enabled on at least one repository
+3. Return to the Code Quality page
 
-### No Scores Displayed
+### Analysis Fails to Start
 
-If scores show as dashes (-):
-- Analysis hasn't run yet for this repository
-- Previous analysis may have failed
-- Click Analyze to start a new analysis run
+If analysis doesn't begin:
+1. Verify you're connected to the repository platform
+2. Check that you have workspace permissions
+3. Ensure the repository is accessible and hasn't been deleted
+4. Try refreshing the page and attempting analysis again
 
-### Analysis Takes Too Long
+### Missing or Incomplete Results
 
-Analysis duration depends on repository size:
-- Small repositories: 1-3 minutes
-- Medium repositories: 3-10 minutes
-- Large repositories: 10-30+ minutes
-- Analysis continues in the background if you navigate away
+If results seem incomplete:
+1. Wait for the full analysis to complete (check the progress indicator)
+2. Verify the repository contains analyzable code files
+3. Check that you have sufficient credits remaining
+4. Run the analysis again if it appears to have stopped
 
-### Missing Repositories
+## Best Practices
 
-If your repository doesn't appear:
-- Check that OrchestrAI is enabled on the repository
-- Visit the repository management page to enable it
-- Ensure your workspace has access to the repository
-- Verify repository connection is still active
+### Regular Monitoring
 
-## Advanced Features
-
-### Real-Time Updates
-
-The analysis system provides live feedback:
-- Progress indicators update automatically
-- Status changes reflect immediately
-- No page refresh needed to see updates
-- Background analysis state persists across sessions
-
-### Performance Analysis
-
-Beyond quality scores, the system identifies:
-- Specific performance bottlenecks
-- Memory usage patterns
-- Optimization opportunities
-- Complexity metrics for individual files
-
-### Security Scanning
-
-Security analysis detects:
-- Known vulnerability patterns
-- Potential exploit vectors
-- Compliance violations
-- Input validation gaps
-- Authentication weaknesses
-
-### File-Level Reporting
-
-Detailed reports show:
-- Individual file scores
-- Line-specific issues
-- Code pattern analysis
-- Technical debt assessment
-- Improvement priorities per file
-
-## Integration Workflows
-
-### Development Workflow
-
-Incorporate analysis into your process:
-1. **Before Starting**: Analyze existing code to establish baseline
-2. **During Development**: Focus on maintaining or improving scores
-3. **Before Commit**: Check that changes don't reduce quality
-4. **After Merge**: Re-analyze to verify overall impact
-
-### Code Review Process
-
-Use analysis to enhance reviews:
-- Reference quality scores in review discussions
-- Prioritize reviewing files with low scores
-- Verify improvements claimed in pull requests
-- Set minimum score thresholds for merging
-
-### Continuous Improvement
-
-Build quality into your culture:
-- Schedule regular analysis runs (weekly or sprint-based)
-- Track quality trends over time
-- Celebrate improvements in team meetings
-- Set team goals for quality dimension scores
-
-## Getting the Most Value
-
-### Regular Analysis
-
-Run analysis consistently:
-- After completing major features
-- Before releases or deployments
-- When onboarding new team members
-- After refactoring efforts
+- Run analysis at consistent intervals
+- Track scores over time to measure improvement
+- Address issues promptly before they accumulate
+- Review results as a team to share knowledge
 
 ### Team Collaboration
 
-Share results with your team:
-- Discuss findings in team meetings
-- Assign improvement tasks based on recommendations
-- Use scores to guide pair programming sessions
-- Document lessons learned from quality improvements
+- Share analysis results with your development team
+- Discuss priorities for quality improvements
+- Use scores to guide code review focus
+- Set team goals for quality metrics
 
-### Quality Goals
+### Continuous Improvement
 
-Set measurable targets:
-- Define minimum acceptable scores per dimension
-- Create improvement roadmaps for red/yellow scores
-- Track progress toward quality objectives
-- Recognize team members who improve code quality
-
-## Next Steps
-
-After running your first analysis:
-
-1. **Review all dimension scores** to understand your baseline quality
-2. **Prioritize improvements** starting with security and reliability
-3. **Make targeted changes** based on detailed recommendations
-4. **Re-analyze regularly** to track improvements over time
-5. **Expand coverage** by enabling analysis on more repositories
-
-For more advanced features, explore the full results view where you can access file-level details, historical trends, and comprehensive quality reports.
+- Address highest-priority issues first
+- Re-analyze after making changes
+- Celebrate quality improvements
+- Document lessons learned from quality issues
