@@ -6,201 +6,184 @@ Monitor your credit usage, track spending, and manage your subscription plan to 
 
 ## Accessing Cost Monitoring
 
-1. Navigate to your workspace
-2. Open the Cost Analysis page from the main menu
-3. View your current usage, plan details, and billing information
+1. Open your workspace
+2. Navigate to the Cost Analysis page from your workspace menu
+3. View your current subscription status and credit usage at a glance
 
-## Understanding Your Plan
+## Understanding Your Dashboard
 
-### Free Plan
-- **Monthly credits**: 50 credits per month
-- **Cost**: Free
-- **Best for**: Testing and small projects
+### Subscription Status Card
 
-### Pro Plan
-Choose from multiple credit tiers based on your needs:
-- **100 credits/month** - $25/month
-- **200 credits/month** - $50/month
-- **400 credits/month** - $100/month
-- **1,000 credits/month** - $250/month
-- **2,000 credits/month** - $500/month
-- **3,000 credits/month** - $750/month
-- **5,000 credits/month** - $1,250/month
+Your dashboard displays key information about your current plan:
 
-Pro plans include:
-- Enterprise analysis capabilities
-- Unlimited features
-- 24/7 support
-- Custom solutions
+- **Plan Type**: Shows whether you're on the Free or Pro plan
+- **Status Badge**: Displays your billing status (Active, Exceeded, or Cancelling)
+- **Next Billing Date**: When your subscription will renew
+- **Action Buttons**: Quick access to upgrade, edit plan, or manage billing
 
-## Monitoring Your Usage
+### Credit Usage Tracking
 
-### Credit Usage Display
+The dashboard shows your monthly credit consumption:
 
-The dashboard shows your current credit consumption with a visual progress bar:
+- **Current Usage**: Total credits used this billing period
+- **Monthly Limit**: Your plan's credit allocation
+- **Progress Bar**: Visual representation of credit consumption
+- **Remaining Credits**: Credits available until the end of your billing cycle
 
-- **Used credits**: See exactly how many credits you've consumed this month
-- **Total credits**: Your monthly credit allowance
-- **Remaining credits**: Credits available for the rest of the billing period
-- **Usage percentage**: Visual indicator showing how much of your monthly allocation has been used
+**Free Plan**: 50 credits per month included at no cost
 
-### Subscription Status
+**Pro Plans**: Choose from flexible credit packages:
+- 100 credits/month - $25
+- 200 credits/month - $50
+- 400 credits/month - $100
+- 1,000 credits/month - $250
+- 2,000 credits/month - $500
+- 3,000 credits/month - $750
+- 5,000 credits/month - $1,250
 
-Your subscription status card displays:
-
-- **Current plan**: Free or Pro with credit tier
-- **Billing status**: Active, exceeded, or cancelling
-- **Next billing date**: When your subscription renews
-- **Credits after renewal**: Your credit allocation for the next period
-
-### Billing Cycle
-
-All credit allocations reset at the beginning of each monthly billing period. Your next billing date shows when your credits will refresh.
-
-## Understanding Billing Status
-
-### Active
-Your subscription is current and you have credits available. You can continue using OrchestrAI without interruption.
-
-### Exceeded
-You've used all your monthly credits. To continue using OrchestrAI:
-- Upgrade to a higher credit tier
-- Wait until your next billing period for credits to reset
-
-### Cancelling
-Your subscription is set to cancel at the end of the current billing period. You'll retain access until that date, then move to the Free plan.
-
-## Managing Your Plan
+## Managing Your Subscription
 
 ### Upgrading from Free to Pro
 
-1. Click **Upgrade to Paid** on the Cost Analysis page
-2. Select your desired credit tier from the dropdown menu
-3. Review the monthly price for your selected tier
-4. Click **Upgrade Now**
-5. Complete the payment process
-6. Your Pro plan activates immediately with full credit allocation
+1. Click the **Upgrade to Paid** button on your dashboard
+2. Select your desired monthly credit package
+3. Review the pricing: each option shows credits and monthly cost
+4. Click **Upgrade Now** to proceed to payment
+5. Complete the secure checkout process
+6. Your new credits are immediately available
 
-### Changing Your Credit Tier
+### Changing Your Pro Plan
 
-For active Pro subscriptions:
+**Upgrading Your Plan** (More Credits):
 
-**Upgrading to more credits:**
-1. Click **Edit Plan**
-2. Select a higher credit tier
+1. Click **Edit Plan** on your dashboard
+2. Select a higher credit package from the dropdown
 3. Click **Upgrade Now**
 4. The change takes effect immediately
-5. You'll be charged the prorated difference
+5. You're charged a prorated amount for the billing period
 
-**Downgrading to fewer credits:**
-1. Click **Edit Plan**
-2. Select a lower credit tier
+**Downgrading Your Plan** (Fewer Credits):
+
+1. Click **Edit Plan** on your dashboard
+2. Select a lower credit package from the dropdown
 3. Click **Schedule Downgrade**
-4. Your current credits remain available until the billing period ends
-5. The new tier begins at your next billing date
+4. The change is scheduled for your next billing date
+5. You keep your current credit limit until the billing period ends
+6. A notification confirms the scheduled change
 
-### Downgrading to Free
+### Downgrading to Free Plan
 
-1. Click **Edit Plan**
-2. Select **Go to Free** at the bottom of the modal
+1. Click **Edit Plan** on your dashboard
+2. Click **Go to Free** at the bottom
 3. Confirm the downgrade
-4. Your Pro features remain active until the current billing period ends
-5. After that date, you'll move to the Free plan with 50 credits/month
+4. Your plan changes to Free at the end of your billing period
+5. You retain Pro features until the current period ends
+6. Private repositories are automatically switched to manual mode
 
-**Important**: When downgrading to Free, access to private repositories will be automatically disabled.
+## Understanding Scheduled Changes
 
-## Scheduled Changes
+When you schedule a plan change, your dashboard shows important details:
 
-### Understanding Scheduled Plans
+**For Downgrades**: A blue notification displays your scheduled new plan and when it takes effect. Your current plan and credits remain active until the billing period ends.
 
-When you downgrade or cancel your subscription, the change is scheduled for the end of your billing period. This means:
+**For Cancellations**: An orange notification shows that you'll move to the Free plan after your current period, along with which Pro features you'll lose access to.
 
-- You keep your current credits and features until the period ends
-- No immediate disruption to your work
-- The new plan activates automatically on the scheduled date
+**Modifying Scheduled Changes**: Click **Edit Plan** at any time to change or cancel a scheduled subscription change before it takes effect.
 
-### Managing Scheduled Changes
-
-If you have a scheduled plan change:
-
-1. A notification appears on your Cost Analysis page showing:
-   - The new plan that will take effect
-   - When the change will occur
-   - Your new credit allocation
-
-2. To modify or cancel the scheduled change:
-   - Click **Edit Plan**
-   - Select a different credit tier
-   - The scheduled change updates to your new selection
-
-3. To reactivate your current plan:
-   - Click **Edit Plan**
-   - Choose to upgrade or maintain your existing tier
-   - The cancellation is removed
-
-## Billing Portal
+## Managing Billing
 
 ### Accessing Billing Management
 
-For Pro subscribers, click **Manage Billing** to access the customer portal where you can:
+1. Click **Manage Billing** on your dashboard
+2. You'll be taken to the secure customer portal
+3. Update payment methods, view invoices, or modify billing details
 
-- View payment history
-- Update payment methods
-- Download invoices
-- Review transaction details
-- Update billing information
+### Refreshing Usage Data
 
-### Refreshing Your Data
+Your credit usage updates automatically, but you can manually refresh:
 
-Click the **Refresh** button at any time to sync the latest usage data from your recent analysis activities. This ensures your credit counts are always up to date.
+1. Click the **Refresh** button on your dashboard
+2. The system syncs your latest usage data
+3. All metrics update to reflect current consumption
 
-## Optimizing Your Usage
+## Billing Cycles and Renewals
 
-### Tracking Credit Consumption
+### How Billing Works
 
-Monitor your credit usage regularly to:
-- Identify usage patterns
-- Plan for upcoming projects
-- Avoid running out of credits mid-month
-- Choose the right credit tier for your needs
+- **Monthly Cycles**: Subscriptions renew on the same day each month
+- **Credit Reset**: Unused credits don't roll over; your allocation resets monthly
+- **Immediate Changes**: Upgrades take effect instantly with prorated billing
+- **Scheduled Changes**: Downgrades apply at the end of your current period
 
-### Choosing the Right Plan
+### Tracking Your Billing Period
 
-Consider these factors when selecting your credit tier:
+Your dashboard shows:
+- **Next Billing Date**: When your subscription renews
+- **Days Remaining**: Time left in your current billing cycle
+- **Scheduled Changes**: Any plan modifications that will take effect
 
-- **Average monthly usage**: Review past months to estimate needs
-- **Project pipeline**: Account for upcoming analysis requirements
-- **Team size**: More users typically means higher consumption
-- **Analysis frequency**: Daily analyses require more credits than occasional use
+### When Your Credits Exceed Your Limit
 
-### Managing Costs Effectively
+If you use more credits than your monthly allocation:
+- Your status changes to "Exceeded"
+- New analyses may be blocked until the next billing cycle
+- Consider upgrading to a higher credit package to avoid interruptions
 
-**Start conservative**: Begin with a lower tier and upgrade if needed
+## Pro Plan Features
 
-**Monitor regularly**: Check your usage weekly to stay informed
+When you upgrade to any Pro plan, you gain access to:
 
-**Plan ahead**: Upgrade before busy periods rather than mid-month
+- **Enterprise Analysis**: Advanced analysis capabilities
+- **Unlimited Everything**: No restrictions on core features
+- **24/7 Support**: Priority assistance whenever you need it
+- **Custom Solutions**: Tailored configurations for your workflow
 
-**Use Free strategically**: For testing or low-volume periods, the Free plan may be sufficient
+## Optimizing Your Credit Usage
 
-## Billing Cycle Reset
+### Monitor Regularly
 
-Credits reset automatically at the start of each billing period. Your unused credits do not roll over to the next month, so plan your usage accordingly.
+Check your dashboard weekly to:
+- Track credit consumption patterns
+- Identify high-usage activities
+- Adjust your plan before hitting limits
 
-## Notifications and Alerts
+### Choose the Right Plan
 
-Watch for status indicators on your Cost Analysis page:
-- **Green status**: Active subscription with credits available
-- **Yellow status**: Approaching your credit limit
-- **Red status**: Credits exceeded or subscription cancelling
-- **Blue notification**: Scheduled plan change pending
+- Start with a smaller package and upgrade as needed
+- Monitor usage for a full billing cycle before committing to larger plans
+- Downgrade during slower periods to optimize costs
 
-## Support
+### Plan for Growth
 
-If you have questions about:
-- Unexpected charges
-- Credit consumption rates
-- Plan recommendations
-- Billing issues
+- Anticipate increased usage when onboarding new team members
+- Upgrade proactively before hitting credit limits
+- Use the progress bar to gauge when you're approaching your limit
 
-Contact support through your Pro plan's 24/7 support access, or use the Manage Billing portal to review detailed transaction information.
+## Troubleshooting
+
+### My credits aren't updating
+
+1. Click the **Refresh** button on your dashboard
+2. Wait a few moments for the sync to complete
+3. Check back after completing any analyses in progress
+
+### My plan change didn't take effect
+
+- **For Upgrades**: Changes are immediate; refresh your browser
+- **For Downgrades**: Changes apply at the end of your billing period
+- Check for scheduled change notifications on your dashboard
+
+### I need more credits immediately
+
+1. Click **Edit Plan**
+2. Select a higher credit package
+3. Click **Upgrade Now** for instant access
+4. The change takes effect immediately with prorated billing
+
+## Best Practices
+
+- **Review monthly**: Check your usage at least once per billing cycle
+- **Set reminders**: Note your billing date to track spending
+- **Upgrade proactively**: Don't wait until you hit your limit
+- **Use scheduled changes**: Plan downgrades in advance to optimize costs
+- **Keep payment current**: Ensure uninterrupted service with valid payment methods
